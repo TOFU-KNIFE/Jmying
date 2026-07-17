@@ -12,6 +12,7 @@ const packageLock = JSON.parse(
 );
 const html = await readFile(join(publicDir, "index.html"), "utf8");
 const app = await readFile(join(publicDir, "app.js"), "utf8");
+const styles = await readFile(join(publicDir, "styles.css"), "utf8");
 const findings = [];
 
 const releaseVersions = new Map([
@@ -97,6 +98,26 @@ for (const target of navTargets) {
   if (!new RegExp(`\\bid="${target}"`).test(html)) {
     findings.push(`navigation target #${target} is missing`);
   }
+}
+
+const highlightCards = html.match(/class="highlight-card(?:\s|")/g) || [];
+if (highlightCards.length !== 4) {
+  findings.push(
+    `expected 4 selected-project cards; found ${highlightCards.length}`,
+  );
+}
+for (const requiredCarouselContract of [
+  'id="highlightTrack"',
+  'data-highlight-previous=""',
+  'data-highlight-next=""',
+  'id="highlightDialog"',
+]) {
+  if (!html.includes(requiredCarouselContract)) {
+    findings.push(`carousel contract is missing ${requiredCarouselContract}`);
+  }
+}
+if (!styles.includes("scroll-snap-type: inline mandatory")) {
+  findings.push("project carousel is missing inline scroll snapping");
 }
 
 if (findings.length) {

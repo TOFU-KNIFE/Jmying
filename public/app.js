@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.4.0";
+  const localeVersion = "1.5.0";
   const localeManifest = [
     {
       id: "en",
@@ -127,6 +127,19 @@
   const languageCode = document.getElementById("languageCode");
   const copyButton = document.getElementById("copyButton");
   const toast = document.getElementById("toast");
+  const highlightTrack = document.getElementById("highlightTrack");
+  const previousHighlightButton = document.querySelector(
+    "[data-highlight-previous]",
+  );
+  const nextHighlightButton = document.querySelector("[data-highlight-next]");
+  const highlightDialog = document.getElementById("highlightDialog");
+  const closeHighlightButton = document.getElementById("closeHighlight");
+  const highlightDialogMeta = document.getElementById("highlightDialogMeta");
+  const highlightDialogTitle = document.getElementById("highlightDialogTitle");
+  const highlightDialogLabel = document.getElementById("highlightDialogLabel");
+  const highlightDialogDescription = document.getElementById(
+    "highlightDialogDescription",
+  );
   const descriptionMeta = document.querySelector('meta[name="description"]');
   const openGraphDescription = document.querySelector(
     'meta[property="og:description"]',
@@ -143,6 +156,10 @@
   let toastTimer = 0;
   let localeRequestId = 0;
   let currentLocale = resolvePreferredLocale();
+  let carouselIndex = 0;
+  let carouselFrame = 0;
+  let activeHighlightCard = null;
+  let lastHighlightTrigger = null;
 
   function captureEnglishFallback() {
     const messages = Object.create(null);
@@ -160,6 +177,9 @@
       meta: descriptionMeta.content,
       copied: "Link copied",
       present: "Present",
+      highlightsCarouselLabel:
+        highlightTrack?.getAttribute("aria-label") ||
+        "Selected projects carousel",
     };
   }
 
@@ -338,6 +358,10 @@
       descriptionMeta.content = messages.meta;
       openGraphDescription.content = messages.meta;
       closeLanguageButton.setAttribute("aria-label", messages.close);
+      highlightTrack?.setAttribute(
+        "aria-label",
+        messages.highlightsCarouselLabel,
+      );
       document.querySelectorAll(".linkedin-cta").forEach((link) => {
         link.setAttribute(
           "aria-label",
@@ -346,6 +370,10 @@
       });
       formatDateRanges(messages);
       renderLanguageOptions();
+      if (activeHighlightCard) renderHighlightDialog(activeHighlightCard);
+      window.requestAnimationFrame(() =>
+        scrollToHighlight(carouselIndex, "auto"),
+      );
       if (persist) storeLocale(currentLocale);
       return true;
     } catch {
@@ -389,6 +417,167 @@
     toastTimer = window.setTimeout(() => toast.classList.remove("show"), 1800);
   }
 
+  function highlightCards() {
+    return highlightTrack
+      ? [...highlightTrack.querySelectorAll(".highlight-card")]
+      : [];
+  }
+
+  function updateHighlightControls() {
+    const cards = highlightCards();
+    if (!cards.length) return;
+    const maxScroll = Math.max(
+      0,
+      highlightTrack.scrollWidth - highlightTrack.clientWidth,
+    );
+    const logicalScroll =
+      document.documentElement.dir === "rtl"
+        ? Math.abs(highlightTrack.scrollLeft)
+        : highlightTrack.scrollLeft;
+    previousHighlightButton.disabled = logicalScroll <= 1;
+    nextHighlightButton.disabled = logicalScroll >= maxScroll - 1;
+  }
+
+  function scrollByHighlight(direction) {
+    const cards = highlightCards();
+    if (!cards.length) return;
+    const trackStyles = window.getComputedStyle(highlightTrack);
+    const gap = Number.parseFloat(trackStyles.columnGap) || 0;
+    const distance = cards[0].getBoundingClientRect().width + gap;
+    const rtlMultiplier = document.documentElement.dir === "rtl" ? -1 : 1;
+    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches
+      ? "auto"
+      : "smooth";
+    highlightTrack.scrollBy({
+      left: direction * distance * rtlMultiplier,
+      behavior,
+    });
+  }
+
+  function scrollToHighlight(index, requestedBehavior) {
+    const cards = highlightCards();
+    if (!cards.length) return;
+    carouselIndex = Math.max(0, Math.min(index, cards.length - 1));
+    const behavior =
+      requestedBehavior ||
+      (window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth");
+    const direction = document.documentElement.dir;
+    const trackRect = highlightTrack.getBoundingClientRect();
+    const cardRect = cards[carouselIndex].getBoundingClientRect();
+    const trackStyles = window.getComputedStyle(highlightTrack);
+    const startInset = Number.parseFloat(
+      direction === "rtl" ? trackStyles.paddingRight : trackStyles.paddingLeft,
+    );
+    const targetEdge =
+      direction === "rtl"
+        ? trackRect.right - startInset
+        : trackRect.left + startInset;
+    const cardEdge = direction === "rtl" ? cardRect.right : cardRect.left;
+    highlightTrack.scrollTo({
+      left: highlightTrack.scrollLeft + cardEdge - targetEdge,
+      behavior,
+    });
+    updateHighlightControls();
+    window.requestAnimationFrame(updateHighlightIndexFromScroll);
+  }
+
+  function updateHighlightIndexFromScroll() {
+    carouselFrame = 0;
+    const cards = highlightCards();
+    if (!cards.length) return;
+
+    const direction = document.documentElement.dir;
+    const trackRect = highlightTrack.getBoundingClientRect();
+    const trackStyles = window.getComputedStyle(highlightTrack);
+    const startInset = Number.parseFloat(
+      direction === "rtl" ? trackStyles.paddingRight : trackStyles.paddingLeft,
+    );
+    const targetEdge =
+      direction === "rtl"
+        ? trackRect.right - startInset
+        : trackRect.left + startInset;
+
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const cardEdge = direction === "rtl" ? cardRect.right : cardRect.left;
+      const distance = Math.abs(cardEdge - targetEdge);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+    carouselIndex = closestIndex;
+    updateHighlightControls();
+  }
+
+  function requestHighlightIndexUpdate() {
+    if (carouselFrame) return;
+    carouselFrame = window.requestAnimationFrame(
+      updateHighlightIndexFromScroll,
+    );
+  }
+
+  function renderHighlightDialog(card) {
+    if (!card) return;
+    const index = card.querySelector(".highlight-index")?.textContent.trim();
+    const year = card.querySelector(".highlight-year")?.textContent.trim();
+    highlightDialogMeta.textContent = [index, year].filter(Boolean).join(" · ");
+    highlightDialogTitle.textContent = card
+      .querySelector(".highlight-card-title")
+      ?.textContent.trim();
+    highlightDialogLabel.textContent = card
+      .querySelector(".highlight-label")
+      ?.textContent.trim();
+    highlightDialogDescription.textContent = card
+      .querySelector(".highlight-description")
+      ?.textContent.trim();
+  }
+
+  function openHighlightDialog(trigger) {
+    const card = trigger.closest(".highlight-card");
+    if (!card || !highlightDialog) return;
+    activeHighlightCard = card;
+    lastHighlightTrigger = trigger;
+    renderHighlightDialog(card);
+    document.body.classList.add("dialog-open");
+    highlightDialog.showModal();
+    closeHighlightButton.focus();
+  }
+
+  function closeHighlightDialog() {
+    if (highlightDialog?.open) highlightDialog.close();
+  }
+
+  function setupHighlightCarousel() {
+    if (!highlightTrack) return;
+    updateHighlightControls();
+    previousHighlightButton.addEventListener("click", () => {
+      scrollByHighlight(-1);
+    });
+    nextHighlightButton.addEventListener("click", () => {
+      scrollByHighlight(1);
+    });
+    highlightTrack.addEventListener("scroll", requestHighlightIndexUpdate, {
+      passive: true,
+    });
+    highlightTrack.addEventListener("keydown", (event) => {
+      if (event.target !== highlightTrack) return;
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      const rtl = document.documentElement.dir === "rtl";
+      const forward = event.key === (rtl ? "ArrowLeft" : "ArrowRight");
+      scrollByHighlight(forward ? 1 : -1);
+    });
+    window.addEventListener("resize", requestHighlightIndexUpdate, {
+      passive: true,
+    });
+  }
+
   function setupNavigationTracking() {
     const navigationLinks = [...document.querySelectorAll("[data-nav-link]")];
     const sections = navigationLinks
@@ -429,7 +618,7 @@
 
     const revealTargets = [
       ...document.querySelectorAll(
-        ".section-intro, .focus-item, .timeline-item, .approach-visual, .approach-list li, .toolkit-strip, .highlight-item, .credential-list li, .connect-layout",
+        ".section-intro, .focus-item, .timeline-item, .approach-visual, .approach-list li, .toolkit-strip, .highlight-card, .credential-list li, .connect-layout",
       ),
     ];
     document.documentElement.classList.add("motion-ready");
@@ -465,6 +654,10 @@
     if (applied) closeLanguageDialog();
   });
   document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && highlightDialog?.open) {
+      closeHighlightDialog();
+      return;
+    }
     if (languageDialog.hidden) return;
     if (event.key === "Escape") {
       closeLanguageDialog();
@@ -494,6 +687,19 @@
       showToast("jmying.com");
     }
   });
+  document.querySelectorAll("[data-highlight-learn]").forEach((button) => {
+    button.addEventListener("click", () => openHighlightDialog(button));
+  });
+  closeHighlightButton?.addEventListener("click", closeHighlightDialog);
+  highlightDialog?.addEventListener("click", (event) => {
+    if (event.target === highlightDialog) closeHighlightDialog();
+  });
+  highlightDialog?.addEventListener("close", () => {
+    document.body.classList.remove("dialog-open");
+    activeHighlightCard = null;
+    lastHighlightTrigger?.focus?.();
+    lastHighlightTrigger = null;
+  });
   document.querySelectorAll('a[target="_blank"]').forEach((link) => {
     link.rel = "noopener noreferrer external";
     link.referrerPolicy = "no-referrer";
@@ -503,5 +709,6 @@
   renderLanguageOptions();
   applyLocale(currentLocale);
   setupNavigationTracking();
+  setupHighlightCarousel();
   setupPurposefulMotion();
 })();
