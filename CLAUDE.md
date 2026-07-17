@@ -19,9 +19,10 @@ npm test
 
 - `public/index.html`: semantic structure and English fallback content
 - `public/styles.css`: design tokens, responsive layout, accessibility modes and motion
-- `public/app.js`: translations, language preference, dialog behaviour and navigation state
+- `public/app.js`: locale manifest, language loading and preference, dialog behaviour and navigation state
+- `public/locales/*.json`: complete translation bundles for each supported locale
 - `public/_headers`: cache, privacy and security policy
 - `scripts/security-audit.mjs`: deployable-file and security checks
 - `scripts/i18n-audit.mjs`: translation-key and language-tag checks
 
-When changing copy, update the English fallback in both `index.html` and `app.js`, then update all other locale entries. Do not add public contact channels other than the existing LinkedIn profile.
+When changing visible copy, update the English fallback in `index.html`, then update the matching key in every `public/locales/*.json` file. Do not add public contact channels other than the existing LinkedIn profile.

@@ -33,15 +33,15 @@ Use Semantic Versioning:
 - Minor (`1.2.0`): new compatible sections, locales or interactions
 - Major (`2.0.0`): incompatible deployment, content-model or URL changes
 
-Keep the version in `package.json`, the `?v=` asset revision in `public/index.html` and `CHANGELOG.md` aligned.
+Keep the version in `package.json`, the `?v=` asset revisions in `public/index.html` and `public/app.js`, and `CHANGELOG.md` aligned.
 
 ## Release checklist
 
 1. Pull the latest `main` and run `npm ci`.
 2. Run `npm run format` and `npm test`.
-3. Check desktop, mobile, reduced motion and at least one non-English locale.
+3. Check desktop, mobile, reduced motion, a long-text locale, a complex-script locale and Arabic right-to-left layout.
 4. Move the release notes from `Unreleased` into a dated version section.
-5. Update `package.json` and the CSS/JavaScript asset revision.
+5. Update `package.json` and the CSS/JavaScript/locale asset revisions.
 6. Merge the release pull request.
 7. Tag the merge commit as `vX.Y.Z` and create a GitHub release from the changelog.
 8. Run `npm run deploy` from the tagged commit.

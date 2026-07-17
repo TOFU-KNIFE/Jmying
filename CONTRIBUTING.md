@@ -22,7 +22,7 @@ npm run format
 npm test
 ```
 
-For visual changes, check at least 1440 × 1000 and 390 × 844, including the language dialog and one non-English locale. Also test keyboard focus and reduced-motion mode.
+For visual changes, check at least 1440 × 1000 and 390 × 844, including the language dialog, a long-text locale, a complex-script locale and Arabic right-to-left layout. Also test keyboard focus and reduced-motion mode.
 
 ## Pull requests
 

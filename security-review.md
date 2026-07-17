@@ -18,12 +18,12 @@ Reviewed the deployable `public/` directory, Cloudflare headers, package configu
 - Removed unsafe HTML-string rendering from the language menu and replaced it with DOM construction.
 - Enabled Trusted Types enforcement in CSP.
 - Prohibited inline scripts, inline styles, event-handler attributes, `eval`, dynamic `Function`, unsafe HTML sinks, and source-map references.
-- Minified JavaScript and CSS as a casual-copying deterrent.
+- Kept browser code reviewable and excluded source maps from deployment.
 
 ### Network and browser isolation
 
 - Default-deny Content Security Policy.
-- No runtime connection to analytics, advertising, APIs, or third-party assets.
+- Runtime requests are limited to same-origin locale bundles; there are no analytics, advertising, external API, or third-party asset requests.
 - HSTS, frame denial, MIME sniffing prevention, no-referrer policy, restrictive Permissions Policy, origin-agent isolation, COOP, and CORP.
 - Static asset methods confirmed to reject POST with HTTP 405.
 
@@ -37,7 +37,7 @@ Reviewed the deployable `public/` directory, Cloudflare headers, package configu
 - No runtime npm dependencies.
 - `npm audit` reports zero vulnerabilities.
 - Wrangler static-assets deployment dry run passed.
-- Release-versioned JavaScript/CSS URLs use year-long immutable caching; the release checklist requires a revision bump whenever either file changes.
+- Release-versioned JavaScript, CSS and locale URLs use year-long immutable caching; the release checklist requires a revision bump whenever one changes.
 
 ## Encryption and reverse engineering
 

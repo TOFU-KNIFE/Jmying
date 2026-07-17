@@ -133,7 +133,7 @@ if (linkedinCount < 2)
 const headers = await readFile(join(publicDir, "_headers"), "utf8");
 for (const required of [
   "default-src 'none'",
-  "connect-src 'none'",
+  "connect-src 'self'",
   "frame-ancestors 'none'",
   "require-trusted-types-for 'script'",
   "Strict-Transport-Security",

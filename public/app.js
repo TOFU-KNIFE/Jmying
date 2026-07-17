@@ -1,670 +1,124 @@
 (() => {
   "use strict";
-  const f = {
+
+  const localeVersion = "1.2.0";
+  const localeManifest = [
+    {
+      id: "en",
       htmlLang: "en",
       code: "EN",
       native: "English",
       english: "English",
-      meta: "Jeremy (Lei) Ying — Accounting (FinTech), audit, finance and data.",
-      skip: "Skip to profile",
-      navProfile: "Profile",
-      navExperience: "Experience",
-      navHighlights: "Highlights",
-      language: "Language",
-      chooseLanguage: "Choose a language",
-      close: "Close",
-      eyebrow: "Accounting · Audit · Data",
-      role: "Accounting (FinTech) student seeking an Audit & Assurance internship.",
-      summary:
-        "I combine financial reporting, careful documentation and practical digital tools to support accurate, well-structured work.",
-      availability:
-        "Available for Audit & Assurance internships · Feb–Apr 2027",
-      copy: "Copy jmying.com",
-      copied: "Link copied",
-      privacyLine:
-        "For professional enquiries, please use LinkedIn. This site neither publishes nor collects private contact details.",
-      profileKicker: "Professional profile",
-      profileTitle: "Careful work, clearly structured.",
-      profileIntro:
-        "I focus on accounting fundamentals, audit-ready documentation and practical, technology-supported analysis.",
-      focus1Title: "Accounting & assurance",
-      focus1Desc:
-        "Financial working papers, supporting schedules, document checks and structured review.",
-      focus2Title: "Finance systems",
-      focus2Desc:
-        "Hands-on exposure to Excel, SQL accounting software, Oracle and internal ERP workflows.",
-      focus3Title: "Data & digital tools",
-      focus3Desc:
-        "Python and AI-assisted tools used for research, analysis and clear communication.",
-      experienceKicker: "Experience & education",
-      experienceTitle: "A practical foundation.",
-      experienceIntro:
-        "Experience in project finance documentation and accounting operations, supported by Accounting (FinTech) studies.",
-      exp1Role: "Finance & Accounting Intern",
-      exp1Desc:
-        "Prepared financial working papers, checked supporting documents, assisted with IPC payments and organised project finance data for review.",
-      exp2Role: "Account Assistant",
-      exp2Desc:
-        "Organised accounting and purchasing records, monitored purchase orders, tracked expenses and supported year-end reporting.",
-      educationRole: "Bachelor of Accounting (FinTech) (Honours)",
-      educationDesc:
-        "Building practical knowledge of financial reporting, audit, taxation, analytics and technology-supported accounting.",
-      highlightsKicker: "Selected highlights",
-      highlightsTitle: "Selected projects and challenges.",
-      highlight1Label: "ASEAN Top 10 finalist",
-      highlight1Desc:
-        "Applied machine learning and data analysis to a sustainability challenge in a global competition.",
-      highlight2Label: "Semi-finalist",
-      highlight2Desc:
-        "Practised audit judgement, structured reasoning, professional ethics and business problem-solving.",
-      highlight3Label: "Quarter-finalist · Team category",
-      highlight3Desc:
-        "Worked through practical business scenarios using Malaysian tax knowledge.",
-      highlight4Label: "Excellent Case Group",
-      highlight4Desc:
-        "Practised case analysis, structured problem-solving and professional communication.",
-      credentialsKicker: "Credentials",
-      credentialsTitle: "Continuous professional learning.",
-      credentialsIntro:
-        "Selected learning completed across markets, finance, ESG and emergency response.",
-      credentialAha: "American Heart Association First Aid, CPR & AED",
-      connectKicker: "Connect",
-      connectTitle: "One professional contact channel.",
-      connectText:
-        "Please contact me through LinkedIn. This website does not publish or collect private contact information.",
-      viewLinkedin: "Contact on LinkedIn",
-      footerPrivacy: "Privacy-first · no analytics · no advertising",
+      dir: "ltr",
     },
-    r = {
-      en: f,
-      "zh-CN": {
-        htmlLang: "zh-CN",
-        code: "简",
-        native: "简体中文",
-        english: "Simplified Chinese",
-        meta: "Jeremy（Lei）Ying — 会计金融科技、审计、财务与数据。",
-        skip: "跳到个人简介",
-        navProfile: "简介",
-        navExperience: "经历",
-        navHighlights: "亮点",
-        language: "语言",
-        chooseLanguage: "选择语言",
-        close: "关闭",
-        eyebrow: "会计 · 审计 · 数据",
-        role: "会计（金融科技）学生，正在寻求审计与鉴证实习机会。",
-        summary:
-          "我结合财务报告知识、细致的文件整理与实用数字工具，支持准确、结构清晰的工作。",
-        availability: "可接受审计与鉴证实习 · 2027 年 2–4 月",
-        copy: "复制 jmying.com",
-        copied: "链接已复制",
-        privacyLine:
-          "如需职业联系，请使用 LinkedIn。本站不公开，也不收集私人联系方式。",
-        profileKicker: "职业简介",
-        profileTitle: "细致工作，清晰呈现。",
-        profileIntro:
-          "我专注于会计基础、审计就绪文件，以及实用的技术辅助分析。",
-        focus1Title: "会计与鉴证",
-        focus1Desc: "财务工作底稿、支持性明细、文件核查与结构化复核。",
-        focus2Title: "财务系统",
-        focus2Desc:
-          "接触并使用过 Excel、SQL 会计软件、Oracle 与内部 ERP 流程。",
-        focus3Title: "数据与数字工具",
-        focus3Desc: "运用 Python 与 AI 辅助工具支持研究、分析和清晰沟通。",
-        experienceKicker: "经历与教育",
-        experienceTitle: "扎实的实践基础。",
-        experienceIntro:
-          "具备项目财务文件与会计运营经验，并正修读会计（金融科技）课程。",
-        exp1Role: "财务会计实习生",
-        exp1Desc:
-          "编制财务工作底稿，核查支持性文件，协助 IPC 付款处理，并整理项目财务数据供复核。",
-        exp2Role: "会计助理",
-        exp2Desc:
-          "整理会计与采购记录，跟进采购订单，追踪费用，并协助年终财务报告。",
-        educationRole: "会计（金融科技）荣誉学士",
-        educationDesc:
-          "持续建立财务报告、审计、税务、分析及科技赋能会计方面的基础。",
-        highlightsKicker: "精选亮点",
-        highlightsTitle: "精选项目与竞赛经历。",
-        highlight1Label: "东盟前十名决赛选手",
-        highlight1Desc:
-          "在全球竞赛环境中，将机器学习与数据分析应用于可持续发展主题挑战。",
-        highlight2Label: "半决赛选手",
-        highlight2Desc:
-          "强化审计判断、结构化推理、职业道德与商业问题解决能力。",
-        highlight3Label: "八强 · 团队组",
-        highlight3Desc: "探索马来西亚税务知识在实际商业场景中的应用。",
-        highlight4Label: "优秀案例小组",
-        highlight4Desc: "练习咨询式分析、结构化解决问题与专业沟通。",
-        credentialsKicker: "证书与学习",
-        credentialsTitle: "持续的专业学习。",
-        credentialsIntro: "完成金融市场、财务、ESG 与应急响应相关学习。",
-        credentialAha: "美国心脏协会急救、心肺复苏与 AED",
-        connectKicker: "联系",
-        connectTitle: "唯一的职业联系渠道。",
-        connectText: "请仅通过领英与我联系。本站不公开或收集私人联系方式。",
-        viewLinkedin: "通过领英联系",
-        footerPrivacy: "隐私优先 · 无分析追踪 · 无广告",
-      },
-      "zh-TW": {
-        htmlLang: "zh-Hant",
-        code: "繁",
-        native: "繁體中文",
-        english: "Traditional Chinese",
-        meta: "Jeremy（Lei）Ying — 會計金融科技、審計、財務與數據。",
-        skip: "跳至個人簡介",
-        navProfile: "簡介",
-        navExperience: "經歷",
-        navHighlights: "亮點",
-        language: "語言",
-        chooseLanguage: "選擇語言",
-        close: "關閉",
-        eyebrow: "會計 · 審計 · 數據",
-        role: "會計（金融科技）學生，正在尋找審計與鑑證實習機會。",
-        summary:
-          "我結合財務報告知識、細緻的文件整理與實用數位工具，支援準確、結構清晰的工作。",
-        availability: "可接受審計與鑑證實習 · 2027 年 2–4 月",
-        copy: "複製 jmying.com",
-        copied: "連結已複製",
-        privacyLine:
-          "如需職業聯繫，請使用 LinkedIn。本站不公開，也不收集私人聯絡資料。",
-        profileKicker: "職業簡介",
-        profileTitle: "細緻工作，清晰呈現。",
-        profileIntro:
-          "我專注於會計基礎、審計就緒文件，以及實用的科技輔助分析。",
-        focus1Title: "會計與鑑證",
-        focus1Desc: "財務工作底稿、支持性明細、文件核查與結構化覆核。",
-        focus2Title: "財務系統",
-        focus2Desc:
-          "接觸並使用過 Excel、SQL 會計軟體、Oracle 與內部 ERP 流程。",
-        focus3Title: "數據與數位工具",
-        focus3Desc: "運用 Python 與 AI 輔助工具支援研究、分析和清晰溝通。",
-        experienceKicker: "經歷與教育",
-        experienceTitle: "扎實的實務基礎。",
-        experienceIntro:
-          "具備專案財務文件與會計營運經驗，並正修讀會計（金融科技）課程。",
-        exp1Role: "財務會計實習生",
-        exp1Desc:
-          "編製財務工作底稿，核查支持文件，協助 IPC 付款處理，並整理專案財務數據供覆核。",
-        exp2Role: "會計助理",
-        exp2Desc:
-          "整理會計與採購記錄，跟進採購訂單，追蹤費用，並協助年終財務報告。",
-        educationRole: "會計（金融科技）榮譽學士",
-        educationDesc:
-          "持續建立財務報告、審計、稅務、分析及科技賦能會計方面的基礎。",
-        highlightsKicker: "精選亮點",
-        highlightsTitle: "精選專案與競賽經歷。",
-        highlight1Label: "東盟前十名決賽選手",
-        highlight1Desc:
-          "在全球競賽環境中，將機器學習與數據分析應用於永續發展主題挑戰。",
-        highlight2Label: "準決賽選手",
-        highlight2Desc:
-          "強化審計判斷、結構化推理、職業道德與商業問題解決能力。",
-        highlight3Label: "八強 · 團隊組",
-        highlight3Desc: "探索馬來西亞稅務知識在實際商業場景中的應用。",
-        highlight4Label: "優秀案例小組",
-        highlight4Desc: "練習顧問式分析、結構化解題與專業溝通。",
-        credentialsKicker: "證書與學習",
-        credentialsTitle: "持續的專業學習。",
-        credentialsIntro: "完成金融市場、財務、ESG 與緊急應變相關學習。",
-        credentialAha: "美國心臟協會急救、心肺復甦與 AED",
-        connectKicker: "聯絡",
-        connectTitle: "唯一的職業聯絡管道。",
-        connectText:
-          "請僅透過 LinkedIn 與我聯絡。本站不公開或收集私人聯絡資料。",
-        viewLinkedin: "透過 LinkedIn 聯絡",
-        footerPrivacy: "隱私優先 · 無分析追蹤 · 無廣告",
-      },
-      ms: {
-        htmlLang: "ms",
-        code: "MS",
-        native: "Bahasa Melayu",
-        english: "Malay",
-        meta: "Jeremy (Lei) Ying — Perakaunan FinTech, audit, kewangan dan data.",
-        skip: "Langkau ke profil",
-        navProfile: "Profil",
-        navExperience: "Pengalaman",
-        navHighlights: "Sorotan",
-        language: "Bahasa",
-        chooseLanguage: "Pilih bahasa anda",
-        close: "Tutup",
-        eyebrow: "Perakaunan · Audit · Data",
-        role: "Pelajar Perakaunan (FinTech) dan pemohon latihan industri Audit & Assurance.",
-        summary:
-          "Saya menggabungkan pelaporan kewangan, dokumentasi yang teliti dan alat digital praktikal untuk menyokong kerja yang tepat dan tersusun.",
-        availability:
-          "Tersedia untuk latihan industri Audit & Assurance · Feb–Apr 2027",
-        copy: "Salin jmying.com",
-        copied: "Pautan disalin",
-        privacyLine:
-          "Pertanyaan profesional diterima melalui LinkedIn sahaja. Tiada maklumat hubungan peribadi diterbitkan atau dikumpulkan di sini.",
-        profileKicker: "Profil profesional",
-        profileTitle: "Disediakan untuk kerja yang teliti.",
-        profileIntro:
-          "Fokus saya berada pada persilangan asas perakaunan, dokumentasi sedia audit dan analisis berasaskan teknologi.",
-        focus1Title: "Perakaunan & assurance",
-        focus1Desc:
-          "Kertas kerja kewangan, jadual sokongan, pengesahan dokumen dan semakan berstruktur.",
-        focus2Title: "Sistem kewangan",
-        focus2Desc:
-          "Pendedahan praktikal kepada Excel, perisian perakaunan SQL, Oracle dan aliran kerja ERP dalaman.",
-        focus3Title: "Data & alat digital",
-        focus3Desc:
-          "Penggunaan praktikal Python dan alat bantuan AI untuk penyelidikan, analisis dan komunikasi yang jelas.",
-        experienceKicker: "Pengalaman & pendidikan",
-        experienceTitle: "Asas praktikal.",
-        experienceIntro:
-          "Pengalaman dalam dokumentasi kewangan projek, operasi perakaunan dan pengajian Perakaunan (FinTech).",
-        exp1Role: "Pelatih Perakaunan Kewangan",
-        exp1Desc:
-          "Menyediakan kertas kerja kewangan, menyemak dokumen sokongan, membantu pemprosesan bayaran IPC dan menyusun data kewangan projek untuk semakan.",
-        exp2Role: "Pembantu Akaun",
-        exp2Desc:
-          "Mengurus rekod perakaunan dan pembelian, memantau pesanan belian, menjejak perbelanjaan serta menyokong laporan kewangan akhir tahun.",
-        educationRole: "Sarjana Muda Perakaunan (FinTech) (Kepujian)",
-        educationDesc:
-          "Membina asas dalam pelaporan kewangan, audit, percukaian, analitik dan perakaunan berasaskan teknologi.",
-        highlightsKicker: "Sorotan terpilih",
-        highlightsTitle: "Bukti rasa ingin tahu dan pelaksanaan.",
-        highlight1Label: "Finalis 10 Terbaik ASEAN",
-        highlight1Desc:
-          "Mengaplikasikan pembelajaran mesin dan analisis data kepada cabaran kelestarian dalam persekitaran pertandingan global.",
-        highlight2Label: "Separuh akhir",
-        highlight2Desc:
-          "Memperkukuh pertimbangan audit, penaakulan berstruktur, etika profesional dan penyelesaian masalah perniagaan.",
-        highlight3Label: "Suku akhir · Kategori pasukan",
-        highlight3Desc:
-          "Meneroka aplikasi pengetahuan cukai Malaysia dalam situasi perniagaan sebenar.",
-        highlight4Label: "Kumpulan Kes Cemerlang",
-        highlight4Desc:
-          "Berlatih analisis gaya perundingan, penyelesaian masalah berstruktur dan komunikasi profesional.",
-        credentialsKicker: "Kelayakan",
-        credentialsTitle: "Pembelajaran profesional berterusan.",
-        credentialsIntro:
-          "Pembelajaran terpilih dalam pasaran, kewangan, ESG dan tindak balas kecemasan.",
-        credentialAha:
-          "Pertolongan Cemas, CPR & AED American Heart Association",
-        connectKicker: "Hubungi",
-        connectTitle: "Satu saluran hubungan profesional.",
-        connectText:
-          "Sila hubungi saya melalui LinkedIn sahaja. Laman ini tidak menerbitkan atau mengumpul maklumat hubungan peribadi.",
-        viewLinkedin: "Hubungi melalui LinkedIn",
-        footerPrivacy: "Mengutamakan privasi · tanpa analitik · tanpa iklan",
-      },
-      ja: {
-        htmlLang: "ja",
-        code: "日",
-        native: "日本語",
-        english: "Japanese",
-        meta: "Jeremy (Lei) Ying — 会計FinTech、監査、財務、データ。",
-        skip: "プロフィールへ移動",
-        navProfile: "プロフィール",
-        navExperience: "経験",
-        navHighlights: "実績",
-        language: "言語",
-        chooseLanguage: "言語を選択",
-        close: "閉じる",
-        eyebrow: "会計 · 監査 · データ",
-        role: "会計（FinTech）専攻の学生で、Audit & Assurance インターンを志望しています。",
-        summary:
-          "財務報告の知識、丁寧な文書管理、実用的なデジタルツールを組み合わせ、正確で構造化された業務を支えます。",
-        availability: "Audit & Assurance インターン対応可能 · 2027年2月–4月",
-        copy: "jmying.comをコピー",
-        copied: "リンクをコピーしました",
-        privacyLine:
-          "仕事に関するご連絡は LinkedIn のみで受け付けています。個人の連絡先は掲載・収集しません。",
-        profileKicker: "プロフェッショナルプロフィール",
-        profileTitle: "丁寧な仕事のために。",
-        profileIntro:
-          "会計の基礎、監査対応文書、テクノロジーを活用した分析を軸に成長しています。",
-        focus1Title: "会計・アシュアランス",
-        focus1Desc:
-          "財務ワーキングペーパー、補助明細、文書確認、構造化レビュー。",
-        focus2Title: "財務システム",
-        focus2Desc: "Excel、SQL会計ソフト、Oracle、社内ERPの実務経験。",
-        focus3Title: "データ・デジタルツール",
-        focus3Desc:
-          "PythonとAI支援ツールを研究、分析、明確なコミュニケーションに活用。",
-        experienceKicker: "経験・教育",
-        experienceTitle: "実務に根ざした基盤。",
-        experienceIntro:
-          "プロジェクト財務文書、会計業務、会計（FinTech）の大学教育を通じた経験。",
-        exp1Role: "財務会計インターン",
-        exp1Desc:
-          "財務ワーキングペーパーの作成、証憑確認、IPC支払処理の補助、レビュー用データ整理を担当。",
-        exp2Role: "アカウントアシスタント",
-        exp2Desc:
-          "会計・購買記録の整理、発注管理、経費追跡、年次財務報告を支援。",
-        educationRole: "会計（FinTech）学士（優等）",
-        educationDesc:
-          "財務報告、監査、税務、分析、テクノロジー活用会計の基礎を構築中。",
-        highlightsKicker: "主な実績",
-        highlightsTitle: "好奇心と実行力の証。",
-        highlight1Label: "ASEAN Top 10 ファイナリスト",
-        highlight1Desc:
-          "世界規模の競技で、持続可能性課題に機械学習とデータ分析を適用。",
-        highlight2Label: "セミファイナリスト",
-        highlight2Desc:
-          "監査判断、構造的思考、職業倫理、ビジネス課題解決を強化。",
-        highlight3Label: "準々決勝 · チーム部門",
-        highlight3Desc: "マレーシア税務知識を実務的なビジネス事例に適用。",
-        highlight4Label: "Excellent Case Group",
-        highlight4Desc:
-          "コンサルティング型分析、構造化問題解決、プロフェッショナルコミュニケーションを実践。",
-        credentialsKicker: "資格・学習",
-        credentialsTitle: "継続的な専門学習。",
-        credentialsIntro: "市場、金融、ESG、緊急対応に関する学習を修了。",
-        credentialAha: "American Heart Association 応急手当・CPR・AED",
-        connectKicker: "つながる",
-        connectTitle: "仕事の連絡窓口は一つだけです。",
-        connectText:
-          "LinkedIn からのみご連絡ください。このサイトは個人の連絡先を掲載・収集しません。",
-        viewLinkedin: "LinkedInで連絡する",
-        footerPrivacy: "プライバシー重視 · 解析なし · 広告なし",
-      },
-      ko: {
-        htmlLang: "ko",
-        code: "한",
-        native: "한국어",
-        english: "Korean",
-        meta: "Jeremy (Lei) Ying — 회계 FinTech, 감사, 재무 및 데이터.",
-        skip: "프로필로 이동",
-        navProfile: "프로필",
-        navExperience: "경험",
-        navHighlights: "주요 성과",
-        language: "언어",
-        chooseLanguage: "언어 선택",
-        close: "닫기",
-        eyebrow: "회계 · 감사 · 데이터",
-        role: "회계(FinTech) 전공 학생이며 Audit & Assurance 인턴십을 지원하고 있습니다.",
-        summary:
-          "재무보고 지식, 꼼꼼한 문서 관리, 실용적인 디지털 도구를 결합해 정확하고 구조적인 업무를 지원합니다.",
-        availability: "Audit & Assurance 인턴십 가능 · 2027년 2–4월",
-        copy: "jmying.com 복사",
-        copied: "링크를 복사했습니다",
-        privacyLine:
-          "업무 관련 연락은 LinkedIn으로만 받습니다. 개인 연락처는 공개하거나 수집하지 않습니다.",
-        profileKicker: "전문 프로필",
-        profileTitle: "정확한 업무를 위한 준비.",
-        profileIntro:
-          "회계 기초, 감사 준비 문서, 기술 기반 분석의 교차점에 집중합니다.",
-        focus1Title: "회계 및 어슈어런스",
-        focus1Desc: "재무 워킹페이퍼, 지원 스케줄, 문서 검증 및 구조화된 검토.",
-        focus2Title: "재무 시스템",
-        focus2Desc: "Excel, SQL 회계 소프트웨어, Oracle 및 내부 ERP 업무 경험.",
-        focus3Title: "데이터 및 디지털 도구",
-        focus3Desc:
-          "Python과 AI 보조 도구를 연구, 분석 및 명확한 커뮤니케이션에 활용.",
-        experienceKicker: "경험 및 교육",
-        experienceTitle: "실무 중심의 기반.",
-        experienceIntro:
-          "프로젝트 재무 문서, 회계 운영, 회계(FinTech) 대학 교육 전반의 경험.",
-        exp1Role: "재무회계 인턴",
-        exp1Desc:
-          "재무 워킹페이퍼 작성, 증빙 검토, IPC 지급 처리 지원 및 검토용 프로젝트 재무 데이터 정리를 수행했습니다.",
-        exp2Role: "회계 보조",
-        exp2Desc:
-          "회계·구매 기록 정리, 구매 주문 모니터링, 비용 추적 및 연말 재무보고를 지원했습니다.",
-        educationRole: "회계(FinTech) 우등 학사",
-        educationDesc:
-          "재무보고, 감사, 세무, 분석 및 기술 기반 회계의 기초를 구축하고 있습니다.",
-        highlightsKicker: "주요 성과",
-        highlightsTitle: "호기심과 실행력을 보여주는 결과.",
-        highlight1Label: "ASEAN Top 10 파이널리스트",
-        highlight1Desc:
-          "글로벌 대회에서 지속가능성 과제에 머신러닝과 데이터 분석을 적용했습니다.",
-        highlight2Label: "준결승 진출",
-        highlight2Desc:
-          "감사 판단, 구조적 사고, 직업 윤리 및 비즈니스 문제 해결 역량을 강화했습니다.",
-        highlight3Label: "8강 · 팀 부문",
-        highlight3Desc:
-          "말레이시아 세무 지식을 실제 비즈니스 상황에 적용했습니다.",
-        highlight4Label: "Excellent Case Group",
-        highlight4Desc:
-          "컨설팅식 분석, 구조적 문제 해결 및 전문 커뮤니케이션을 연습했습니다.",
-        credentialsKicker: "자격 및 학습",
-        credentialsTitle: "지속적인 전문 학습.",
-        credentialsIntro:
-          "시장, 금융, ESG 및 응급 대응 관련 학습을 완료했습니다.",
-        credentialAha: "American Heart Association 응급처치, CPR 및 AED",
-        connectKicker: "연결",
-        connectTitle: "전문 연락 채널은 하나뿐입니다.",
-        connectText:
-          "LinkedIn으로만 연락해 주세요. 이 사이트는 개인 연락처를 공개하거나 수집하지 않습니다.",
-        viewLinkedin: "LinkedIn으로 연락",
-        footerPrivacy: "개인정보 우선 · 분석 없음 · 광고 없음",
-      },
-      fr: {
-        htmlLang: "fr",
-        code: "FR",
-        native: "Français",
-        english: "French",
-        meta: "Jeremy (Lei) Ying — Comptabilité FinTech, audit, finance et données.",
-        skip: "Aller au profil",
-        navProfile: "Profil",
-        navExperience: "Expérience",
-        navHighlights: "Réalisations",
-        language: "Langue",
-        chooseLanguage: "Choisissez votre langue",
-        close: "Fermer",
-        eyebrow: "Comptabilité · Audit · Données",
-        role: "Étudiant en comptabilité (FinTech) et candidat à un stage en Audit & Assurance.",
-        summary:
-          "J’associe reporting financier, documentation rigoureuse et outils numériques pratiques pour contribuer à un travail précis et bien structuré.",
-        availability:
-          "Disponible pour un stage Audit & Assurance · fév.–avr. 2027",
-        copy: "Copier jmying.com",
-        copied: "Lien copié",
-        privacyLine:
-          "Les demandes professionnelles sont acceptées uniquement via LinkedIn. Aucune coordonnée privée n’est publiée ni collectée ici.",
-        profileKicker: "Profil professionnel",
-        profileTitle: "Conçu pour un travail rigoureux.",
-        profileIntro:
-          "Mon parcours se situe à l’intersection des fondamentaux comptables, de la documentation prête pour l’audit et de l’analyse assistée par la technologie.",
-        focus1Title: "Comptabilité & assurance",
-        focus1Desc:
-          "Dossiers de travail financiers, tableaux justificatifs, vérification documentaire et revue structurée.",
-        focus2Title: "Systèmes financiers",
-        focus2Desc:
-          "Expérience pratique d’Excel, d’un logiciel comptable SQL, d’Oracle et de flux ERP internes.",
-        focus3Title: "Données & outils numériques",
-        focus3Desc:
-          "Utilisation pratique de Python et d’outils assistés par l’IA pour la recherche, l’analyse et la communication.",
-        experienceKicker: "Expérience & formation",
-        experienceTitle: "Une base pratique.",
-        experienceIntro:
-          "Expérience en documentation financière de projet, opérations comptables et études en comptabilité (FinTech).",
-        exp1Role: "Stagiaire en comptabilité financière",
-        exp1Desc:
-          "Préparation de dossiers de travail, vérification des pièces, assistance aux paiements IPC et compilation de données financières pour revue.",
-        exp2Role: "Assistant comptable",
-        exp2Desc:
-          "Organisation des dossiers comptables et achats, suivi des commandes, contrôle des dépenses et soutien au reporting de fin d’année.",
-        educationRole: "Bachelor en comptabilité (FinTech) avec mention",
-        educationDesc:
-          "Développement de compétences en reporting, audit, fiscalité, analytique et comptabilité technologique.",
-        highlightsKicker: "Réalisations sélectionnées",
-        highlightsTitle: "Curiosité et sens de l’exécution.",
-        highlight1Label: "Finaliste ASEAN Top 10",
-        highlight1Desc:
-          "Application du machine learning et de l’analyse de données à un défi de durabilité dans une compétition mondiale.",
-        highlight2Label: "Demi-finaliste",
-        highlight2Desc:
-          "Renforcement du jugement d’audit, du raisonnement structuré, de l’éthique et de la résolution de problèmes.",
-        highlight3Label: "Quart de finaliste · équipe",
-        highlight3Desc:
-          "Application de connaissances fiscales malaisiennes à des situations professionnelles concrètes.",
-        highlight4Label: "Excellent Case Group",
-        highlight4Desc:
-          "Pratique de l’analyse de type conseil, de la résolution structurée et de la communication professionnelle.",
-        credentialsKicker: "Certifications",
-        credentialsTitle: "Apprentissage professionnel continu.",
-        credentialsIntro:
-          "Formations en marchés, finance, ESG et intervention d’urgence.",
-        credentialAha:
-          "American Heart Association — premiers secours, RCP et DAE",
-        connectKicker: "Contact",
-        connectTitle: "Un seul canal de contact professionnel.",
-        connectText:
-          "Merci de me contacter uniquement via LinkedIn. Ce site ne publie ni ne collecte de coordonnées privées.",
-        viewLinkedin: "Contacter sur LinkedIn",
-        footerPrivacy: "Vie privée d’abord · sans analytics · sans publicité",
-      },
-      de: {
-        htmlLang: "de",
-        code: "DE",
-        native: "Deutsch",
-        english: "German",
-        meta: "Jeremy (Lei) Ying — Accounting FinTech, Audit, Finance und Daten.",
-        skip: "Zum Profil springen",
-        navProfile: "Profil",
-        navExperience: "Erfahrung",
-        navHighlights: "Erfolge",
-        language: "Sprache",
-        chooseLanguage: "Sprache auswählen",
-        close: "Schließen",
-        eyebrow: "Accounting · Audit · Daten",
-        role: "Student im Bereich Accounting (FinTech) und Bewerber für ein Audit-&-Assurance-Praktikum.",
-        summary:
-          "Ich verbinde Finanzberichterstattung, sorgfältige Dokumentation und praktische digitale Werkzeuge für präzise und klar strukturierte Arbeit.",
-        availability:
-          "Verfügbar für Audit-&-Assurance-Praktika · Feb.–Apr. 2027",
-        copy: "jmying.com kopieren",
-        copied: "Link kopiert",
-        privacyLine:
-          "Berufliche Anfragen nehme ich ausschließlich über LinkedIn an. Private Kontaktdaten werden hier weder veröffentlicht noch erfasst.",
-        profileKicker: "Berufsprofil",
-        profileTitle: "Für sorgfältige Arbeit vorbereitet.",
-        profileIntro:
-          "Mein Fokus liegt an der Schnittstelle von Accounting-Grundlagen, auditfähiger Dokumentation und technologiegestützter Analyse.",
-        focus1Title: "Accounting & Assurance",
-        focus1Desc:
-          "Finanzielle Arbeitspapiere, unterstützende Aufstellungen, Dokumentenprüfung und strukturierte Reviews.",
-        focus2Title: "Finanzsysteme",
-        focus2Desc:
-          "Praktische Erfahrung mit Excel, SQL-Buchhaltungssoftware, Oracle und internen ERP-Abläufen.",
-        focus3Title: "Daten & digitale Werkzeuge",
-        focus3Desc:
-          "Praktischer Einsatz von Python und KI-gestützten Tools für Recherche, Analyse und klare Kommunikation.",
-        experienceKicker: "Erfahrung & Ausbildung",
-        experienceTitle: "Eine praktische Grundlage.",
-        experienceIntro:
-          "Erfahrung mit Projektfinanzdokumentation, Accounting-Prozessen und einem Accounting-(FinTech)-Studium.",
-        exp1Role: "Praktikant Finanzbuchhaltung",
-        exp1Desc:
-          "Erstellung finanzieller Arbeitspapiere, Prüfung von Belegen, Unterstützung bei IPC-Zahlungen und Aufbereitung von Projektdaten für Reviews.",
-        exp2Role: "Accounting Assistant",
-        exp2Desc:
-          "Organisation von Accounting- und Einkaufsunterlagen, Überwachung von Bestellungen, Ausgabenverfolgung und Unterstützung des Jahresabschluss-Reportings.",
-        educationRole: "Bachelor Accounting (FinTech) (Honours)",
-        educationDesc:
-          "Aufbau von Grundlagen in Finanzberichterstattung, Audit, Steuern, Analytics und technologiegestütztem Accounting.",
-        highlightsKicker: "Ausgewählte Erfolge",
-        highlightsTitle: "Neugier und konsequente Umsetzung.",
-        highlight1Label: "ASEAN Top-10-Finalist",
-        highlight1Desc:
-          "Anwendung von Machine Learning und Datenanalyse auf eine Nachhaltigkeitsaufgabe in einem globalen Wettbewerb.",
-        highlight2Label: "Halbfinalist",
-        highlight2Desc:
-          "Stärkung von Audit-Urteil, strukturiertem Denken, Berufsethik und Problemlösung.",
-        highlight3Label: "Viertelfinalist · Team",
-        highlight3Desc:
-          "Anwendung malaysischen Steuerwissens auf praktische Geschäftsszenarien.",
-        highlight4Label: "Excellent Case Group",
-        highlight4Desc:
-          "Training in Consulting-Analyse, strukturierter Problemlösung und professioneller Kommunikation.",
-        credentialsKicker: "Qualifikationen",
-        credentialsTitle: "Kontinuierliches professionelles Lernen.",
-        credentialsIntro:
-          "Ausgewählte Lerninhalte zu Märkten, Finance, ESG und Notfallmaßnahmen.",
-        credentialAha: "American Heart Association Erste Hilfe, CPR & AED",
-        connectKicker: "Kontakt",
-        connectTitle: "Ein einziger beruflicher Kontaktweg.",
-        connectText:
-          "Bitte kontaktieren Sie mich ausschließlich über LinkedIn. Diese Website veröffentlicht oder erfasst keine privaten Kontaktdaten.",
-        viewLinkedin: "Über LinkedIn kontaktieren",
-        footerPrivacy: "Datenschutz zuerst · keine Analytics · keine Werbung",
-      },
-      es: {
-        htmlLang: "es",
-        code: "ES",
-        native: "Español",
-        english: "Spanish",
-        meta: "Jeremy (Lei) Ying — Contabilidad FinTech, auditoría, finanzas y datos.",
-        skip: "Ir al perfil",
-        navProfile: "Perfil",
-        navExperience: "Experiencia",
-        navHighlights: "Logros",
-        language: "Idioma",
-        chooseLanguage: "Elige tu idioma",
-        close: "Cerrar",
-        eyebrow: "Contabilidad · Auditoría · Datos",
-        role: "Estudiante de Contabilidad (FinTech) y candidato a prácticas de Audit & Assurance.",
-        summary:
-          "Combino conocimientos de información financiera, documentación rigurosa y herramientas digitales prácticas para apoyar un trabajo preciso y bien estructurado.",
-        availability:
-          "Disponible para prácticas de Audit & Assurance · feb.–abr. 2027",
-        copy: "Copiar jmying.com",
-        copied: "Enlace copiado",
-        privacyLine:
-          "Las consultas profesionales se aceptan únicamente por LinkedIn. Aquí no se publican ni recopilan datos de contacto privados.",
-        profileKicker: "Perfil profesional",
-        profileTitle: "Preparado para el trabajo cuidadoso.",
-        profileIntro:
-          "Mi enfoque está en la intersección de los fundamentos contables, la documentación preparada para auditoría y el análisis con tecnología.",
-        focus1Title: "Contabilidad y assurance",
-        focus1Desc:
-          "Papeles de trabajo financieros, anexos, verificación documental y revisión estructurada.",
-        focus2Title: "Sistemas financieros",
-        focus2Desc:
-          "Experiencia práctica con Excel, software contable SQL, Oracle y flujos ERP internos.",
-        focus3Title: "Datos y herramientas digitales",
-        focus3Desc:
-          "Uso práctico de Python y herramientas asistidas por IA para investigación, análisis y comunicación clara.",
-        experienceKicker: "Experiencia y educación",
-        experienceTitle: "Una base práctica.",
-        experienceIntro:
-          "Experiencia en documentación financiera de proyectos, operaciones contables y estudios de Contabilidad (FinTech).",
-        exp1Role: "Practicante de contabilidad financiera",
-        exp1Desc:
-          "Preparé papeles de trabajo, verifiqué documentación, apoyé pagos IPC y organicé datos financieros de proyectos para revisión.",
-        exp2Role: "Asistente contable",
-        exp2Desc:
-          "Organicé registros contables y de compras, supervisé órdenes, controlé gastos y apoyé informes financieros de cierre.",
-        educationRole: "Grado en Contabilidad (FinTech) con honores",
-        educationDesc:
-          "Desarrollo de bases en información financiera, auditoría, fiscalidad, analítica y contabilidad habilitada por tecnología.",
-        highlightsKicker: "Logros seleccionados",
-        highlightsTitle: "Curiosidad y capacidad de ejecución.",
-        highlight1Label: "Finalista ASEAN Top 10",
-        highlight1Desc:
-          "Aplicación de aprendizaje automático y análisis de datos a un reto de sostenibilidad en una competición global.",
-        highlight2Label: "Semifinalista",
-        highlight2Desc:
-          "Refuerzo del juicio de auditoría, razonamiento estructurado, ética profesional y resolución de problemas.",
-        highlight3Label: "Cuartofinalista · equipo",
-        highlight3Desc:
-          "Aplicación de conocimientos tributarios de Malasia a escenarios empresariales prácticos.",
-        highlight4Label: "Excellent Case Group",
-        highlight4Desc:
-          "Práctica de análisis tipo consultoría, resolución estructurada y comunicación profesional.",
-        credentialsKicker: "Credenciales",
-        credentialsTitle: "Aprendizaje profesional continuo.",
-        credentialsIntro:
-          "Formación seleccionada en mercados, finanzas, ESG y respuesta a emergencias.",
-        credentialAha:
-          "American Heart Association — primeros auxilios, RCP y DEA",
-        connectKicker: "Contacto",
-        connectTitle: "Un único canal de contacto profesional.",
-        connectText:
-          "Contacta conmigo únicamente por LinkedIn. Este sitio no publica ni recopila datos de contacto privados.",
-        viewLinkedin: "Contactar por LinkedIn",
-        footerPrivacy: "Privacidad primero · sin analítica · sin publicidad",
-      },
-    };
-
-  const fallbackTranslation = f;
-  const translations = r;
-  const supportedLocales = Object.keys(translations);
+    {
+      id: "zh-CN",
+      htmlLang: "zh-CN",
+      code: "简",
+      native: "简体中文",
+      english: "Simplified Chinese",
+      dir: "ltr",
+    },
+    {
+      id: "zh-TW",
+      htmlLang: "zh-Hant",
+      code: "繁",
+      native: "繁體中文",
+      english: "Traditional Chinese",
+      dir: "ltr",
+    },
+    {
+      id: "ms",
+      htmlLang: "ms",
+      code: "MS",
+      native: "Bahasa Melayu",
+      english: "Malay",
+      dir: "ltr",
+    },
+    {
+      id: "id",
+      htmlLang: "id",
+      code: "ID",
+      native: "Bahasa Indonesia",
+      english: "Indonesian",
+      dir: "ltr",
+    },
+    {
+      id: "th",
+      htmlLang: "th",
+      code: "ไทย",
+      native: "ไทย",
+      english: "Thai",
+      dir: "ltr",
+    },
+    {
+      id: "vi",
+      htmlLang: "vi",
+      code: "VI",
+      native: "Tiếng Việt",
+      english: "Vietnamese",
+      dir: "ltr",
+    },
+    {
+      id: "ja",
+      htmlLang: "ja",
+      code: "日",
+      native: "日本語",
+      english: "Japanese",
+      dir: "ltr",
+    },
+    {
+      id: "ko",
+      htmlLang: "ko",
+      code: "한",
+      native: "한국어",
+      english: "Korean",
+      dir: "ltr",
+    },
+    {
+      id: "fr",
+      htmlLang: "fr",
+      code: "FR",
+      native: "Français",
+      english: "French",
+      dir: "ltr",
+    },
+    {
+      id: "de",
+      htmlLang: "de",
+      code: "DE",
+      native: "Deutsch",
+      english: "German",
+      dir: "ltr",
+    },
+    {
+      id: "es",
+      htmlLang: "es",
+      code: "ES",
+      native: "Español",
+      english: "Spanish",
+      dir: "ltr",
+    },
+    {
+      id: "pt-BR",
+      htmlLang: "pt-BR",
+      code: "PT",
+      native: "Português (Brasil)",
+      english: "Portuguese (Brazil)",
+      dir: "ltr",
+    },
+    {
+      id: "ar",
+      htmlLang: "ar",
+      code: "ع",
+      native: "العربية",
+      english: "Arabic",
+      dir: "rtl",
+    },
+  ];
+  const localeById = new Map(
+    localeManifest.map((locale) => [locale.id, locale]),
+  );
   const translatableNodes = [...document.querySelectorAll("[data-i18n]")];
   const languageTrigger = document.getElementById("languageTrigger");
   const languageDialog = document.getElementById("languageDialog");
@@ -683,9 +137,31 @@
     document.querySelector(".site-footer"),
   ].filter(Boolean);
 
+  const englishFallback = captureEnglishFallback();
+  const localeCache = new Map([["en", englishFallback]]);
   let lastFocusedElement = null;
   let toastTimer = 0;
+  let localeRequestId = 0;
   let currentLocale = resolvePreferredLocale();
+
+  function captureEnglishFallback() {
+    const messages = Object.create(null);
+    translatableNodes.forEach((node) => {
+      const key = node.dataset.i18n;
+      if (!(key in messages))
+        messages[key] = node.textContent.trim().replace(/\s+/g, " ");
+    });
+    return {
+      ...messages,
+      htmlLang: "en",
+      code: "EN",
+      native: "English",
+      english: "English",
+      meta: descriptionMeta.content,
+      copied: "Link copied",
+      present: "Present",
+    };
+  }
 
   function readStoredLocale() {
     try {
@@ -705,6 +181,7 @@
     const normalized = String(locale || "")
       .replaceAll("_", "-")
       .toLowerCase();
+    if (!normalized) return null;
 
     if (
       normalized.startsWith("zh-hant") ||
@@ -716,13 +193,18 @@
     }
     if (normalized.startsWith("zh")) return "zh-CN";
 
-    const exactMatch = supportedLocales.find(
-      (localeKey) => localeKey.toLowerCase() === normalized,
+    const exactMatch = localeManifest.find(
+      (candidate) => candidate.id.toLowerCase() === normalized,
     );
-    if (exactMatch) return exactMatch;
+    if (exactMatch) return exactMatch.id;
 
     const baseLanguage = normalized.split("-")[0];
-    return supportedLocales.includes(baseLanguage) ? baseLanguage : null;
+    return (
+      localeManifest.find(
+        (candidate) =>
+          candidate.id.split("-")[0].toLowerCase() === baseLanguage,
+      )?.id || null
+    );
   }
 
   function resolvePreferredLocale() {
@@ -737,35 +219,49 @@
     return "en";
   }
 
-  function getTranslation(locale) {
-    return { ...fallbackTranslation, ...(translations[locale] || {}) };
+  async function loadLocale(locale) {
+    if (localeCache.has(locale)) return localeCache.get(locale);
+
+    const response = await fetch(
+      `/locales/${encodeURIComponent(locale)}.json?v=${localeVersion}`,
+      { credentials: "same-origin" },
+    );
+    if (!response.ok)
+      throw new Error(`Locale request failed: ${response.status}`);
+
+    const messages = await response.json();
+    localeCache.set(locale, messages);
+    return messages;
   }
 
   function localizedLanguageName(locale) {
     try {
-      const displayNames = new Intl.DisplayNames([currentLocale], {
-        type: "language",
-      });
-      return displayNames.of(translations[locale].htmlLang);
+      const displayNames = new Intl.DisplayNames(
+        [localeById.get(currentLocale).htmlLang],
+        {
+          type: "language",
+        },
+      );
+      return displayNames.of(locale.htmlLang);
     } catch {
-      return translations[locale].english;
+      return locale.english;
     }
   }
 
   function renderLanguageOptions() {
     if (!languageList.childElementCount) {
       const fragment = document.createDocumentFragment();
-      supportedLocales.forEach((locale) => {
-        const translation = translations[locale];
+      localeManifest.forEach((locale) => {
         const option = document.createElement("button");
         option.className = "language-option";
         option.type = "button";
-        option.dataset.language = locale;
+        option.dataset.language = locale.id;
 
         const nativeName = document.createElement("span");
         nativeName.className = "native-name";
-        nativeName.lang = translation.htmlLang;
-        nativeName.textContent = translation.native;
+        nativeName.lang = locale.htmlLang;
+        nativeName.dir = locale.dir;
+        nativeName.textContent = locale.native;
 
         const localizedName = document.createElement("span");
         localizedName.className = "localized-name";
@@ -776,47 +272,95 @@
     }
 
     languageList.querySelectorAll("[data-language]").forEach((option) => {
-      const locale = option.dataset.language;
+      const locale = localeById.get(option.dataset.language);
       const secondaryLabel = option.querySelector(".localized-name");
       const localizedName = localizedLanguageName(locale);
-      option.setAttribute("aria-current", String(locale === currentLocale));
-      option.setAttribute(
-        "aria-label",
-        `${translations[locale].native} — ${localizedName}`,
-      );
+      option.setAttribute("aria-current", String(locale.id === currentLocale));
+      option.setAttribute("aria-label", `${locale.native} — ${localizedName}`);
       secondaryLabel.textContent = localizedName;
     });
   }
 
-  function applyLocale(locale, { persist = false } = {}) {
-    currentLocale = normalizeLocale(locale) || "en";
-    const translation = getTranslation(currentLocale);
-
-    document.documentElement.lang = translation.htmlLang;
-    document.documentElement.dir = "ltr";
-    translatableNodes.forEach((node) => {
-      const translatedText = translation[node.dataset.i18n];
-      if (translatedText) node.textContent = translatedText;
+  function formatDateRanges(messages) {
+    const locale = localeById.get(currentLocale).htmlLang;
+    const monthFormatter = new Intl.DateTimeFormat(locale, {
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    });
+    const yearFormatter = new Intl.DateTimeFormat(locale, {
+      year: "numeric",
+      timeZone: "UTC",
     });
 
-    languageCode.textContent = translation.code;
-    languageTrigger.setAttribute(
-      "aria-label",
-      `${translation.language}: ${translation.native}`,
-    );
-    descriptionMeta.setAttribute("content", translation.meta);
-    openGraphDescription.setAttribute("content", translation.meta);
-    closeLanguageButton.setAttribute("aria-label", translation.close);
-    document.querySelectorAll(".linkedin-cta").forEach((link) => {
-      link.setAttribute(
+    document.querySelectorAll("[data-date-start]").forEach((time) => {
+      const startValue = time.dataset.dateStart;
+      const endValue = time.dataset.dateEnd;
+      const startDate = parseDate(startValue);
+      if (endValue === "present") {
+        time.textContent = `${yearFormatter.format(startDate)} – ${messages.present}`;
+        return;
+      }
+
+      const endDate = parseDate(endValue);
+      time.textContent =
+        typeof monthFormatter.formatRange === "function"
+          ? monthFormatter.formatRange(startDate, endDate)
+          : `${monthFormatter.format(startDate)} – ${monthFormatter.format(endDate)}`;
+    });
+  }
+
+  function parseDate(value) {
+    const [year, month = "1"] = value.split("-");
+    return new Date(Date.UTC(Number(year), Number(month) - 1, 1));
+  }
+
+  async function applyLocale(locale, { persist = false } = {}) {
+    const normalizedLocale = normalizeLocale(locale) || "en";
+    const requestId = ++localeRequestId;
+    document.documentElement.setAttribute("aria-busy", "true");
+    languageTrigger.disabled = true;
+
+    try {
+      const messages = await loadLocale(normalizedLocale);
+      if (requestId !== localeRequestId) return false;
+
+      currentLocale = normalizedLocale;
+      const localeData = localeById.get(currentLocale);
+      document.documentElement.lang = messages.htmlLang || localeData.htmlLang;
+      document.documentElement.dir = localeData.dir;
+
+      translatableNodes.forEach((node) => {
+        const translatedText = messages[node.dataset.i18n];
+        if (translatedText) node.textContent = translatedText;
+      });
+      languageCode.textContent = localeData.code;
+      languageTrigger.setAttribute(
         "aria-label",
-        `${translation.viewLinkedin}: Jeremy Ying`,
+        `${messages.language}: ${localeData.native}`,
       );
-    });
-    document.title = "Jeremy (Lei) Ying · JMYING";
-
-    if (persist) storeLocale(currentLocale);
-    renderLanguageOptions();
+      descriptionMeta.content = messages.meta;
+      openGraphDescription.content = messages.meta;
+      closeLanguageButton.setAttribute("aria-label", messages.close);
+      document.querySelectorAll(".linkedin-cta").forEach((link) => {
+        link.setAttribute(
+          "aria-label",
+          `${messages.viewLinkedin}: Jeremy Ying`,
+        );
+      });
+      formatDateRanges(messages);
+      renderLanguageOptions();
+      if (persist) storeLocale(currentLocale);
+      return true;
+    } catch {
+      showToast("Could not load this language.");
+      return false;
+    } finally {
+      if (requestId === localeRequestId) {
+        document.documentElement.removeAttribute("aria-busy");
+        languageTrigger.disabled = false;
+      }
+    }
   }
 
   function setDialogPeersInert(inert) {
@@ -854,7 +398,6 @@
     const sections = navigationLinks
       .map((link) => document.querySelector(link.getAttribute("href")))
       .filter(Boolean);
-
     if (!("IntersectionObserver" in window) || !sections.length) return;
 
     const observer = new IntersectionObserver(
@@ -917,11 +460,13 @@
   languageDialog.addEventListener("click", (event) => {
     if (event.target === languageDialog) closeLanguageDialog();
   });
-  languageList.addEventListener("click", (event) => {
+  languageList.addEventListener("click", async (event) => {
     const option = event.target.closest("[data-language]");
     if (!option) return;
-    applyLocale(option.dataset.language, { persist: true });
-    closeLanguageDialog();
+    const applied = await applyLocale(option.dataset.language, {
+      persist: true,
+    });
+    if (applied) closeLanguageDialog();
   });
   document.addEventListener("keydown", (event) => {
     if (languageDialog.hidden) return;
@@ -948,7 +493,7 @@
   copyButton?.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText("https://jmying.com");
-      showToast(getTranslation(currentLocale).copied);
+      showToast((localeCache.get(currentLocale) || englishFallback).copied);
     } catch {
       showToast("jmying.com");
     }
@@ -959,6 +504,7 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+  renderLanguageOptions();
   applyLocale(currentLocale);
   setupNavigationTracking();
   setupPurposefulMotion();

@@ -28,15 +28,22 @@ The interface follows current Apple platform-design principles without copying A
 - Simplified Chinese
 - Traditional Chinese
 - Bahasa Melayu
+- Indonesian
+- Thai
+- Vietnamese
 - Japanese
 - Korean
 - French
 - German
 - Spanish
+- Brazilian Portuguese
+- Arabic
 
-The browser language is detected locally. A visitor’s explicit selection is stored only in local browser storage and is never transmitted by this site.
+The browser language and region are detected locally. A visitor’s explicit selection is stored only in local browser storage and is never transmitted by this site. English remains in the HTML as a resilient fallback; other locale bundles load from this site only when needed.
 
-Language names are displayed in the current interface language when the browser supports `Intl.DisplayNames`. Every release checks all translated keys and BCP 47 language tags.
+Language names are displayed in the current interface language when the browser supports `Intl.DisplayNames`. Dates use locale-aware `Intl.DateTimeFormat`, Arabic uses a mirrored right-to-left layout, and every release checks all translated keys and BCP 47 language tags.
+
+Latin text prefers Helvetica Neue and Helvetica. Chinese, Japanese, Korean, Thai and Arabic use script-appropriate system fallbacks so every language keeps legible, natural letterforms without downloading third-party fonts.
 
 ## Privacy and security
 
@@ -56,7 +63,7 @@ Security controls include a default-deny Content Security Policy, Trusted Types 
 
 Browser-delivered files cannot be genuinely hidden or encrypted from visitors. The security model is therefore to keep every secret out of `public/`. Source remains readable for maintainers, while Cloudflare can apply transport compression. For future server-side credentials, use Cloudflare Secrets.
 
-Versioned CSS and JavaScript URLs use long-lived immutable caching. Update the `?v=` revision in `public/index.html` with every release that changes either asset.
+Versioned CSS, JavaScript and locale URLs use long-lived immutable caching. Update the `?v=` revision in `public/index.html` and `public/app.js` with every release that changes those assets.
 
 For stronger source-code privacy, make the GitHub repository private. Cloudflare’s GitHub integration can deploy from a private repository after authorization.
 
