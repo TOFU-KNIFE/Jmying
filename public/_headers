@@ -66,6 +66,22 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
   X-Robots-Tag: noindex, noimageindex
 
+/hero-photo-800.webp
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  X-Robots-Tag: noindex, noimageindex
+
+/hero-photo-800.jpg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  X-Robots-Tag: noindex, noimageindex
+
+/hero-photo-1600.webp
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  X-Robots-Tag: noindex, noimageindex
+
+/hero-photo-1600.jpg
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+  X-Robots-Tag: noindex, noimageindex
+
 /sonoma-800.webp
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
   X-Robots-Tag: noindex, noimageindex

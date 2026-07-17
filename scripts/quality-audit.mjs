@@ -13,6 +13,7 @@ const packageLock = JSON.parse(
 const html = await readFile(join(publicDir, "index.html"), "utf8");
 const app = await readFile(join(publicDir, "app.js"), "utf8");
 const styles = await readFile(join(publicDir, "styles.css"), "utf8");
+const headers = await readFile(join(publicDir, "_headers"), "utf8");
 const findings = [];
 
 const releaseVersions = new Map([
@@ -96,6 +97,18 @@ for (const filename of publicImages) {
     }
   } catch {
     findings.push(`${filename} is missing`);
+  }
+}
+
+for (const filename of [
+  "hero-photo-800.webp",
+  "hero-photo-800.jpg",
+  "hero-photo-1600.webp",
+  "hero-photo-1600.jpg",
+]) {
+  const cacheRule = `/${filename}\n  Cache-Control: public, max-age=604800, stale-while-revalidate=86400`;
+  if (!headers.includes(cacheRule)) {
+    findings.push(`${filename} is missing its one-week cache rule`);
   }
 }
 

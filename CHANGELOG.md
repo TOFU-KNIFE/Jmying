@@ -16,6 +16,10 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Moved the formal portrait below the Hero into the Professional profile section and presented it as an uncropped 4:5 yearbook-style head-and-shoulders image.
 - Reworked the mobile Hero into an image-first composition with a separate dark content surface, keeping the portrait and profile content immediately below it.
 
+### Fixed
+
+- Added explicit one-week edge-cache rules for every responsive Hero image source.
+
 ## [1.8.0] - 2026-07-17
 
 ### Added
