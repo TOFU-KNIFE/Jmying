@@ -37,7 +37,7 @@ Reviewed the deployable `public/` directory, Cloudflare headers, package configu
 - No runtime npm dependencies.
 - `npm audit` reports zero vulnerabilities.
 - Wrangler static-assets deployment dry run passed.
-- Same-name JavaScript/CSS files use revalidation rather than unsafe year-long immutable caching.
+- Release-versioned JavaScript/CSS URLs use year-long immutable caching; the release checklist requires a revision bump whenever either file changes.
 
 ## Encryption and reverse engineering
 
@@ -48,7 +48,7 @@ The effective protection is:
 1. never deploy secrets or private information;
 2. keep signing certificates, API keys, and tokens in Cloudflare Secrets or offline storage;
 3. keep the GitHub repository private if source visibility matters;
-4. deploy only minified client assets;
+4. keep client source reviewable and rely on transport compression, not obscurity, for delivery efficiency;
 5. continue running `npm test` before every deployment.
 
 ## Future Apple Wallet work

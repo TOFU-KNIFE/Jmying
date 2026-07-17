@@ -19,6 +19,7 @@ The interface follows current Apple platform-design principles without copying A
 - opaque content surfaces preserve hierarchy and legibility
 - bold, left-aligned typography and consistent concentric radii
 - adaptive layouts across desktop and mobile
+- purposeful nonlinear motion using compositor-friendly properties
 - reduced-motion, reduced-transparency, increased-contrast, and forced-colors support
 
 ## Languages
@@ -34,6 +35,8 @@ The interface follows current Apple platform-design principles without copying A
 - Spanish
 
 The browser language is detected locally. A visitor’s explicit selection is stored only in local browser storage and is never transmitted by this site.
+
+Language names are displayed in the current interface language when the browser supports `Intl.DisplayNames`. Every release checks all translated keys and BCP 47 language tags.
 
 ## Privacy and security
 
@@ -51,7 +54,9 @@ The deployable files intentionally exclude:
 
 Security controls include a default-deny Content Security Policy, Trusted Types enforcement, HSTS, frame blocking, no-referrer navigation, a restrictive Permissions Policy, cross-origin isolation headers, no third-party runtime resources, and an automated public-file audit.
 
-Browser-delivered files cannot be genuinely hidden or encrypted from visitors. The security model is therefore to keep every secret out of `public/`. Production JavaScript and CSS are minified only as a casual-copying deterrent. For future server-side credentials, use Cloudflare Secrets.
+Browser-delivered files cannot be genuinely hidden or encrypted from visitors. The security model is therefore to keep every secret out of `public/`. Source remains readable for maintainers, while Cloudflare can apply transport compression. For future server-side credentials, use Cloudflare Secrets.
+
+Versioned CSS and JavaScript URLs use long-lived immutable caching. Update the `?v=` revision in `public/index.html` with every release that changes either asset.
 
 For stronger source-code privacy, make the GitHub repository private. Cloudflare’s GitHub integration can deploy from a private repository after authorization.
 
@@ -68,7 +73,13 @@ npm run dev
 npm test
 ```
 
-This runs JavaScript syntax validation, a privacy/security scan, image-metadata checks, external-link validation, header validation, and a Wrangler deployment dry run.
+This runs JavaScript syntax validation, translation consistency checks, a privacy/security scan, image-metadata checks, external-link validation, header validation, and a Wrangler deployment dry run.
+
+## Collaboration and releases
+
+Repository rules for contributors and coding assistants live in `AGENTS.md`. Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic Versioning and the manual release checklist are documented in `docs/VERSIONING.md`.
+
+Pull requests run the same formatting and test checks in GitHub Actions. Dependabot groups routine development-dependency updates.
 
 ## Deploy
 

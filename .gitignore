@@ -3,4 +3,5 @@ node_modules/
 .dev.vars
 .env
 qa/
+design-audit/
 .DS_Store

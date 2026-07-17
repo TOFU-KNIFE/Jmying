@@ -11,6 +11,7 @@ The page follows the current Apple platform-design direction without copying App
 - consistent concentric corner radii
 - adaptive desktop and mobile layouts
 - restrained motion and clear focus states
+- nonlinear, compositor-friendly entrance motion with a no-motion alternative
 
 ## Tested viewports
 
@@ -24,6 +25,8 @@ The page follows the current Apple platform-design direction without copying App
 - [x] Browser-language detection works
 - [x] Manual language selection works
 - [x] Language choice persists locally
+- [x] Automatically detected language is not persisted as an explicit choice
+- [x] Language names adapt to the active interface language
 - [x] Language dialog opens, closes, traps focus, and responds to Escape
 - [x] Active desktop navigation state updates as sections enter view
 - [x] Copy-site action works with a safe fallback
@@ -50,6 +53,16 @@ The page follows the current Apple platform-design direction without copying App
 - [x] Wrangler deployment dry run passed
 - [x] Security audit passed
 - [x] npm audit reports zero vulnerabilities
-- [x] Production JavaScript and CSS minified without source maps
+- [x] Versioned JavaScript and CSS use immutable caching
+- [x] Readable source is retained for maintainability; no source maps are deployed
+- [x] All 50 translation keys are present across 9 BCP 47 locales
+
+## Local Lighthouse results
+
+- Desktop: Performance 100, Accessibility 100, Best Practices 100
+- Mobile: Performance 99, Accessibility 100, Best Practices 100
+- Mobile metrics: FCP 0.8 s, LCP 1.6 s, TBT 20 ms, CLS 0
+- Desktop metrics: FCP 0.2 s, LCP 0.4 s, TBT 0 ms, CLS 0
+- Local SEO score was 92 because Lighthouse could not download `robots.txt`; the file was separately confirmed as available from the local server.
 
 **final result: passed**
