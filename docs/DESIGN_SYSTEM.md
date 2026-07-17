@@ -14,9 +14,11 @@ layouts that could imply affiliation.
 - [Goldman Sachs homepage](https://www.goldmansachs.com): current public evidence for wide editorial hierarchy, restrained institutional blue, strong image/copy relationships and direct navigation.
 - [Goldman Sachs type story](https://view.ceros.com/goldman-sachs/type-story-ii-1-2-1-1-1): clear, contemporary and credible type, with open forms, compact proportions and a strong reading hierarchy.
 - [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines): clear hierarchy, visual harmony, consistent interaction and layouts that adapt without losing meaning.
+- [Apple: Get to know the new design system](https://developer.apple.com/videos/play/wwdc2025/356/): official guidance for fixed, capsule and concentric shapes, including nested-radius balance across compact and spacious interfaces.
 - [Apple Charts guidance](https://developer.apple.com/design/human-interface-guidelines/charts): communicate a small number of facts, align charts with surrounding UI, reduce unnecessary grid density and keep critical information available without interaction.
 - [Apple Store](https://www.apple.com/store) and [Apple scroll-view guidance](https://developer.apple.com/design/human-interface-guidelines/scroll-views): horizontally browsable cards, partial next-item visibility, native gestures and position-aware controls for selected project highlights.
 - [Apple localisation guidance](https://developer.apple.com/localization/): test layout, images, dates, text expansion and reading direction across supported locales.
+- [CSS Borders and Box Decorations Level 4](https://drafts.csswg.org/css-borders/#corner-shaping): the standards definition for progressive `corner-shape: squircle` rendering on the web.
 - [The Economist visualisation interview](https://education.economist.com/insights/interviews/tips-for-visualising-data-like-the-economist) and [chart style guide](https://design-system.economist.com/documents/CHARTstyleguide_20170505.pdf): favour simple chart forms, a limited palette, direct labels and one restrained highlight colour when emphasis is needed.
 - [Cravath](https://www.cravath.com/) and [Skadden capabilities](https://www.skadden.com/capabilities): current examples of evidence-first professional writing, numbered editorial structure and clear capability taxonomy.
 
@@ -48,7 +50,12 @@ own content constraints take precedence.
 
 ### Shape and spacing
 
-- Core radii are limited to 6, 8 and 12 pixels. An 18-pixel radius is reserved for the section 04 carousel cards and its matching detail sheet; compact carousel navigation is the only pill-control exception.
+- Core fallback radii are limited to 8, 12, 22 and 28 pixels: compact indicators, controls and nested surfaces, medium containers, then editorial cards and dialogs.
+- Treat pills as a separate shape, not as an oversized radius token. Filters and carousel controls remain true capsules; ordinary buttons and dense header controls remain smooth rounded rectangles.
+- Preserve concentric hierarchy when surfaces nest. Inner surfaces use a visibly smaller radius than their parent, and spacing must keep corners from appearing pinched or flared.
+- Apply `corner-shape: squircle` only as progressive enhancement. `border-radius` remains the complete fallback in browsers that do not implement CSS Corner Shaping.
+- Let clipping, borders, shadows and focus outlines follow the same host element. Do not fake continuous corners with masks, generated assets or decorative wrappers.
+- Borrow Apple's geometric discipline without imitating Liquid Glass branding or adding translucent decoration that competes with professional content.
 - Content regions use hairline rules and whitespace instead of boxed card grids. Section 04 is a deliberate single-row carousel exception for touch-friendly project browsing, not a general-purpose card grid.
 - Main content width is 1,280 pixels with responsive 24/16 pixel side insets.
 - Desktop navigation uses a 68-pixel row and shares the same 1,280-pixel start and end lines as the hero copy and section content.

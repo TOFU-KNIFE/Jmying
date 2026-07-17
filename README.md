@@ -23,6 +23,7 @@ branding, proprietary assets or layouts:
 - adaptive layouts reflow from 320-pixel mobile widths to large desktops
 - all interactive targets are at least 44 × 44 pixels
 - purposeful nonlinear motion using compositor-friendly properties
+- smooth rounded rectangles with a restrained four-step radius scale and progressive squircle enhancement
 - light/dark, reduced-motion, increased-contrast, and forced-colors support
 
 The source-backed foundations and implementation rules are documented in
