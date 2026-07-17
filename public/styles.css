@@ -670,7 +670,7 @@ h1 span {
 .capability-layout {
   display: grid;
   grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
-  gap: clamp(40px, 6vw, 76px);
+  gap: clamp(52px, 7vw, 92px);
   align-items: start;
   padding-block: clamp(72px, 8vw, 112px);
 }
@@ -680,23 +680,17 @@ h1 span {
 }
 
 .capability-summary {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.84fr) minmax(300px, 1fr);
-  gap: 18px clamp(32px, 5vw, 64px);
-  align-items: end;
+  max-width: 760px;
   padding: 0 0 46px;
   border-bottom: var(--border-width) solid var(--color-border-tertiary);
 }
 
 .capability-summary .section-kicker {
-  grid-column: 1;
-  grid-row: 1;
+  margin-bottom: 20px;
 }
 
 .capability-summary h2 {
-  grid-column: 1;
-  grid-row: 2;
-  max-width: 13ch;
+  max-width: 16ch;
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(34px, 3.2vw, 48px);
@@ -706,10 +700,8 @@ h1 span {
 }
 
 .capability-summary > p:last-child {
-  grid-column: 2;
-  grid-row: 2;
   max-width: var(--measure-reading);
-  margin: 0;
+  margin: 22px 0 0;
   color: var(--color-text-secondary);
   font-size: var(--type-body);
   line-height: 1.65;
@@ -1133,30 +1125,37 @@ h1 span {
   background: var(--color-background-primary);
 }
 
-.approach-lead {
+.approach-intro {
   display: grid;
-  grid-template-columns: minmax(280px, 0.76fr) minmax(0, 1.24fr);
-  gap: clamp(64px, 8vw, 124px);
-  align-items: end;
+  grid-template-columns: 110px minmax(260px, 0.82fr) minmax(320px, 1fr);
+  gap: 18px clamp(42px, 6vw, 84px);
+  align-items: start;
 }
 
-.approach-visual {
+.approach-intro .section-number {
+  grid-column: 1;
+  grid-row: 1 / span 3;
   margin: 0;
-  overflow: hidden;
-  border: var(--border-width) solid var(--color-border-tertiary);
-  background: var(--institutional-blue-soft);
 }
 
-.approach-visual picture,
-.approach-visual img {
-  width: 100%;
-  height: 100%;
-  display: block;
+.approach-intro .section-kicker {
+  grid-column: 2;
+  grid-row: 1;
+  margin-bottom: 0;
 }
 
-.approach-visual img {
-  aspect-ratio: 8 / 5;
-  object-fit: cover;
+.approach-intro h2 {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 11ch;
+}
+
+.approach-intro > p:last-child {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: end;
+  max-width: var(--measure-reading);
+  margin: 0;
 }
 
 .approach-list {
@@ -1360,6 +1359,45 @@ h1 span {
     0 2px 8px rgba(7, 26, 51, 0.06);
   scroll-snap-align: start;
   scroll-snap-stop: normal;
+}
+
+.highlight-card-image {
+  color: #ffffff;
+  background: var(--institutional-ink);
+}
+
+.highlight-card-image::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  background: rgba(7, 26, 51, 0.36);
+  pointer-events: none;
+}
+
+.highlight-card-image::after {
+  z-index: 1;
+}
+
+.highlight-card-image > :not(.highlight-card-backdrop) {
+  position: relative;
+  z-index: 2;
+}
+
+.highlight-card-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+}
+
+.highlight-card-backdrop img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 54% 50%;
+  filter: saturate(0.82) contrast(1.04) brightness(0.78);
 }
 
 .highlight-card::after {
@@ -1994,17 +2032,6 @@ h1 span {
     gap: 38px;
   }
 
-  .capability-summary {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .capability-summary > p:last-child {
-    grid-column: 1;
-    grid-row: 3;
-    margin-top: 20px;
-  }
-
   .focus-item {
     padding-inline: 24px;
   }
@@ -2129,29 +2156,51 @@ h1 span {
     width: min(calc(100% - 32px), var(--shell));
   }
 
-  .capability-layout,
   .split-layout,
-  .approach-lead,
   .credential-layout,
   .connect-layout {
     grid-template-columns: 1fr;
   }
 
+  .capability-layout {
+    grid-template-columns: minmax(116px, 0.62fr) minmax(0, 1.38fr);
+    gap: clamp(18px, 5vw, 38px);
+    padding-block: 64px;
+  }
+
   .yearbook-portrait {
-    width: min(72vw, 280px);
-    margin-inline: auto;
+    grid-column: 1;
+    width: 100%;
+    max-width: 280px;
+    margin: 0;
+  }
+
+  .profile-body {
+    display: contents;
   }
 
   .capability-summary {
-    padding: 50px 0 38px;
+    grid-column: 2;
+    align-self: start;
+    padding: 0;
+    border-bottom: 0;
   }
 
   .capability-summary h2 {
-    max-width: 18ch;
+    max-width: 12ch;
+    font-size: clamp(32px, 6.4vw, 44px);
+  }
+
+  .capability-summary > p:last-child {
+    margin-top: 18px;
+    font-size: 15px;
+    line-height: 1.58;
   }
 
   .focus-list {
+    grid-column: 1 / -1;
     grid-template-columns: 1fr;
+    margin-top: 44px;
   }
 
   .focus-item {
@@ -2177,10 +2226,39 @@ h1 span {
   }
 
   .split-layout,
-  .approach-lead,
   .credential-layout,
   .connect-layout {
     gap: 48px;
+  }
+
+  .approach-intro {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 16px 30px;
+  }
+
+  .approach-intro .section-number {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+  }
+
+  .approach-intro .section-kicker,
+  .approach-intro h2,
+  .approach-intro > p:last-child {
+    grid-column: 2;
+  }
+
+  .approach-intro .section-kicker {
+    grid-row: 1;
+  }
+
+  .approach-intro h2 {
+    grid-row: 2;
+    max-width: 14ch;
+  }
+
+  .approach-intro > p:last-child {
+    grid-row: 3;
+    margin-top: 18px;
   }
 
   .approach-list {
@@ -2364,6 +2442,40 @@ h1 span {
     padding-block: 70px;
   }
 
+  .capability-layout {
+    grid-template-columns: minmax(108px, 38vw) minmax(0, 1fr);
+    gap: 16px;
+    padding-block: 52px 64px;
+  }
+
+  .yearbook-portrait {
+    box-shadow: 0 10px 28px rgba(7, 26, 51, 0.1);
+  }
+
+  .portrait-caption {
+    display: none;
+  }
+
+  .capability-summary .section-kicker {
+    margin-bottom: 12px;
+    font-size: 10px;
+  }
+
+  .capability-summary h2 {
+    font-size: clamp(27px, 8.6vw, 34px);
+    line-height: 1.02;
+  }
+
+  .capability-summary > p:last-child {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .focus-list {
+    margin-top: 36px;
+  }
+
   .section-intro .section-number {
     margin-bottom: 34px;
     font-size: 42px;
@@ -2405,6 +2517,11 @@ h1 span {
   .wide-intro {
     grid-template-columns: 52px minmax(0, 1fr);
     gap: 16px;
+  }
+
+  .approach-intro {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 14px 16px;
   }
 
   .wide-intro .section-number {
