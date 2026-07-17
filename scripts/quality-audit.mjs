@@ -51,21 +51,20 @@ for (const tag of imageTags) {
   if (/\/(?:approach|lake)-/.test(src) && !/\bloading="lazy"/.test(tag)) {
     findings.push(`${src} must lazy-load below the fold`);
   }
+  if (/\/portrait\./.test(src) && !/\bloading="lazy"/.test(tag)) {
+    findings.push(`${src} must lazy-load below the hero`);
+  }
 }
 
-if (!/portrait-760\.webp[\s\S]*rel="preload"/.test(html)) {
-  findings.push("the primary portrait preload is missing");
-}
-if (!/market-hero-1600\.webp[\s\S]*rel="preload"/.test(html)) {
-  findings.push("the desktop market hero preload is missing");
+if (!/hero-photo-1600\.webp[\s\S]*rel="preload"/.test(html)) {
+  findings.push("the primary hero photo preload is missing");
 }
 
 const responsiveImageFamilies = new Map([
   ["portrait", null],
-  ["sonoma", "1400"],
   ["approach", "1400"],
   ["lake", "1400"],
-  ["market-hero", "1600"],
+  ["hero-photo", "1600"],
 ]);
 for (const [family, largestWidth] of responsiveImageFamilies) {
   if (!html.includes(`/${family}-800`) && family !== "portrait") {
@@ -79,14 +78,12 @@ for (const [family, largestWidth] of responsiveImageFamilies) {
 const publicImages = [
   "portrait.jpg",
   "portrait.webp",
-  "sonoma.jpg",
-  "sonoma.webp",
   "approach-1400.jpg",
   "approach-1400.webp",
   "lake-1400.jpg",
   "lake-1400.webp",
-  "market-hero-1600.jpg",
-  "market-hero-1600.webp",
+  "hero-photo-1600.jpg",
+  "hero-photo-1600.webp",
 ];
 const imageBudgetBytes = 350 * 1024;
 for (const filename of publicImages) {

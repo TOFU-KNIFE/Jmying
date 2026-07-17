@@ -63,9 +63,9 @@ own content constraints take precedence.
 
 ### Imagery
 
-- Keep the Sonoma landscape as the mobile hero's identity backdrop and the real portrait as the primary professional image.
-- On desktop, use the original generated market-operations photograph as contextual editorial atmosphere, not as evidence of employment or client affiliation. Keep it decorative, pair it with the visible no-affiliation note and never add readable market data, logos or third-party brand assets.
-- Keep the desktop portrait within a restrained 320–360 pixel column and approximately 520 pixels high. Preserve its aspect ratio, unmirrored orientation and professional caption.
+- Use the user-provided desk photograph as the responsive Hero image. Keep its natural colour, treat it as contextual editorial photography and use only a restrained neutral-black overlay for copy legibility.
+- Place the formal portrait in the Professional profile section below the Hero. Preserve its native 4:5 ratio, unmirrored orientation, neutral background, head-and-shoulders framing, headroom and eye line; do not crop or filter the source image.
+- Keep the yearbook portrait between roughly 220 and 280 pixels wide, pair it with a simple editorial caption and lazy-load it because it sits below the Hero.
 - Use additional user-provided imagery only when it has a clear editorial role. The abstract blue image supports the working-approach section; the lake image creates a calm, professional close behind the LinkedIn-only contact section.
 - Deliver below-fold imagery in responsive WebP and JPEG formats, strip metadata, include explicit dimensions and lazy-load it.
 - Use factual or empty alternative text according to whether the image adds meaning or is purely decorative. Never turn decorative imagery into an unsupported personal claim.

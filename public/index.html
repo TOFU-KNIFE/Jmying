@@ -22,38 +22,30 @@
     <meta content="https://jmying.com" property="og:url" />
     <meta content="profile" property="og:type" />
     <meta content="summary_large_image" name="twitter:card" />
-    <meta content="https://jmying.com/sonoma.jpg" property="og:image" />
     <meta
-      content="Sonoma landscape representing clarity, perspective and careful work."
+      content="https://jmying.com/hero-photo-1600.jpg"
+      property="og:image"
+    />
+    <meta
+      content="Jeremy Ying seated at a multi-monitor desk."
       property="og:image:alt"
     />
-    <meta content="2048" property="og:image:width" />
-    <meta content="1152" property="og:image:height" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="914" property="og:image:height" />
     <link href="https://jmying.com" rel="canonical" />
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <link href="/site.webmanifest" rel="manifest" />
     <link
       as="image"
       fetchpriority="high"
-      href="/market-hero-1600.webp"
+      href="/hero-photo-1600.webp"
       imagesizes="100vw"
-      imagesrcset="/market-hero-800.webp 800w, /market-hero-1600.webp 1600w"
-      media="(min-width: 821px)"
-      rel="preload"
-      type="image/webp"
-    />
-    <link
-      as="image"
-      fetchpriority="high"
-      href="/portrait-760.webp"
-      imagesizes="(max-width: 820px) 100vw, 360px"
-      imagesrcset="/portrait-480.webp 480w, /portrait-760.webp 760w, /portrait.webp 1024w"
-      media="(max-width: 820px)"
+      imagesrcset="/hero-photo-800.webp 800w, /hero-photo-1600.webp 1600w"
       rel="preload"
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.8.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.9.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
@@ -104,32 +96,25 @@
       <section aria-labelledby="heroTitle" class="hero">
         <picture aria-hidden="true" class="hero-backdrop">
           <source
-            media="(min-width: 821px)"
             sizes="100vw"
-            srcset="/market-hero-800.webp 800w, /market-hero-1600.webp 1600w"
+            srcset="/hero-photo-800.webp 800w, /hero-photo-1600.webp 1600w"
             type="image/webp"
           />
           <source
-            media="(min-width: 821px)"
             sizes="100vw"
-            srcset="/market-hero-800.jpg 800w, /market-hero-1600.jpg 1600w"
+            srcset="/hero-photo-800.jpg 800w, /hero-photo-1600.jpg 1600w"
             type="image/jpeg"
-          />
-          <source
-            sizes="100vw"
-            srcset="/sonoma-800.webp 800w, /sonoma-1400.webp 1400w"
-            type="image/webp"
           />
           <img
             alt=""
             decoding="async"
-            fetchpriority="low"
-            height="788"
+            fetchpriority="high"
+            height="914"
             loading="eager"
             sizes="100vw"
-            src="/sonoma-1400.jpg"
-            srcset="/sonoma-800.jpg 800w, /sonoma-1400.jpg 1400w"
-            width="1400"
+            src="/hero-photo-1600.jpg"
+            srcset="/hero-photo-800.jpg 800w, /hero-photo-1600.jpg 1600w"
+            width="1600"
           />
         </picture>
         <div class="hero-shell">
@@ -177,14 +162,20 @@
               For professional enquiries, please use LinkedIn. This site neither
               publishes nor collects private contact details.
             </p>
-            <p class="hero-visual-note" data-i18n="heroVisualNote">
-              Illustrative market-operations backdrop · no affiliation implied.
-            </p>
           </div>
-          <figure class="portrait-frame">
+        </div>
+      </section>
+
+      <section
+        aria-labelledby="profileTitle"
+        class="capability-band"
+        id="profile"
+      >
+        <div class="section-shell capability-layout">
+          <figure class="yearbook-portrait">
             <picture
               ><source
-                sizes="(max-width: 820px) 100vw, 360px"
+                sizes="(max-width: 820px) min(72vw, 280px), 270px"
                 srcset="
                   /portrait-480.webp  480w,
                   /portrait-760.webp  760w,
@@ -192,11 +183,11 @@
                 "
                 type="image/webp" />
               <img
-                alt="Portrait of Jeremy Ying"
+                alt="Yearbook portrait of Jeremy Ying"
                 decoding="async"
-                fetchpriority="high"
                 height="1280"
-                sizes="(max-width: 820px) 100vw, 360px"
+                loading="lazy"
+                sizes="(max-width: 820px) min(72vw, 280px), 270px"
                 src="/portrait.jpg"
                 srcset="
                   /portrait-480.jpg  480w,
@@ -216,52 +207,45 @@
               >
             </figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section
-        aria-labelledby="profileTitle"
-        class="capability-band"
-        id="profile"
-      >
-        <div class="section-shell capability-layout">
-          <div class="capability-summary">
-            <p class="section-kicker inverse" data-i18n="profileKicker">
-              Professional profile
-            </p>
-            <h2 data-i18n="profileTitle" id="profileTitle">
-              Careful work, clearly structured.
-            </h2>
-            <p data-i18n="profileIntro">
-              I focus on accounting fundamentals, audit-ready documentation and
-              practical, technology-supported analysis.
-            </p>
-          </div>
-          <div class="focus-list">
-            <article class="focus-item">
-              <p class="item-index">01</p>
-              <h3 data-i18n="focus1Title">Accounting &amp; assurance</h3>
-              <p data-i18n="focus1Desc">
-                Financial working papers, supporting schedules, document checks
-                and structured review.
+          <div class="profile-body">
+            <div class="capability-summary">
+              <p class="section-kicker inverse" data-i18n="profileKicker">
+                Professional profile
               </p>
-            </article>
-            <article class="focus-item">
-              <p class="item-index">02</p>
-              <h3 data-i18n="focus2Title">Finance systems</h3>
-              <p data-i18n="focus2Desc">
-                Hands-on exposure to Excel, SQL accounting software, Oracle and
-                internal ERP workflows.
+              <h2 data-i18n="profileTitle" id="profileTitle">
+                Careful work, clearly structured.
+              </h2>
+              <p data-i18n="profileIntro">
+                I focus on accounting fundamentals, audit-ready documentation
+                and practical, technology-supported analysis.
               </p>
-            </article>
-            <article class="focus-item">
-              <p class="item-index">03</p>
-              <h3 data-i18n="focus3Title">Data &amp; digital tools</h3>
-              <p data-i18n="focus3Desc">
-                Python and AI-assisted tools used for research, analysis and
-                clear communication.
-              </p>
-            </article>
+            </div>
+            <div class="focus-list">
+              <article class="focus-item">
+                <p class="item-index">01</p>
+                <h3 data-i18n="focus1Title">Accounting &amp; assurance</h3>
+                <p data-i18n="focus1Desc">
+                  Financial working papers, supporting schedules, document
+                  checks and structured review.
+                </p>
+              </article>
+              <article class="focus-item">
+                <p class="item-index">02</p>
+                <h3 data-i18n="focus2Title">Finance systems</h3>
+                <p data-i18n="focus2Desc">
+                  Hands-on exposure to Excel, SQL accounting software, Oracle
+                  and internal ERP workflows.
+                </p>
+              </article>
+              <article class="focus-item">
+                <p class="item-index">03</p>
+                <h3 data-i18n="focus3Title">Data &amp; digital tools</h3>
+                <p data-i18n="focus3Desc">
+                  Python and AI-assisted tools used for research, analysis and
+                  clear communication.
+                </p>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -921,6 +905,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.8.0"></script>
+    <script defer="" src="/app.js?v=1.9.0"></script>
   </body>
 </html>

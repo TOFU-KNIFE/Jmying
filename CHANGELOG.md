@@ -4,6 +4,18 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-07-17
+
+### Added
+
+- Added the user-provided professional desk photograph as the responsive Hero visual in metadata-stripped WebP and JPEG formats.
+
+### Changed
+
+- Replaced the heavy navy Hero treatment with a restrained neutral-black readability overlay that preserves the photograph's natural colour and detail.
+- Moved the formal portrait below the Hero into the Professional profile section and presented it as an uncropped 4:5 yearbook-style head-and-shoulders image.
+- Reworked the mobile Hero into an image-first composition with a separate dark content surface, keeping the portrait and profile content immediately below it.
+
 ## [1.8.0] - 2026-07-17
 
 ### Added
