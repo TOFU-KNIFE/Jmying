@@ -42,7 +42,7 @@
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.3.1" rel="stylesheet" />
+    <link href="/styles.css?v=1.4.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
@@ -53,6 +53,8 @@
           <a data-i18n="navProfile" data-nav-link="" href="#profile">Profile</a
           ><a data-i18n="navExperience" data-nav-link="" href="#experience"
             >Experience</a
+          ><a data-i18n="navApproach" data-nav-link="" href="#approach"
+            >Approach</a
           ><a data-i18n="navHighlights" data-nav-link="" href="#highlights"
             >Highlights</a
           ><a data-i18n="credentialsKicker" data-nav-link="" href="#credentials"
@@ -75,6 +77,24 @@
     </header>
     <main>
       <section aria-labelledby="heroTitle" class="hero">
+        <picture aria-hidden="true" class="hero-backdrop">
+          <source
+            sizes="100vw"
+            srcset="/sonoma-800.webp 800w, /sonoma-1400.webp 1400w"
+            type="image/webp"
+          />
+          <img
+            alt=""
+            decoding="async"
+            fetchpriority="low"
+            height="788"
+            loading="eager"
+            sizes="100vw"
+            src="/sonoma-1400.jpg"
+            srcset="/sonoma-800.jpg 800w, /sonoma-1400.jpg 1400w"
+            width="1400"
+          />
+        </picture>
         <div class="hero-shell">
           <div class="identity-copy">
             <p class="eyebrow" data-i18n="eyebrow">Accounting · Audit · Data</p>
@@ -146,8 +166,14 @@
                 width="1024"
             /></picture>
             <figcaption class="portrait-caption">
-              <span aria-hidden="true">01</span
-              ><span data-i18n="profileKicker">Professional profile</span>
+              <span aria-hidden="true" class="portrait-caption-index">01</span>
+              <span class="portrait-caption-copy"
+                ><span class="portrait-caption-title" data-i18n="profileKicker"
+                  >Professional profile</span
+                ><span class="portrait-caption-detail" data-i18n="eyebrow"
+                  >Accounting · Audit · Data</span
+                ></span
+              >
             </figcaption>
           </figure>
         </div>
@@ -276,13 +302,94 @@
       </section>
 
       <section
+        aria-labelledby="approachTitle"
+        class="section approach-section"
+        id="approach"
+      >
+        <div class="section-shell">
+          <div class="approach-lead">
+            <div class="section-intro">
+              <p class="section-number" aria-hidden="true">03</p>
+              <p class="section-kicker" data-i18n="approachKicker">
+                Working approach
+              </p>
+              <h2 data-i18n="approachTitle" id="approachTitle">
+                Structured from source to review.
+              </h2>
+              <p data-i18n="approachIntro">
+                A practical workflow for organising evidence, checking detail
+                and turning finance information into concise, review-ready
+                outputs.
+              </p>
+            </div>
+            <figure aria-hidden="true" class="approach-visual">
+              <picture>
+                <source
+                  sizes="(max-width: 820px) calc(100vw - 32px), 58vw"
+                  srcset="/approach-800.webp 800w, /approach-1400.webp 1400w"
+                  type="image/webp"
+                />
+                <img
+                  alt=""
+                  decoding="async"
+                  height="875"
+                  loading="lazy"
+                  sizes="(max-width: 820px) calc(100vw - 32px), 58vw"
+                  src="/approach-1400.jpg"
+                  srcset="/approach-800.jpg 800w, /approach-1400.jpg 1400w"
+                  width="1400"
+                />
+              </picture>
+            </figure>
+          </div>
+          <ol class="approach-list">
+            <li>
+              <p class="approach-index" aria-hidden="true">01</p>
+              <h3 data-i18n="approach1Title">Evidence first</h3>
+              <p data-i18n="approach1Desc">
+                Keep source documents, supporting schedules and working papers
+                traceable for review.
+              </p>
+            </li>
+            <li>
+              <p class="approach-index" aria-hidden="true">02</p>
+              <h3 data-i18n="approach2Title">Clear structure</h3>
+              <p data-i18n="approach2Desc">
+                Organise accounting and finance information into consistent
+                files, concise notes and reliable hand-offs.
+              </p>
+            </li>
+            <li>
+              <p class="approach-index" aria-hidden="true">03</p>
+              <h3 data-i18n="approach3Title">Practical technology</h3>
+              <p data-i18n="approach3Desc">
+                Use Excel, accounting systems, Python and AI-assisted tools
+                where they improve accuracy, analysis or communication.
+              </p>
+            </li>
+          </ol>
+          <div class="toolkit-strip">
+            <p data-i18n="toolkitKicker">Selected tools &amp; systems</p>
+            <ul>
+              <li>Excel</li>
+              <li data-i18n="toolSql">SQL accounting software</li>
+              <li>Oracle</li>
+              <li data-i18n="toolErp">ERP workflows</li>
+              <li>Python</li>
+              <li data-i18n="toolAi">AI-assisted research</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section
         aria-labelledby="highlightsTitle"
         class="section highlights-section"
         id="highlights"
       >
         <div class="section-shell">
           <div class="section-intro wide-intro">
-            <p class="section-number" aria-hidden="true">03</p>
+            <p class="section-number" aria-hidden="true">04</p>
             <p class="section-kicker" data-i18n="highlightsKicker">
               Selected highlights
             </p>
@@ -366,7 +473,7 @@
       >
         <div class="section-shell credential-layout">
           <div class="section-intro">
-            <p class="section-number" aria-hidden="true">04</p>
+            <p class="section-number" aria-hidden="true">05</p>
             <p class="section-kicker" data-i18n="credentialsKicker">
               Credentials
             </p>
@@ -394,6 +501,23 @@
         class="section connect-section"
         id="privacy"
       >
+        <picture aria-hidden="true" class="connect-backdrop">
+          <source
+            sizes="100vw"
+            srcset="/lake-800.webp 800w, /lake-1400.webp 1400w"
+            type="image/webp"
+          />
+          <img
+            alt=""
+            decoding="async"
+            height="788"
+            loading="lazy"
+            sizes="100vw"
+            src="/lake-1400.jpg"
+            srcset="/lake-800.jpg 800w, /lake-1400.jpg 1400w"
+            width="1400"
+          />
+        </picture>
         <div class="section-shell connect-layout">
           <div>
             <p class="section-kicker inverse" data-i18n="connectKicker">
@@ -460,6 +584,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.3.1"></script>
+    <script defer="" src="/app.js?v=1.4.0"></script>
   </body>
 </html>

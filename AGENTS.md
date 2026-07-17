@@ -20,6 +20,7 @@ JMYING is a lightweight, multilingual professional profile. It is a static site 
 2. Use `npm run dev` for local preview.
 3. Run `npm run format` before committing.
 4. Run `npm test` before opening or updating a pull request.
-5. Use Conventional Commit messages and the workflow in `docs/VERSIONING.md`.
+5. For user-visible changes, follow the evaluation loop and evidence gates in `docs/WEB_QUALITY_WORKFLOW.md`.
+6. Use Conventional Commit messages and the workflow in `docs/VERSIONING.md`.
 
 All deployable files live in `public/`. Security and language checks live in `scripts/`.

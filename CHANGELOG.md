@@ -4,10 +4,25 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-07-17
+
+### Added
+
+- Added a multilingual working-approach section that explains evidence handling, clear file structure and practical technology use without expanding the factual claims.
+- Added responsive, metadata-stripped versions of two user-provided images for the approach and contact sections while preserving the Sonoma hero backdrop.
+- Added a repeatable web quality workflow grounded in official Goldman Sachs, Apple, Claude and leading US law-firm patterns.
+- Added an automated quality audit for release-version alignment, responsive-image markup and public image budgets.
+
 ### Changed
 
 - Limited automated Cloudflare deployment to merged `main` changes and grouped GitHub Actions dependency updates.
 - Pinned the Node.js and Wrangler toolchain and enabled npm dependency caching for reproducible CI.
+- Restored the responsive Sonoma landscape as a restrained photographic hero backdrop.
+- Reworked the portrait caption so the professional profile label and focus areas remain clear at every viewport size.
+- Rebuilt the type hierarchy around lighter editorial display headings, Helvetica-first interface text and more readable line lengths.
+- Added script-aware display fallbacks so the hierarchy remains stable across all 14 locales without downloading proprietary brand fonts.
+- Extended all 14 locale bundles with the new approach and selected-tool content.
+- Refined the pull-request and contributor gates so every visual change carries responsive evidence and passes the documented quality loop.
 
 ### Fixed
 
@@ -67,7 +82,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.2.0...v1.3.1
 [1.2.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.0.0...v1.1.0

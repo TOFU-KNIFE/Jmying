@@ -13,9 +13,11 @@ What becomes clearer, faster, safer or easier to maintain?
 
 - [ ] `npm run format:check`
 - [ ] `npm test`
-- [ ] Desktop and mobile checked when UI changed
-- [ ] Reduced motion and a non-English locale checked when relevant
+- [ ] 1440 px desktop, 390 px mobile and 320 px overflow checked when UI changed
+- [ ] Reduced motion, dark mode, a long-text locale and Arabic RTL checked when relevant
+- [ ] `design-qa.md` records no open P0–P2 findings and ends in `final result: passed`
 - [ ] No private data, secrets, analytics or new public contact channels added
+- [ ] Production smoke test and release tag planned for the merged version
 
 ## Visual evidence
 

@@ -1,6 +1,6 @@
 {
   "name": "jmying",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "dev": "wrangler dev",
@@ -8,9 +8,10 @@
     "format": "prettier --write . --ignore-path .gitignore",
     "format:check": "prettier --check . --ignore-path .gitignore",
     "audit:i18n": "node scripts/i18n-audit.mjs",
+    "audit:quality": "node scripts/quality-audit.mjs",
     "audit:security": "node scripts/security-audit.mjs",
-    "check": "node --check public/app.js && node --check scripts/i18n-audit.mjs && node --check scripts/security-audit.mjs",
-    "test": "npm run check && npm run audit:i18n && npm run audit:security && wrangler deploy --dry-run"
+    "check": "node --check public/app.js && node --check scripts/i18n-audit.mjs && node --check scripts/quality-audit.mjs && node --check scripts/security-audit.mjs",
+    "test": "npm run check && npm run audit:i18n && npm run audit:quality && npm run audit:security && wrangler deploy --dry-run"
   },
   "devDependencies": {
     "prettier": "3.6.2",
