@@ -14,6 +14,7 @@ layouts that could imply affiliation.
 - [Goldman Sachs homepage](https://www.goldmansachs.com): current public evidence for wide editorial hierarchy, restrained institutional blue, strong image/copy relationships and direct navigation.
 - [Goldman Sachs type story](https://view.ceros.com/goldman-sachs/type-story-ii-1-2-1-1-1): clear, contemporary and credible type, with open forms, compact proportions and a strong reading hierarchy.
 - [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines): clear hierarchy, visual harmony, consistent interaction and layouts that adapt without losing meaning.
+- [Apple Store](https://www.apple.com/store) and [Apple scroll-view guidance](https://developer.apple.com/design/human-interface-guidelines/scroll-views): horizontally browsable cards, partial next-item visibility, native gestures and position-aware controls for selected project highlights.
 - [Apple localisation guidance](https://developer.apple.com/localization/): test layout, images, dates, text expansion and reading direction across supported locales.
 - [Cravath](https://www.cravath.com/) and [Skadden capabilities](https://www.skadden.com/capabilities): current examples of evidence-first professional writing, numbered editorial structure and clear capability taxonomy.
 
@@ -45,8 +46,8 @@ own content constraints take precedence.
 
 ### Shape and spacing
 
-- Radii are limited to 6, 8 and 12 pixels; full pills are reserved for circular status marks only.
-- Content regions use hairline rules and whitespace instead of boxed card grids.
+- Core radii are limited to 6, 8 and 12 pixels. An 18-pixel radius is reserved for the section 04 carousel cards and its matching detail sheet; compact carousel navigation is the only pill-control exception.
+- Content regions use hairline rules and whitespace instead of boxed card grids. Section 04 is a deliberate single-row carousel exception for touch-friendly project browsing, not a general-purpose card grid.
 - Main content width is 1,280 pixels with responsive 24/16 pixel side insets.
 - Interactive targets are at least 44 × 44 pixels.
 
@@ -70,5 +71,6 @@ own content constraints take precedence.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.
 - Keep LinkedIn as the only public contact channel.
 - Keep controls visible; avoid hidden mobile menus when a short horizontal navigation can reflow or scroll.
+- Keep section 04 as a native horizontal scroller with scroll snapping, a visible neighbouring card, previous/next controls, keyboard direction support and logical right-to-left order.
 - Preserve keyboard focus, semantic headings, same-origin localisation, right-to-left order and an unmirrored portrait.
 - Never add analytics, advertising, contact forms, private details or unsupported claims.

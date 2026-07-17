@@ -4,6 +4,19 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-17
+
+### Added
+
+- Added an Apple-inspired horizontal project carousel with scroll snapping, visible previous/next controls, touch gestures and keyboard navigation.
+- Added a same-page Learn more dialog that reveals the existing factual project description without introducing unverified claims or external links.
+- Added localised carousel labels and actions across all 14 supported languages, including logical right-to-left navigation.
+
+### Changed
+
+- Reworked section 04 from editorial rows into large, responsive project cards while retaining the established Goldman Sachs-derived hierarchy, institutional palette and verified content.
+- Extended dark-mode, increased-contrast, forced-colour, reduced-motion and print rules to cover the new carousel and detail dialog.
+
 ## [1.4.0] - 2026-07-17
 
 ### Added
@@ -82,7 +95,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.2.0...v1.3.1
 [1.2.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.1.0...v1.2.0

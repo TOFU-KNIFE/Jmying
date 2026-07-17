@@ -42,7 +42,7 @@
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.4.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.5.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
@@ -397,70 +397,171 @@
               Selected projects and challenges.
             </h2>
           </div>
-          <div class="highlight-list">
-            <article class="highlight-item featured">
+        </div>
+        <div class="highlight-carousel">
+          <div class="highlight-controls">
+            <button
+              aria-controls="highlightTrack"
+              class="highlight-control"
+              data-highlight-previous=""
+              data-i18n="carouselPrevious"
+              disabled=""
+              type="button"
+            >
+              Previous
+            </button>
+            <button
+              aria-controls="highlightTrack"
+              class="highlight-control"
+              data-highlight-next=""
+              data-i18n="carouselNext"
+              type="button"
+            >
+              Next
+            </button>
+          </div>
+          <div
+            aria-label="Selected projects carousel"
+            class="highlight-track"
+            id="highlightTrack"
+            role="list"
+            tabindex="0"
+          >
+            <article
+              class="highlight-card highlight-card-primary"
+              data-index="01"
+              role="listitem"
+            >
               <div class="highlight-meta">
                 <p class="highlight-index">01</p>
                 <p class="highlight-year">2025</p>
               </div>
-              <div class="highlight-name">
-                <h3>EY Open Science AI &amp; Data Challenge</h3>
+              <div class="highlight-card-copy">
                 <p class="highlight-label" data-i18n="highlight1Label">
                   ASEAN Top 10 finalist
                 </p>
+                <h3 class="highlight-card-title" dir="auto">
+                  EY Open Science AI &amp; Data Challenge
+                </h3>
               </div>
-              <p class="highlight-description" data-i18n="highlight1Desc">
+              <p
+                class="highlight-description"
+                data-i18n="highlight1Desc"
+                hidden=""
+              >
                 Applied machine learning and data analysis to a sustainability
                 challenge in a global competition.
               </p>
+              <button
+                class="highlight-learn"
+                data-highlight-learn=""
+                data-i18n="learnMore"
+                type="button"
+              >
+                Learn more
+              </button>
             </article>
-            <article class="highlight-item">
+            <article
+              class="highlight-card highlight-card-light"
+              data-index="02"
+              role="listitem"
+            >
               <div class="highlight-meta">
                 <p class="highlight-index">02</p>
                 <p class="highlight-year">2025</p>
               </div>
-              <div class="highlight-name">
-                <h3>Deloitte Audit Business Challenge</h3>
+              <div class="highlight-card-copy">
                 <p class="highlight-label" data-i18n="highlight2Label">
                   Semi-finalist
                 </p>
+                <h3 class="highlight-card-title" dir="auto">
+                  Deloitte Audit Business Challenge
+                </h3>
               </div>
-              <p class="highlight-description" data-i18n="highlight2Desc">
+              <p
+                class="highlight-description"
+                data-i18n="highlight2Desc"
+                hidden=""
+              >
                 Practised audit judgement, structured reasoning, professional
                 ethics and business problem-solving.
               </p>
+              <button
+                class="highlight-learn"
+                data-highlight-learn=""
+                data-i18n="learnMore"
+                type="button"
+              >
+                Learn more
+              </button>
             </article>
-            <article class="highlight-item">
+            <article
+              class="highlight-card highlight-card-blue"
+              data-index="03"
+              role="listitem"
+            >
               <div class="highlight-meta">
                 <p class="highlight-index">03</p>
                 <p class="highlight-year">2025</p>
               </div>
-              <div class="highlight-name">
-                <h3>Deloitte Tax Challenge</h3>
+              <div class="highlight-card-copy">
                 <p class="highlight-label" data-i18n="highlight3Label">
                   Quarter-finalist · Team category
                 </p>
+                <h3 class="highlight-card-title" dir="auto">
+                  Deloitte Tax Challenge
+                </h3>
               </div>
-              <p class="highlight-description" data-i18n="highlight3Desc">
+              <p
+                class="highlight-description"
+                data-i18n="highlight3Desc"
+                hidden=""
+              >
                 Worked through practical business scenarios using Malaysian tax
                 knowledge.
               </p>
+              <button
+                class="highlight-learn"
+                data-highlight-learn=""
+                data-i18n="learnMore"
+                type="button"
+              >
+                Learn more
+              </button>
             </article>
-            <article class="highlight-item">
+            <article
+              class="highlight-card highlight-card-ink"
+              data-index="04"
+              role="listitem"
+            >
               <div class="highlight-meta">
                 <p class="highlight-index">04</p>
                 <p class="highlight-year">2025</p>
               </div>
-              <div class="highlight-name">
-                <h3>Taylor’s EYCC Business Case Workshop</h3>
+              <div class="highlight-card-copy">
                 <p class="highlight-label" data-i18n="highlight4Label">
                   Excellent Case Group
                 </p>
+                <h3 class="highlight-card-title" dir="auto">
+                  Taylor’s EYCC Business Case Workshop
+                </h3>
               </div>
-              <p class="highlight-description" data-i18n="highlight4Desc">
+              <p
+                class="highlight-description"
+                data-i18n="highlight4Desc"
+                hidden=""
+              >
                 Practised case analysis, structured problem-solving and
                 professional communication.
               </p>
+              <button
+                class="highlight-learn"
+                data-highlight-learn=""
+                data-i18n="learnMore"
+                type="button"
+              >
+                Learn more
+              </button>
             </article>
           </div>
         </div>
@@ -554,6 +655,34 @@
         ><a href="#top">jmying.com</a>
       </div>
     </footer>
+    <dialog
+      aria-describedby="highlightDialogDescription"
+      aria-labelledby="highlightDialogTitle"
+      aria-modal="true"
+      class="highlight-dialog"
+      id="highlightDialog"
+    >
+      <article class="highlight-dialog-panel">
+        <header class="highlight-dialog-header">
+          <div>
+            <p class="highlight-dialog-meta" id="highlightDialogMeta"></p>
+            <h2 dir="auto" id="highlightDialogTitle"></h2>
+          </div>
+          <button
+            class="close-button"
+            data-i18n="close"
+            id="closeHighlight"
+            type="button"
+          >
+            Close
+          </button>
+        </header>
+        <div class="highlight-dialog-body">
+          <p class="highlight-dialog-label" id="highlightDialogLabel"></p>
+          <p id="highlightDialogDescription"></p>
+        </div>
+      </article>
+    </dialog>
     <div
       aria-labelledby="languageHeading"
       aria-modal="true"
@@ -584,6 +713,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.4.0"></script>
+    <script defer="" src="/app.js?v=1.5.0"></script>
   </body>
 </html>

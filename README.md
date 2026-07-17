@@ -17,7 +17,7 @@ public Claude/Anthropic and Goldman Sachs guidance without copying their
 branding, proprietary assets or layouts:
 
 - content remains visually dominant
-- simple rules and whitespace separate evidence instead of card-heavy modules
+- simple rules and whitespace separate evidence, with one touch-optimised carousel for selected projects
 - warm neutral surfaces are paired with restrained institutional blue
 - Helvetica-first typography uses a compact, consistent hierarchy
 - adaptive layouts reflow from 320-pixel mobile widths to large desktops

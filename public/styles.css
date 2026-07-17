@@ -22,6 +22,7 @@
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-card: 18px;
   --shadow-hairline: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-panel:
     0 18px 48px rgba(7, 26, 51, 0.13), 0 2px 10px rgba(7, 26, 51, 0.08);
@@ -914,6 +915,7 @@ h1 span {
 }
 
 .highlights-section {
+  overflow: hidden;
   background: var(--color-background-secondary);
 }
 
@@ -940,22 +942,125 @@ h1 span {
   max-width: 16ch;
 }
 
-.highlight-list {
-  border-bottom: var(--border-width) solid var(--color-border-tertiary);
+.highlight-carousel {
+  width: 100%;
 }
 
-.highlight-item {
+.highlight-controls {
+  width: min(calc(100% - 48px), var(--shell));
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 0 auto 18px;
+}
+
+.highlight-control {
+  min-width: 104px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: var(--border-width) solid var(--color-border-primary);
+  border-radius: 999px;
+  color: var(--color-text-primary);
+  background: transparent;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 180ms var(--ease-standard),
+    background-color 240ms var(--ease-standard),
+    transform 300ms var(--ease-emphasized);
+}
+
+.highlight-control:hover:not(:disabled) {
+  color: var(--color-text-inverse);
+  background: var(--color-background-inverse);
+  transform: translateY(-2px);
+}
+
+.highlight-control:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.highlight-control:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.highlight-track {
+  --track-inset: max(24px, calc((100vw - var(--shell)) / 2));
   display: grid;
-  grid-template-columns: 130px minmax(260px, 1.05fr) minmax(260px, 0.95fr);
-  gap: 42px;
-  align-items: start;
-  padding: 30px 0 34px;
-  border-top: var(--border-width) solid var(--color-border-tertiary);
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(330px, 29vw, 400px);
+  gap: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 8px var(--track-inset) 48px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-padding-inline: var(--track-inset);
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+.highlight-track::-webkit-scrollbar {
+  display: none;
+}
+
+.highlight-card {
+  position: relative;
+  isolation: isolate;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  overflow: hidden;
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-card);
+  color: var(--institutional-ink);
+  background: var(--color-background-tertiary);
+  box-shadow:
+    0 18px 42px rgba(7, 26, 51, 0.1),
+    0 2px 8px rgba(7, 26, 51, 0.06);
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.highlight-card::after {
+  position: absolute;
+  z-index: -1;
+  inset-inline-end: -0.03em;
+  inset-block-end: -0.28em;
+  content: attr(data-index);
+  color: currentColor;
+  font-family: var(--font-display);
+  font-size: clamp(154px, 14vw, 218px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  opacity: 0.075;
+  pointer-events: none;
+}
+
+.highlight-card-primary,
+.highlight-card-ink {
+  color: #ffffff;
+  background: var(--institutional-ink);
+}
+
+.highlight-card-blue {
+  background: var(--institutional-blue);
+}
+
+.highlight-card-light {
+  background: var(--color-background-tertiary);
 }
 
 .highlight-meta {
   display: flex;
-  gap: 22px;
+  justify-content: space-between;
+  gap: 18px;
   align-items: baseline;
 }
 
@@ -968,39 +1073,146 @@ h1 span {
 }
 
 .highlight-index {
-  color: var(--institutional-blue-dark);
+  color: currentColor;
 }
 
 .highlight-year {
-  color: var(--color-text-tertiary);
+  color: currentColor;
+  opacity: 0.68;
 }
 
-.highlight-name h3 {
+.highlight-card-copy {
+  margin-block: clamp(86px, 9vw, 132px) 24px;
+}
+
+.highlight-card-title {
   margin: 0;
-  color: var(--color-text-primary);
-  font-size: 22px;
-  line-height: 1.3;
+  max-width: 15ch;
+  color: currentColor;
+  font-family: var(--font-display);
+  font-size: clamp(31px, 2.6vw, 39px);
+  line-height: 1.05;
   font-weight: 500;
   letter-spacing: var(--tracking-title);
+  text-wrap: balance;
 }
 
 .highlight-label {
-  margin: 10px 0 0;
-  color: var(--institutional-blue-dark);
-  font-size: 14px;
+  margin: 0 0 14px;
+  color: currentColor;
+  font-size: 13px;
   line-height: 1.4;
   font-weight: 600;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+  opacity: 0.78;
 }
 
 .highlight-description {
   margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--type-body);
-  line-height: 1.65;
 }
 
-.highlight-item.featured .highlight-name h3 {
+.highlight-learn {
+  min-height: 44px;
+  align-self: flex-start;
+  margin-block-start: auto;
+  padding: 0 0;
+  border: 0;
+  border-block-end: 1px solid currentColor;
+  color: currentColor;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1;
   font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 180ms var(--ease-standard),
+    transform 300ms var(--ease-emphasized);
+}
+
+.highlight-learn:hover {
+  opacity: 0.68;
+  transform: translateY(-2px);
+}
+
+.highlight-dialog {
+  width: min(calc(100% - 32px), 720px);
+  max-height: min(760px, calc(100dvh - 32px));
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  color: var(--color-text-primary);
+  background: transparent;
+  font-family: var(--font);
+}
+
+.highlight-dialog::backdrop {
+  background: rgba(7, 26, 51, 0.74);
+}
+
+.highlight-dialog[open] {
+  animation: dialog-fade-in 200ms var(--ease-standard) both;
+}
+
+.highlight-dialog-panel {
+  max-height: min(760px, calc(100dvh - 32px));
+  padding: clamp(28px, 5vw, 52px);
+  overflow-y: auto;
+  border: var(--border-width) solid var(--color-border-tertiary);
+  border-radius: var(--radius-card);
+  color: var(--color-text-primary);
+  background: var(--color-background-tertiary);
+  box-shadow: var(--shadow-panel);
+  animation: panel-in 420ms var(--ease-emphasized) both;
+}
+
+.highlight-dialog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+}
+
+.highlight-dialog-meta {
+  margin: 0 0 14px;
+  color: var(--institutional-blue-dark);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: var(--tracking-meta);
+}
+
+.highlight-dialog-header h2 {
+  max-width: 15ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+}
+
+.highlight-dialog-body {
+  margin-block-start: clamp(44px, 7vw, 72px);
+  padding-block-start: 24px;
+  border-block-start: var(--border-width) solid var(--color-border-tertiary);
+}
+
+.highlight-dialog-label {
+  margin: 0 0 14px;
+  color: var(--institutional-blue-dark);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: var(--tracking-meta);
+  text-transform: uppercase;
+}
+
+#highlightDialogDescription {
+  max-width: var(--measure-reading);
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-large);
+  line-height: 1.65;
 }
 
 .credentials-section {
@@ -1303,7 +1515,7 @@ h1 span {
 .motion-ready .focus-item:nth-child(2),
 .motion-ready .timeline-item:nth-child(2),
 .motion-ready .approach-list li:nth-child(2),
-.motion-ready .highlight-item:nth-child(2),
+.motion-ready .highlight-card:nth-child(2),
 .motion-ready .credential-list li:nth-child(2) {
   transition-delay: 70ms;
 }
@@ -1311,12 +1523,12 @@ h1 span {
 .motion-ready .focus-item:nth-child(3),
 .motion-ready .timeline-item:nth-child(3),
 .motion-ready .approach-list li:nth-child(3),
-.motion-ready .highlight-item:nth-child(3),
+.motion-ready .highlight-card:nth-child(3),
 .motion-ready .credential-list li:nth-child(3) {
   transition-delay: 140ms;
 }
 
-.motion-ready .highlight-item:nth-child(4),
+.motion-ready .highlight-card:nth-child(4),
 .motion-ready .credential-list li:nth-child(4) {
   transition-delay: 210ms;
 }
@@ -1414,6 +1626,16 @@ h1 span {
   .language-option[aria-current="true"] {
     color: #faf9f5;
   }
+
+  .highlight-card-light {
+    color: #faf9f5;
+    background: #363634;
+  }
+
+  .highlight-card-blue {
+    color: #ffffff;
+    background: #3e6798;
+  }
 }
 
 @media (max-width: 1040px) {
@@ -1448,6 +1670,10 @@ h1 span {
 
   .timeline-description {
     grid-column: 2;
+  }
+
+  .highlight-track {
+    grid-auto-columns: clamp(320px, 44vw, 380px);
   }
 }
 
@@ -1589,19 +1815,22 @@ h1 span {
     gap: 18px;
   }
 
-  .wide-intro,
-  .highlight-item {
+  .wide-intro {
     grid-template-columns: 84px minmax(0, 1fr);
     gap: 26px;
   }
 
-  .highlight-description {
-    grid-column: 2;
+  .highlight-controls {
+    width: min(calc(100% - 32px), var(--shell));
   }
 
-  .highlight-meta {
-    flex-direction: column;
-    gap: 8px;
+  .highlight-track {
+    --track-inset: max(16px, calc((100vw - var(--shell)) / 2));
+    grid-auto-columns: min(76vw, 360px);
+  }
+
+  .highlight-card {
+    min-height: 450px;
   }
 
   .connect-copy {
@@ -1707,8 +1936,7 @@ h1 span {
     gap: 18px;
   }
 
-  .wide-intro,
-  .highlight-item {
+  .wide-intro {
     grid-template-columns: 52px minmax(0, 1fr);
     gap: 16px;
   }
@@ -1721,9 +1949,54 @@ h1 span {
     font-size: 44px;
   }
 
-  .highlight-description {
-    grid-column: 1 / -1;
-    padding-inline-start: 68px;
+  .highlight-controls {
+    justify-content: space-between;
+  }
+
+  .highlight-control {
+    min-width: min(42vw, 132px);
+  }
+
+  .highlight-track {
+    --track-inset: 16px;
+    grid-auto-columns: min(82vw, 340px);
+    gap: 14px;
+    padding-block-end: 36px;
+  }
+
+  .highlight-card {
+    min-height: 430px;
+    padding: 24px;
+  }
+
+  .highlight-card-copy {
+    margin-block-start: 76px;
+  }
+
+  .highlight-card-title {
+    font-size: clamp(30px, 9vw, 38px);
+  }
+
+  .highlight-dialog {
+    width: calc(100% - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+
+  .highlight-dialog-panel {
+    max-height: calc(100dvh - 24px);
+    padding: 24px;
+  }
+
+  .highlight-dialog-header {
+    gap: 16px;
+  }
+
+  .highlight-dialog-header h2 {
+    font-size: 38px;
+  }
+
+  .highlight-dialog-body {
+    margin-block-start: 44px;
   }
 
   .credential-list li {
@@ -1816,7 +2089,9 @@ h1 span {
   .button,
   .language-trigger,
   .language-option,
-  .close-button {
+  .close-button,
+  .highlight-control,
+  .highlight-card {
     border-width: 2px;
   }
 }
@@ -1837,6 +2112,8 @@ h1 span {
   .connect-section,
   .button.primary,
   .button.light,
+  .highlight-card-primary,
+  .highlight-card-ink,
   .toast {
     forced-color-adjust: none;
   }
@@ -1855,6 +2132,8 @@ h1 span {
   .capability-band,
   .connect-section,
   .button.primary,
+  .highlight-card-primary,
+  .highlight-card-ink,
   .toast {
     color: Canvas;
     background: CanvasText;
@@ -1868,6 +2147,8 @@ h1 span {
 @media print {
   .site-header,
   .hero-actions,
+  .highlight-controls,
+  .highlight-dialog,
   .language-dialog,
   .toast,
   .hero-backdrop,
@@ -1900,5 +2181,20 @@ h1 span {
   .focus-item,
   .capability-summary {
     border-color: #999999;
+  }
+
+  .highlight-track {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .highlight-card {
+    min-height: 340px;
+    color: #000000;
+    background: #ffffff;
+    box-shadow: none;
   }
 }
