@@ -4,6 +4,20 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.11.0] - 2026-07-18
+
+### Changed
+
+- Rebuilt the interface radius scale around four deliberate levels for indicators, controls, medium containers and editorial cards.
+- Added standards-based `corner-shape: squircle` as a progressive enhancement while preserving complete `border-radius` fallbacks.
+- Refined buttons, header controls, the yearbook portrait, evidence surfaces, project cards, dialogs, language options and toasts with a consistent smooth-corner hierarchy.
+- Preserved true capsule geometry for filters and carousel controls, following Apple's distinction between compact rounded rectangles and prominent touch-friendly capsules.
+- Documented the fixed, capsule and concentric shape rules in the institutional design system.
+
+### Fixed
+
+- Extended the script-aware font and tracking selectors to the `zh-Hans` document tag used by Simplified Chinese.
+
 ## [1.10.1] - 2026-07-18
 
 ### Changed
@@ -166,7 +180,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.1...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.1...v1.11.0
 [1.10.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.8.0...v1.9.0
