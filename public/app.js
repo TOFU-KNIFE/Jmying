@@ -11,58 +11,58 @@
       navExperience: "Experience",
       navHighlights: "Highlights",
       language: "Language",
-      chooseLanguage: "Choose your language",
+      chooseLanguage: "Choose a language",
       close: "Close",
       eyebrow: "Accounting · Audit · Data",
-      role: "Accounting (FinTech) student and Audit & Assurance internship applicant.",
+      role: "Accounting (FinTech) student seeking an Audit & Assurance internship.",
       summary:
-        "I bring together financial reporting, disciplined documentation and practical digital tools to support accurate, well-structured work.",
+        "I combine financial reporting, careful documentation and practical digital tools to support accurate, well-structured work.",
       availability:
         "Available for Audit & Assurance internships · Feb–Apr 2027",
       copy: "Copy jmying.com",
       copied: "Link copied",
       privacyLine:
-        "Professional enquiries are accepted through LinkedIn only. No private contact details are published or collected here.",
+        "For professional enquiries, please use LinkedIn. This site neither publishes nor collects private contact details.",
       profileKicker: "Professional profile",
-      profileTitle: "Built for careful work.",
+      profileTitle: "Careful work, clearly structured.",
       profileIntro:
-        "My focus sits at the intersection of accounting fundamentals, audit-ready documentation and technology-enabled analysis.",
+        "I focus on accounting fundamentals, audit-ready documentation and practical, technology-supported analysis.",
       focus1Title: "Accounting & assurance",
       focus1Desc:
-        "Financial working papers, supporting schedules, document verification and structured review.",
+        "Financial working papers, supporting schedules, document checks and structured review.",
       focus2Title: "Finance systems",
       focus2Desc:
         "Hands-on exposure to Excel, SQL accounting software, Oracle and internal ERP workflows.",
       focus3Title: "Data & digital tools",
       focus3Desc:
-        "Practical use of Python and AI-assisted tools to support research, analysis and clear communication.",
+        "Python and AI-assisted tools used for research, analysis and clear communication.",
       experienceKicker: "Experience & education",
       experienceTitle: "A practical foundation.",
       experienceIntro:
-        "Experience across project finance documentation, accounting operations and university study in Accounting (FinTech).",
-      exp1Role: "Finance Accounting Intern",
+        "Experience in project finance documentation and accounting operations, supported by Accounting (FinTech) studies.",
+      exp1Role: "Finance & Accounting Intern",
       exp1Desc:
-        "Prepared financial working papers, checked supporting documentation, assisted IPC payment processing and compiled project financial data for review.",
+        "Prepared financial working papers, checked supporting documents, assisted with IPC payments and organised project finance data for review.",
       exp2Role: "Account Assistant",
       exp2Desc:
-        "Organised accounting and purchasing records, monitored purchase orders, tracked expenses and supported year-end financial reporting.",
+        "Organised accounting and purchasing records, monitored purchase orders, tracked expenses and supported year-end reporting.",
       educationRole: "Bachelor of Accounting (FinTech) (Honours)",
       educationDesc:
-        "Developing a foundation in financial reporting, audit, taxation, analytics and technology-enabled accounting.",
+        "Building practical knowledge of financial reporting, audit, taxation, analytics and technology-supported accounting.",
       highlightsKicker: "Selected highlights",
-      highlightsTitle: "Evidence of curiosity and follow-through.",
+      highlightsTitle: "Selected projects and challenges.",
       highlight1Label: "ASEAN Top 10 finalist",
       highlight1Desc:
-        "Applied machine learning and data analysis to a sustainability-focused challenge in a global competition environment.",
+        "Applied machine learning and data analysis to a sustainability challenge in a global competition.",
       highlight2Label: "Semi-finalist",
       highlight2Desc:
-        "Strengthened audit judgement, structured reasoning, professional ethics and business problem-solving.",
+        "Practised audit judgement, structured reasoning, professional ethics and business problem-solving.",
       highlight3Label: "Quarter-finalist · Team category",
       highlight3Desc:
-        "Explored the application of Malaysian taxation knowledge to practical business scenarios.",
+        "Worked through practical business scenarios using Malaysian tax knowledge.",
       highlight4Label: "Excellent Case Group",
       highlight4Desc:
-        "Practised consulting-style analysis, structured problem-solving and professional communication.",
+        "Practised case analysis, structured problem-solving and professional communication.",
       credentialsKicker: "Credentials",
       credentialsTitle: "Continuous professional learning.",
       credentialsIntro:
@@ -88,32 +88,32 @@
         navExperience: "经历",
         navHighlights: "亮点",
         language: "语言",
-        chooseLanguage: "选择你的语言",
+        chooseLanguage: "选择语言",
         close: "关闭",
         eyebrow: "会计 · 审计 · 数据",
-        role: "会计（金融科技）学生，正在申请审计与鉴证实习。",
+        role: "会计（金融科技）学生，正在寻求审计与鉴证实习机会。",
         summary:
-          "我结合财务报告知识、严谨的文件处理能力与实用数字工具，支持准确、清晰且结构化的工作。",
+          "我结合财务报告知识、细致的文件整理与实用数字工具，支持准确、结构清晰的工作。",
         availability: "可接受审计与鉴证实习 · 2027 年 2–4 月",
         copy: "复制 jmying.com",
         copied: "链接已复制",
         privacyLine:
-          "职业联系仅通过领英进行。本站不公开或收集任何私人联系方式。",
+          "如需职业联系，请使用 LinkedIn。本站不公开，也不收集私人联系方式。",
         profileKicker: "职业简介",
-        profileTitle: "为严谨工作而准备。",
+        profileTitle: "细致工作，清晰呈现。",
         profileIntro:
-          "我的发展重点位于会计基础、审计就绪文件与技术辅助分析的交汇处。",
+          "我专注于会计基础、审计就绪文件，以及实用的技术辅助分析。",
         focus1Title: "会计与鉴证",
-        focus1Desc: "财务工作底稿、支持性明细表、文件核查与结构化复核。",
+        focus1Desc: "财务工作底稿、支持性明细、文件核查与结构化复核。",
         focus2Title: "财务系统",
         focus2Desc:
-          "具备 Excel、SQL 会计软件、Oracle 与内部 ERP 流程的实践经验。",
+          "接触并使用过 Excel、SQL 会计软件、Oracle 与内部 ERP 流程。",
         focus3Title: "数据与数字工具",
         focus3Desc: "运用 Python 与 AI 辅助工具支持研究、分析和清晰沟通。",
         experienceKicker: "经历与教育",
         experienceTitle: "扎实的实践基础。",
         experienceIntro:
-          "涵盖项目财务文件、会计运营，以及会计（金融科技）大学课程的实践经历。",
+          "具备项目财务文件与会计运营经验，并正修读会计（金融科技）课程。",
         exp1Role: "财务会计实习生",
         exp1Desc:
           "编制财务工作底稿，核查支持性文件，协助 IPC 付款处理，并整理项目财务数据供复核。",
@@ -124,7 +124,7 @@
         educationDesc:
           "持续建立财务报告、审计、税务、分析及科技赋能会计方面的基础。",
         highlightsKicker: "精选亮点",
-        highlightsTitle: "以成果体现好奇心与执行力。",
+        highlightsTitle: "精选项目与竞赛经历。",
         highlight1Label: "东盟前十名决赛选手",
         highlight1Desc:
           "在全球竞赛环境中，将机器学习与数据分析应用于可持续发展主题挑战。",
@@ -156,32 +156,32 @@
         navExperience: "經歷",
         navHighlights: "亮點",
         language: "語言",
-        chooseLanguage: "選擇你的語言",
+        chooseLanguage: "選擇語言",
         close: "關閉",
         eyebrow: "會計 · 審計 · 數據",
-        role: "會計（金融科技）學生，正在申請審計與鑑證實習。",
+        role: "會計（金融科技）學生，正在尋找審計與鑑證實習機會。",
         summary:
-          "我結合財務報告知識、嚴謹的文件處理能力與實用數位工具，支援準確、清晰且具結構的工作。",
+          "我結合財務報告知識、細緻的文件整理與實用數位工具，支援準確、結構清晰的工作。",
         availability: "可接受審計與鑑證實習 · 2027 年 2–4 月",
         copy: "複製 jmying.com",
         copied: "連結已複製",
         privacyLine:
-          "職業聯繫僅透過 LinkedIn 進行。本站不公開或收集任何私人聯絡資料。",
+          "如需職業聯繫，請使用 LinkedIn。本站不公開，也不收集私人聯絡資料。",
         profileKicker: "職業簡介",
-        profileTitle: "為嚴謹工作而準備。",
+        profileTitle: "細緻工作，清晰呈現。",
         profileIntro:
-          "我的發展重點位於會計基礎、審計就緒文件與科技輔助分析的交會處。",
+          "我專注於會計基礎、審計就緒文件，以及實用的科技輔助分析。",
         focus1Title: "會計與鑑證",
-        focus1Desc: "財務工作底稿、支持性明細表、文件核查與結構化覆核。",
+        focus1Desc: "財務工作底稿、支持性明細、文件核查與結構化覆核。",
         focus2Title: "財務系統",
         focus2Desc:
-          "具備 Excel、SQL 會計軟體、Oracle 與內部 ERP 流程的實務經驗。",
+          "接觸並使用過 Excel、SQL 會計軟體、Oracle 與內部 ERP 流程。",
         focus3Title: "數據與數位工具",
         focus3Desc: "運用 Python 與 AI 輔助工具支援研究、分析和清晰溝通。",
         experienceKicker: "經歷與教育",
         experienceTitle: "扎實的實務基礎。",
         experienceIntro:
-          "涵蓋專案財務文件、會計營運，以及會計（金融科技）大學課程的實務經驗。",
+          "具備專案財務文件與會計營運經驗，並正修讀會計（金融科技）課程。",
         exp1Role: "財務會計實習生",
         exp1Desc:
           "編製財務工作底稿，核查支持文件，協助 IPC 付款處理，並整理專案財務數據供覆核。",
@@ -192,7 +192,7 @@
         educationDesc:
           "持續建立財務報告、審計、稅務、分析及科技賦能會計方面的基礎。",
         highlightsKicker: "精選亮點",
-        highlightsTitle: "以成果體現好奇心與執行力。",
+        highlightsTitle: "精選專案與競賽經歷。",
         highlight1Label: "東盟前十名決賽選手",
         highlight1Desc:
           "在全球競賽環境中，將機器學習與數據分析應用於永續發展主題挑戰。",
@@ -660,168 +660,306 @@
         viewLinkedin: "Contactar por LinkedIn",
         footerPrivacy: "Privacidad primero · sin analítica · sin publicidad",
       },
-    },
-    v = Object.keys(r),
-    g = document.getElementById("languageTrigger"),
-    o = document.getElementById("languageDialog"),
-    d = document.getElementById("closeLanguage"),
-    h = document.getElementById("languageList"),
-    L = document.getElementById("languageCode"),
-    D = document.getElementById("copyButton"),
-    p = document.getElementById("toast"),
-    T = document.querySelector('meta[name="description"]'),
-    x = document.querySelector('meta[property="og:description"]');
-  let s = null,
-    c = I();
-  function E() {
+    };
+
+  const fallbackTranslation = f;
+  const translations = r;
+  const supportedLocales = Object.keys(translations);
+  const translatableNodes = [...document.querySelectorAll("[data-i18n]")];
+  const languageTrigger = document.getElementById("languageTrigger");
+  const languageDialog = document.getElementById("languageDialog");
+  const closeLanguageButton = document.getElementById("closeLanguage");
+  const languageList = document.getElementById("languageList");
+  const languageCode = document.getElementById("languageCode");
+  const copyButton = document.getElementById("copyButton");
+  const toast = document.getElementById("toast");
+  const descriptionMeta = document.querySelector('meta[name="description"]');
+  const openGraphDescription = document.querySelector(
+    'meta[property="og:description"]',
+  );
+  const dialogPeers = [
+    document.querySelector(".site-header"),
+    document.querySelector("main"),
+    document.querySelector(".site-footer"),
+  ].filter(Boolean);
+
+  let lastFocusedElement = null;
+  let toastTimer = 0;
+  let currentLocale = resolvePreferredLocale();
+
+  function readStoredLocale() {
     try {
       return localStorage.getItem("jmying-language");
     } catch {
       return null;
     }
   }
-  function P(e) {
+
+  function storeLocale(locale) {
     try {
-      localStorage.setItem("jmying-language", e);
+      localStorage.setItem("jmying-language", locale);
     } catch {}
   }
-  function I() {
-    const e = E();
-    if (e && r[e]) return e;
-    const i = navigator.languages || [navigator.language || "en"];
-    for (const a of i) {
-      const n = a.toLowerCase();
-      if (
-        n.startsWith("zh-tw") ||
-        n.startsWith("zh-hk") ||
-        n.startsWith("zh-hant")
-      )
-        return "zh-TW";
-      if (n.startsWith("zh")) return "zh-CN";
-      const t = n.split("-")[0];
-      if (r[t]) return t;
+
+  function normalizeLocale(locale) {
+    const normalized = String(locale || "")
+      .replaceAll("_", "-")
+      .toLowerCase();
+
+    if (
+      normalized.startsWith("zh-hant") ||
+      normalized.startsWith("zh-tw") ||
+      normalized.startsWith("zh-hk") ||
+      normalized.startsWith("zh-mo")
+    ) {
+      return "zh-TW";
+    }
+    if (normalized.startsWith("zh")) return "zh-CN";
+
+    const exactMatch = supportedLocales.find(
+      (localeKey) => localeKey.toLowerCase() === normalized,
+    );
+    if (exactMatch) return exactMatch;
+
+    const baseLanguage = normalized.split("-")[0];
+    return supportedLocales.includes(baseLanguage) ? baseLanguage : null;
+  }
+
+  function resolvePreferredLocale() {
+    const storedLocale = normalizeLocale(readStoredLocale());
+    if (storedLocale) return storedLocale;
+
+    const browserLocales = navigator.languages || [navigator.language || "en"];
+    for (const browserLocale of browserLocales) {
+      const supportedLocale = normalizeLocale(browserLocale);
+      if (supportedLocale) return supportedLocale;
     }
     return "en";
   }
-  function k(e) {
-    return { ...f, ...(r[e] || {}) };
+
+  function getTranslation(locale) {
+    return { ...fallbackTranslation, ...(translations[locale] || {}) };
   }
-  function C() {
-    const e = document.createDocumentFragment();
-    (h.replaceChildren(),
-      v.forEach((i) => {
-        const a = r[i],
-          n = document.createElement("button");
-        ((n.className = "language-option"),
-          (n.type = "button"),
-          (n.dataset.language = i),
-          n.setAttribute("aria-current", String(i === c)));
-        const t = document.createElement("span");
-        ((t.className = "native-name"), (t.textContent = a.native));
-        const m = document.createElement("span");
-        ((m.className = "english-name"),
-          (m.textContent = a.english),
-          n.append(t, m),
-          e.append(n));
-      }),
-      h.append(e));
+
+  function localizedLanguageName(locale) {
+    try {
+      const displayNames = new Intl.DisplayNames([currentLocale], {
+        type: "language",
+      });
+      return displayNames.of(translations[locale].htmlLang);
+    } catch {
+      return translations[locale].english;
+    }
   }
-  function b(e) {
-    c = r[e] ? e : "en";
-    const i = k(c);
-    ((document.documentElement.lang = i.htmlLang),
-      (document.documentElement.dir = "ltr"),
-      document.querySelectorAll("[data-i18n]").forEach((a) => {
-        const n = a.dataset.i18n;
-        i[n] && (a.textContent = i[n]);
-      }),
-      (L.textContent = i.code),
-      T.setAttribute("content", i.meta),
-      x.setAttribute("content", i.meta),
-      d.setAttribute("aria-label", i.close),
-      document.querySelectorAll(".linkedin-cta").forEach((a) => {
-        a.setAttribute("aria-label", `${i.viewLinkedin}: Jeremy Ying`);
-      }),
-      (document.title = "Jeremy (Lei) Ying · JMYING"),
-      P(c),
-      C());
+
+  function renderLanguageOptions() {
+    if (!languageList.childElementCount) {
+      const fragment = document.createDocumentFragment();
+      supportedLocales.forEach((locale) => {
+        const translation = translations[locale];
+        const option = document.createElement("button");
+        option.className = "language-option";
+        option.type = "button";
+        option.dataset.language = locale;
+
+        const nativeName = document.createElement("span");
+        nativeName.className = "native-name";
+        nativeName.lang = translation.htmlLang;
+        nativeName.textContent = translation.native;
+
+        const localizedName = document.createElement("span");
+        localizedName.className = "localized-name";
+        option.append(nativeName, localizedName);
+        fragment.append(option);
+      });
+      languageList.append(fragment);
+    }
+
+    languageList.querySelectorAll("[data-language]").forEach((option) => {
+      const locale = option.dataset.language;
+      const secondaryLabel = option.querySelector(".localized-name");
+      const localizedName = localizedLanguageName(locale);
+      option.setAttribute("aria-current", String(locale === currentLocale));
+      option.setAttribute(
+        "aria-label",
+        `${translations[locale].native} — ${localizedName}`,
+      );
+      secondaryLabel.textContent = localizedName;
+    });
   }
-  function w() {
-    ((s = document.activeElement),
-      (o.hidden = !1),
-      g.setAttribute("aria-expanded", "true"),
-      document.body.classList.add("dialog-open"),
-      d.focus());
+
+  function applyLocale(locale, { persist = false } = {}) {
+    currentLocale = normalizeLocale(locale) || "en";
+    const translation = getTranslation(currentLocale);
+
+    document.documentElement.lang = translation.htmlLang;
+    document.documentElement.dir = "ltr";
+    translatableNodes.forEach((node) => {
+      const translatedText = translation[node.dataset.i18n];
+      if (translatedText) node.textContent = translatedText;
+    });
+
+    languageCode.textContent = translation.code;
+    languageTrigger.setAttribute(
+      "aria-label",
+      `${translation.language}: ${translation.native}`,
+    );
+    descriptionMeta.setAttribute("content", translation.meta);
+    openGraphDescription.setAttribute("content", translation.meta);
+    closeLanguageButton.setAttribute("aria-label", translation.close);
+    document.querySelectorAll(".linkedin-cta").forEach((link) => {
+      link.setAttribute(
+        "aria-label",
+        `${translation.viewLinkedin}: Jeremy Ying`,
+      );
+    });
+    document.title = "Jeremy (Lei) Ying · JMYING";
+
+    if (persist) storeLocale(currentLocale);
+    renderLanguageOptions();
   }
-  function l() {
-    ((o.hidden = !0),
-      g.setAttribute("aria-expanded", "false"),
-      document.body.classList.remove("dialog-open"),
-      s && typeof s.focus == "function" && s.focus());
+
+  function setDialogPeersInert(inert) {
+    dialogPeers.forEach((element) => {
+      element.inert = inert;
+    });
   }
-  function u(e) {
-    ((p.textContent = e),
-      p.classList.add("show"),
-      clearTimeout(u.timer),
-      (u.timer = setTimeout(() => p.classList.remove("show"), 1800)));
+
+  function openLanguageDialog() {
+    lastFocusedElement = document.activeElement;
+    languageDialog.hidden = false;
+    languageTrigger.setAttribute("aria-expanded", "true");
+    document.body.classList.add("dialog-open");
+    setDialogPeersInert(true);
+    closeLanguageButton.focus();
   }
-  (g.addEventListener("click", w),
-    d.addEventListener("click", l),
-    o.addEventListener("click", (e) => {
-      e.target === o && l();
-    }),
-    h.addEventListener("click", (e) => {
-      const i = e.target.closest("[data-language]");
-      i && (b(i.dataset.language), l());
-    }),
-    document.addEventListener("keydown", (e) => {
-      if (
-        (e.key === "Escape" && !o.hidden && l(), e.key === "Tab" && !o.hidden)
-      ) {
-        const i = [...o.querySelectorAll("button:not([disabled])")];
-        if (!i.length) return;
-        const a = i[0],
-          n = i[i.length - 1];
-        e.shiftKey && document.activeElement === a
-          ? (e.preventDefault(), n.focus())
-          : !e.shiftKey &&
-            document.activeElement === n &&
-            (e.preventDefault(), a.focus());
-      }
-    }),
-    D?.addEventListener("click", async () => {
-      try {
-        (await navigator.clipboard.writeText("https://jmying.com"),
-          u(k(c).copied));
-      } catch {
-        u("jmying.com");
-      }
-    }),
-    document.querySelectorAll('a[target="_blank"]').forEach((e) => {
-      ((e.rel = "noopener noreferrer external"),
-        (e.referrerPolicy = "no-referrer"));
-    }));
-  const y = [...document.querySelectorAll("[data-nav-link]")],
-    A = y
-      .map((e) => document.querySelector(e.getAttribute("href")))
+
+  function closeLanguageDialog() {
+    languageDialog.hidden = true;
+    languageTrigger.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("dialog-open");
+    setDialogPeersInert(false);
+    lastFocusedElement?.focus?.();
+  }
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => toast.classList.remove("show"), 1800);
+  }
+
+  function setupNavigationTracking() {
+    const navigationLinks = [...document.querySelectorAll("[data-nav-link]")];
+    const sections = navigationLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
       .filter(Boolean);
-  if ("IntersectionObserver" in window && A.length) {
-    const e = new IntersectionObserver(
-      (i) => {
-        const a = i
-          .filter((n) => n.isIntersecting)
-          .sort((n, t) => t.intersectionRatio - n.intersectionRatio)[0];
-        a &&
-          y.forEach((n) => {
-            n.getAttribute("href") === `#${a.target.id}`
-              ? n.setAttribute("aria-current", "location")
-              : n.removeAttribute("aria-current");
-          });
+
+    if (!("IntersectionObserver" in window) || !sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const activeEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (firstEntry, secondEntry) =>
+              secondEntry.intersectionRatio - firstEntry.intersectionRatio,
+          )[0];
+        if (!activeEntry) return;
+
+        navigationLinks.forEach((link) => {
+          if (link.getAttribute("href") === `#${activeEntry.target.id}`) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
       },
       { rootMargin: "-30% 0px -55% 0px", threshold: [0.01, 0.25, 0.5] },
     );
-    A.forEach((i) => e.observe(i));
+    sections.forEach((section) => observer.observe(section));
   }
-  ((document.getElementById("year").textContent = new Date().getFullYear()),
-    b(c));
+
+  function setupPurposefulMotion() {
+    if (
+      !("IntersectionObserver" in window) ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const revealTargets = [
+      ...document.querySelectorAll(
+        ".section-intro, .focus-card, .timeline-item, .highlight-card, .credential-list li, .connect-card",
+      ),
+    ];
+    document.documentElement.classList.add("motion-ready");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8%", threshold: 0.12 },
+    );
+
+    revealTargets.forEach((target) => {
+      target.dataset.reveal = "";
+      observer.observe(target);
+    });
+  }
+
+  languageTrigger.addEventListener("click", openLanguageDialog);
+  closeLanguageButton.addEventListener("click", closeLanguageDialog);
+  languageDialog.addEventListener("click", (event) => {
+    if (event.target === languageDialog) closeLanguageDialog();
+  });
+  languageList.addEventListener("click", (event) => {
+    const option = event.target.closest("[data-language]");
+    if (!option) return;
+    applyLocale(option.dataset.language, { persist: true });
+    closeLanguageDialog();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (languageDialog.hidden) return;
+    if (event.key === "Escape") {
+      closeLanguageDialog();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const focusableButtons = [
+      ...languageDialog.querySelectorAll("button:not([disabled])"),
+    ];
+    if (!focusableButtons.length) return;
+    const firstButton = focusableButtons[0];
+    const lastButton = focusableButtons[focusableButtons.length - 1];
+    if (event.shiftKey && document.activeElement === firstButton) {
+      event.preventDefault();
+      lastButton.focus();
+    } else if (!event.shiftKey && document.activeElement === lastButton) {
+      event.preventDefault();
+      firstButton.focus();
+    }
+  });
+  copyButton?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText("https://jmying.com");
+      showToast(getTranslation(currentLocale).copied);
+    } catch {
+      showToast("jmying.com");
+    }
+  });
+  document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    link.rel = "noopener noreferrer external";
+    link.referrerPolicy = "no-referrer";
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  applyLocale(currentLocale);
+  setupNavigationTracking();
+  setupPurposefulMotion();
 })();
