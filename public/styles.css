@@ -164,7 +164,7 @@ img {
 }
 
 section[id] {
-  scroll-margin-top: 92px;
+  scroll-margin-top: 84px;
 }
 
 .skip-link {
@@ -199,7 +199,7 @@ section[id] {
 
 .header-shell {
   width: min(calc(100% - 48px), var(--shell));
-  min-height: 76px;
+  min-height: 68px;
   margin: 0 auto;
   padding-block-start: env(safe-area-inset-top);
   display: grid;
@@ -377,7 +377,7 @@ section[id] {
   position: relative;
   z-index: 2;
   width: min(100%, var(--shell));
-  min-height: min(760px, calc(100svh - 76px));
+  min-height: min(760px, calc(100svh - 68px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
@@ -386,7 +386,9 @@ section[id] {
 
 .identity-copy {
   align-self: center;
-  padding: 76px clamp(48px, 7vw, 104px) 76px 24px;
+  padding-block: 76px;
+  padding-inline-start: 0;
+  padding-inline-end: clamp(48px, 7vw, 104px);
   animation: hero-copy-in 760ms var(--ease-emphasized) both;
 }
 
@@ -764,7 +766,7 @@ h1 span {
 
 .sticky-intro {
   position: sticky;
-  top: 118px;
+  top: 110px;
 }
 
 .experience-section {
@@ -1665,6 +1667,18 @@ h1 span {
   }
 }
 
+@media (min-width: 821px) {
+  .language-trigger {
+    background: transparent;
+  }
+}
+
+@media (max-width: 1328px) {
+  .identity-copy {
+    padding-inline-start: 24px;
+  }
+}
+
 @media (max-width: 1040px) {
   .hero-shell {
     grid-template-columns: minmax(0, 1fr) minmax(360px, 0.78fr);
@@ -1701,6 +1715,18 @@ h1 span {
 
   .highlight-track {
     grid-auto-columns: clamp(320px, 44vw, 380px);
+  }
+}
+
+@media (min-width: 821px) and (max-width: 940px) {
+  .hero-actions {
+    max-width: 360px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    width: 100%;
   }
 }
 

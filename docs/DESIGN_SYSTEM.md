@@ -49,6 +49,7 @@ own content constraints take precedence.
 - Core radii are limited to 6, 8 and 12 pixels. An 18-pixel radius is reserved for the section 04 carousel cards and its matching detail sheet; compact carousel navigation is the only pill-control exception.
 - Content regions use hairline rules and whitespace instead of boxed card grids. Section 04 is a deliberate single-row carousel exception for touch-friendly project browsing, not a general-purpose card grid.
 - Main content width is 1,280 pixels with responsive 24/16 pixel side insets.
+- Desktop navigation uses a 68-pixel row and shares the same 1,280-pixel start and end lines as the hero copy and section content.
 - Interactive targets are at least 44 × 44 pixels.
 
 ### Motion
