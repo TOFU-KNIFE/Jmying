@@ -10,7 +10,7 @@
 - `content/` for copy or translation changes
 - `chore/` for tooling, dependencies and repository maintenance
 
-Open a pull request, let CI pass and squash-merge into `main`. Protect `main` on GitHub by requiring a pull request and the `quality` status check.
+Open a pull request and let CI pass before merging into `main`. Preserve useful atomic commits when they document distinct stages of a larger release. Protect `main` on GitHub by requiring a pull request and the `quality` status check.
 
 ## Commits
 
@@ -42,9 +42,8 @@ Keep the version in `package.json`, the `?v=` asset revisions in `public/index.h
 3. Check desktop, mobile, reduced motion, a long-text locale, a complex-script locale and Arabic right-to-left layout.
 4. Move the release notes from `Unreleased` into a dated version section.
 5. Update `package.json` and the CSS/JavaScript/locale asset revisions.
-6. Merge the release pull request.
-7. Tag the merge commit as `vX.Y.Z` and create a GitHub release from the changelog.
-8. Run `npm run deploy` from the tagged commit.
-9. Verify `https://jmying.com`, security headers and the LinkedIn link.
+6. Merge the release pull request; Cloudflare Workers Builds deploys the new `main` commit automatically.
+7. Verify `https://jmying.com`, security headers and the LinkedIn link.
+8. Tag the verified merge commit as `vX.Y.Z` and create a GitHub release from the changelog.
 
-Deployment remains manual so a repository change cannot publish without an explicit release decision.
+Cloudflare must build only the production branch (`main`), with non-production branch builds disabled. The project has no framework build step, so the Cloudflare build command stays empty and the deploy command is `npx wrangler deploy`. Use `npm run deploy` only for an authorised recovery deployment.
