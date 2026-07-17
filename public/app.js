@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.10.0";
+  const localeVersion = "1.10.1";
   const localeManifest = [
     {
       id: "en",
@@ -13,10 +13,10 @@
     },
     {
       id: "zh-CN",
-      htmlLang: "zh-CN",
+      htmlLang: "zh-Hans",
       code: "简",
       native: "简体中文",
-      english: "Simplified Chinese",
+      english: "Chinese (Simplified)",
       dir: "ltr",
     },
     {
@@ -24,7 +24,7 @@
       htmlLang: "zh-Hant",
       code: "繁",
       native: "繁體中文",
-      english: "Traditional Chinese",
+      english: "Chinese (Traditional)",
       dir: "ltr",
     },
     {
