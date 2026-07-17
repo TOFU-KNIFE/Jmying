@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Jeremy Ying",
+  "short_name": "JMYING",
+  "description": "Jeremy (Lei) Ying — Accounting (FinTech), audit, finance and data.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#070b12",
+  "theme_color": "#070b12",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
