@@ -14,8 +14,10 @@ layouts that could imply affiliation.
 - [Goldman Sachs homepage](https://www.goldmansachs.com): current public evidence for wide editorial hierarchy, restrained institutional blue, strong image/copy relationships and direct navigation.
 - [Goldman Sachs type story](https://view.ceros.com/goldman-sachs/type-story-ii-1-2-1-1-1): clear, contemporary and credible type, with open forms, compact proportions and a strong reading hierarchy.
 - [Apple Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines): clear hierarchy, visual harmony, consistent interaction and layouts that adapt without losing meaning.
+- [Apple Charts guidance](https://developer.apple.com/design/human-interface-guidelines/charts): communicate a small number of facts, align charts with surrounding UI, reduce unnecessary grid density and keep critical information available without interaction.
 - [Apple Store](https://www.apple.com/store) and [Apple scroll-view guidance](https://developer.apple.com/design/human-interface-guidelines/scroll-views): horizontally browsable cards, partial next-item visibility, native gestures and position-aware controls for selected project highlights.
 - [Apple localisation guidance](https://developer.apple.com/localization/): test layout, images, dates, text expansion and reading direction across supported locales.
+- [The Economist visualisation interview](https://education.economist.com/insights/interviews/tips-for-visualising-data-like-the-economist) and [chart style guide](https://design-system.economist.com/documents/CHARTstyleguide_20170505.pdf): favour simple chart forms, a limited palette, direct labels and one restrained highlight colour when emphasis is needed.
 - [Cravath](https://www.cravath.com/) and [Skadden capabilities](https://www.skadden.com/capabilities): current examples of evidence-first professional writing, numbered editorial structure and clear capability taxonomy.
 
 The historical Goldman Sachs manual is treated as supporting evidence, not as a
@@ -61,7 +63,9 @@ own content constraints take precedence.
 
 ### Imagery
 
-- Keep the Sonoma landscape as the hero's identity backdrop and the real portrait as the primary professional image.
+- Keep the Sonoma landscape as the mobile hero's identity backdrop and the real portrait as the primary professional image.
+- On desktop, use the original generated market-operations photograph as contextual editorial atmosphere, not as evidence of employment or client affiliation. Keep it decorative, pair it with the visible no-affiliation note and never add readable market data, logos or third-party brand assets.
+- Keep the desktop portrait within a restrained 320–360 pixel column and approximately 520 pixels high. Preserve its aspect ratio, unmirrored orientation and professional caption.
 - Use additional user-provided imagery only when it has a clear editorial role. The abstract blue image supports the working-approach section; the lake image creates a calm, professional close behind the LinkedIn-only contact section.
 - Deliver below-fold imagery in responsive WebP and JPEG formats, strip metadata, include explicit dimensions and lazy-load it.
 - Use factual or empty alternative text according to whether the image adds meaning or is purely decorative. Never turn decorative imagery into an unsupported personal claim.
@@ -70,6 +74,7 @@ own content constraints take precedence.
 
 - Lead with identity, professional direction and internship availability.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.
+- The interactive evidence timeline may visualise only dates and descriptions already stated in the profile. Use direct role/date labels, three year divisions, the institutional navy/blue palette and an always-visible detail summary. Filtering must work with keyboard, touch and pointer input, expose `aria-pressed` state and never make interaction the only route to critical information.
 - Keep LinkedIn as the only public contact channel.
 - Keep primary mobile controls visible in a compact 56-pixel header. When the full five-item navigation no longer fits without clipping, expose it through a clearly labelled, keyboard-accessible Menu control and keep the language code visible beside it.
 - Keep section 04 as a native horizontal scroller with scroll snapping, a visible neighbouring card, previous/next controls, keyboard direction support and logical right-to-left order.
