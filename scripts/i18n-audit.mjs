@@ -36,8 +36,14 @@ const manifestLocales = [...(manifestSource || "").matchAll(/\{([\s\S]*?)\}/g)]
   .map(([, block]) => ({
     id: block.match(/\bid: "([^"]+)"/)?.[1],
     htmlLang: block.match(/\bhtmlLang: "([^"]+)"/)?.[1],
+    code: block.match(/\bcode: "([^"]+)"/)?.[1],
+    native: block.match(/\bnative: "([^"]+)"/)?.[1],
+    english: block.match(/\benglish: "([^"]+)"/)?.[1],
   }))
   .filter(({ id, htmlLang }) => id && htmlLang);
+const manifestById = new Map(
+  manifestLocales.map((locale) => [locale.id, locale]),
+);
 const localeFiles = (await readdir(localeDir))
   .filter((file) => file.endsWith(".json"))
   .map((file) => file.replace(/\.json$/, ""))
@@ -87,10 +93,40 @@ for (const locale of expectedLocales) {
   if (JSON.stringify(keys) !== JSON.stringify(fallbackKeys))
     findings.push(`${locale}.json keys do not match en.json`);
 
+  const manifestLocale = manifestById.get(locale);
+  for (const field of ["htmlLang", "code", "native", "english"]) {
+    if (translations[field] !== manifestLocale?.[field])
+      findings.push(
+        `${locale}.json ${field} does not match the locale manifest`,
+      );
+  }
+
   for (const key of requiredKeys) {
     if (typeof translations[key] !== "string" || !translations[key].trim())
       findings.push(`${locale}.json has no usable translation for ${key}`);
   }
+}
+
+const simplifiedChinese = manifestById.get("zh-CN");
+if (
+  simplifiedChinese?.htmlLang !== "zh-Hans" ||
+  simplifiedChinese?.native !== "简体中文" ||
+  simplifiedChinese?.english !== "Chinese (Simplified)"
+) {
+  findings.push(
+    'Simplified Chinese must use the script label "简体中文 / Chinese (Simplified)" and BCP 47 tag "zh-Hans"',
+  );
+}
+
+const traditionalChinese = manifestById.get("zh-TW");
+if (
+  traditionalChinese?.htmlLang !== "zh-Hant" ||
+  traditionalChinese?.native !== "繁體中文" ||
+  traditionalChinese?.english !== "Chinese (Traditional)"
+) {
+  findings.push(
+    'Traditional Chinese must use the script label "繁體中文 / Chinese (Traditional)" and BCP 47 tag "zh-Hant"',
+  );
 }
 
 if (!/<html lang="en">/.test(html)) {

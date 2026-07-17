@@ -4,6 +4,18 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.10.1] - 2026-07-18
+
+### Changed
+
+- Rewrote the 13 non-English locale bundles around the professional profile's recruiting purpose, using natural local terminology and sentence structure instead of literal English phrasing.
+- Labelled the two Chinese variants by script as Chinese (Simplified) and Chinese (Traditional), with `zh-Hans` and `zh-Hant` document-language tags and no regional qualifier.
+- Added a source-backed localisation guide covering voice, protected facts, language-specific conventions and the review workflow for future copy changes.
+
+### Fixed
+
+- Extended the internationalisation audit to keep every locale bundle's language metadata aligned with the runtime manifest and prevent the Chinese script labels from regressing.
+
 ## [1.10.0] - 2026-07-17
 
 ### Changed
@@ -154,7 +166,10 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.1...HEAD
+[1.10.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.0...v1.10.1
+[1.10.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.9.0...v1.10.0
+[1.9.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...v1.6.0

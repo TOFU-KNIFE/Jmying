@@ -31,8 +31,8 @@ The source-backed foundations and implementation rules are documented in
 ## Languages
 
 - English
-- Simplified Chinese
-- Traditional Chinese
+- Chinese (Simplified)
+- Chinese (Traditional)
 - Bahasa Melayu
 - Indonesian
 - Thai
@@ -50,6 +50,8 @@ The browser language and region are detected locally. A visitor’s explicit sel
 Language names are displayed in the current interface language when the browser supports `Intl.DisplayNames`. Dates use locale-aware `Intl.DateTimeFormat`, Arabic uses a mirrored right-to-left layout, and every release checks all translated keys and BCP 47 language tags.
 
 Latin text prefers Helvetica Neue and Helvetica. Chinese, Japanese, Korean, Thai and Arabic use script-appropriate system fallbacks so every language keeps legible, natural letterforms without downloading third-party fonts.
+
+Translation intent, protected facts, language-specific editorial choices and the review loop for future copy changes are documented in [`docs/LOCALIZATION_GUIDE.md`](docs/LOCALIZATION_GUIDE.md).
 
 ## Privacy and security
 
