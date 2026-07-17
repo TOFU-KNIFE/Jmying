@@ -4,6 +4,15 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-07-17
+
+### Changed
+
+- Reduced the desktop header to a compact 68-pixel institutional row while retaining the complete five-item navigation and language control.
+- Aligned the desktop hero copy with the shared 1,280-pixel editorial grid used by the header and following sections.
+- Made narrow-desktop hero actions deliberately equal-width and stacked so long translated labels do not wrap into an accidental layout.
+- Refined the desktop language control, sticky-section offset and hero viewport calculation without changing the mobile layout, portrait or Sonoma backdrop.
+
 ## [1.6.0] - 2026-07-17
 
 ### Added
@@ -107,7 +116,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.3.1...v1.4.0

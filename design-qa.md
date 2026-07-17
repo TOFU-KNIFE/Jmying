@@ -1,65 +1,62 @@
 # Design QA
 
 - Review date: 2026-07-17
-- Release candidate: `1.6.0`
-- Scope: mobile navigation, hero composition and vertical layout rhythm
-- Primary references: `mobile-institutional-audit/04-goldman-mobile-hero.png`, `mobile-institutional-audit/06-cravath-mobile-hero.png`, `mobile-institutional-audit/07-apple-mobile-hero.png`
-- Same-view comparison: `mobile-institutional-audit/26-reference-implementation-final-comparison.png`
-- Final implementation: `mobile-institutional-audit/25-jmying-mobile-final-v160.png`
-- Minimum-width evidence: `mobile-institutional-audit/27-jmying-mobile-final-320-en.png`
-- Localisation evidence: `mobile-institutional-audit/28-jmying-mobile-final-320-de.png`, `mobile-institutional-audit/30-jmying-mobile-final-320-ar.png`
-- Menu evidence: `mobile-institutional-audit/29-jmying-mobile-final-320-de-menu.png`
-- Desktop regression evidence: `mobile-institutional-audit/21-jmying-desktop-regression-v160.png`
+- Release candidate: `1.7.0`
+- Scope: desktop navigation, hero composition and shared editorial grid
+- Source visual truth: `desktop-institutional-audit/16-goldman-desktop-1440x1000-reference.png`
+- Previous implementation: `desktop-institutional-audit/01-jmying-desktop-before.png`
+- Final implementation: `desktop-institutional-audit/12-jmying-desktop-1440-final-v170.png`
+- Viewport and state: 1,440 × 1,000, English, homepage at scroll start
+- Full-view comparison: `desktop-institutional-audit/17-reference-implementation-full-comparison.png`
+- Focused header comparison: `desktop-institutional-audit/18-reference-implementation-header-comparison.png`
+- Narrow-desktop evidence: `desktop-institutional-audit/08-jmying-desktop-900-de-after-v170.png`
+- Wide-screen evidence: `desktop-institutional-audit/09-jmying-desktop-1920-after-v170.png`
+- RTL evidence: `desktop-institutional-audit/11-jmying-desktop-1440-ar-final-v170.png`
+- Mobile regression evidence: `desktop-institutional-audit/13-jmying-mobile-regression-v170.png`
+- Section evidence: `desktop-institutional-audit/14-jmying-desktop-profile-v170.png`, `desktop-institutional-audit/15-jmying-desktop-highlights-v170.png`
 
-## Outcome
+## Findings
 
-No open P0, P1 or P2 findings remain.
+No actionable P0, P1 or P2 findings remain.
 
-- Reference adaptation: the final page adopts the reference pattern of a compact single-row header, an image-first mobile hero, a restrained editorial type scale and an early primary action. It retains JMYING’s own wordmark, real portrait, Sonoma backdrop, factual copy and institutional palette.
-- Header: the mobile header is 56.5 pixels high with a 44-pixel labelled Menu control and a 44-pixel language-code control. The desktop header remains 76.5 pixels high and continues to expose the full five-item navigation.
-- Menu: the five links appear in a two-column hairline-rule panel rather than an overflowing strip. Every link is 50 pixels high. Menu, language and navigation labels are translated across all 14 locales.
-- Hero: the portrait stage is 320 pixels high at a 320-pixel viewport and 343 pixels high at 390 pixels. The crop keeps the face and upper body clear, the portrait is not mirrored in RTL, and the Sonoma image remains visible behind the identity copy.
-- Information order: at 390 × 844 pixels, the first viewport contains the portrait, professional-profile caption, name, role, positioning statement, availability and primary LinkedIn action. At the 320-pixel minimum, the same sequence remains legible without document overflow.
-- Content rhythm: mobile section padding is 70 pixels, section titles are 40 pixels and numbered editorial rows retain their hierarchy with tighter vertical spacing. The profile and section 04 carousel remain readable at 390 pixels.
-- Localisation: all 69 required strings are present in all 14 locale bundles. German long text and its five navigation labels fit at 320 pixels. Arabic switches the header and menu to logical right-to-left order while the English name and portrait remain correctly oriented.
-- Interaction: Menu toggles `aria-expanded`, closes on Escape, closes after selecting a destination, closes on outside pointer input and automatically resets above the mobile breakpoint. Opening the language dialog also closes the menu.
-- Accessibility: header controls measure at least 44 × 44 pixels, menu links measure 142 × 50 pixels at 320 pixels, focus is visible, the existing skip link remains intact and reduced-motion rules continue to suppress animation.
-- Runtime: 320-, 390-, 430- and 1,440-pixel layouts have no document-level horizontal overflow. The selected mobile browser reported no console errors or warnings.
+- Typography: JMYING retains its established Iowan/Baskerville display stack and Helvetica-first interface stack. The 88-pixel desktop identity title, 22–27 pixel role and 12–18 pixel supporting levels remain optically distinct and do not clip at the tested widths. The Goldman reference is used for hierarchy and density, not for proprietary type assets.
+- Spacing and layout: the final 68.5-pixel header is close to the reference’s compact institutional row while preserving 44-pixel controls. At 1,440 pixels, the header, hero copy and following section all begin at x = 80; at 1,920 pixels they all begin at x = 320. The portrait and content grid end on the same corresponding line.
+- Colors and tokens: the institutional blue header, dark navy authority surface, warm neutral sections and white primary action remain within the existing design tokens. The desktop language control now rests transparently on the header and gains surface fill only on interaction.
+- Image quality: the real portrait remains sharp, correctly cropped and unmirrored in RTL. The Sonoma backdrop is still present beneath the copy with the existing restrained contrast overlay. No source image was replaced, stretched or converted into a code-drawn substitute.
+- Copy and content: all professional claims, internship dates, LinkedIn-only contact route and privacy language are unchanged. Long German actions remain legible, and Arabic follows logical reading order without changing the English name or portrait orientation.
+- Responsive behavior: at 900 pixels, German actions become two intentional 360 × 48 pixel controls; at 1,024 pixels they fit on one row. The 1,920-pixel layout remains centred on the 1,280-pixel grid. The 390-pixel mobile regression retains its 56.5-pixel header, 343-pixel portrait stage and zero document overflow.
+- Interaction and accessibility: full desktop navigation remains visible, active destinations retain their underline, language switching works, section anchors settle below the sticky header and the section 04 Next action advances the track by 400 pixels. Controls remain at least 44 pixels high, focus remains visible and reduced-motion rules are unchanged.
+- Runtime: 900-, 1,024-, 1,440- and 1,920-pixel desktop checks have no document-level horizontal overflow. English, German and Arabic RTL were tested. The selected local desktop page reported no console errors or warnings.
 
-## Iteration history
+## Comparison history
 
-### P1 — clipped mobile navigation
+### P2 — desktop hero copy missed the shared grid
 
-- Finding: the previous two-row horizontal navigation was about 107 pixels high at 390 pixels and clipped the Credentials destination.
-- Correction: replaced it below 820 pixels with a single-row header and a labelled, two-column Menu panel.
-- Verification: all five destinations are visible at 320 pixels in English, German and Arabic, with 50-pixel link targets and no page overflow.
+- Earlier evidence: `desktop-institutional-audit/01-jmying-desktop-before.png` showed the hero text at x = 104 while the header and Professional profile began at x = 80.
+- Fix: removed the extra 24-pixel large-screen start padding and restored it only when the viewport is narrower than the centred 1,280-pixel shell.
+- Post-fix evidence: `desktop-institutional-audit/12-jmying-desktop-1440-final-v170.png` and the browser measurements show all three start lines at x = 80.
 
-### P1 — identity delayed below the first viewport
+### P2 — physical padding broke the RTL desktop baseline
 
-- Finding: the previous portrait and caption occupied roughly 406 pixels below the 107-pixel header, pushing the name and professional direction too far down the page.
-- Correction: set a deliberate mobile portrait height, reduced the caption and tightened the identity-copy spacing without removing either image.
-- Verification: the 390-pixel comparison shows the name, role, availability and LinkedIn action in the first viewport while preserving an uncropped face and readable caption.
+- Earlier finding: the first alignment correction used physical left/right padding, leaving Arabic hero copy 100 pixels short of the logical right-hand grid.
+- Fix: replaced the physical shorthand with `padding-inline-start` and `padding-inline-end` so the editorial baseline mirrors correctly.
+- Post-fix evidence: `desktop-institutional-audit/11-jmying-desktop-1440-ar-final-v170.png` shows the header, eyebrow and name ending at x = 1,360 while the portrait remains unmirrored.
 
-### P2 — mobile editorial scale
+### P2 — translated actions wrapped accidentally at 900 pixels
 
-- Finding: 44-pixel section titles and 82-pixel section padding created unnecessary vertical drift on smaller phones.
-- Correction: reduced the mobile section title to 40 pixels, section padding to 70 pixels and tightened numbered-row spacing.
-- Verification: the profile section and section 04 remain clearly separated, scan-friendly and consistent with the reference sites’ mobile hierarchy.
+- Earlier evidence: `desktop-institutional-audit/06-jmying-desktop-900-de-before.png` showed two unequal-width actions wrapping onto separate rows.
+- Fix: introduced an 821–940 pixel narrow-desktop state with equal-width stacked actions.
+- Post-fix evidence: `desktop-institutional-audit/08-jmying-desktop-900-de-after-v170.png` shows two aligned 360 × 48 pixel controls without text wrapping or overflow.
 
-### P2 — first menu layout remained a flex row
+## Implementation checklist
 
-- Finding: the first menu implementation inherited the desktop flex display and still placed all five items on one line.
-- Correction: explicitly changed the mobile navigation panel to a two-column grid.
-- Verification: English, German and Arabic menu captures show complete labels with no clipping.
-
-## Release gates
-
-- [x] Goldman Sachs reference and implementation reviewed together at the same 390 × 844 viewport.
-- [x] 320 × 720, 390 × 844, 430 × 932 and 1,440 × 1,000 layouts checked.
-- [x] English, German long text and Arabic right-to-left layout checked.
-- [x] Menu pointer, destination, outside-click and Escape paths checked.
-- [x] 44-pixel targets, visible focus, image preservation and document overflow checked.
-- [x] Desktop navigation, section 04 carousel and profile layout regression-checked.
+- [x] Compact 68-pixel desktop header applied without changing the 56-pixel mobile header.
+- [x] Header, hero and section content share the same 1,280-pixel editorial grid.
+- [x] English, German long text and Arabic right-to-left desktop states checked.
+- [x] 900, 1,024, 1,440 and 1,920 pixel desktop widths checked.
+- [x] Portrait, Sonoma backdrop, profile section and project carousel preserved.
+- [x] Navigation, language switching, section anchors and carousel advance checked.
+- [x] Mobile regression, horizontal overflow and console output checked.
 - [x] Internationalisation, quality, security and Cloudflare dry-run checks included in `npm test`.
 
 final result: passed
