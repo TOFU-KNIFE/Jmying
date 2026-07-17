@@ -1,0 +1,5 @@
+Contact: https://www.linkedin.com/in/jeremy-ying-a8520b350/
+Expires: 2027-07-17T00:00:00Z
+Preferred-Languages: en, zh
+Canonical: https://jmying.com/.well-known/security.txt
+Policy: https://jmying.com/#privacy
