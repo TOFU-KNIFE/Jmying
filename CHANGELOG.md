@@ -4,6 +4,19 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-07-17
+
+### Added
+
+- Added an original, metadata-free institutional market-operations backdrop for the desktop hero, with an explicit no-affiliation disclosure and responsive WebP/JPEG sources.
+- Added a keyboard-accessible, fully translated experience timeline with direct labels, category filters and an `aria-live` supporting-detail panel.
+
+### Changed
+
+- Reduced the desktop portrait from a full-height right column to a restrained 320–360 pixel professional profile frame while preserving the existing mobile portrait treatment and Sonoma background.
+- Rebalanced the desktop hero around the established 1,280-pixel grid so identity copy, contextual imagery and the smaller portrait read as a single editorial composition.
+- Limited the evidence visualisation to verified education and experience dates already published in the profile, using the site’s navy and institutional-blue palette without invented performance metrics.
+
 ## [1.7.0] - 2026-07-17
 
 ### Changed
@@ -116,7 +129,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...v1.5.0

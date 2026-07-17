@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.7.0";
+  const localeVersion = "1.8.0";
   const localeManifest = [
     {
       id: "en",
@@ -131,6 +131,25 @@
   const languageCode = document.getElementById("languageCode");
   const copyButton = document.getElementById("copyButton");
   const toast = document.getElementById("toast");
+  const evidenceFilterButtons = [
+    ...document.querySelectorAll("[data-evidence-filter]"),
+  ];
+  const evidenceItems = [...document.querySelectorAll("[data-evidence-item]")];
+  const evidenceDetailCategory = document.querySelector(
+    "[data-evidence-detail-category]",
+  );
+  const evidenceDetailRole = document.querySelector(
+    "[data-evidence-detail-role]",
+  );
+  const evidenceDetailDate = document.querySelector(
+    "[data-evidence-detail-date]",
+  );
+  const evidenceDetailOrganization = document.querySelector(
+    "[data-evidence-detail-organization]",
+  );
+  const evidenceDetailDescription = document.querySelector(
+    "[data-evidence-detail-description]",
+  );
   const highlightTrack = document.getElementById("highlightTrack");
   const previousHighlightButton = document.querySelector(
     "[data-highlight-previous]",
@@ -164,6 +183,12 @@
   let carouselFrame = 0;
   let activeHighlightCard = null;
   let lastHighlightTrigger = null;
+  let activeEvidenceItem =
+    evidenceItems.find(
+      (item) => item.getAttribute("aria-pressed") === "true",
+    ) ||
+    evidenceItems[0] ||
+    null;
 
   function captureEnglishFallback() {
     const messages = Object.create(null);
@@ -373,6 +398,7 @@
         );
       });
       formatDateRanges(messages);
+      renderEvidenceDetail(activeEvidenceItem, messages);
       renderLanguageOptions();
       if (activeHighlightCard) renderHighlightDialog(activeHighlightCard);
       window.requestAnimationFrame(() =>
@@ -608,6 +634,61 @@
     });
   }
 
+  function renderEvidenceDetail(
+    item,
+    messages = localeCache.get(currentLocale) || englishFallback,
+  ) {
+    if (!item || !evidenceDetailRole) return;
+    const categoryKey =
+      item.dataset.category === "education"
+        ? "evidenceFilterEducation"
+        : "evidenceFilterExperience";
+    evidenceDetailCategory.textContent = messages[categoryKey];
+    evidenceDetailRole.textContent = messages[item.dataset.roleKey];
+    evidenceDetailDate.textContent =
+      item.querySelector("time")?.textContent || "";
+    evidenceDetailOrganization.textContent = item.dataset.organization;
+    evidenceDetailDescription.textContent =
+      messages[item.dataset.descriptionKey];
+  }
+
+  function selectEvidenceItem(item, { focus = false } = {}) {
+    if (!item || item.hidden) return;
+    activeEvidenceItem = item;
+    evidenceItems.forEach((candidate) => {
+      candidate.setAttribute("aria-pressed", String(candidate === item));
+    });
+    renderEvidenceDetail(item);
+    if (focus) item.focus();
+  }
+
+  function applyEvidenceFilter(filter) {
+    evidenceFilterButtons.forEach((button) => {
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.evidenceFilter === filter),
+      );
+    });
+    evidenceItems.forEach((item) => {
+      item.hidden = filter !== "all" && item.dataset.category !== filter;
+    });
+    if (activeEvidenceItem?.hidden) {
+      selectEvidenceItem(evidenceItems.find((item) => !item.hidden));
+    }
+  }
+
+  function setupEvidenceExplorer() {
+    evidenceFilterButtons.forEach((button) => {
+      button.addEventListener("click", () =>
+        applyEvidenceFilter(button.dataset.evidenceFilter),
+      );
+    });
+    evidenceItems.forEach((item) => {
+      item.addEventListener("click", () => selectEvidenceItem(item));
+    });
+    selectEvidenceItem(activeEvidenceItem);
+  }
+
   function setupNavigationTracking() {
     const navigationLinks = [...document.querySelectorAll("[data-nav-link]")];
     const sections = navigationLinks
@@ -648,7 +729,7 @@
 
     const revealTargets = [
       ...document.querySelectorAll(
-        ".section-intro, .focus-item, .timeline-item, .approach-visual, .approach-list li, .toolkit-strip, .highlight-card, .credential-list li, .connect-layout",
+        ".section-intro, .focus-item, .timeline-item, .evidence-explorer, .approach-visual, .approach-list li, .toolkit-strip, .highlight-card, .credential-list li, .connect-layout",
       ),
     ];
     document.documentElement.classList.add("motion-ready");
@@ -754,6 +835,7 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
   renderLanguageOptions();
+  setupEvidenceExplorer();
   applyLocale(currentLocale);
   setupNavigationTracking();
   setupHighlightCarousel();

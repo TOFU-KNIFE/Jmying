@@ -35,14 +35,25 @@
     <link
       as="image"
       fetchpriority="high"
+      href="/market-hero-1600.webp"
+      imagesizes="100vw"
+      imagesrcset="/market-hero-800.webp 800w, /market-hero-1600.webp 1600w"
+      media="(min-width: 821px)"
+      rel="preload"
+      type="image/webp"
+    />
+    <link
+      as="image"
+      fetchpriority="high"
       href="/portrait-760.webp"
-      imagesizes="(max-width: 760px) 100vw, 44vw"
+      imagesizes="(max-width: 820px) 100vw, 360px"
       imagesrcset="/portrait-480.webp 480w, /portrait-760.webp 760w, /portrait.webp 1024w"
+      media="(max-width: 820px)"
       rel="preload"
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.7.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.8.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
@@ -92,6 +103,18 @@
     <main>
       <section aria-labelledby="heroTitle" class="hero">
         <picture aria-hidden="true" class="hero-backdrop">
+          <source
+            media="(min-width: 821px)"
+            sizes="100vw"
+            srcset="/market-hero-800.webp 800w, /market-hero-1600.webp 1600w"
+            type="image/webp"
+          />
+          <source
+            media="(min-width: 821px)"
+            sizes="100vw"
+            srcset="/market-hero-800.jpg 800w, /market-hero-1600.jpg 1600w"
+            type="image/jpeg"
+          />
           <source
             sizes="100vw"
             srcset="/sonoma-800.webp 800w, /sonoma-1400.webp 1400w"
@@ -154,11 +177,14 @@
               For professional enquiries, please use LinkedIn. This site neither
               publishes nor collects private contact details.
             </p>
+            <p class="hero-visual-note" data-i18n="heroVisualNote">
+              Illustrative market-operations backdrop · no affiliation implied.
+            </p>
           </div>
           <figure class="portrait-frame">
             <picture
               ><source
-                sizes="(max-width: 760px) 100vw, 44vw"
+                sizes="(max-width: 820px) 100vw, 360px"
                 srcset="
                   /portrait-480.webp  480w,
                   /portrait-760.webp  760w,
@@ -170,7 +196,7 @@
                 decoding="async"
                 fetchpriority="high"
                 height="1280"
-                sizes="(max-width: 760px) 100vw, 44vw"
+                sizes="(max-width: 820px) 100vw, 360px"
                 src="/portrait.jpg"
                 srcset="
                   /portrait-480.jpg  480w,
@@ -311,6 +337,174 @@
                 taxation, analytics and technology-supported accounting.
               </p>
             </article>
+            <section aria-labelledby="evidenceTitle" class="evidence-explorer">
+              <div class="evidence-heading">
+                <p class="section-kicker" data-i18n="evidenceKicker">
+                  Interactive evidence
+                </p>
+                <h3 data-i18n="evidenceTitle" id="evidenceTitle">
+                  Study and practice, in sequence.
+                </h3>
+                <p data-i18n="evidenceIntro">
+                  Explore the verified dates already listed above. Select a row
+                  for its supporting context.
+                </p>
+              </div>
+              <div
+                aria-labelledby="evidenceFilterLabel"
+                class="evidence-filters"
+                role="group"
+              >
+                <span
+                  class="sr-only"
+                  data-i18n="evidenceFilterLabel"
+                  id="evidenceFilterLabel"
+                  >Filter timeline</span
+                >
+                <button
+                  aria-pressed="true"
+                  data-evidence-filter="all"
+                  type="button"
+                >
+                  <span data-i18n="evidenceFilterAll">All</span>
+                </button>
+                <button
+                  aria-pressed="false"
+                  data-evidence-filter="experience"
+                  type="button"
+                >
+                  <span data-i18n="evidenceFilterExperience">Experience</span>
+                </button>
+                <button
+                  aria-pressed="false"
+                  data-evidence-filter="education"
+                  type="button"
+                >
+                  <span data-i18n="evidenceFilterEducation">Education</span>
+                </button>
+              </div>
+              <p
+                class="sr-only"
+                data-i18n="evidenceChartLabel"
+                id="evidenceChartLabel"
+              >
+                Interactive timeline from 2024 to 2026
+              </p>
+              <div
+                aria-labelledby="evidenceChartLabel"
+                class="evidence-chart-scroll"
+                role="region"
+                tabindex="0"
+              >
+                <div class="evidence-chart">
+                  <div aria-hidden="true" class="evidence-year-scale">
+                    <span></span><span>2024</span><span>2025</span
+                    ><span>2026</span>
+                  </div>
+                  <button
+                    aria-pressed="true"
+                    class="evidence-row evidence-row-education"
+                    data-category="education"
+                    data-description-key="educationDesc"
+                    data-evidence-item=""
+                    data-organization="Taylor’s University"
+                    data-role-key="educationRole"
+                    type="button"
+                  >
+                    <span class="evidence-row-label"
+                      ><span class="evidence-row-name" data-i18n="educationRole"
+                        >Bachelor of Accounting (FinTech) (Honours)</span
+                      ><span class="sr-only"> — </span
+                      ><time
+                        class="evidence-row-date"
+                        data-date-end="present"
+                        data-date-start="2024"
+                        >2024 – Present</time
+                      ></span
+                    ><span class="evidence-track"
+                      ><span aria-hidden="true" class="evidence-range"></span
+                    ></span>
+                  </button>
+                  <button
+                    aria-pressed="false"
+                    class="evidence-row evidence-row-accounting"
+                    data-category="experience"
+                    data-description-key="exp2Desc"
+                    data-evidence-item=""
+                    data-organization="S.C. Wong &amp; Co. (CA(M))"
+                    data-role-key="exp2Role"
+                    type="button"
+                  >
+                    <span class="evidence-row-label"
+                      ><span class="evidence-row-name" data-i18n="exp2Role"
+                        >Account Assistant</span
+                      ><span class="sr-only"> — </span
+                      ><time
+                        class="evidence-row-date"
+                        data-date-end="2025-09"
+                        data-date-start="2025-06"
+                        >Jun 2025 – Sep 2025</time
+                      ></span
+                    ><span class="evidence-track"
+                      ><span aria-hidden="true" class="evidence-range"></span
+                    ></span>
+                  </button>
+                  <button
+                    aria-pressed="false"
+                    class="evidence-row evidence-row-internship"
+                    data-category="experience"
+                    data-description-key="exp1Desc"
+                    data-evidence-item=""
+                    data-organization="CSCEC Malaysia · Kuala Lumpur"
+                    data-role-key="exp1Role"
+                    type="button"
+                  >
+                    <span class="evidence-row-label"
+                      ><span class="evidence-row-name" data-i18n="exp1Role"
+                        >Finance &amp; Accounting Intern</span
+                      ><span class="sr-only"> — </span
+                      ><time
+                        class="evidence-row-date"
+                        data-date-end="2026-04"
+                        data-date-start="2026-02"
+                        >Feb 2026 – Apr 2026</time
+                      ></span
+                    ><span class="evidence-track"
+                      ><span aria-hidden="true" class="evidence-range"></span
+                    ></span>
+                  </button>
+                </div>
+              </div>
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                class="evidence-detail"
+              >
+                <p
+                  class="evidence-detail-category"
+                  data-evidence-detail-category
+                >
+                  Education
+                </p>
+                <h4 data-evidence-detail-role>
+                  Bachelor of Accounting (FinTech) (Honours)
+                </h4>
+                <p class="evidence-detail-meta">
+                  <span data-evidence-detail-date>2024 – Present</span>
+                  <span aria-hidden="true">·</span>
+                  <span data-evidence-detail-organization
+                    >Taylor’s University</span
+                  >
+                </p>
+                <p data-evidence-detail-description>
+                  Building practical knowledge of financial reporting, audit,
+                  taxation, analytics and technology-supported accounting.
+                </p>
+              </div>
+              <p class="evidence-source" data-i18n="evidenceSource">
+                Source: dates and descriptions in this professional profile.
+              </p>
+            </section>
           </div>
         </div>
       </section>
@@ -727,6 +921,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.7.0"></script>
+    <script defer="" src="/app.js?v=1.8.0"></script>
   </body>
 </html>

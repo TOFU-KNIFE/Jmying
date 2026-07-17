@@ -56,14 +56,23 @@ for (const tag of imageTags) {
 if (!/portrait-760\.webp[\s\S]*rel="preload"/.test(html)) {
   findings.push("the primary portrait preload is missing");
 }
+if (!/market-hero-1600\.webp[\s\S]*rel="preload"/.test(html)) {
+  findings.push("the desktop market hero preload is missing");
+}
 
-const responsiveImageFamilies = ["portrait", "sonoma", "approach", "lake"];
-for (const family of responsiveImageFamilies) {
+const responsiveImageFamilies = new Map([
+  ["portrait", null],
+  ["sonoma", "1400"],
+  ["approach", "1400"],
+  ["lake", "1400"],
+  ["market-hero", "1600"],
+]);
+for (const [family, largestWidth] of responsiveImageFamilies) {
   if (!html.includes(`/${family}-800`) && family !== "portrait") {
     findings.push(`${family} has no responsive 800-pixel source`);
   }
-  if (!html.includes(`/${family}-1400`) && family !== "portrait") {
-    findings.push(`${family} has no responsive 1400-pixel source`);
+  if (largestWidth && !html.includes(`/${family}-${largestWidth}`)) {
+    findings.push(`${family} has no responsive ${largestWidth}-pixel source`);
   }
 }
 
@@ -76,6 +85,8 @@ const publicImages = [
   "approach-1400.webp",
   "lake-1400.jpg",
   "lake-1400.webp",
+  "market-hero-1600.jpg",
+  "market-hero-1600.webp",
 ];
 const imageBudgetBytes = 350 * 1024;
 for (const filename of publicImages) {
