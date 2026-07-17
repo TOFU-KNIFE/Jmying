@@ -4,6 +4,18 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-07-17
+
+### Added
+
+- Added a compact, fully translated mobile Menu with keyboard Escape handling, outside-click dismissal and automatic desktop reset.
+
+### Changed
+
+- Reworked the mobile header into a single compact institutional navigation row inspired by current Goldman Sachs, Cravath and Apple mobile patterns.
+- Shortened the mobile portrait stage while preserving the real portrait and Sonoma backdrop, bringing identity, role and availability earlier into the reading flow.
+- Tightened mobile section spacing and type scale across 320–560 pixel layouts while retaining 44-pixel controls, long-text wrapping and right-to-left support.
+
 ## [1.5.0] - 2026-07-17
 
 ### Added
@@ -95,7 +107,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.2.0...v1.3.1

@@ -1,73 +1,65 @@
 # Design QA
 
 - Review date: 2026-07-17
-- Release candidate: `1.5.0`
-- Scope: section 04, “Selected projects and challenges”
-- Primary reference: `carousel-audit/11-apple-cards-1280x720.png`
-- Same-view comparison: `carousel-audit/13-reference-implementation-comparison.png`
-- Desktop implementation: `carousel-audit/12-jmying-carousel-1280x720.png`
-- Mobile implementation: `carousel-audit/09-jmying-carousel-mobile-settled.png`
-- Localisation evidence: `carousel-audit/10-jmying-carousel-mobile-ar.png`, `carousel-audit/14-jmying-carousel-mobile-de.png`
-- Detail-dialog evidence: `carousel-audit/07-jmying-learn-more-dialog.png`, `carousel-audit/15-jmying-dialog-mobile-de.png`
-- Automated evidence: `carousel-audit/16-lighthouse-final.json`
+- Release candidate: `1.6.0`
+- Scope: mobile navigation, hero composition and vertical layout rhythm
+- Primary references: `mobile-institutional-audit/04-goldman-mobile-hero.png`, `mobile-institutional-audit/06-cravath-mobile-hero.png`, `mobile-institutional-audit/07-apple-mobile-hero.png`
+- Same-view comparison: `mobile-institutional-audit/26-reference-implementation-final-comparison.png`
+- Final implementation: `mobile-institutional-audit/25-jmying-mobile-final-v160.png`
+- Minimum-width evidence: `mobile-institutional-audit/27-jmying-mobile-final-320-en.png`
+- Localisation evidence: `mobile-institutional-audit/28-jmying-mobile-final-320-de.png`, `mobile-institutional-audit/30-jmying-mobile-final-320-ar.png`
+- Menu evidence: `mobile-institutional-audit/29-jmying-mobile-final-320-de-menu.png`
+- Desktop regression evidence: `mobile-institutional-audit/21-jmying-desktop-regression-v160.png`
 
 ## Outcome
 
 No open P0, P1 or P2 findings remain.
 
-- Reference adaptation: the section uses the Apple Store pattern of large rounded cards, a horizontal native scroller, a neighbouring-card preview and visible navigation. It keeps JMYING’s existing serif/Helvetica hierarchy, institutional blues and factual project content rather than copying Apple products, imagery or brand assets.
-- Desktop layout: at 1,280 × 720 pixels, the 1,280-pixel scroller contains four 371 × 480 pixel cards with 20-pixel gaps. Three cards are readable and the fourth is deliberately visible at the edge.
-- Mobile layout: at 390 × 844 pixels, each card is 320 × 430 pixels with a 14-pixel gap and a visible adjacent-card edge. The page remains 390 pixels wide; only the labelled carousel scrolls horizontally.
-- Interaction: touch/trackpad scrolling, previous/next controls and keyboard arrows share the same native scroll track. Paging is based on the available scroll range, so desktop reaches the end in one meaningful step while mobile advances card by card.
-- Learn more: each card opens a native modal dialog containing the existing translated result and description. It adds no new claim or external destination. Escape closes the dialog, body scrolling unlocks and focus returns to the triggering button.
-- Localisation: all 68 required strings are present in all 14 locale bundles. German long text wraps inside the mobile card and dialog. Arabic uses logical right-to-left order; its Next action moves the track from `0` to `-334` pixels and keyboard Arrow Left advances to `-667` pixels.
-- Accessibility: the track has a translated list name, controls are at least 44 pixels high, disabled states match the scroll boundary, the modal is labelled and described, focus is visible and reduced-motion mode switches scripted movement to `auto`.
-- Preferences: the carousel and modal extend the existing dark, increased-contrast, forced-colour, reduced-motion and print rules. Their motion uses transform/opacity or native scrolling with nonlinear easing; no autoplay or decorative media was added.
-- Performance: Lighthouse reports 100 Performance, 100 Accessibility, 100 Best Practices and 100 SEO. Final lab metrics were FCP 1.0 seconds, LCP 1.4 seconds, CLS 0 and TBT 40 milliseconds.
+- Reference adaptation: the final page adopts the reference pattern of a compact single-row header, an image-first mobile hero, a restrained editorial type scale and an early primary action. It retains JMYING’s own wordmark, real portrait, Sonoma backdrop, factual copy and institutional palette.
+- Header: the mobile header is 56.5 pixels high with a 44-pixel labelled Menu control and a 44-pixel language-code control. The desktop header remains 76.5 pixels high and continues to expose the full five-item navigation.
+- Menu: the five links appear in a two-column hairline-rule panel rather than an overflowing strip. Every link is 50 pixels high. Menu, language and navigation labels are translated across all 14 locales.
+- Hero: the portrait stage is 320 pixels high at a 320-pixel viewport and 343 pixels high at 390 pixels. The crop keeps the face and upper body clear, the portrait is not mirrored in RTL, and the Sonoma image remains visible behind the identity copy.
+- Information order: at 390 × 844 pixels, the first viewport contains the portrait, professional-profile caption, name, role, positioning statement, availability and primary LinkedIn action. At the 320-pixel minimum, the same sequence remains legible without document overflow.
+- Content rhythm: mobile section padding is 70 pixels, section titles are 40 pixels and numbered editorial rows retain their hierarchy with tighter vertical spacing. The profile and section 04 carousel remain readable at 390 pixels.
+- Localisation: all 69 required strings are present in all 14 locale bundles. German long text and its five navigation labels fit at 320 pixels. Arabic switches the header and menu to logical right-to-left order while the English name and portrait remain correctly oriented.
+- Interaction: Menu toggles `aria-expanded`, closes on Escape, closes after selecting a destination, closes on outside pointer input and automatically resets above the mobile breakpoint. Opening the language dialog also closes the menu.
+- Accessibility: header controls measure at least 44 × 44 pixels, menu links measure 142 × 50 pixels at 320 pixels, focus is visible, the existing skip link remains intact and reduced-motion rules continue to suppress animation.
+- Runtime: 320-, 390-, 430- and 1,440-pixel layouts have no document-level horizontal overflow. The selected mobile browser reported no console errors or warnings.
 
 ## Iteration history
 
-### P1 — initial-page scroll position
+### P1 — clipped mobile navigation
 
-- Finding: the first implementation used `scrollIntoView` to align a card, which could also move the page vertically during initial locale application.
-- Correction: replaced it with a horizontal-only calculation on the carousel’s own `scrollLeft`.
-- Verification: a fresh homepage load remains at `scrollY = 0`; natural carousel clicks preserve the page scroll position.
+- Finding: the previous two-row horizontal navigation was about 107 pixels high at 390 pixels and clipped the Credentials destination.
+- Correction: replaced it below 820 pixels with a single-row header and a labelled, two-column Menu panel.
+- Verification: all five destinations are visible at 320 pixels in English, German and Arabic, with 50-pixel link targets and no page overflow.
 
-### P1 — desktop end-state accuracy
+### P1 — identity delayed below the first viewport
 
-- Finding: per-card index controls could advance internally after the wide desktop scroller had already reached its maximum horizontal offset.
-- Correction: based disabled states and paging on the actual logical scroll range, with one card-width step clamped by the native scroller.
-- Verification: desktop moves from `0` to its 313-pixel maximum and disables Next; mobile advances through the full 963-pixel range.
+- Finding: the previous portrait and caption occupied roughly 406 pixels below the 107-pixel header, pushing the name and professional direction too far down the page.
+- Correction: set a deliberate mobile portrait height, reduced the caption and tightened the identity-copy spacing without removing either image.
+- Verification: the 390-pixel comparison shows the name, role, availability and LinkedIn action in the first viewport while preserving an uncropped face and readable caption.
 
-### P1 — English accessible list name
+### P2 — mobile editorial scale
 
-- Finding: English is captured from the HTML fallback, so the new attribute-only carousel label initially resolved as `undefined`.
-- Correction: added the HTML aria label to the English fallback object while keeping translated attribute values for the other locales.
-- Verification: the accessibility tree exposes `Selected projects carousel`; Lighthouse reports no failed accessibility audits.
+- Finding: 44-pixel section titles and 82-pixel section padding created unnecessary vertical drift on smaller phones.
+- Correction: reduced the mobile section title to 40 pixels, section padding to 70 pixels and tightened numbered-row spacing.
+- Verification: the profile section and section 04 remain clearly separated, scan-friendly and consistent with the reference sites’ mobile hierarchy.
 
-### P2 — modal typography
+### P2 — first menu layout remained a flex row
 
-- Finding: the native dialog initially used the browser’s default font instead of the page’s type tokens.
-- Correction: explicitly applied the interface stack to the dialog and the display stack to its project title.
-- Verification: desktop and German mobile dialog captures now match the site hierarchy and remain within the viewport without internal overflow.
-
-## Runtime checks
-
-- Four cards, four Learn more buttons, one labelled list and one native modal are present.
-- Previous is disabled at the logical start; Next is disabled at the logical end in LTR and RTL.
-- Keyboard Arrow Right advances in English; Arrow Left advances in Arabic.
-- German and Arabic mobile pages have no document-level horizontal overflow.
-- Escape closes the detail dialog and restores focus to its Learn more trigger.
-- Browser console reported no errors or warnings.
-- The Sonoma hero backdrop, portrait, LinkedIn-only contact route and privacy controls are unchanged.
+- Finding: the first menu implementation inherited the desktop flex display and still placed all five items on one line.
+- Correction: explicitly changed the mobile navigation panel to a two-column grid.
+- Verification: English, German and Arabic menu captures show complete labels with no clipping.
 
 ## Release gates
 
-- [x] Apple source and implementation captured at the same 1,280 × 720 viewport and reviewed in one comparison image.
-- [x] Desktop, 390-pixel mobile, German long text and Arabic RTL checked.
-- [x] Touch/pointer, buttons, keyboard navigation, boundary states and Learn more modal checked.
-- [x] Dark, reduced-motion, increased-contrast, forced-colour and print rules reviewed.
-- [x] Lighthouse performance, accessibility, best-practices and SEO review passed.
+- [x] Goldman Sachs reference and implementation reviewed together at the same 390 × 844 viewport.
+- [x] 320 × 720, 390 × 844, 430 × 932 and 1,440 × 1,000 layouts checked.
+- [x] English, German long text and Arabic right-to-left layout checked.
+- [x] Menu pointer, destination, outside-click and Escape paths checked.
+- [x] 44-pixel targets, visible focus, image preservation and document overflow checked.
+- [x] Desktop navigation, section 04 carousel and profile layout regression-checked.
 - [x] Internationalisation, quality, security and Cloudflare dry-run checks included in `npm test`.
 
 final result: passed

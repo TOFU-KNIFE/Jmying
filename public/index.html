@@ -42,14 +42,18 @@
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.5.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.6.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
     <header class="site-header" id="top">
       <div class="header-shell">
         <a aria-label="JMYING home" class="wordmark" href="#top">JMYING</a>
-        <nav aria-label="Primary navigation" class="primary-nav">
+        <nav
+          aria-label="Primary navigation"
+          class="primary-nav"
+          id="primaryNav"
+        >
           <a data-i18n="navProfile" data-nav-link="" href="#profile">Profile</a
           ><a data-i18n="navExperience" data-nav-link="" href="#experience"
             >Experience</a
@@ -62,6 +66,16 @@
           >
         </nav>
         <button
+          aria-controls="primaryNav"
+          aria-expanded="false"
+          class="menu-trigger"
+          data-i18n="menu"
+          id="menuTrigger"
+          type="button"
+        >
+          Menu
+        </button>
+        <button
           aria-controls="languageDialog"
           aria-expanded="false"
           aria-haspopup="dialog"
@@ -69,7 +83,7 @@
           id="languageTrigger"
           type="button"
         >
-          <span data-i18n="language">Language</span
+          <span class="language-label" data-i18n="language">Language</span
           ><span aria-hidden="true" class="language-divider"></span
           ><span class="language-code" id="languageCode">EN</span>
         </button>
@@ -713,6 +727,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.5.0"></script>
+    <script defer="" src="/app.js?v=1.6.0"></script>
   </body>
 </html>

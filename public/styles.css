@@ -251,6 +251,33 @@ section[id] {
   color: var(--institutional-ink);
 }
 
+.menu-trigger {
+  min-width: 44px;
+  min-height: 44px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: var(--border-width) solid rgba(7, 26, 51, 0.38);
+  border-radius: var(--radius-md);
+  color: var(--institutional-ink);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 180ms var(--ease-standard),
+    transform 240ms var(--ease-emphasized);
+}
+
+.menu-trigger:hover {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.menu-trigger:active {
+  transform: scale(0.98);
+}
+
 .language-trigger {
   min-width: 132px;
   min-height: 44px;
@@ -283,7 +310,7 @@ section[id] {
   opacity: 0.55;
 }
 
-.language-trigger span:first-child {
+.language-label {
   font-size: 13px;
   font-weight: 600;
 }
@@ -1679,33 +1706,60 @@ h1 span {
 
 @media (max-width: 820px) {
   section[id] {
-    scroll-margin-top: 126px;
+    scroll-margin-top: 72px;
   }
 
   .header-shell {
     width: min(calc(100% - 32px), var(--shell));
-    grid-template-columns: 1fr auto;
-    gap: 0 20px;
-    padding-block: 10px 8px;
+    min-height: calc(56px + env(safe-area-inset-top));
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+    padding-block-start: env(safe-area-inset-top);
   }
 
   .primary-nav {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: calc(100vw - 32px);
-    justify-content: flex-start;
-    gap: 24px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
+    position: absolute;
+    inset-block-start: 100%;
+    inset-inline: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+    padding: 12px max(16px, calc((100vw - var(--shell)) / 2)) 18px;
+    border-bottom: var(--border-width) solid rgba(7, 26, 51, 0.24);
+    visibility: hidden;
+    opacity: 0;
+    background: var(--institutional-blue);
+    box-shadow: 0 18px 32px rgba(7, 26, 51, 0.16);
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity 220ms var(--ease-standard),
+      transform 320ms var(--ease-emphasized),
+      visibility 0s linear 320ms;
   }
 
-  .primary-nav::-webkit-scrollbar {
-    display: none;
+  .site-header[data-menu-open="true"] .primary-nav {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+
+  .primary-nav a {
+    min-height: 50px;
+    justify-content: flex-start;
+    padding-inline: 12px;
+    border-top: var(--border-width) solid rgba(7, 26, 51, 0.22);
+    font-size: 14px;
+  }
+
+  .menu-trigger {
+    display: inline-flex;
   }
 
   .language-trigger {
-    min-width: 118px;
+    min-width: 112px;
   }
 
   .hero-shell {
@@ -1724,18 +1778,31 @@ h1 span {
   }
 
   .identity-copy {
-    padding: 68px 24px 58px;
+    padding: 58px 24px 54px;
   }
 
   .portrait-frame {
     order: -1;
-    min-height: clamp(340px, 88vw, 460px);
+    height: clamp(320px, 88vw, 420px);
+    min-height: 0;
     border-inline-start: 0;
     border-top: var(--border-width) solid var(--color-border-tertiary);
   }
 
   .portrait-frame img {
     object-position: 50% 29%;
+  }
+
+  .portrait-caption {
+    min-height: 68px;
+    gap: 14px;
+    padding: 10px 18px;
+  }
+
+  .portrait-caption-index {
+    width: 34px;
+    min-height: 38px;
+    flex-basis: 34px;
   }
 
   .section-shell,
@@ -1752,7 +1819,7 @@ h1 span {
   }
 
   .capability-summary {
-    padding: 56px 0 44px;
+    padding: 50px 0 38px;
   }
 
   .capability-summary h2 {
@@ -1785,7 +1852,7 @@ h1 span {
   .approach-lead,
   .credential-layout,
   .connect-layout {
-    gap: 58px;
+    gap: 48px;
   }
 
   .approach-list {
@@ -1864,22 +1931,42 @@ h1 span {
   }
 
   .language-trigger {
-    min-width: 110px;
-    padding-inline: 12px;
+    min-width: 44px;
+    padding-inline: 0;
+  }
+
+  .language-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .language-divider {
+    display: none;
   }
 
   .primary-nav {
-    width: calc(100vw - 24px);
+    gap: 0 12px;
+    padding-inline: 12px;
   }
 
   .identity-copy {
-    padding: 54px 16px 48px;
+    padding: 40px 16px 44px;
+  }
+
+  .identity-copy .eyebrow {
+    margin-bottom: 16px;
   }
 
   h1 {
     max-width: 10ch;
-    font-size: clamp(50px, 14.2vw, 58px);
-    line-height: 0.94;
+    font-size: clamp(44px, 12.5vw, 52px);
+    line-height: 0.96;
     letter-spacing: var(--tracking-display);
   }
 
@@ -1888,21 +1975,32 @@ h1 span {
   }
 
   .role {
-    font-size: 21px;
+    margin-top: 22px;
+    font-size: 19px;
     line-height: 1.32;
+  }
+
+  .title-rule {
+    margin-top: 20px;
+  }
+
+  .hero-statement {
+    margin-top: 18px;
+    font-size: 17px;
+  }
+
+  .availability {
+    margin-top: 22px;
   }
 
   .hero-actions {
     align-items: stretch;
     flex-direction: column;
+    margin-top: 24px;
   }
 
   .hero-actions .button {
     width: 100%;
-  }
-
-  .portrait-frame {
-    min-height: 360px;
   }
 
   .section-shell,
@@ -1911,11 +2009,26 @@ h1 span {
   }
 
   .section {
-    padding-block: 82px;
+    padding-block: 70px;
+  }
+
+  .section-intro .section-number {
+    margin-bottom: 34px;
+    font-size: 42px;
+  }
+
+  .section-intro h2 {
+    font-size: 40px;
+  }
+
+  .section-intro > p:last-child {
+    margin-top: 20px;
+    font-size: 17px;
   }
 
   .focus-item {
     grid-template-columns: 36px minmax(0, 1fr);
+    padding-block: 22px;
   }
 
   .focus-item > p:last-child {
@@ -1925,6 +2038,7 @@ h1 span {
   .approach-list li {
     grid-template-columns: 36px minmax(0, 1fr);
     gap: 16px;
+    padding-block: 24px 28px;
   }
 
   .approach-list li > p:last-child {
@@ -1942,11 +2056,11 @@ h1 span {
   }
 
   .wide-intro .section-number {
-    font-size: 48px;
+    font-size: 42px;
   }
 
   .wide-intro h2 {
-    font-size: 44px;
+    font-size: 40px;
   }
 
   .highlight-controls {
@@ -2087,6 +2201,7 @@ h1 span {
   }
 
   .button,
+  .menu-trigger,
   .language-trigger,
   .language-option,
   .close-button,
@@ -2125,6 +2240,7 @@ h1 span {
 
   .wordmark,
   .primary-nav a,
+  .menu-trigger,
   .language-trigger {
     color: CanvasText;
   }

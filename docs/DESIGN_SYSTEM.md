@@ -70,7 +70,7 @@ own content constraints take precedence.
 - Lead with identity, professional direction and internship availability.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.
 - Keep LinkedIn as the only public contact channel.
-- Keep controls visible; avoid hidden mobile menus when a short horizontal navigation can reflow or scroll.
+- Keep primary mobile controls visible in a compact 56-pixel header. When the full five-item navigation no longer fits without clipping, expose it through a clearly labelled, keyboard-accessible Menu control and keep the language code visible beside it.
 - Keep section 04 as a native horizontal scroller with scroll snapping, a visible neighbouring card, previous/next controls, keyboard direction support and logical right-to-left order.
 - Preserve keyboard focus, semantic headings, same-origin localisation, right-to-left order and an unmirrored portrait.
 - Never add analytics, advertising, contact forms, private details or unsupported claims.

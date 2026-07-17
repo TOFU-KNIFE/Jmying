@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.5.0";
+  const localeVersion = "1.6.0";
   const localeManifest = [
     {
       id: "en",
@@ -120,6 +120,10 @@
     localeManifest.map((locale) => [locale.id, locale]),
   );
   const translatableNodes = [...document.querySelectorAll("[data-i18n]")];
+  const siteHeader = document.querySelector(".site-header");
+  const primaryNav = document.getElementById("primaryNav");
+  const menuTrigger = document.getElementById("menuTrigger");
+  const mobileMenuQuery = window.matchMedia("(max-width: 820px)");
   const languageTrigger = document.getElementById("languageTrigger");
   const languageDialog = document.getElementById("languageDialog");
   const closeLanguageButton = document.getElementById("closeLanguage");
@@ -145,7 +149,7 @@
     'meta[property="og:description"]',
   );
   const dialogPeers = [
-    document.querySelector(".site-header"),
+    siteHeader,
     document.querySelector("main"),
     document.querySelector(".site-footer"),
   ].filter(Boolean);
@@ -393,7 +397,33 @@
     });
   }
 
+  function mobileMenuIsOpen() {
+    return siteHeader?.dataset.menuOpen === "true";
+  }
+
+  function closeMobileMenu({ restoreFocus = false } = {}) {
+    if (!siteHeader || !menuTrigger) return;
+    siteHeader.removeAttribute("data-menu-open");
+    menuTrigger.setAttribute("aria-expanded", "false");
+    if (restoreFocus) menuTrigger.focus();
+  }
+
+  function openMobileMenu() {
+    if (!siteHeader || !menuTrigger || !mobileMenuQuery.matches) return;
+    siteHeader.dataset.menuOpen = "true";
+    menuTrigger.setAttribute("aria-expanded", "true");
+  }
+
+  function toggleMobileMenu() {
+    if (mobileMenuIsOpen()) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
+  }
+
   function openLanguageDialog() {
+    closeMobileMenu();
     lastFocusedElement = document.activeElement;
     languageDialog.hidden = false;
     languageTrigger.setAttribute("aria-expanded", "true");
@@ -640,6 +670,18 @@
     });
   }
 
+  menuTrigger?.addEventListener("click", toggleMobileMenu);
+  primaryNav?.addEventListener("click", (event) => {
+    if (event.target.closest("[data-nav-link]")) closeMobileMenu();
+  });
+  mobileMenuQuery.addEventListener("change", (event) => {
+    if (!event.matches) closeMobileMenu();
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (mobileMenuIsOpen() && !siteHeader.contains(event.target)) {
+      closeMobileMenu();
+    }
+  });
   languageTrigger.addEventListener("click", openLanguageDialog);
   closeLanguageButton.addEventListener("click", closeLanguageDialog);
   languageDialog.addEventListener("click", (event) => {
@@ -658,25 +700,30 @@
       closeHighlightDialog();
       return;
     }
-    if (languageDialog.hidden) return;
-    if (event.key === "Escape") {
-      closeLanguageDialog();
+    if (!languageDialog.hidden) {
+      if (event.key === "Escape") {
+        closeLanguageDialog();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const focusableButtons = [
+        ...languageDialog.querySelectorAll("button:not([disabled])"),
+      ];
+      if (!focusableButtons.length) return;
+      const firstButton = focusableButtons[0];
+      const lastButton = focusableButtons[focusableButtons.length - 1];
+      if (event.shiftKey && document.activeElement === firstButton) {
+        event.preventDefault();
+        lastButton.focus();
+      } else if (!event.shiftKey && document.activeElement === lastButton) {
+        event.preventDefault();
+        firstButton.focus();
+      }
       return;
     }
-    if (event.key !== "Tab") return;
-
-    const focusableButtons = [
-      ...languageDialog.querySelectorAll("button:not([disabled])"),
-    ];
-    if (!focusableButtons.length) return;
-    const firstButton = focusableButtons[0];
-    const lastButton = focusableButtons[focusableButtons.length - 1];
-    if (event.shiftKey && document.activeElement === firstButton) {
-      event.preventDefault();
-      lastButton.focus();
-    } else if (!event.shiftKey && document.activeElement === lastButton) {
-      event.preventDefault();
-      firstButton.focus();
+    if (event.key === "Escape" && mobileMenuIsOpen()) {
+      closeMobileMenu({ restoreFocus: true });
     }
   });
   copyButton?.addEventListener("click", async () => {
