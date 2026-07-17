@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.3.1";
+  const localeVersion = "1.4.0";
   const localeManifest = [
     {
       id: "en",
@@ -335,10 +335,6 @@
         if (translatedText) node.textContent = translatedText;
       });
       languageCode.textContent = localeData.code;
-      languageTrigger.setAttribute(
-        "aria-label",
-        `${messages.language}: ${localeData.native}`,
-      );
       descriptionMeta.content = messages.meta;
       openGraphDescription.content = messages.meta;
       closeLanguageButton.setAttribute("aria-label", messages.close);
@@ -433,7 +429,7 @@
 
     const revealTargets = [
       ...document.querySelectorAll(
-        ".section-intro, .focus-item, .timeline-item, .highlight-item, .credential-list li, .connect-layout",
+        ".section-intro, .focus-item, .timeline-item, .approach-visual, .approach-list li, .toolkit-strip, .highlight-item, .credential-list li, .connect-layout",
       ),
     ];
     document.documentElement.classList.add("motion-ready");

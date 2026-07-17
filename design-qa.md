@@ -1,58 +1,58 @@
 # Design QA
 
-- Source visual truth: `/Users/jeremmy/.codex/generated_images/019f6e25-89da-7881-a98b-40680293236b/exec-9511fc7a-3347-4de5-a168-4529e0125882.png`
-- Supporting official visual references: `design-audit/10-goldman-reference.jpg`, `design-audit/12-claude-design-reference.jpg`, `design-audit/13-claude-guidelines-reference.jpg`, `design-audit/14-gs-design-system-reference.jpg`
-- Implementation screenshot: `design-audit/15-institutional-desktop.jpg`
-- Viewport: 1440 × 1024 CSS pixels
-- State: English, left-to-right, default route, settled entrance motion
-- Full-view comparison evidence: `design-audit/16-design-qa-comparison.png`
-- Focused hero comparison evidence: `design-audit/22-design-qa-hero-comparison.png`
-- Responsive evidence: `design-audit/18-institutional-mobile.jpg`, `design-audit/20-mobile-experience.jpg`, `design-audit/21-german-mobile.jpg`, `design-audit/17-arabic-desktop.jpg`
+- Review date: 2026-07-17
+- Release candidate: `1.4.0`
+- Official visual references: `typography-audit/01-goldman-sachs-desktop.png`, `typography-audit/09-cravath-desktop.png`, `typography-audit/11-skadden-capabilities-desktop.png`
+- User-provided visual references: the preserved Sonoma hero, abstract blue approach image and lake contact image
+- Same-view reference comparison: `final-audit/17-reference-implementation-comparison.png`
+- Desktop implementation: `final-audit/02-local-desktop-hero-en.png`, `final-audit/05-local-desktop-approach-lead.png`, `final-audit/06-local-desktop-connect.png`
+- Responsive implementation: `final-audit/11-local-mobile-hero-en.png`, `final-audit/12-local-mobile-approach-en.png`, `final-audit/13-local-mobile-approach-list-en.png`, `final-audit/14-local-320-hero-en.png`
+- Localisation implementation: `final-audit/15-local-320-approach-de.png`, `final-audit/16-local-mobile-approach-ar.png`
+- Preference evidence: `final-audit/19-dark-reduced-motion.png`, `final-audit/20-reduced-transparency.png`
+- Automated evidence: `final-audit/18-lighthouse-final.json`
 
-## Findings
+## Outcome
 
-No actionable P0, P1 or P2 findings remain.
+No open P0, P1 or P2 findings remain.
 
-- Fonts and typography: the implementation deliberately uses the requested Helvetica Neue-first stack instead of the concept's display serif. Weight, line height, tracking and wrapping are consistent across the hero, editorial rows and 14 locale fallbacks. The difference is an intentional JMYING constraint, not drift.
-- Spacing and layout rhythm: the pale institutional header, split identity hero, evidence band and rule-separated sections preserve the concept's hierarchy. The dark photographic hero is intentional because the repository requires a dark photographic identity surface and the current Goldman Sachs reference uses cinematic dark imagery.
-- Colours and visual tokens: warm Claude-compatible neutral surfaces, a restricted pale-blue/navy palette, semantic success green and hairline borders are applied consistently. There are no gradients, decorative 3D effects or card-heavy module stacks.
-- Image quality and asset fidelity: the real responsive portrait is used at every breakpoint without mirroring in RTL. Cropping remains centred on the face, the photograph stays sharp, and no placeholder or code-drawn visual asset replaces it.
-- Copy and content: the name, Accounting (FinTech) direction, Audit & Assurance goal, Feb–Apr 2027 availability, factual experience, credentials and LinkedIn-only contact route remain intact. No unsupported claims or new private details were introduced.
-- Accessibility and interaction: semantic headings, skip link, visible focus, modal focus containment, Escape close, same-origin locale loading, locale-aware dates, 44-pixel targets, reduced motion, dark mode, increased contrast and forced colours are preserved.
+- Typography and hierarchy: Helvetica Neue-first interface text is paired with a restrained system-serif display hierarchy. The scale, line height, weight and reading measures follow the reference sites' editorial logic without using proprietary Goldman Sachs fonts.
+- Layout and scan path: identity, factual profile, experience, working approach, highlights, credentials and contact follow a clear recruiter scan path. Numbered evidence rows, hairline rules and generous reading space reflect the strongest institutional patterns from Goldman Sachs, Cravath and Skadden without copying their brand layouts.
+- Image fidelity: the Sonoma backdrop and real portrait remain in the hero. Two selected user images are used with distinct editorial roles, responsive WebP/JPEG sources, explicit dimensions, stripped metadata and below-fold lazy loading.
+- Copy and claims: the new working-approach copy restates demonstrated document, accounting-system, Python and AI-assisted work habits. It adds no unsupported proficiency, impact, affiliation or private information.
+- Localisation: all 65 interface/content keys are present in all 14 locale bundles. German at 320 pixels and Arabic RTL at 390 pixels have no page-level horizontal overflow; the portrait remains unmirrored.
+- Accessibility and interaction: semantic headings, list structure, skip link, focus containment, Escape close, visible focus, 44-pixel targets, reduced motion, reduced transparency, dark mode, increased contrast and forced-colour rules are preserved. The short mobile navigation intentionally scrolls horizontally inside its own container while the page remains overflow-free.
+- Performance: final Lighthouse scores are 100 Performance, 100 Accessibility, 100 Best Practices and 100 SEO. Lab metrics were FCP 0.8 seconds, LCP 1.4 seconds, CLS 0 and TBT 0 milliseconds.
 
-## Comparison history
+## Iteration history
 
-### Iteration 1
+### P1 — accessible language-button name
 
-- Earlier P2 finding: at 390 × 844, the mobile reading order placed the portrait below a long text block, and the wordmark, first navigation item and footer link had one dimension under 44 pixels.
-- Fix: moved the portrait to the beginning of the mobile hero, reduced its mobile height to a purposeful editorial crop, and added minimum 44-pixel target dimensions to compact links.
-- Post-fix evidence: `design-audit/18-institutional-mobile.jpg`; measured document width was 390 pixels with no horizontal overflow and no interactive target below 44 × 44 pixels.
+- Finding: Lighthouse reported that the custom `aria-label` for the language button did not contain its visible language code, creating a WCAG 2.5.3 label-in-name mismatch.
+- Correction: removed the redundant custom accessible name so the control derives its name directly from the translated visible label and code.
+- Verification: the final Lighthouse run reports no failed binary accessibility audits and an Accessibility score of 100.
 
-### Iteration 2
+### P2 — minimum-width and long-text resilience
 
-- Earlier findings reviewed: mobile identity visibility and touch-target sizing.
-- Post-fix result: both resolved. The 390-pixel German layout also has no horizontal overflow, and the Arabic desktop view reverses layout direction without mirroring the portrait.
-- Post-fix evidence: `design-audit/18-institutional-mobile.jpg`, `design-audit/21-german-mobile.jpg`, `design-audit/17-arabic-desktop.jpg`.
+- Finding checked: the fifth navigation destination and the new working-approach text could have caused overflow at narrow widths or in longer translations.
+- Result: at 320 pixels the document and body widths equal the client width. The navigation alone scrolls within a 296-pixel container; German and Arabic content wrap without page overflow.
 
-## Interactions and runtime checks
+## Runtime checks
 
-- Primary navigation scrolled to Experience and updated the active state.
-- The language dialog opened, exposed all 14 locales, changed to Arabic and German, restored English, and closed after selection.
-- The copy action displayed the localised `Link copied` status.
-- Desktop and mobile browser consoles reported no errors.
-- Desktop and 390-pixel mobile layouts reported no horizontal overflow.
+- All four responsive images loaded successfully; the browser selected WebP sources.
+- English, German and Arabic locale changes completed through the language dialog.
+- The Arabic document direction is `rtl` and the portrait transform is `none`.
+- Navigation targets resolve to all five visible sections and active-state tracking updates.
+- All visible links and buttons measure at least 44 pixels on mobile.
+- Browser console reported no errors or warnings.
+- The LinkedIn-only contact route is unchanged and no data-collection surface was added.
 
-## Follow-up polish
+## Release gates
 
-- P3: the portrait is intentionally darker than the source mock to support the dark photographic hero. A future photography session could produce a purpose-shot, naturally lit editorial portrait with more negative space while preserving the same crop and layout.
-
-## Implementation checklist
-
-- [x] Match the selected institutional composition and recruiter scan path.
-- [x] Preserve the repository's dark photographic hero constraint.
-- [x] Apply the source-backed typography, colour, spacing and interaction tokens.
-- [x] Verify desktop, mobile, long-text locale and Arabic RTL states.
-- [x] Verify primary interactions and console output.
-- [x] Run formatting, internationalisation, security and deployment dry-run checks.
+- [x] Same-view source and implementation comparison completed.
+- [x] Desktop, 390-pixel mobile and 320-pixel minimum width checked.
+- [x] English, German long text and Arabic RTL checked.
+- [x] Dark mode, reduced motion and reduced transparency rules checked.
+- [x] Lighthouse performance, accessibility, best-practices and SEO review passed.
+- [x] Internationalisation, quality, security and Cloudflare dry-run checks included in `npm test`.
 
 final result: passed
