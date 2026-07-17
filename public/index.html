@@ -6,8 +6,8 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
       name="viewport"
     />
-    <meta content="#07101d" name="theme-color" />
-    <meta content="dark" name="color-scheme" />
+    <meta content="#afc7e5" name="theme-color" />
+    <meta content="light dark" name="color-scheme" />
     <meta
       content="Jeremy (Lei) Ying — Accounting (FinTech), audit, finance and data."
       name="description"
@@ -35,157 +35,132 @@
     <link
       as="image"
       fetchpriority="high"
-      href="/sonoma.webp"
-      imagesizes="100vw"
-      imagesrcset="/sonoma-800.webp 800w, /sonoma-1400.webp 1400w, /sonoma.webp 2048w"
-      rel="preload"
-      type="image/webp"
-    />
-    <link
-      as="image"
-      href="/portrait.webp"
-      imagesizes="(max-width: 720px) 100vw, 380px"
+      href="/portrait-760.webp"
+      imagesizes="(max-width: 760px) 100vw, 44vw"
       imagesrcset="/portrait-480.webp 480w, /portrait-760.webp 760w, /portrait.webp 1024w"
       rel="preload"
       type="image/webp"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.2.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.3.1" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
     <header class="site-header" id="top">
-      <a aria-label="JMYING home" class="wordmark" href="#top">JMYING</a>
-      <nav aria-label="Primary navigation" class="primary-nav">
-        <a data-i18n="navProfile" data-nav-link="" href="#profile">Profile</a
-        ><a data-i18n="navExperience" data-nav-link="" href="#experience"
-          >Experience</a
-        ><a data-i18n="navHighlights" data-nav-link="" href="#highlights"
-          >Highlights</a
+      <div class="header-shell">
+        <a aria-label="JMYING home" class="wordmark" href="#top">JMYING</a>
+        <nav aria-label="Primary navigation" class="primary-nav">
+          <a data-i18n="navProfile" data-nav-link="" href="#profile">Profile</a
+          ><a data-i18n="navExperience" data-nav-link="" href="#experience"
+            >Experience</a
+          ><a data-i18n="navHighlights" data-nav-link="" href="#highlights"
+            >Highlights</a
+          ><a data-i18n="credentialsKicker" data-nav-link="" href="#credentials"
+            >Credentials</a
+          >
+        </nav>
+        <button
+          aria-controls="languageDialog"
+          aria-expanded="false"
+          aria-haspopup="dialog"
+          class="language-trigger"
+          id="languageTrigger"
+          type="button"
         >
-      </nav>
-      <button
-        aria-controls="languageDialog"
-        aria-expanded="false"
-        aria-haspopup="dialog"
-        class="language-trigger"
-        id="languageTrigger"
-        type="button"
-      >
-        <span data-i18n="language">Language</span
-        ><span class="language-code" id="languageCode">EN</span>
-      </button>
+          <span data-i18n="language">Language</span
+          ><span aria-hidden="true" class="language-divider"></span
+          ><span class="language-code" id="languageCode">EN</span>
+        </button>
+      </div>
     </header>
     <main>
       <section aria-labelledby="heroTitle" class="hero">
-        <picture aria-hidden="true" class="hero-background"
-          ><source
-            data-sizes="100vw"
-            srcset="
-              /sonoma-800.webp   800w,
-              /sonoma-1400.webp 1400w,
-              /sonoma.webp      2048w
-            "
-            sizes="100vw"
-            type="image/webp" />
-          <img
-            alt=""
-            decoding="async"
-            fetchpriority="high"
-            sizes="100vw"
-            src="/sonoma.jpg"
-            srcset="
-              /sonoma-800.jpg   800w,
-              /sonoma-1400.jpg 1400w,
-              /sonoma.jpg      2048w
-            "
-        /></picture>
-        <div aria-hidden="true" class="hero-shade"></div>
         <div class="hero-shell">
-          <article class="identity-card">
-            <figure class="portrait-frame">
-              <picture
-                ><source
-                  sizes="(max-width: 720px) 100vw, 380px"
-                  srcset="
-                    /portrait-480.webp  480w,
-                    /portrait-760.webp  760w,
-                    /portrait.webp     1024w
-                  "
-                  type="image/webp" />
-                <img
-                  alt="Portrait of Jeremy Ying"
-                  decoding="async"
-                  height="1280"
-                  sizes="(max-width: 720px) 100vw, 380px"
-                  src="/portrait.jpg"
-                  srcset="
-                    /portrait-480.jpg  480w,
-                    /portrait-760.jpg  760w,
-                    /portrait.jpg     1024w
-                  "
-                  width="1024"
-              /></picture>
-            </figure>
-            <div class="identity-copy">
-              <p class="eyebrow" data-i18n="eyebrow">
-                Accounting · Audit · Data
-              </p>
-              <h1 id="heroTitle" dir="ltr">Jeremy <span>(Lei)</span> Ying</h1>
-              <p class="role" data-i18n="role">
-                Accounting (FinTech) student seeking an Audit &amp; Assurance
-                internship.
-              </p>
-              <p class="summary" data-i18n="summary">
-                I combine financial reporting, careful documentation and
-                practical digital tools to support accurate, well-structured
-                work.
-              </p>
-              <div class="availability">
-                <span aria-hidden="true" class="availability-dot"></span
-                ><span data-i18n="availability"
-                  >Available for Audit &amp; Assurance internships · Feb–Apr
-                  2027</span
-                >
-              </div>
-              <div
-                aria-label="Professional contact and site actions"
-                class="hero-actions"
+          <div class="identity-copy">
+            <p class="eyebrow" data-i18n="eyebrow">Accounting · Audit · Data</p>
+            <h1 id="heroTitle" dir="ltr">Jeremy <span>(Lei)</span> Ying</h1>
+            <p class="role" data-i18n="role">
+              Accounting (FinTech) student seeking an Audit &amp; Assurance
+              internship.
+            </p>
+            <div aria-hidden="true" class="title-rule"></div>
+            <p class="hero-statement" data-i18n="profileTitle">
+              Careful work, clearly structured.
+            </p>
+            <div class="availability">
+              <span aria-hidden="true" class="availability-dot"></span
+              ><span data-i18n="availability"
+                >Available for Audit &amp; Assurance internships · Feb–Apr
+                2027</span
               >
-                <a
-                  aria-label="Contact Jeremy Ying on LinkedIn"
-                  class="button primary linkedin-cta"
-                  data-i18n="viewLinkedin"
-                  href="https://www.linkedin.com/in/jeremy-ying-a8520b350/"
-                  referrerpolicy="no-referrer"
-                  rel="noopener noreferrer external"
-                  target="_blank"
-                  >Contact on LinkedIn</a
-                ><button
-                  class="button quiet"
-                  data-i18n="copy"
-                  id="copyButton"
-                  type="button"
-                >
-                  Copy jmying.com
-                </button>
-              </div>
-              <p class="privacy-line" data-i18n="privacyLine">
-                For professional enquiries, please use LinkedIn. This site
-                neither publishes nor collects private contact details.
-              </p>
             </div>
-          </article>
+            <div
+              aria-label="Professional contact and site actions"
+              class="hero-actions"
+            >
+              <a
+                aria-label="Contact Jeremy Ying on LinkedIn"
+                class="button primary linkedin-cta"
+                data-i18n="viewLinkedin"
+                href="https://www.linkedin.com/in/jeremy-ying-a8520b350/"
+                referrerpolicy="no-referrer"
+                rel="noopener noreferrer external"
+                target="_blank"
+                >Contact on LinkedIn</a
+              ><button
+                class="button secondary"
+                data-i18n="copy"
+                id="copyButton"
+                type="button"
+              >
+                Copy jmying.com
+              </button>
+            </div>
+            <p class="privacy-line" data-i18n="privacyLine">
+              For professional enquiries, please use LinkedIn. This site neither
+              publishes nor collects private contact details.
+            </p>
+          </div>
+          <figure class="portrait-frame">
+            <picture
+              ><source
+                sizes="(max-width: 760px) 100vw, 44vw"
+                srcset="
+                  /portrait-480.webp  480w,
+                  /portrait-760.webp  760w,
+                  /portrait.webp     1024w
+                "
+                type="image/webp" />
+              <img
+                alt="Portrait of Jeremy Ying"
+                decoding="async"
+                fetchpriority="high"
+                height="1280"
+                sizes="(max-width: 760px) 100vw, 44vw"
+                src="/portrait.jpg"
+                srcset="
+                  /portrait-480.jpg  480w,
+                  /portrait-760.jpg  760w,
+                  /portrait.jpg     1024w
+                "
+                width="1024"
+            /></picture>
+            <figcaption class="portrait-caption">
+              <span aria-hidden="true">01</span
+              ><span data-i18n="profileKicker">Professional profile</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
+
       <section
         aria-labelledby="profileTitle"
-        class="section profile-section"
+        class="capability-band"
         id="profile"
       >
-        <div class="section-shell">
-          <div class="section-intro">
-            <p class="section-kicker" data-i18n="profileKicker">
+        <div class="section-shell capability-layout">
+          <div class="capability-summary">
+            <p class="section-kicker inverse" data-i18n="profileKicker">
               Professional profile
             </p>
             <h2 data-i18n="profileTitle" id="profileTitle">
@@ -196,25 +171,25 @@
               practical, technology-supported analysis.
             </p>
           </div>
-          <div class="focus-grid">
-            <article class="focus-card">
-              <p class="card-index">01</p>
+          <div class="focus-list">
+            <article class="focus-item">
+              <p class="item-index">01</p>
               <h3 data-i18n="focus1Title">Accounting &amp; assurance</h3>
               <p data-i18n="focus1Desc">
                 Financial working papers, supporting schedules, document checks
                 and structured review.
               </p>
             </article>
-            <article class="focus-card">
-              <p class="card-index">02</p>
+            <article class="focus-item">
+              <p class="item-index">02</p>
               <h3 data-i18n="focus2Title">Finance systems</h3>
               <p data-i18n="focus2Desc">
                 Hands-on exposure to Excel, SQL accounting software, Oracle and
                 internal ERP workflows.
               </p>
             </article>
-            <article class="focus-card">
-              <p class="card-index">03</p>
+            <article class="focus-item">
+              <p class="item-index">03</p>
               <h3 data-i18n="focus3Title">Data &amp; digital tools</h3>
               <p data-i18n="focus3Desc">
                 Python and AI-assisted tools used for research, analysis and
@@ -224,6 +199,7 @@
           </div>
         </div>
       </section>
+
       <section
         aria-labelledby="experienceTitle"
         class="section experience-section"
@@ -231,6 +207,7 @@
       >
         <div class="section-shell split-layout">
           <div class="section-intro sticky-intro">
+            <p class="section-number" aria-hidden="true">02</p>
             <p class="section-kicker" data-i18n="experienceKicker">
               Experience &amp; education
             </p>
@@ -244,46 +221,52 @@
           </div>
           <div class="timeline">
             <article class="timeline-item">
-              <div aria-hidden="true" class="timeline-marker"></div>
-              <p class="timeline-date">
-                <time data-date-end="2026-04" data-date-start="2026-02"
-                  >Feb 2026 – Apr 2026</time
-                >
-              </p>
-              <h3 data-i18n="exp1Role">Finance &amp; Accounting Intern</h3>
-              <p class="timeline-org">CSCEC Malaysia · Kuala Lumpur</p>
-              <p data-i18n="exp1Desc">
+              <p class="timeline-count" aria-hidden="true">01</p>
+              <div class="timeline-main">
+                <p class="timeline-date">
+                  <time data-date-end="2026-04" data-date-start="2026-02"
+                    >Feb 2026 – Apr 2026</time
+                  >
+                </p>
+                <h3 data-i18n="exp1Role">Finance &amp; Accounting Intern</h3>
+                <p class="timeline-org">CSCEC Malaysia · Kuala Lumpur</p>
+              </div>
+              <p class="timeline-description" data-i18n="exp1Desc">
                 Prepared financial working papers, checked supporting documents,
                 assisted with IPC payments and organised project finance data
                 for review.
               </p>
             </article>
             <article class="timeline-item">
-              <div aria-hidden="true" class="timeline-marker"></div>
-              <p class="timeline-date">
-                <time data-date-end="2025-09" data-date-start="2025-06"
-                  >Jun 2025 – Sep 2025</time
-                >
-              </p>
-              <h3 data-i18n="exp2Role">Account Assistant</h3>
-              <p class="timeline-org">S.C. Wong &amp; Co. (CA(M))</p>
-              <p data-i18n="exp2Desc">
+              <p class="timeline-count" aria-hidden="true">02</p>
+              <div class="timeline-main">
+                <p class="timeline-date">
+                  <time data-date-end="2025-09" data-date-start="2025-06"
+                    >Jun 2025 – Sep 2025</time
+                  >
+                </p>
+                <h3 data-i18n="exp2Role">Account Assistant</h3>
+                <p class="timeline-org">S.C. Wong &amp; Co. (CA(M))</p>
+              </div>
+              <p class="timeline-description" data-i18n="exp2Desc">
                 Organised accounting and purchasing records, monitored purchase
                 orders, tracked expenses and supported year-end reporting.
               </p>
             </article>
             <article class="timeline-item">
-              <div aria-hidden="true" class="timeline-marker"></div>
-              <p class="timeline-date">
-                <time data-date-end="present" data-date-start="2024"
-                  >2024 – Present</time
-                >
-              </p>
-              <h3 data-i18n="educationRole">
-                Bachelor of Accounting (FinTech) (Honours)
-              </h3>
-              <p class="timeline-org">Taylor’s University</p>
-              <p data-i18n="educationDesc">
+              <p class="timeline-count" aria-hidden="true">03</p>
+              <div class="timeline-main">
+                <p class="timeline-date">
+                  <time data-date-end="present" data-date-start="2024"
+                    >2024 – Present</time
+                  >
+                </p>
+                <h3 data-i18n="educationRole">
+                  Bachelor of Accounting (FinTech) (Honours)
+                </h3>
+                <p class="timeline-org">Taylor’s University</p>
+              </div>
+              <p class="timeline-description" data-i18n="educationDesc">
                 Building practical knowledge of financial reporting, audit,
                 taxation, analytics and technology-supported accounting.
               </p>
@@ -291,6 +274,7 @@
           </div>
         </div>
       </section>
+
       <section
         aria-labelledby="highlightsTitle"
         class="section highlights-section"
@@ -298,6 +282,7 @@
       >
         <div class="section-shell">
           <div class="section-intro wide-intro">
+            <p class="section-number" aria-hidden="true">03</p>
             <p class="section-kicker" data-i18n="highlightsKicker">
               Selected highlights
             </p>
@@ -305,47 +290,67 @@
               Selected projects and challenges.
             </h2>
           </div>
-          <div class="highlight-grid">
-            <article class="highlight-card featured">
-              <p class="highlight-year">2025</p>
-              <h3>EY Open Science AI &amp; Data Challenge</h3>
-              <p class="highlight-label" data-i18n="highlight1Label">
-                ASEAN Top 10 finalist
-              </p>
-              <p data-i18n="highlight1Desc">
+          <div class="highlight-list">
+            <article class="highlight-item featured">
+              <div class="highlight-meta">
+                <p class="highlight-index">01</p>
+                <p class="highlight-year">2025</p>
+              </div>
+              <div class="highlight-name">
+                <h3>EY Open Science AI &amp; Data Challenge</h3>
+                <p class="highlight-label" data-i18n="highlight1Label">
+                  ASEAN Top 10 finalist
+                </p>
+              </div>
+              <p class="highlight-description" data-i18n="highlight1Desc">
                 Applied machine learning and data analysis to a sustainability
                 challenge in a global competition.
               </p>
             </article>
-            <article class="highlight-card">
-              <p class="highlight-year">2025</p>
-              <h3>Deloitte Audit Business Challenge</h3>
-              <p class="highlight-label" data-i18n="highlight2Label">
-                Semi-finalist
-              </p>
-              <p data-i18n="highlight2Desc">
+            <article class="highlight-item">
+              <div class="highlight-meta">
+                <p class="highlight-index">02</p>
+                <p class="highlight-year">2025</p>
+              </div>
+              <div class="highlight-name">
+                <h3>Deloitte Audit Business Challenge</h3>
+                <p class="highlight-label" data-i18n="highlight2Label">
+                  Semi-finalist
+                </p>
+              </div>
+              <p class="highlight-description" data-i18n="highlight2Desc">
                 Practised audit judgement, structured reasoning, professional
                 ethics and business problem-solving.
               </p>
             </article>
-            <article class="highlight-card">
-              <p class="highlight-year">2025</p>
-              <h3>Deloitte Tax Challenge</h3>
-              <p class="highlight-label" data-i18n="highlight3Label">
-                Quarter-finalist · Team category
-              </p>
-              <p data-i18n="highlight3Desc">
+            <article class="highlight-item">
+              <div class="highlight-meta">
+                <p class="highlight-index">03</p>
+                <p class="highlight-year">2025</p>
+              </div>
+              <div class="highlight-name">
+                <h3>Deloitte Tax Challenge</h3>
+                <p class="highlight-label" data-i18n="highlight3Label">
+                  Quarter-finalist · Team category
+                </p>
+              </div>
+              <p class="highlight-description" data-i18n="highlight3Desc">
                 Worked through practical business scenarios using Malaysian tax
                 knowledge.
               </p>
             </article>
-            <article class="highlight-card">
-              <p class="highlight-year">2025</p>
-              <h3>Taylor’s EYCC Business Case Workshop</h3>
-              <p class="highlight-label" data-i18n="highlight4Label">
-                Excellent Case Group
-              </p>
-              <p data-i18n="highlight4Desc">
+            <article class="highlight-item">
+              <div class="highlight-meta">
+                <p class="highlight-index">04</p>
+                <p class="highlight-year">2025</p>
+              </div>
+              <div class="highlight-name">
+                <h3>Taylor’s EYCC Business Case Workshop</h3>
+                <p class="highlight-label" data-i18n="highlight4Label">
+                  Excellent Case Group
+                </p>
+              </div>
+              <p class="highlight-description" data-i18n="highlight4Desc">
                 Practised case analysis, structured problem-solving and
                 professional communication.
               </p>
@@ -353,12 +358,15 @@
           </div>
         </div>
       </section>
+
       <section
         aria-labelledby="credentialsTitle"
         class="section credentials-section"
+        id="credentials"
       >
         <div class="section-shell credential-layout">
           <div class="section-intro">
+            <p class="section-number" aria-hidden="true">04</p>
             <p class="section-kicker" data-i18n="credentialsKicker">
               Credentials
             </p>
@@ -370,36 +378,39 @@
               emergency response.
             </p>
           </div>
-          <ul class="credential-list">
+          <ol class="credential-list">
             <li>Bloomberg Market Concepts (BMC)</li>
             <li>Bloomberg Finance Fundamentals</li>
             <li>Bloomberg ESG Certificate</li>
             <li data-i18n="credentialAha">
               American Heart Association First Aid, CPR &amp; AED
             </li>
-          </ul>
+          </ol>
         </div>
       </section>
+
       <section
         aria-labelledby="connectTitle"
         class="section connect-section"
         id="privacy"
       >
-        <div class="section-shell connect-card">
+        <div class="section-shell connect-layout">
           <div>
-            <p class="section-kicker" data-i18n="connectKicker">Connect</p>
+            <p class="section-kicker inverse" data-i18n="connectKicker">
+              Connect
+            </p>
             <h2 data-i18n="connectTitle" id="connectTitle">
               One professional contact channel.
             </h2>
+          </div>
+          <div class="connect-copy">
             <p data-i18n="connectText">
               Please contact me through LinkedIn. This website does not publish
               or collect private contact information.
             </p>
-          </div>
-          <div class="connect-actions">
             <a
               aria-label="Contact Jeremy Ying on LinkedIn"
-              class="button primary linkedin-cta"
+              class="button light linkedin-cta"
               data-i18n="viewLinkedin"
               href="https://www.linkedin.com/in/jeremy-ying-a8520b350/"
               referrerpolicy="no-referrer"
@@ -449,6 +460,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.2.0"></script>
+    <script defer="" src="/app.js?v=1.3.1"></script>
   </body>
 </html>

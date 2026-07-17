@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.2.0";
+  const localeVersion = "1.3.1";
   const localeManifest = [
     {
       id: "en",
@@ -433,7 +433,7 @@
 
     const revealTargets = [
       ...document.querySelectorAll(
-        ".section-intro, .focus-card, .timeline-item, .highlight-card, .credential-list li, .connect-card",
+        ".section-intro, .focus-item, .timeline-item, .highlight-item, .credential-list li, .connect-layout",
       ),
     ];
     document.documentElement.classList.add("motion-ready");

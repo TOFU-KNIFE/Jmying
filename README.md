@@ -12,15 +12,21 @@ The site has no phone link, email link, contact form, public vCard, GitHub-profi
 
 ## Design direction
 
-The interface follows current Apple platform-design principles without copying Apple branding or proprietary assets:
+The interface follows an original institutional design system informed by
+public Claude/Anthropic and Goldman Sachs guidance without copying their
+branding, proprietary assets or layouts:
 
 - content remains visually dominant
-- translucent material is reserved for navigation and controls
-- opaque content surfaces preserve hierarchy and legibility
-- bold, left-aligned typography and consistent concentric radii
-- adaptive layouts across desktop and mobile
+- simple rules and whitespace separate evidence instead of card-heavy modules
+- warm neutral surfaces are paired with restrained institutional blue
+- Helvetica-first typography uses a compact, consistent hierarchy
+- adaptive layouts reflow from 320-pixel mobile widths to large desktops
+- all interactive targets are at least 44 × 44 pixels
 - purposeful nonlinear motion using compositor-friendly properties
-- reduced-motion, reduced-transparency, increased-contrast, and forced-colors support
+- light/dark, reduced-motion, increased-contrast, and forced-colors support
+
+The source-backed foundations and implementation rules are documented in
+[`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md).
 
 ## Languages
 
