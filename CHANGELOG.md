@@ -4,6 +4,15 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+### Changed
+
+- Limited automated Cloudflare deployment to merged `main` changes and grouped GitHub Actions dependency updates.
+- Pinned the Node.js and Wrangler toolchain and enabled npm dependency caching for reproducible CI.
+
+### Fixed
+
+- Replaced workspace-only package registry references that prevented GitHub Actions and Cloudflare Workers Builds from installing dependencies.
+
 ## [1.3.1] - 2026-07-17
 
 ### Added

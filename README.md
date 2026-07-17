@@ -90,14 +90,18 @@ This runs JavaScript syntax validation, translation consistency checks, a privac
 
 ## Collaboration and releases
 
-Repository rules for contributors and coding assistants live in `AGENTS.md`. Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic Versioning and the manual release checklist are documented in `docs/VERSIONING.md`.
+Repository rules for contributors and coding assistants live in `AGENTS.md`. Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic Versioning and the release checklist are documented in `docs/VERSIONING.md`.
 
 Pull requests run the same formatting and test checks in GitHub Actions. Dependabot groups routine development-dependency updates.
 
 ## Deploy
 
+Merges to `main` are deployed automatically by Cloudflare Workers Builds. The Cloudflare project listens only to `main`; pull requests are validated by GitHub Actions without creating Cloudflare preview builds.
+
+For an authorised manual recovery deployment:
+
 ```bash
 npm run deploy
 ```
 
-Cloudflare serves the contents of `public/` according to `wrangler.jsonc`.
+Cloudflare serves the contents of `public/` according to `wrangler.jsonc`. Keep the Cloudflare build command empty and use `npx wrangler deploy` as the deploy command.
