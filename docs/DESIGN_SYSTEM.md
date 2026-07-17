@@ -66,13 +66,14 @@ own content constraints take precedence.
 - Use the user-provided desk photograph as the responsive Hero image. Keep its natural colour, treat it as contextual editorial photography and use only a restrained neutral-black overlay for copy legibility.
 - Place the formal portrait in the Professional profile section below the Hero. Preserve its native 4:5 ratio, unmirrored orientation, neutral background, head-and-shoulders framing, headroom and eye line; do not crop or filter the source image.
 - Keep the yearbook portrait between roughly 220 and 280 pixels wide, pair it with a simple editorial caption and lazy-load it because it sits below the Hero.
-- Use additional user-provided imagery only when it has a clear editorial role. The abstract blue image supports the working-approach section; the lake image creates a calm, professional close behind the LinkedIn-only contact section.
+- Use additional user-provided imagery only when it has a clear editorial role. The abstract blue image gives the AI & Data Challenge card a distinct project visual; the lake image creates a calm, professional close behind the LinkedIn-only contact section.
 - Deliver below-fold imagery in responsive WebP and JPEG formats, strip metadata, include explicit dimensions and lazy-load it.
 - Use factual or empty alternative text according to whether the image adds meaning or is purely decorative. Never turn decorative imagery into an unsupported personal claim.
 
 ## Content and interaction rules
 
 - Lead with identity, professional direction and internship availability.
+- Keep Professional profile explicitly asymmetrical: yearbook portrait on the left, start-aligned summary on the right and evidence rows beneath. On narrow screens retain the left-image/right-copy relationship, then let the evidence rows span the full width.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.
 - The interactive evidence timeline may visualise only dates and descriptions already stated in the profile. Use direct role/date labels, three year divisions, the institutional navy/blue palette and an always-visible detail summary. Filtering must work with keyboard, touch and pointer input, expose `aria-pressed` state and never make interaction the only route to critical information.
 - Keep LinkedIn as the only public contact channel.

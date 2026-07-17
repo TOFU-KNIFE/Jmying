@@ -132,10 +132,16 @@ for (const requiredCarouselContract of [
   'data-highlight-previous=""',
   'data-highlight-next=""',
   'id="highlightDialog"',
+  'class="highlight-card-backdrop"',
 ]) {
   if (!html.includes(requiredCarouselContract)) {
     findings.push(`carousel contract is missing ${requiredCarouselContract}`);
   }
+}
+if (html.includes('class="approach-visual"')) {
+  findings.push(
+    "the abstract artwork still occupies the working-approach lead",
+  );
 }
 if (!styles.includes("scroll-snap-type: inline mandatory")) {
   findings.push("project carousel is missing inline scroll snapping");

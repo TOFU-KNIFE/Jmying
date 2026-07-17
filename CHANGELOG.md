@@ -4,6 +4,15 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-07-17
+
+### Changed
+
+- Reworked Professional profile into an explicitly left-image, right-copy editorial layout across desktop, tablet and mobile widths.
+- Consolidated the profile heading and introduction into one start-aligned text column instead of splitting the summary across the page.
+- Removed the oversized abstract image from Working approach and rebuilt that section around a cleaner text hierarchy and three-step evidence workflow.
+- Reused the blue abstract artwork as the responsive backdrop of the EY Open Science AI & Data Challenge card, where it has a clearer editorial relationship to the content.
+
 ## [1.9.0] - 2026-07-17
 
 ### Added
