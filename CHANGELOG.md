@@ -4,6 +4,20 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-07-18
+
+### Changed
+
+- Rebuilt the Japanese, Simplified Chinese and Traditional Chinese type stacks around native sans-serif body faces and locale-matched Mincho/Song display faces.
+- Added purpose-built Vietnamese, Thai, Korean and Arabic font fallbacks instead of inheriting Latin-first metrics or unsupported Western display faces.
+- Introduced script-aware display, subhead and label spacing tokens, including extra vertical room for Thai and Arabic marks and tighter solid composition for CJK and Korean.
+- Preserved performance and privacy by using locally installed platform fonts without adding any remote font requests.
+
+### Fixed
+
+- Replaced obsolete `Noto Serif CJK SC/TC` fallback names with the current `Noto Serif SC/TC` family names.
+- Reduced the risk of mixed-script punctuation and numerals rendering in a visually incompatible Latin font.
+
 ## [1.11.0] - 2026-07-18
 
 ### Changed

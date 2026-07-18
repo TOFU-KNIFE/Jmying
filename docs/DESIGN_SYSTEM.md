@@ -18,6 +18,10 @@ layouts that could imply affiliation.
 - [Apple Charts guidance](https://developer.apple.com/design/human-interface-guidelines/charts): communicate a small number of facts, align charts with surrounding UI, reduce unnecessary grid density and keep critical information available without interaction.
 - [Apple Store](https://www.apple.com/store) and [Apple scroll-view guidance](https://developer.apple.com/design/human-interface-guidelines/scroll-views): horizontally browsable cards, partial next-item visibility, native gestures and position-aware controls for selected project highlights.
 - [Apple localisation guidance](https://developer.apple.com/localization/): test layout, images, dates, text expansion and reading direction across supported locales.
+- [Apple typography guidance](https://developer.apple.com/design/human-interface-guidelines/typography): prefer the platform system typefaces, keep the number of families restrained and express hierarchy through size, weight and spacing.
+- [W3C Japanese layout requirements](https://www.w3.org/TR/jlreq/), [Chinese layout requirements](https://www.w3.org/TR/clreq/) and [Thai layout requirements](https://www.w3.org/TR/thai-lreq/): preserve script-native line breaking, solid CJK composition, punctuation behaviour and enough vertical space for Thai marks.
+- [Noto usage guidance](https://notofonts.github.io/noto-docs/website/use/): use script-specific families, match Sans and Serif within a script, limit weight variants and use UI cuts for compact Southeast Asian interfaces.
+- [Microsoft multilingual UI font guidance](https://learn.microsoft.com/en-us/globalization/fonts-layout/multi-script-fonts): include native Windows UI fallbacks such as Yu Gothic UI, Microsoft JhengHei UI and Leelawadee UI instead of relying on a Latin font to select every glyph.
 - [CSS Borders and Box Decorations Level 4](https://drafts.csswg.org/css-borders/#corner-shaping): the standards definition for progressive `corner-shape: squircle` rendering on the web.
 - [The Economist visualisation interview](https://education.economist.com/insights/interviews/tips-for-visualising-data-like-the-economist) and [chart style guide](https://design-system.economist.com/documents/CHARTstyleguide_20170505.pdf): favour simple chart forms, a limited palette, direct labels and one restrained highlight colour when emphasis is needed.
 - [Cravath](https://www.cravath.com/) and [Skadden capabilities](https://www.skadden.com/capabilities): current examples of evidence-first professional writing, numbered editorial structure and clear capability taxonomy.
@@ -30,13 +34,18 @@ own content constraints take precedence.
 
 ### Typography
 
-- Body and interface stack: `Helvetica Neue`, Helvetica, Arial, then script-appropriate system fallbacks.
-- Display stack: system serif faces led by `Iowan Old Style` and Baskerville. Chinese and Japanese use native system serif fallbacks; Korean, Thai and Arabic retain their tested sans-serif stacks.
+- English and other Latin-script body/interface text uses `Helvetica Neue`, Helvetica and Arial. Locale-specific stacks place native system faces first so punctuation, numerals and local glyphs share compatible metrics instead of being assembled from a Latin-first fallback chain.
+- Simplified Chinese pairs PingFang SC / Microsoft YaHei UI / Noto Sans SC body text with Songti SC / Noto Serif SC display text. Traditional Chinese pairs PingFang TC / Microsoft JhengHei UI / Noto Sans TC with Songti TC / Noto Serif TC.
+- Japanese pairs Hiragino Sans / Yu Gothic UI / Noto Sans JP with Hiragino Mincho / Yu Mincho / Noto Serif JP. Korean pairs Apple SD Gothic Neo / Malgun Gothic / Noto Sans KR with a restrained AppleMyungjo / Batang / Noto Serif KR display stack.
+- Thai uses Thonburi / Leelawadee UI / Sarabun / Noto Sans Thai UI at every level. Arabic likewise retains its native sans stack. Neither script is forced into an unrelated Western serif.
+- Vietnamese uses the platform UI stack with Segoe UI / Noto Sans fallbacks and a Noto Serif / Times New Roman display stack, all of which cover Vietnamese diacritics. It does not rely on Iowan Old Style or Baskerville being complete on every platform.
+- No webfont is downloaded. This avoids render blocking, keeps the page private and lets Apple, Windows and Android select their best locally tuned glyphs.
 - Do not download or redistribute Goldman Sachs proprietary fonts. The project adopts the public site's hierarchy principles, not its brand assets.
 - Display titles use 58–88 pixels at 0.96 line height and weight 400. Section titles use 44–72 pixels at 1.0 line height and weight 400.
 - Subheads use 22–27 pixels at 1.3 line height and weight 500. Reading text uses 16–18 pixels at 1.65 line height and stays within roughly 62 characters.
-- Labels and metadata use 10–13 pixels. Uppercase tracking is limited to short labels and stays between 0.08 and 0.14 em.
-- Keep display tracking moderate, usually −0.035 em. Never apply tight Latin tracking to Arabic or complex scripts.
+- CJK section titles use a slightly smaller 40–64 pixel range with 1.08–1.14 line height. Thai and Arabic titles use 1.18–1.22 line height; their subheads use 1.5–1.55 so above- and below-base marks are never clipped.
+- Labels and metadata use 10–13 pixels. Latin uppercase tracking stays between 0.08 and 0.14 em; CJK labels use only 0.03–0.04 em; Korean, Thai and Arabic remain solid set with no added tracking.
+- Keep Latin display tracking moderate, usually −0.035 em. Never apply tight Latin tracking to CJK, Korean, Thai, Arabic or other complex scripts.
 - Keep headings start-aligned in every locale and use weight, size, spacing and rules—not colour alone—to express hierarchy.
 
 ### Colour
