@@ -147,6 +147,31 @@ if (!styles.includes("scroll-snap-type: inline mandatory")) {
   findings.push("project carousel is missing inline scroll snapping");
 }
 
+for (const [locale, requiredFamily] of [
+  ["Japanese", '"Yu Gothic UI"'],
+  ["Traditional Chinese", '"Microsoft JhengHei UI"'],
+  ["Simplified Chinese", '"Microsoft YaHei UI"'],
+  ["Korean", '"Apple SD Gothic Neo"'],
+  ["Thai", '"Leelawadee UI"'],
+  ["Vietnamese", '"Noto Serif"'],
+  ["Arabic", '"SF Arabic"'],
+]) {
+  if (!styles.includes(requiredFamily)) {
+    findings.push(`${locale} typography is missing ${requiredFamily}`);
+  }
+}
+
+for (const token of [
+  "--leading-role",
+  "--leading-display",
+  "--leading-display-relaxed",
+  "--leading-card",
+]) {
+  if (!styles.includes(token)) {
+    findings.push(`script-aware typography is missing ${token}`);
+  }
+}
+
 if (findings.length) {
   console.error(`Quality audit failed:\n- ${findings.join("\n- ")}`);
   process.exit(1);
