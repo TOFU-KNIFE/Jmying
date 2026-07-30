@@ -57,6 +57,13 @@ for (const file of files) {
   ) {
     fail(file, "WebP contains EXIF/XMP metadata");
   }
+  if (
+    /\.avif$/i.test(file) &&
+    (buffer.includes(Buffer.from("Exif")) ||
+      buffer.includes(Buffer.from("http://ns.adobe.com/xap/1.0/")))
+  ) {
+    fail(file, "AVIF contains EXIF/XMP metadata");
+  }
 
   if (!textExtensions.has(extname(file)) && !lower.endsWith(".webmanifest"))
     continue;
@@ -138,6 +145,8 @@ for (const required of [
   "require-trusted-types-for 'script'",
   "Strict-Transport-Security",
   "Referrer-Policy: no-referrer",
+  "Permissions-Policy:",
+  "unload=()",
 ]) {
   if (!headers.includes(required))
     fail(join(publicDir, "_headers"), `missing security control: ${required}`);

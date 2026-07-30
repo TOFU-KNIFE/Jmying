@@ -4,6 +4,27 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.13.0] - 2026-07-30
+
+### Added
+
+- Added AVIF delivery for every active photographic surface while retaining WebP and JPEG fallbacks, including 1,200- and 1,400-pixel Hero breakpoints for common mobile and desktop pixel densities.
+- Added a 320-pixel portrait source and corrected the responsive `sizes` hint so narrow screens no longer download the 760-pixel portrait unnecessarily.
+- Added a deterministic performance audit covering document, stylesheet, script and image budgets; cache revisioning; resource priority; screen rendering deferral; and back-forward cache safeguards.
+
+### Changed
+
+- Deferred hidden language-menu construction until the menu is opened.
+- Deferred project-carousel geometry measurements until its section approaches the viewport.
+- Enabled `content-visibility` containment for below-fold sections, with an explicit print-mode override.
+- Revisioned image requests and extended their browser cache lifetime to one year with immutable version URLs.
+- Added `no-transform` to HTML caching so Cloudflare cannot inject an analytics beacon into this privacy-first site.
+
+### Fixed
+
+- Prevented Cloudflare's automatically injected analytics script from producing CSP console errors and browser Inspector issues.
+- Added `unload=()` to the Permissions Policy to protect eligibility for instant back-forward cache restoration.
+
 ## [1.12.0] - 2026-07-18
 
 ### Changed

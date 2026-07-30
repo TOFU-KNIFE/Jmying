@@ -1,5 +1,31 @@
 # Design QA
 
+## Performance release 1.13.0
+
+- Review date: 2026-07-30
+- Scope: responsive image delivery, startup work, offscreen rendering, cache policy and privacy-preserving edge behaviour
+- Production mobile baseline: performance 99; FCP 1.6 s; LCP 1.6 s; TBT 0 ms; CLS 0; 92 KiB
+- Local mobile candidate: performance 100; accessibility 100; best practices 100; SEO 100; FCP 0.9 s; LCP 1.4 s; CLS 0; 65 KiB
+- Local desktop candidate: performance 100; accessibility 100; best practices 100; SEO 100; FCP 0.3 s; LCP 0.4 s; TBT 0 ms; CLS 0; 93 KiB
+
+### Findings
+
+No actionable P0, P1 or P2 performance findings remain.
+
+- The 390-pixel viewport selects `hero-photo-800.avif` and `portrait-320.avif`; the previous 760-pixel portrait overfetch is removed.
+- The desktop laboratory viewport selects the new 1,400-pixel Hero source instead of the 1,600-pixel source; Lighthouse reports no remaining image-delivery opportunity.
+- The working-approach and connect images remain unfetched at initial load and retain WebP/JPEG fallbacks.
+- Hidden language options are absent at startup and all 14 are constructed when the language dialog opens.
+- Japanese applies its native font stack after switching at 390 pixels with zero horizontal overflow.
+- Below-fold sections use `content-visibility: auto`; carousel geometry activates through a near-viewport observer instead of running during initialisation.
+- HTML, AVIF, WebP and JPEG cache headers resolve as specified in the local Cloudflare runtime.
+- The Hero crop, overlay, copy contrast and facial detail remain visually consistent in desktop and mobile review.
+- Syntax, 14-locale parity, quality, performance, security, formatting and Cloudflare dry-run checks pass.
+
+final result: passed
+
+## Profile and approach release 1.10.0
+
 - Review date: 2026-07-17
 - Release candidate: `1.10.0`
 - Scope: Professional profile asymmetry, Approach image relocation and project-card reuse

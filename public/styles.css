@@ -818,6 +818,8 @@ h1 span {
 
 .section {
   padding: clamp(88px, 9vw, 136px) 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 .section-intro .section-number {
@@ -2855,6 +2857,8 @@ h1 span {
 
   .section {
     padding-block: 40px;
+    content-visibility: visible;
+    contain-intrinsic-size: none;
   }
 
   .capability-band {

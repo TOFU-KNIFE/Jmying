@@ -55,7 +55,12 @@ at or below 0.1.
   properties for right-to-left support.
 - Supply responsive WebP and JPEG sources, explicit image dimensions, meaningful
   alternative text or an empty `alt` for decorative images, and lazy loading below
-  the fold.
+  the fold. Prefer AVIF first when a photographic source meets visual review, while
+  retaining WebP and JPEG fallbacks.
+- Match every `sizes` hint to the rendered CSS slot, revision immutable assets in
+  their URLs and keep the Hero as the only high-priority image.
+- Defer hidden interface construction, below-fold geometry reads and offscreen
+  rendering until they are close to the viewport.
 - Animate only `transform` and `opacity` with nonlinear easing and a reduced-motion
   fallback.
 
@@ -74,6 +79,9 @@ review pass:
 6. Check console errors, broken navigation, language switching and the LinkedIn CTA.
 7. When a data view changes, verify every filter, selected state, keyboard focus, live detail update, source note and narrow-screen overflow behaviour.
 8. Run `npm run format:check`, `npm test` and a Cloudflare dry run.
+9. Run mobile and desktop Lighthouse against a cold profile and compare FCP, LCP,
+   TBT, CLS, transfer size, console errors and image-delivery findings with the
+   last accepted release.
 
 Record P0 blocking, P1 major, P2 actionable and P3 optional findings in
 `design-qa.md`. Correct P0–P2 findings and repeat the same checks until the file
@@ -94,7 +102,7 @@ ends with `final result: passed`.
 
 - Per change: run the complete automated and visual gates.
 - Monthly: review dependency updates, broken links, browser compatibility and asset
-  weight; batch low-risk maintenance.
+  weight; run `npm run audit:performance`; batch low-risk maintenance.
 - Quarterly: re-check official reference guidance, content accuracy, every locale,
   responsive screenshots and Core Web Vitals.
 - For every defect, add or strengthen a reusable test, token, checklist item or
@@ -106,3 +114,33 @@ A change is complete only when it is factual, understandable, responsive from 32
 pixels, keyboard accessible, translated across all 14 locales, within the image
 budget, free of runtime errors, documented, reviewed through `design-qa.md`, merged
 through CI and verified on `https://jmying.com`.
+
+## Performance evidence and decision rules
+
+The 1.13.0 baseline was measured on 30 July 2026 with Lighthouse mobile emulation:
+performance 99, FCP 1.6 seconds, LCP 1.6 seconds, TBT 0 milliseconds, CLS 0 and a
+92 KiB initial transfer. The optimisation pass keeps those strong fundamentals and
+targets the remaining measurable waste rather than adding a framework or a large
+build toolchain.
+
+- [web.dev LCP guidance](https://web.dev/articles/optimize-lcp) supports one
+  discoverable, high-priority Hero resource; secondary imagery stays lazy and low
+  priority.
+- [web.dev image performance guidance](https://web.dev/learn/performance/image-performance)
+  supports AVIF as a smaller progressive source with WebP/JPEG fallbacks and requires
+  perceptual review rather than a universal compression setting.
+- [web.dev content-visibility guidance](https://web.dev/articles/content-visibility)
+  supports skipping layout, style and paint work for offscreen sections when an
+  intrinsic fallback size is supplied.
+- [web.dev back-forward cache guidance](https://web.dev/articles/bfcache) recommends
+  avoiding `unload`; the global Permissions Policy prevents it from being added.
+- [Cloudflare static-asset guidance](https://developers.cloudflare.com/workers/static-assets/headers/)
+  supports explicit cache headers through `_headers`.
+- [Cloudflare Web Analytics guidance](https://developers.cloudflare.com/web-analytics/faq/)
+  documents that `Cache-Control: no-transform` prevents automatic beacon injection.
+  This site uses that option to preserve its no-analytics promise and eliminate the
+  CSP error caused by the injected script.
+
+Performance changes must preserve the accessibility score, factual content, CSP,
+image quality and 14-locale behaviour. A lower byte count is not accepted when it
+causes visible banding, soft facial detail, layout instability or broken navigation.
