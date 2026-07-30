@@ -14,11 +14,16 @@ const styles = await readFile(join(publicDir, "styles.css"), "utf8");
 const headers = await readFile(join(publicDir, "_headers"), "utf8");
 const llms = await readFile(join(publicDir, "llms.txt"), "utf8");
 const findings = [];
+const stickerMediaBudgets = new Map([
+  ["sticker-motion-v1.mp4", 1800 * 1024],
+  ["sticker-start-v1.webp", 200 * 1024],
+  ["sticker-static-v1.webp", 200 * 1024],
+]);
 
 const sourceBudgets = new Map([
   ["index.html", 40 * 1024],
   ["styles.css", 64 * 1024],
-  ["app.js", 32 * 1024],
+  ["app.js", 35 * 1024],
 ]);
 
 for (const [filename, limit] of sourceBudgets) {
@@ -32,7 +37,7 @@ for (const [filename, limit] of sourceBudgets) {
 
 const productionBudgets = new Map([
   ["index.html", 30 * 1024],
-  ["styles.css", 50 * 1024],
+  ["styles.css", 52 * 1024],
   ["app.js", 20 * 1024],
 ]);
 
@@ -88,6 +93,29 @@ for (const [filename, limit] of imageBudgets) {
   }
 }
 
+let stickerMediaTotal = 0;
+for (const [filename, limit] of stickerMediaBudgets) {
+  try {
+    const info = await stat(
+      join(publicDir, "media", "ai-accounting", filename),
+    );
+    stickerMediaTotal += info.size;
+    if (info.size > limit) {
+      findings.push(
+        `${filename} is ${Math.ceil(info.size / 1024)} KiB; sticker media budget is ${Math.ceil(limit / 1024)} KiB`,
+      );
+    }
+  } catch {
+    findings.push(`${filename} is missing from the AI accounting module`);
+  }
+}
+const stickerMediaTotalBudget = 2200 * 1024;
+if (stickerMediaTotal > stickerMediaTotalBudget) {
+  findings.push(
+    `AI accounting media total is ${Math.ceil(stickerMediaTotal / 1024)} KiB; budget is ${Math.ceil(stickerMediaTotalBudget / 1024)} KiB`,
+  );
+}
+
 const imageUrls = [
   ...html.matchAll(
     /(?:https:\/\/jmying\.com)?\/[^"'\s,]+\.(?:avif|webp|jpe?g)(?:\?v=[^"'\s,]+)?/g,
@@ -111,6 +139,49 @@ for (const tag of imageTags) {
   if (!/\bloading="lazy"/.test(tag) || !/\bfetchpriority="low"/.test(tag)) {
     findings.push(`${src} must lazy-load at low priority`);
   }
+}
+
+const videoElements = [...html.matchAll(/<video\b[\s\S]*?<\/video>/g)].map(
+  ([element]) => element,
+);
+const stickerVideoElement = videoElements.find((element) =>
+  /\bclass="[^"]*\bsticker-video\b[^"]*"/.test(element),
+);
+const stickerVideoTag = stickerVideoElement?.match(/<video\b[\s\S]*?>/)?.[0];
+if (!stickerVideoTag || !stickerVideoElement) {
+  findings.push("AI accounting sticker video element is missing");
+} else {
+  if (!/\bpreload="none"/.test(stickerVideoTag)) {
+    findings.push("AI accounting sticker video must use preload=none");
+  }
+  if (
+    !new RegExp(
+      `\\bdata-src="/media/ai-accounting/sticker-motion-v1\\.mp4\\?v=${packageJson.version}"`,
+    ).test(stickerVideoTag)
+  ) {
+    findings.push(
+      "AI accounting sticker video must use a versioned data-src for delayed loading",
+    );
+  }
+  if (/(?:^|\s)src="/.test(stickerVideoTag)) {
+    findings.push(
+      "AI accounting sticker video must not expose an eager src attribute",
+    );
+  }
+  if (/<source\b[^>]*\bsrc="/.test(stickerVideoElement)) {
+    findings.push(
+      "AI accounting sticker video must not expose an eager source element",
+    );
+  }
+  if (/\bautoplay(?:\s|=|>)/.test(stickerVideoTag)) {
+    findings.push("AI accounting sticker video must not autoplay");
+  }
+}
+if (
+  /<link\b[^>]*\brel="preload"[^>]*\/media\/ai-accounting/i.test(html) ||
+  /<link\b[^>]*\/media\/ai-accounting[^>]*\brel="preload"/i.test(html)
+) {
+  findings.push("AI accounting media must not be preloaded by the document");
 }
 
 for (const requirement of [
@@ -167,5 +238,5 @@ if (findings.length) {
 }
 
 console.log(
-  `Performance audit passed (${packageJson.version}, ${imageUrls.length} revisioned image references, AVIF/WebP/JPEG fallbacks).`,
+  `Performance audit passed (${packageJson.version}, ${imageUrls.length} revisioned image references, ${Math.ceil(stickerMediaTotal / 1024)} KiB delayed sticker media, AVIF/WebP/JPEG fallbacks).`,
 );

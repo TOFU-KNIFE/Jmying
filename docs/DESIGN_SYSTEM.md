@@ -91,6 +91,16 @@ own content constraints take precedence.
 - Animate only `transform` and `opacity` on large elements.
 - Typical duration is 180–360 milliseconds for controls and 500–880 milliseconds for editorial reveals.
 - Honour `prefers-reduced-motion` and never autoplay media.
+- Motion studies require an explicit, keyboard-accessible Play/Replay control and
+  a polite status announcement. Keep the complete static composition visible
+  before playback rather than presenting an empty media frame.
+- Detach optional motion sources until the visitor requests playback. Keep
+  `preload="none"`, reveal video only after its first decoded frame and reset it
+  when the module leaves the viewport or the page becomes hidden.
+- Reduced-motion, constrained-connection, print and media-error states show the
+  complete static preview and do not make animation the only route to meaning.
+- A playing label may temporarily disable repeated activation, but the control
+  must return as Replay after completion. Do not bind essential playback to hover.
 
 ### Imagery
 
@@ -98,6 +108,10 @@ own content constraints take precedence.
 - Place the formal portrait in the Professional profile section below the Hero. Preserve its native 4:5 ratio, unmirrored orientation, neutral background, head-and-shoulders framing, headroom and eye line; do not crop or filter the source image.
 - Keep the yearbook portrait between roughly 220 and 280 pixels wide, pair it with a simple editorial caption and lazy-load it because it sits below the Hero.
 - Use additional user-provided imagery only when it has a clear editorial role. The abstract blue image gives the AI & Data Challenge card a distinct project visual; the lake image creates a calm, professional close behind the LinkedIn-only contact section.
+- Treat the AI × Accounting collage as a supporting interaction study below
+  Selected highlights, not as a replacement Hero or a factual claim. Keep its
+  people, accounting tools and review screens inside one namespaced module, with
+  a centred crop on narrow screens and a complete static fallback.
 - Deliver below-fold imagery in responsive WebP and JPEG formats, strip metadata, include explicit dimensions and lazy-load it.
 - Use factual or empty alternative text according to whether the image adds meaning or is purely decorative. Never turn decorative imagery into an unsupported personal claim.
 
