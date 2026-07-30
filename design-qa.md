@@ -1,5 +1,37 @@
 # Design QA
 
+## Browser identity release 1.13.4
+
+- Review date: 2026-07-30
+- Scope: pure graphic browser/install identity, page-layout exclusion, asset
+  management and release documentation
+- Viewports: 1,440 × 1,000; 390 × 844; 320 × 720
+- Locales: German, Japanese and Arabic right-to-left
+
+### Findings
+
+No actionable P0, P1 or P2 findings remain.
+
+- The final symbol contains no letter, monogram or typographic glyph. Its
+  three-plane silhouette and central aperture remain recognisable at 32 pixels.
+- The webpage navigation contains only the live-text `JMYING` wordmark. No symbol
+  image, symbol class or raster identity participates in desktop or mobile page
+  layout.
+- The symbol is limited to the revisioned 32-pixel favicon, 180-pixel Apple touch
+  icon and 192/512-pixel web-app manifest assets.
+- The desktop header remains 68 pixels high; mobile controls remain 44 pixels high.
+  No horizontal overflow appears at 1,440, 390 or 320 pixels.
+- German long text, Japanese type and Arabic mirrored navigation retain their
+  existing hierarchy. The Arabic document reports `dir="rtl"` and no overflow.
+- Browser inspection reports no console warnings or errors and resolves the
+  expected favicon, Apple touch icon and manifest declarations.
+- The transparent master and deterministic exports have explicit provenance and
+  regeneration rules in `assets/brand/README.md`.
+- Syntax, 14-locale parity, identity, quality, performance, security and Cloudflare
+  dry-run checks pass.
+
+final result: passed
+
 ## Performance release 1.13.0
 
 - Review date: 2026-07-30

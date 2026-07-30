@@ -19,6 +19,8 @@ branding, proprietary assets or layouts:
 - content remains visually dominant
 - simple rules and whitespace separate evidence, with one touch-optimised carousel for selected projects
 - warm neutral surfaces are paired with restrained institutional blue
+- an original pure graphic symbol provides a compact cross-device identity without
+  using a letterform or imitating a referenced organisation's mark
 - Helvetica-first typography uses a compact, consistent hierarchy
 - adaptive layouts reflow from 320-pixel mobile widths to large desktops
 - all interactive targets are at least 44 × 44 pixels
@@ -50,7 +52,11 @@ The browser language and region are detected locally. A visitor’s explicit sel
 
 Language names are displayed in the current interface language when the browser supports `Intl.DisplayNames`. Dates use locale-aware `Intl.DateTimeFormat`, Arabic uses a mirrored right-to-left layout, and every release checks all translated keys and BCP 47 language tags.
 
-Latin text prefers Helvetica Neue and Helvetica. Chinese, Japanese, Korean, Thai and Arabic use script-appropriate system fallbacks so every language keeps legible, natural letterforms without downloading third-party fonts.
+Latin text prefers Helvetica Neue and Helvetica, with same-origin, Unicode-ranged
+Inter and Source Serif 4 fallbacks for systems that lack the preferred faces.
+Chinese, Japanese, Korean, Thai and Arabic use script-appropriate system fallbacks
+so every language keeps legible, natural letterforms without third-party runtime
+font requests.
 
 Translation intent, protected facts, language-specific editorial choices and the review loop for future copy changes are documented in [`docs/LOCALIZATION_GUIDE.md`](docs/LOCALIZATION_GUIDE.md).
 
@@ -93,7 +99,10 @@ This runs JavaScript syntax validation, translation consistency checks, a privac
 
 ## Collaboration and releases
 
-Repository rules for contributors and coding assistants live in `AGENTS.md`. Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic Versioning and the release checklist are documented in `docs/VERSIONING.md`.
+Repository rules for contributors and coding assistants live in `AGENTS.md`. The
+complete project state and end-to-end Codex operating workflow live in `CODEX.md`.
+Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic
+Versioning and the release checklist are documented in `docs/VERSIONING.md`.
 
 Pull requests run the same formatting and test checks in GitHub Actions. Dependabot groups routine development-dependency updates.
 

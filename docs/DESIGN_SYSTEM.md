@@ -25,6 +25,10 @@ layouts that could imply affiliation.
 - [CSS Borders and Box Decorations Level 4](https://drafts.csswg.org/css-borders/#corner-shaping): the standards definition for progressive `corner-shape: squircle` rendering on the web.
 - [The Economist visualisation interview](https://education.economist.com/insights/interviews/tips-for-visualising-data-like-the-economist) and [chart style guide](https://design-system.economist.com/documents/CHARTstyleguide_20170505.pdf): favour simple chart forms, a limited palette, direct labels and one restrained highlight colour when emphasis is needed.
 - [Cravath](https://www.cravath.com/) and [Skadden capabilities](https://www.skadden.com/capabilities): current examples of evidence-first professional writing, numbered editorial structure and clear capability taxonomy.
+- [Deloitte brand refresh](https://www.deloitte.com/an/en/about/story/purpose-values/brand-makeover.html) and [Green Dot history](https://www.deloitte.com/cbc/en/about/governance/network-brand-alliances/becoming-the-green-dot.html): consistency across services, geographies and devices, plus the value of one simple recognisable anchor.
+- [EY brand expansion](https://www.ey.com/en_gl/newsroom/2024/10/ey-unveils-shape-the-future-with-confidence-brand-expansion): a stable core identity can support restrained shape variation without losing recognition.
+- [PwC Global Annual Review 2025](https://www.pwc.com/jp/ja/about-us/annual-review/pdf/annual-review-2025en.pdf): the “momentum mark” is a current example of using abstract movement to express forward progress.
+- [KPMG Make the Difference campaign](https://kpmg.com/fr/fr/media/press-releases/2026/01/make-the-difference-nouvelle-campagne-marque.html): trust, clarity, ingenuity and measurable impact provide a useful professional-tone benchmark.
 
 The historical Goldman Sachs manual is treated as supporting evidence, not as a
 current licence to reproduce brand assets. Current public pages and the project's
@@ -38,8 +42,8 @@ own content constraints take precedence.
 - Simplified Chinese pairs PingFang SC / Microsoft YaHei UI / Noto Sans SC body text with Songti SC / Noto Serif SC display text. Traditional Chinese pairs PingFang TC / Microsoft JhengHei UI / Noto Sans TC with Songti TC / Noto Serif TC.
 - Japanese pairs Hiragino Sans / Yu Gothic UI / Noto Sans JP with Hiragino Mincho / Yu Mincho / Noto Serif JP. Korean pairs Apple SD Gothic Neo / Malgun Gothic / Noto Sans KR with a restrained AppleMyungjo / Batang / Noto Serif KR display stack.
 - Thai uses Thonburi / Leelawadee UI / Sarabun / Noto Sans Thai UI at every level. Arabic likewise retains its native sans stack. Neither script is forced into an unrelated Western serif.
-- Vietnamese uses the platform UI stack with Segoe UI / Noto Sans fallbacks and a Noto Serif / Times New Roman display stack, all of which cover Vietnamese diacritics. It does not rely on Iowan Old Style or Baskerville being complete on every platform.
-- No webfont is downloaded. This avoids render blocking, keeps the page private and lets Apple, Windows and Android select their best locally tuned glyphs.
+- Vietnamese shares the Latin Helvetica-first stack and the Unicode-ranged JMYing Sans/JMYing Serif fallbacks, whose selected Inter and Source Serif 4 subsets cover Vietnamese diacritics.
+- The site self-hosts Unicode-ranged Inter and Source Serif 4 fallbacks for Latin and Vietnamese. They load from the same origin only when a preferred system face is unavailable; no third-party font service or blanket preload is used.
 - Do not download or redistribute Goldman Sachs proprietary fonts. The project adopts the public site's hierarchy principles, not its brand assets.
 - Display titles use 58–88 pixels at 0.96 line height and weight 400. Section titles use 44–72 pixels at 1.0 line height and weight 400.
 - Subheads use 22–27 pixels at 1.3 line height and weight 500. Reading text uses 16–18 pixels at 1.65 line height and stays within roughly 62 characters.
@@ -56,6 +60,17 @@ own content constraints take precedence.
 - Information accent: `#3266AD`; success is reserved for availability.
 - Dark mode maps the same semantic roles to Claude-compatible dark neutrals.
 - Avoid decorative gradients. A restrained tonal overlay may be used only to keep text readable on photography. Colour never carries meaning alone.
+
+### Identity
+
+- The primary symbol is a pure graphic device: three connected planes around one clear aperture. It represents evidence, structured review and clarity without using initials, letters or an accounting cliché.
+- Keep the symbol in institutional navy, warm white and pale blue. The compact palette ensures recognition without competing with content.
+- Preserve its rounded-square silhouette, internal negative space and square safe area. Never stretch, rotate, add a word inside it or introduce effects.
+- Reserve the symbol for browser chrome, Apple touch and install surfaces. It does
+  not participate in the webpage layout.
+- Keep the navigation identity as accessible live `JMYING` text. Do not place,
+  overlay or rasterise the graphic inside the page.
+- Broad professional-brand references inform clarity and consistency only. Do not reproduce Deloitte's green dot, EY's yellow beam, PwC's stacked warm-colour blocks or KPMG's boxed wordmark.
 
 ### Shape and spacing
 

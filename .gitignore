@@ -5,4 +5,5 @@ dist/
 .env
 qa/
 design-audit/
+tmp/
 .DS_Store

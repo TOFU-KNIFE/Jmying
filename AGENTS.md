@@ -24,3 +24,7 @@ JMYING is a lightweight, multilingual professional profile. It is a static site 
 6. Use Conventional Commit messages and the workflow in `docs/VERSIONING.md`.
 
 All deployable files live in `public/`. Security and language checks live in `scripts/`.
+
+Read `CODEX.md` for the complete project state, assistant handoff rules, visual
+review matrix, commit and pull-request procedure, Cloudflare deployment flow,
+production verification and rollback process.
