@@ -75,7 +75,24 @@ for (const { id, htmlLang } of manifestLocales) {
 }
 
 const fallback = JSON.parse(await readFile(join(localeDir, "en.json"), "utf8"));
-const requiredKeys = new Set([...htmlKeys, "copied", "present"]);
+const runtimeMessageKeys = [
+  "stickerPlay",
+  "stickerStop",
+  "stickerReplay",
+  "stickerPlaying",
+  "stickerLoading",
+  "stickerStatusReady",
+  "stickerStatusPlaying",
+  "stickerStatusComplete",
+  "stickerStatusStopped",
+  "stickerStatusStatic",
+];
+const requiredKeys = new Set([
+  ...htmlKeys,
+  "copied",
+  "present",
+  ...runtimeMessageKeys,
+]);
 const fallbackKeys = Object.keys(fallback).sort();
 
 for (const locale of expectedLocales) {

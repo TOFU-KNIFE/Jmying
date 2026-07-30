@@ -174,7 +174,18 @@ if (!stickerVideoTag || !stickerVideoElement) {
     );
   }
   if (/\bautoplay(?:\s|=|>)/.test(stickerVideoTag)) {
-    findings.push("AI accounting sticker video must not autoplay");
+    findings.push(
+      "AI accounting sticker video must not use an eager autoplay attribute",
+    );
+  }
+  if (!/\bmuted(?:\s|=|>)/.test(stickerVideoTag)) {
+    findings.push("AI accounting sticker video must remain muted");
+  }
+  if (!/\bplaysinline(?:\s|=|>)/.test(stickerVideoTag)) {
+    findings.push("AI accounting sticker video must use playsinline");
+  }
+  if (/\bloop(?:\s|=|>)/.test(stickerVideoTag)) {
+    findings.push("AI accounting sticker video must not loop");
   }
 }
 if (
@@ -238,5 +249,5 @@ if (findings.length) {
 }
 
 console.log(
-  `Performance audit passed (${packageJson.version}, ${imageUrls.length} revisioned image references, ${Math.ceil(stickerMediaTotal / 1024)} KiB delayed sticker media, AVIF/WebP/JPEG fallbacks).`,
+  `Performance audit passed (${packageJson.version}, ${imageUrls.length} revisioned image references, ${Math.ceil(stickerMediaTotal / 1024)} KiB near-viewport sticker media, AVIF/WebP/JPEG fallbacks).`,
 );
