@@ -50,6 +50,24 @@ if (!productionHtml.includes(`src="/app.js?v=${packageJson.version}"`)) {
   findings.push("production HTML is missing its versioned application script");
 }
 
+const fontBudgets = new Map([
+  ["inter-vietnamese-wght-normal-5.3.0.woff2", 40 * 1024],
+  ["inter-latin-ext-wght-normal-5.3.0.woff2", 90 * 1024],
+  ["inter-latin-wght-normal-5.3.0.woff2", 55 * 1024],
+  ["source-serif-4-vietnamese-wght-normal-5.3.0.woff2", 30 * 1024],
+  ["source-serif-4-latin-ext-wght-normal-5.3.0.woff2", 50 * 1024],
+  ["source-serif-4-latin-wght-normal-5.3.0.woff2", 60 * 1024],
+]);
+
+for (const [filename, limit] of fontBudgets) {
+  const info = await stat(join(distDir, "fonts", filename));
+  if (info.size > limit) {
+    findings.push(
+      `${filename} is ${Math.ceil(info.size / 1024)} KiB; font budget is ${Math.ceil(limit / 1024)} KiB`,
+    );
+  }
+}
+
 const imageBudgets = new Map([
   ["hero-photo-800.avif", 25 * 1024],
   ["hero-photo-1200.avif", 45 * 1024],
@@ -121,6 +139,12 @@ for (const requirement of [
       "Cache-Control: public, max-age=0, must-revalidate, no-transform",
     ),
     "HTML responses do not prevent edge script injection",
+  ],
+  [
+    styles.includes('font-family: "JMYing Sans"') &&
+      styles.includes('font-family: "JMYing Serif"') &&
+      !html.includes('rel="preload" as="font"'),
+    "self-hosted fallback fonts should remain Unicode-ranged and load on demand",
   ],
   [headers.includes("unload=()"), "bfcache protection is missing unload=()"],
   [

@@ -14,13 +14,71 @@ const sourceStylesPath = join(publicDir, "styles.css");
 const outputStylesPath = join(distDir, "styles.css");
 const sourceScriptPath = join(publicDir, "app.js");
 const outputScriptPath = join(distDir, "app.js");
+const fontDir = join(distDir, "fonts");
 const packageJson = JSON.parse(
   await readFile(join(root, "package.json"), "utf8"),
 );
+const fontAssets = [
+  [
+    "@fontsource-variable/inter",
+    "inter-vietnamese-wght-normal.woff2",
+    "inter-vietnamese-wght-normal-5.3.0.woff2",
+  ],
+  [
+    "@fontsource-variable/inter",
+    "inter-latin-ext-wght-normal.woff2",
+    "inter-latin-ext-wght-normal-5.3.0.woff2",
+  ],
+  [
+    "@fontsource-variable/inter",
+    "inter-latin-wght-normal.woff2",
+    "inter-latin-wght-normal-5.3.0.woff2",
+  ],
+  [
+    "@fontsource-variable/source-serif-4",
+    "source-serif-4-vietnamese-wght-normal.woff2",
+    "source-serif-4-vietnamese-wght-normal-5.3.0.woff2",
+  ],
+  [
+    "@fontsource-variable/source-serif-4",
+    "source-serif-4-latin-ext-wght-normal.woff2",
+    "source-serif-4-latin-ext-wght-normal-5.3.0.woff2",
+  ],
+  [
+    "@fontsource-variable/source-serif-4",
+    "source-serif-4-latin-wght-normal.woff2",
+    "source-serif-4-latin-wght-normal-5.3.0.woff2",
+  ],
+];
 
 await rm(distDir, { force: true, recursive: true });
 await mkdir(distDir, { recursive: true });
 await cp(publicDir, distDir, { recursive: true });
+await mkdir(fontDir, { recursive: true });
+await Promise.all(
+  fontAssets.map(([packageName, sourceName, outputName]) =>
+    cp(
+      join(root, "node_modules", packageName, "files", sourceName),
+      join(fontDir, outputName),
+    ),
+  ),
+);
+await Promise.all([
+  cp(
+    join(root, "node_modules", "@fontsource-variable", "inter", "LICENSE"),
+    join(fontDir, "INTER-LICENSE.txt"),
+  ),
+  cp(
+    join(
+      root,
+      "node_modules",
+      "@fontsource-variable",
+      "source-serif-4",
+      "LICENSE",
+    ),
+    join(fontDir, "SOURCE-SERIF-4-LICENSE.txt"),
+  ),
+]);
 
 const sourceHtml = await readFile(sourceHtmlPath, "utf8");
 const outputHtml = await minifyHtml(sourceHtml, {
