@@ -146,7 +146,7 @@ for (const size of ["192x192", "512x512"]) {
   }
 }
 
-if (!headers.includes("/brand/*") || !headers.includes("/*.png")) {
+if (!headers.includes("/*.png")) {
   findings.push("brand PNGs are missing their immutable cache rules");
 }
 

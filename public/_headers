@@ -30,10 +30,6 @@
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: font/woff2
 
-/brand/*
-  Cache-Control: public, max-age=31536000, immutable
-  X-Robots-Tag: noindex, noimageindex
-
 /*.png
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex, noimageindex
