@@ -867,7 +867,7 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
   setupEvidenceExplorer();
-  applyLocale(currentLocale);
+  if (currentLocale !== "en") void applyLocale(currentLocale);
   setupNavigationTracking();
   setupHighlightCarousel();
   setupPurposefulMotion();

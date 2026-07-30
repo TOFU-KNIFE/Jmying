@@ -111,6 +111,12 @@ for (const requirement of [
     "carousel geometry is not deferred until near the viewport",
   ],
   [
+    app.includes(
+      'if (currentLocale !== "en") void applyLocale(currentLocale);',
+    ),
+    "the default English document is still translated redundantly at startup",
+  ],
+  [
     headers.includes(
       "Cache-Control: public, max-age=0, must-revalidate, no-transform",
     ),
