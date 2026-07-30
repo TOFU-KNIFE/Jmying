@@ -23,7 +23,7 @@
     <meta content="profile" property="og:type" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta
-      content="https://jmying.com/hero-photo-1600.jpg"
+      content="https://jmying.com/hero-photo-1600.jpg?v=1.13.0"
       property="og:image"
     />
     <meta
@@ -38,14 +38,14 @@
     <link
       as="image"
       fetchpriority="high"
-      href="/hero-photo-1600.webp"
+      href="/hero-photo-1600.avif?v=1.13.0"
       imagesizes="100vw"
-      imagesrcset="/hero-photo-800.webp 800w, /hero-photo-1600.webp 1600w"
+      imagesrcset="/hero-photo-800.avif?v=1.13.0 800w, /hero-photo-1200.avif?v=1.13.0 1200w, /hero-photo-1400.avif?v=1.13.0 1400w, /hero-photo-1600.avif?v=1.13.0 1600w"
       rel="preload"
-      type="image/webp"
+      type="image/avif"
     />
     <title>Jeremy (Lei) Ying · JMYING</title>
-    <link href="/styles.css?v=1.12.0" rel="stylesheet" />
+    <link href="/styles.css?v=1.13.0" rel="stylesheet" />
   </head>
   <body>
     <a class="skip-link" data-i18n="skip" href="#profile">Skip to profile</a>
@@ -97,12 +97,32 @@
         <picture aria-hidden="true" class="hero-backdrop">
           <source
             sizes="100vw"
-            srcset="/hero-photo-800.webp 800w, /hero-photo-1600.webp 1600w"
+            srcset="
+              /hero-photo-800.avif?v=1.13.0   800w,
+              /hero-photo-1200.avif?v=1.13.0 1200w,
+              /hero-photo-1400.avif?v=1.13.0 1400w,
+              /hero-photo-1600.avif?v=1.13.0 1600w
+            "
+            type="image/avif"
+          />
+          <source
+            sizes="100vw"
+            srcset="
+              /hero-photo-800.webp?v=1.13.0   800w,
+              /hero-photo-1200.webp?v=1.13.0 1200w,
+              /hero-photo-1400.webp?v=1.13.0 1400w,
+              /hero-photo-1600.webp?v=1.13.0 1600w
+            "
             type="image/webp"
           />
           <source
             sizes="100vw"
-            srcset="/hero-photo-800.jpg 800w, /hero-photo-1600.jpg 1600w"
+            srcset="
+              /hero-photo-800.jpg?v=1.13.0   800w,
+              /hero-photo-1200.jpg?v=1.13.0 1200w,
+              /hero-photo-1400.jpg?v=1.13.0 1400w,
+              /hero-photo-1600.jpg?v=1.13.0 1600w
+            "
             type="image/jpeg"
           />
           <img
@@ -112,8 +132,13 @@
             height="914"
             loading="eager"
             sizes="100vw"
-            src="/hero-photo-1600.jpg"
-            srcset="/hero-photo-800.jpg 800w, /hero-photo-1600.jpg 1600w"
+            src="/hero-photo-1600.jpg?v=1.13.0"
+            srcset="
+              /hero-photo-800.jpg?v=1.13.0   800w,
+              /hero-photo-1200.jpg?v=1.13.0 1200w,
+              /hero-photo-1400.jpg?v=1.13.0 1400w,
+              /hero-photo-1600.jpg?v=1.13.0 1600w
+            "
             width="1600"
           />
         </picture>
@@ -175,24 +200,36 @@
           <figure class="yearbook-portrait">
             <picture
               ><source
-                sizes="(max-width: 820px) min(72vw, 280px), 270px"
+                sizes="(max-width: 820px) min(38vw, 280px), 270px"
                 srcset="
-                  /portrait-480.webp  480w,
-                  /portrait-760.webp  760w,
-                  /portrait.webp     1024w
+                  /portrait-320.avif?v=1.13.0  320w,
+                  /portrait-480.avif?v=1.13.0  480w,
+                  /portrait-760.avif?v=1.13.0  760w,
+                  /portrait.avif?v=1.13.0     1024w
+                "
+                type="image/avif" />
+              <source
+                sizes="(max-width: 820px) min(38vw, 280px), 270px"
+                srcset="
+                  /portrait-320.webp?v=1.13.0  320w,
+                  /portrait-480.webp?v=1.13.0  480w,
+                  /portrait-760.webp?v=1.13.0  760w,
+                  /portrait.webp?v=1.13.0     1024w
                 "
                 type="image/webp" />
               <img
                 alt="Yearbook portrait of Jeremy Ying"
                 decoding="async"
+                fetchpriority="low"
                 height="1280"
                 loading="lazy"
-                sizes="(max-width: 820px) min(72vw, 280px), 270px"
-                src="/portrait.jpg"
+                sizes="(max-width: 820px) min(38vw, 280px), 270px"
+                src="/portrait.jpg?v=1.13.0"
                 srcset="
-                  /portrait-480.jpg  480w,
-                  /portrait-760.jpg  760w,
-                  /portrait.jpg     1024w
+                  /portrait-320.jpg?v=1.13.0  320w,
+                  /portrait-480.jpg?v=1.13.0  480w,
+                  /portrait-760.jpg?v=1.13.0  760w,
+                  /portrait.jpg?v=1.13.0     1024w
                 "
                 width="1024"
             /></picture>
@@ -605,17 +642,32 @@
               <picture aria-hidden="true" class="highlight-card-backdrop">
                 <source
                   sizes="(max-width: 820px) min(82vw, 340px), 400px"
-                  srcset="/approach-800.webp 800w, /approach-1400.webp 1400w"
+                  srcset="
+                    /approach-800.avif?v=1.13.0   800w,
+                    /approach-1400.avif?v=1.13.0 1400w
+                  "
+                  type="image/avif"
+                />
+                <source
+                  sizes="(max-width: 820px) min(82vw, 340px), 400px"
+                  srcset="
+                    /approach-800.webp?v=1.13.0   800w,
+                    /approach-1400.webp?v=1.13.0 1400w
+                  "
                   type="image/webp"
                 />
                 <img
                   alt=""
                   decoding="async"
+                  fetchpriority="low"
                   height="875"
                   loading="lazy"
                   sizes="(max-width: 820px) min(82vw, 340px), 400px"
-                  src="/approach-1400.jpg"
-                  srcset="/approach-800.jpg 800w, /approach-1400.jpg 1400w"
+                  src="/approach-1400.jpg?v=1.13.0"
+                  srcset="
+                    /approach-800.jpg?v=1.13.0   800w,
+                    /approach-1400.jpg?v=1.13.0 1400w
+                  "
                   width="1400"
                 />
               </picture>
@@ -792,17 +844,29 @@
         <picture aria-hidden="true" class="connect-backdrop">
           <source
             sizes="100vw"
-            srcset="/lake-800.webp 800w, /lake-1400.webp 1400w"
+            srcset="
+              /lake-800.avif?v=1.13.0   800w,
+              /lake-1400.avif?v=1.13.0 1400w
+            "
+            type="image/avif"
+          />
+          <source
+            sizes="100vw"
+            srcset="
+              /lake-800.webp?v=1.13.0   800w,
+              /lake-1400.webp?v=1.13.0 1400w
+            "
             type="image/webp"
           />
           <img
             alt=""
             decoding="async"
+            fetchpriority="low"
             height="788"
             loading="lazy"
             sizes="100vw"
-            src="/lake-1400.jpg"
-            srcset="/lake-800.jpg 800w, /lake-1400.jpg 1400w"
+            src="/lake-1400.jpg?v=1.13.0"
+            srcset="/lake-800.jpg?v=1.13.0 800w, /lake-1400.jpg?v=1.13.0 1400w"
             width="1400"
           />
         </picture>
@@ -900,6 +964,6 @@
       </section>
     </div>
     <div aria-live="polite" class="toast" id="toast" role="status"></div>
-    <script defer="" src="/app.js?v=1.12.0"></script>
+    <script defer="" src="/app.js?v=1.13.0"></script>
   </body>
 </html>

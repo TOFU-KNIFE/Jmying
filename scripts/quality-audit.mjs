@@ -57,7 +57,7 @@ for (const tag of imageTags) {
   }
 }
 
-if (!/hero-photo-1600\.webp[\s\S]*rel="preload"/.test(html)) {
+if (!/hero-photo-1600\.avif[\s\S]*rel="preload"/.test(html)) {
   findings.push("the primary hero photo preload is missing");
 }
 
@@ -79,12 +79,16 @@ for (const [family, largestWidth] of responsiveImageFamilies) {
 const publicImages = [
   "portrait.jpg",
   "portrait.webp",
+  "portrait.avif",
   "approach-1400.jpg",
   "approach-1400.webp",
+  "approach-1400.avif",
   "lake-1400.jpg",
   "lake-1400.webp",
+  "lake-1400.avif",
   "hero-photo-1600.jpg",
   "hero-photo-1600.webp",
+  "hero-photo-1600.avif",
 ];
 const imageBudgetBytes = 350 * 1024;
 for (const filename of publicImages) {
@@ -100,15 +104,10 @@ for (const filename of publicImages) {
   }
 }
 
-for (const filename of [
-  "hero-photo-800.webp",
-  "hero-photo-800.jpg",
-  "hero-photo-1600.webp",
-  "hero-photo-1600.jpg",
-]) {
-  const cacheRule = `/${filename}\n  Cache-Control: public, max-age=604800, stale-while-revalidate=86400`;
+for (const extension of ["avif", "webp", "jpg"]) {
+  const cacheRule = `/*.${extension}\n  Cache-Control: public, max-age=31536000, immutable`;
   if (!headers.includes(cacheRule)) {
-    findings.push(`${filename} is missing its one-week cache rule`);
+    findings.push(`${extension} images are missing their immutable cache rule`);
   }
 }
 

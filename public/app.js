@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.12.0";
+  const localeVersion = "1.13.0";
   const localeManifest = [
     {
       id: "en",
@@ -151,6 +151,7 @@
     "[data-evidence-detail-description]",
   );
   const highlightTrack = document.getElementById("highlightTrack");
+  const highlightsSection = document.getElementById("highlights");
   const previousHighlightButton = document.querySelector(
     "[data-highlight-previous]",
   );
@@ -181,6 +182,7 @@
   let currentLocale = resolvePreferredLocale();
   let carouselIndex = 0;
   let carouselFrame = 0;
+  let carouselReady = false;
   let activeHighlightCard = null;
   let lastHighlightTrigger = null;
   let activeEvidenceItem =
@@ -399,11 +401,13 @@
       });
       formatDateRanges(messages);
       renderEvidenceDetail(activeEvidenceItem, messages);
-      renderLanguageOptions();
+      if (languageList.childElementCount) renderLanguageOptions();
       if (activeHighlightCard) renderHighlightDialog(activeHighlightCard);
-      window.requestAnimationFrame(() =>
-        scrollToHighlight(carouselIndex, "auto"),
-      );
+      if (carouselReady) {
+        window.requestAnimationFrame(() =>
+          scrollToHighlight(carouselIndex, "auto"),
+        );
+      }
       if (persist) storeLocale(currentLocale);
       return true;
     } catch {
@@ -450,6 +454,7 @@
 
   function openLanguageDialog() {
     closeMobileMenu();
+    renderLanguageOptions();
     lastFocusedElement = document.activeElement;
     languageDialog.hidden = false;
     languageTrigger.setAttribute("aria-expanded", "true");
@@ -494,7 +499,14 @@
     nextHighlightButton.disabled = logicalScroll >= maxScroll - 1;
   }
 
+  function activateHighlightCarousel() {
+    if (carouselReady) return;
+    carouselReady = true;
+    updateHighlightControls();
+  }
+
   function scrollByHighlight(direction) {
+    activateHighlightCarousel();
     const cards = highlightCards();
     if (!cards.length) return;
     const trackStyles = window.getComputedStyle(highlightTrack);
@@ -512,6 +524,7 @@
   }
 
   function scrollToHighlight(index, requestedBehavior) {
+    if (!carouselReady) return;
     const cards = highlightCards();
     if (!cards.length) return;
     carouselIndex = Math.max(0, Math.min(index, cards.length - 1));
@@ -572,7 +585,7 @@
   }
 
   function requestHighlightIndexUpdate() {
-    if (carouselFrame) return;
+    if (!carouselReady || carouselFrame) return;
     carouselFrame = window.requestAnimationFrame(
       updateHighlightIndexFromScroll,
     );
@@ -611,16 +624,20 @@
 
   function setupHighlightCarousel() {
     if (!highlightTrack) return;
-    updateHighlightControls();
     previousHighlightButton.addEventListener("click", () => {
       scrollByHighlight(-1);
     });
     nextHighlightButton.addEventListener("click", () => {
       scrollByHighlight(1);
     });
-    highlightTrack.addEventListener("scroll", requestHighlightIndexUpdate, {
-      passive: true,
-    });
+    highlightTrack.addEventListener(
+      "scroll",
+      () => {
+        activateHighlightCarousel();
+        requestHighlightIndexUpdate();
+      },
+      { passive: true },
+    );
     highlightTrack.addEventListener("keydown", (event) => {
       if (event.target !== highlightTrack) return;
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
@@ -632,6 +649,21 @@
     window.addEventListener("resize", requestHighlightIndexUpdate, {
       passive: true,
     });
+
+    if (!("IntersectionObserver" in window) || !highlightsSection) {
+      activateHighlightCarousel();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        activateHighlightCarousel();
+        observer.disconnect();
+      },
+      { rootMargin: "480px 0px", threshold: 0 },
+    );
+    observer.observe(highlightsSection);
   }
 
   function renderEvidenceDetail(
@@ -834,7 +866,6 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
-  renderLanguageOptions();
   setupEvidenceExplorer();
   applyLocale(currentLocale);
   setupNavigationTracking();
