@@ -1402,6 +1402,7 @@ h1 span {
   scrollbar-width: none;
   touch-action: pan-x;
   -webkit-overflow-scrolling: touch;
+  list-style: none;
 }
 
 .highlight-track::-webkit-scrollbar {
