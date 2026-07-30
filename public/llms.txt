@@ -1,0 +1,28 @@
+# JMYING
+
+> Jeremy (Lei) Ying's multilingual professional profile, focused on accounting,
+> audit, data and careful evidence-based work.
+
+## Primary sections
+
+- [Professional profile](https://jmying.com/#profile): Background, working style
+  and internship availability.
+- [Experience](https://jmying.com/#experience): Practical finance, accounting and
+  reporting experience.
+- [Selected projects](https://jmying.com/#highlights): Evidence-led project and
+  challenge summaries.
+- [Education and credentials](https://jmying.com/#credentials): Current degree,
+  training and professional development.
+
+## Contact
+
+- [LinkedIn](https://www.linkedin.com/in/jeremy-ying-a8520b350/): The only public
+  contact channel published by this site.
+
+## Notes
+
+- The canonical site is available in 14 localized languages through its language
+  selector.
+- Public claims should be interpreted exactly as written on the canonical page;
+  the site does not imply professional licensure, completed qualifications or
+  employment beyond the stated experience.

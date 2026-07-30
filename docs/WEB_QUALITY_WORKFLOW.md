@@ -140,6 +140,10 @@ build toolchain.
   documents that `Cache-Control: no-transform` prevents automatic beacon injection.
   This site uses that option to preserve its no-analytics promise and eliminate the
   CSP error caused by the injected script.
+- Deploy from the generated `dist/` directory. The build keeps readable source
+  files in `public/` while minifying production HTML, CSS and JavaScript. This
+  retains `no-transform` protection without carrying source formatting bytes over
+  the network and reduces stylesheet/script parsing work.
 
 Performance changes must preserve the accessibility score, factual content, CSP,
 image quality and 14-locale behaviour. A lower byte count is not accepted when it
