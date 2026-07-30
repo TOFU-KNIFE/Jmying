@@ -11,9 +11,13 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Added AVIF delivery for every active photographic surface while retaining WebP and JPEG fallbacks, including 1,200- and 1,400-pixel Hero breakpoints for common mobile and desktop pixel densities.
 - Added a 320-pixel portrait source and corrected the responsive `sizes` hint so narrow screens no longer download the 760-pixel portrait unnecessarily.
 - Added a deterministic performance audit covering document, stylesheet, script and image budgets; cache revisioning; resource priority; screen rendering deferral; and back-forward cache safeguards.
+- Added a concise `llms.txt` discovery document so compatible assistants can
+  identify the canonical profile sections and interpret public claims accurately.
 
 ### Changed
 
+- Minified production HTML, CSS and JavaScript at build time, preserving readable
+  source files while reducing transfer and parsing work at runtime.
 - Deferred hidden language-menu construction until the menu is opened.
 - Deferred project-carousel geometry measurements until its section approaches the viewport.
 - Enabled `content-visibility` containment for below-fold sections, with an explicit print-mode override.

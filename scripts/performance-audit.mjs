@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const publicDir = join(root, "public");
+const distDir = join(root, "dist");
 const packageJson = JSON.parse(
   await readFile(join(root, "package.json"), "utf8"),
 );
@@ -11,6 +12,7 @@ const html = await readFile(join(publicDir, "index.html"), "utf8");
 const app = await readFile(join(publicDir, "app.js"), "utf8");
 const styles = await readFile(join(publicDir, "styles.css"), "utf8");
 const headers = await readFile(join(publicDir, "_headers"), "utf8");
+const llms = await readFile(join(publicDir, "llms.txt"), "utf8");
 const findings = [];
 
 const sourceBudgets = new Map([
@@ -26,6 +28,26 @@ for (const [filename, limit] of sourceBudgets) {
       `${filename} is ${Math.ceil(info.size / 1024)} KiB; source budget is ${Math.ceil(limit / 1024)} KiB`,
     );
   }
+}
+
+const productionBudgets = new Map([
+  ["index.html", 30 * 1024],
+  ["styles.css", 50 * 1024],
+  ["app.js", 20 * 1024],
+]);
+
+for (const [filename, limit] of productionBudgets) {
+  const info = await stat(join(distDir, filename));
+  if (info.size > limit) {
+    findings.push(
+      `production ${filename} is ${Math.ceil(info.size / 1024)} KiB; delivery budget is ${Math.ceil(limit / 1024)} KiB`,
+    );
+  }
+}
+
+const productionHtml = await readFile(join(distDir, "index.html"), "utf8");
+if (!productionHtml.includes(`src="/app.js?v=${packageJson.version}"`)) {
+  findings.push("production HTML is missing its versioned application script");
 }
 
 const imageBudgets = new Map([
@@ -95,6 +117,12 @@ for (const requirement of [
     "HTML responses do not prevent edge script injection",
   ],
   [headers.includes("unload=()"), "bfcache protection is missing unload=()"],
+  [
+    llms.startsWith("# JMYING") &&
+      llms.includes("https://jmying.com/#profile") &&
+      llms.includes("https://jmying.com/#highlights"),
+    "llms.txt does not expose the canonical profile structure",
+  ],
 ]) {
   if (!requirement[0]) findings.push(requirement[1]);
 }
