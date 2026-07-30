@@ -19,6 +19,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 - Minified production HTML, CSS and JavaScript at build time, preserving readable
   source files while reducing transfer and parsing work at runtime.
 - Deferred hidden language-menu construction until the menu is opened.
+- Skipped the redundant page-wide locale rewrite when the server-rendered English
+  document already matches the visitor's preferred language.
 - Deferred project-carousel geometry measurements until its section approaches the viewport.
 - Enabled `content-visibility` containment for below-fold sections, with an explicit print-mode override.
 - Revisioned image requests and extended their browser cache lifetime to one year with immutable version URLs.
