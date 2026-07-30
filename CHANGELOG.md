@@ -24,6 +24,7 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Prevented Cloudflare's automatically injected analytics script from producing CSP console errors and browser Inspector issues.
 - Added `unload=()` to the Permissions Policy to protect eligibility for instant back-forward cache restoration.
+- Replaced incompatible `listitem` roles on project-card articles with a native ordered-list structure.
 
 ## [1.12.0] - 2026-07-18
 
