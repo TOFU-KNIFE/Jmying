@@ -4,6 +4,28 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.13.4] - 2026-07-30
+
+### Added
+
+- Added an original, pure graphic JMYING symbol with no letters or monogram, plus
+  transparent master, responsive brand exports, favicon, Apple touch icon and
+  revisioned web-app manifest icons.
+- Added `CODEX.md` as a complete project-state, collaboration, quality, commit,
+  pull-request, deployment, production-verification and rollback runbook.
+- Added managed brand provenance, regeneration prompt and deterministic export
+  rules under `assets/brand/`.
+- Added automated checks for identity asset presence, dimensions, cache revision
+  and loading priority.
+
+### Changed
+
+- Reserved the graphic symbol for browser, Apple touch and install contexts while
+  keeping the webpage navigation as accessible live `JMYING` text.
+- Updated the design system and project orientation to reflect the current
+  self-hosted font fallback architecture and professional identity references.
+- Added immutable cache rules for public PNG identity assets.
+
 ## [1.13.3] - 2026-07-30
 
 ### Added
@@ -264,7 +286,13 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...HEAD
+[1.13.4]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.3...v1.13.4
+[1.13.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.2...v1.13.3
+[1.13.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.1...v1.13.2
+[1.13.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.0...v1.13.1
+[1.13.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.12.0...v1.13.0
+[1.12.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.1...v1.11.0
 [1.10.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.9.0...v1.10.0

@@ -14,6 +14,9 @@ const html = await readFile(join(publicDir, "index.html"), "utf8");
 const app = await readFile(join(publicDir, "app.js"), "utf8");
 const styles = await readFile(join(publicDir, "styles.css"), "utf8");
 const headers = await readFile(join(publicDir, "_headers"), "utf8");
+const manifest = JSON.parse(
+  await readFile(join(publicDir, "site.webmanifest"), "utf8"),
+);
 const findings = [];
 
 const releaseVersions = new Map([
@@ -77,6 +80,10 @@ for (const [family, largestWidth] of responsiveImageFamilies) {
 }
 
 const publicImages = [
+  "favicon-32.png",
+  "apple-touch-icon.png",
+  "brand/jmying-symbol-192.png",
+  "brand/jmying-symbol-512.png",
   "portrait.jpg",
   "portrait.webp",
   "portrait.avif",
@@ -109,6 +116,38 @@ for (const extension of ["avif", "webp", "jpg"]) {
   if (!headers.includes(cacheRule)) {
     findings.push(`${extension} images are missing their immutable cache rule`);
   }
+}
+
+if (
+  !html.includes(`/favicon-32.png?v=${packageJson.version}`) ||
+  !html.includes(`/apple-touch-icon.png?v=${packageJson.version}`)
+) {
+  findings.push(
+    "browser and device identity assets are missing or unrevisioned",
+  );
+}
+
+if (
+  html.includes("jmying-symbol") ||
+  styles.includes(".brand-symbol") ||
+  styles.includes(".wordmark-name")
+) {
+  findings.push("the graphic identity must not participate in page layout");
+}
+
+for (const size of ["192x192", "512x512"]) {
+  const icon = manifest.icons?.find((candidate) => candidate.sizes === size);
+  if (
+    !icon ||
+    icon.type !== "image/png" ||
+    !icon.src.includes(`?v=${packageJson.version}`)
+  ) {
+    findings.push(`web manifest is missing its revisioned ${size} PNG icon`);
+  }
+}
+
+if (!headers.includes("/brand/*") || !headers.includes("/*.png")) {
+  findings.push("brand PNGs are missing their immutable cache rules");
 }
 
 const navTargets = [...html.matchAll(/data-nav-link="" href="#([^"]+)"/g)].map(

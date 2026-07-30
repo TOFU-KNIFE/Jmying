@@ -33,7 +33,9 @@ Use Semantic Versioning:
 - Minor (`1.2.0`): new compatible sections, locales or interactions
 - Major (`2.0.0`): incompatible deployment, content-model or URL changes
 
-Keep the version in `package.json`, the `?v=` asset revisions in `public/index.html` and `public/app.js`, and `CHANGELOG.md` aligned.
+Keep the version in `package.json`, `package-lock.json`, the `?v=` CSS,
+JavaScript, locale, image and icon revisions in `public/index.html`,
+`public/app.js` and `public/site.webmanifest`, and `CHANGELOG.md` aligned.
 
 ## Release checklist
 
@@ -41,7 +43,8 @@ Keep the version in `package.json`, the `?v=` asset revisions in `public/index.h
 2. Run `npm run format` and `npm test`.
 3. Check desktop, mobile, reduced motion, a long-text locale, a complex-script locale and Arabic right-to-left layout.
 4. Move the release notes from `Unreleased` into a dated version section.
-5. Update `package.json` and the CSS/JavaScript/locale asset revisions.
+5. Update the package version and every changed CSS, JavaScript, locale, image and
+   identity-asset revision.
 6. Merge the release pull request; Cloudflare Workers Builds deploys the new `main` commit automatically.
 7. Verify `https://jmying.com`, security headers and the LinkedIn link.
 8. Tag the verified merge commit as `vX.Y.Z` and create a GitHub release from the changelog.
