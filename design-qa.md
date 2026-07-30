@@ -1,5 +1,65 @@
 # Design QA
 
+## AI × Accounting interaction release 1.14.0
+
+- Review date: 2026-07-30
+- Scope: homepage module extraction, manual media playback, multilingual states,
+  responsive cropping, accessibility fallbacks and same-origin delivery
+- Viewports: 1,440 × 1,000; 820 × 900; 390 × 844; 320 × 720
+- Locales: English, German, Japanese, Thai and Arabic right-to-left
+- States: ready, preparing, playing, complete, reduced motion, constrained
+  connection, media error and print
+
+### Findings
+
+No actionable P0, P1 or P2 findings remain.
+
+- The prototype is embedded as a supporting interaction study after the Selected
+  highlights carousel. It does not introduce a second Hero, navigation system,
+  framework runtime or unsupported professional claim.
+- Only three deployable, metadata-reviewed assets were extracted. The 5.2-second
+  H.264 MP4 and two WebP frames total 1,965,442 bytes; source portraits, editable
+  layers, reference recordings and research documents remain outside `public/`.
+- The complete static composition lazy-loads at low priority. The MP4 remains a
+  detached `data-src` with `preload="none"` until the visitor explicitly chooses
+  Play, so it does not affect the initial page transfer.
+- The start frame remains visible until the first decoded video frame is ready.
+  This preserves a stable visual hand-off instead of flashing between separately
+  rendered assets.
+- Playback has a 44-pixel keyboard-accessible Play/Replay control and a polite
+  live status. Repeated activation is disabled while preparing or playing, and
+  the control returns to Replay after completion.
+- Reduced-motion and constrained-connection visitors receive the complete static
+  preview without a motion-media request. Media errors, printing, page hiding and
+  offscreen playback also resolve to a stable static or reset state.
+- The wide stage preserves its full desktop composition and uses a centred crop
+  on narrow screens without introducing horizontal document overflow.
+- Module titles, explanation, action labels and status messages are present in
+  all 14 locale bundles. Logical layout and the centred media crop remain stable
+  in Arabic right-to-left mode.
+- The Content Security Policy allows only same-origin media, and the dedicated
+  media path uses immutable caching with image indexing disabled.
+- The module remains independent of critical profile content: all identity,
+  experience, project and contact information is available without playing it.
+
+### Extraction and release workflow
+
+1. Inspect the handoff archive without executing source code.
+2. Keep only the finished motion sequence and static frames required by the
+   browser; exclude source and research directories from `public/`.
+3. Verify dimensions, duration, codec, file size, hashes and metadata.
+4. Integrate the sequence into the existing native HTML/CSS/JavaScript system
+   with namespaced classes and no extra font or framework bundle.
+5. Add complete locale keys, reduced-motion/static behaviour, CSP and cache
+   rules.
+6. Review desktop, minimum-width, long-text, CJK/Thai and right-to-left states;
+   then run formatting, syntax, localisation, quality, performance, security and
+   Cloudflare dry-run gates before release.
+7. After merge, verify the production media MIME type, immutable cache header,
+   static fallback, manual playback and absence of console or network errors.
+
+final result: passed
+
 ## Browser identity release 1.13.4
 
 - Review date: 2026-07-30

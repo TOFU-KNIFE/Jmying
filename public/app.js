@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.13.4";
+  const localeVersion = "1.14.0";
   const localeManifest = [
     {
       id: "en",
@@ -152,6 +152,14 @@
   );
   const highlightTrack = document.getElementById("highlightTrack");
   const highlightsSection = document.getElementById("highlights");
+  const stickerModule = document.querySelector("[data-sticker-module]");
+  const stickerVideo = stickerModule?.querySelector(".sticker-video");
+  const stickerPlayButton = stickerModule?.querySelector("[data-sticker-play]");
+  const stickerPlayLabel = stickerModule?.querySelector("[data-sticker-label]");
+  const stickerStatus = stickerModule?.querySelector("[data-sticker-status]");
+  const reducedMotionQuery = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
   const previousHighlightButton = document.querySelector(
     "[data-highlight-previous]",
   );
@@ -185,6 +193,10 @@
   let carouselReady = false;
   let activeHighlightCard = null;
   let lastHighlightTrigger = null;
+  let stickerState = "ready";
+  let stickerSourceAttached = false;
+  let stickerPlayPending = false;
+  let stickerPlayRequest = 0;
   let activeEvidenceItem =
     evidenceItems.find(
       (item) => item.getAttribute("aria-pressed") === "true",
@@ -211,6 +223,14 @@
       highlightsCarouselLabel:
         highlightTrack?.getAttribute("aria-label") ||
         "Selected projects carousel",
+      stickerPlay: "Play motion",
+      stickerReplay: "Replay",
+      stickerPlaying: "Playing",
+      stickerLoading: "Preparing motion",
+      stickerStatusReady: "Motion ready",
+      stickerStatusPlaying: "Motion playing",
+      stickerStatusComplete: "Motion complete",
+      stickerStatusStatic: "Static preview shown",
     };
   }
 
@@ -403,6 +423,7 @@
       renderEvidenceDetail(activeEvidenceItem, messages);
       if (languageList.childElementCount) renderLanguageOptions();
       if (activeHighlightCard) renderHighlightDialog(activeHighlightCard);
+      renderStickerState(messages);
       if (carouselReady) {
         window.requestAnimationFrame(() =>
           scrollToHighlight(carouselIndex, "auto"),
@@ -476,6 +497,177 @@
     toast.classList.add("show");
     clearTimeout(toastTimer);
     toastTimer = window.setTimeout(() => toast.classList.remove("show"), 1800);
+  }
+
+  function getStickerMessages(messages = localeCache.get(currentLocale)) {
+    return { ...englishFallback, ...(messages || {}) };
+  }
+
+  function renderStickerState(messages = localeCache.get(currentLocale)) {
+    if (!stickerModule || !stickerPlayButton) return;
+    const copy = getStickerMessages(messages);
+    const stateCopy = {
+      ready: [copy.stickerPlay, copy.stickerStatusReady, false],
+      loading: [copy.stickerLoading, copy.stickerLoading, true],
+      playing: [copy.stickerPlaying, copy.stickerStatusPlaying, true],
+      complete: [copy.stickerReplay, copy.stickerStatusComplete, false],
+      static: [copy.stickerStatusStatic, copy.stickerStatusStatic, true],
+    };
+    const [label, status, disabled] =
+      stateCopy[stickerState] || stateCopy.ready;
+
+    if (stickerPlayLabel) stickerPlayLabel.textContent = label;
+    if (stickerStatus) stickerStatus.textContent = status;
+    stickerPlayButton.disabled = disabled;
+    stickerModule.dataset.stickerState = stickerState;
+    stickerModule.classList.toggle("is-static", stickerState === "static");
+  }
+
+  function setStickerState(state) {
+    stickerState = state;
+    renderStickerState();
+  }
+
+  function showStickerStartFrame() {
+    stickerModule?.classList.add("show-start-frame");
+  }
+
+  function revealStickerVideo(requestId) {
+    const reveal = () => {
+      if (requestId !== stickerPlayRequest || stickerState !== "playing")
+        return;
+      stickerModule?.classList.remove("show-start-frame");
+    };
+
+    if (typeof stickerVideo?.requestVideoFrameCallback === "function") {
+      stickerVideo.requestVideoFrameCallback(reveal);
+      return;
+    }
+
+    window.requestAnimationFrame(() => window.requestAnimationFrame(reveal));
+  }
+
+  async function startStickerPlayback() {
+    if (
+      !stickerVideo ||
+      !stickerSourceAttached ||
+      stickerPlayPending ||
+      reducedMotionQuery.matches
+    ) {
+      return;
+    }
+
+    const requestId = ++stickerPlayRequest;
+    stickerPlayPending = true;
+    stickerVideo.pause();
+    if (stickerVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+      stickerVideo.currentTime = 0;
+    }
+    showStickerStartFrame();
+    setStickerState("loading");
+
+    try {
+      await stickerVideo.play();
+      if (requestId !== stickerPlayRequest) return;
+      stickerPlayPending = false;
+      setStickerState("playing");
+      revealStickerVideo(requestId);
+    } catch {
+      if (requestId !== stickerPlayRequest) return;
+      stickerPlayPending = false;
+      setStickerState("static");
+    }
+  }
+
+  function requestStickerPlayback() {
+    if (!stickerVideo || reducedMotionQuery.matches) return;
+    if (!stickerSourceAttached) {
+      stickerVideo.src = stickerVideo.dataset.src;
+      stickerSourceAttached = true;
+      stickerVideo.load();
+    }
+    void startStickerPlayback();
+  }
+
+  function resetStickerPlayback() {
+    if (!stickerVideo) return;
+    stickerPlayRequest += 1;
+    stickerPlayPending = false;
+    showStickerStartFrame();
+    stickerVideo.pause();
+    if (stickerVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+      stickerVideo.currentTime = 0;
+    }
+    setStickerState("ready");
+  }
+
+  function useStaticStickerPreview() {
+    stickerPlayRequest += 1;
+    stickerPlayPending = false;
+    stickerVideo?.pause();
+    setStickerState("static");
+  }
+
+  function setupStickerModule() {
+    if (!stickerModule || !stickerVideo || !stickerPlayButton) return;
+    const connection = navigator.connection;
+    const connectionIsConstrained = () =>
+      Boolean(
+        connection?.saveData ||
+          connection?.effectiveType === "slow-2g" ||
+          connection?.effectiveType === "2g",
+      );
+    let mediaFailed = false;
+
+    if (reducedMotionQuery.matches || connectionIsConstrained()) {
+      useStaticStickerPreview();
+    } else {
+      renderStickerState();
+    }
+
+    stickerPlayButton.addEventListener("click", requestStickerPlayback);
+    stickerVideo.addEventListener("ended", () => {
+      if (stickerState !== "playing") return;
+      stickerModule.classList.remove("show-start-frame");
+      setStickerState("complete");
+    });
+    stickerVideo.addEventListener("error", () => {
+      mediaFailed = true;
+      useStaticStickerPreview();
+    });
+    reducedMotionQuery.addEventListener("change", (event) => {
+      if (event.matches) {
+        useStaticStickerPreview();
+      } else if (!mediaFailed && !connectionIsConstrained()) {
+        stickerModule.classList.remove("is-static");
+        resetStickerPlayback();
+      }
+    });
+    connection?.addEventListener?.("change", () => {
+      if (connectionIsConstrained()) {
+        useStaticStickerPreview();
+      } else if (!mediaFailed && !reducedMotionQuery.matches) {
+        stickerModule.classList.remove("is-static");
+        resetStickerPlayback();
+      }
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden && stickerState === "playing") {
+        resetStickerPlayback();
+      }
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting && stickerState === "playing") {
+            resetStickerPlayback();
+          }
+        },
+        { threshold: 0.05 },
+      );
+      observer.observe(stickerModule);
+    }
   }
 
   function highlightCards() {
@@ -870,5 +1062,6 @@
   if (currentLocale !== "en") void applyLocale(currentLocale);
   setupNavigationTracking();
   setupHighlightCarousel();
+  setupStickerModule();
   setupPurposefulMotion();
 })();

@@ -18,6 +18,11 @@ const manifest = JSON.parse(
   await readFile(join(publicDir, "site.webmanifest"), "utf8"),
 );
 const findings = [];
+const stickerMediaFiles = [
+  "sticker-motion-v1.mp4",
+  "sticker-start-v1.webp",
+  "sticker-static-v1.webp",
+];
 
 const releaseVersions = new Map([
   ["package.json", packageJson.version],
@@ -175,6 +180,57 @@ for (const requiredCarouselContract of [
   if (!html.includes(requiredCarouselContract)) {
     findings.push(`carousel contract is missing ${requiredCarouselContract}`);
   }
+}
+for (const requiredStickerContract of [
+  'data-sticker-module=""',
+  'aria-labelledby="stickerTitle"',
+  'data-sticker-play=""',
+  'data-sticker-label=""',
+  'data-sticker-status=""',
+  'aria-live="polite"',
+  'data-sticker-stage=""',
+]) {
+  if (!html.includes(requiredStickerContract)) {
+    findings.push(
+      `AI accounting sticker module is missing ${requiredStickerContract}`,
+    );
+  }
+}
+for (const filename of stickerMediaFiles) {
+  try {
+    const info = await stat(
+      join(publicDir, "media", "ai-accounting", filename),
+    );
+    if (!info.isFile()) {
+      findings.push(`AI accounting media ${filename} is not a regular file`);
+    }
+  } catch {
+    findings.push(`AI accounting media ${filename} is missing`);
+  }
+  if (
+    !html.includes(`/media/ai-accounting/${filename}?v=${packageJson.version}`)
+  ) {
+    findings.push(
+      `AI accounting media ${filename} is missing its versioned HTML reference`,
+    );
+  }
+}
+if (
+  !styles.includes(".sticker-showcase") ||
+  !styles.includes(".sticker-stage") ||
+  !styles.includes(".sticker-video") ||
+  !styles.includes(".sticker-static")
+) {
+  findings.push("AI accounting sticker module styles are incomplete");
+}
+if (
+  !/@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.sticker-static\s*\{\s*opacity:\s*1;/.test(
+    styles,
+  )
+) {
+  findings.push(
+    "AI accounting sticker module is missing its reduced-motion static fallback",
+  );
 }
 if (html.includes('class="approach-visual"')) {
   findings.push(

@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.13.4`
+- Version: `1.14.0`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -85,7 +85,8 @@ Generated production output belongs in `dist/` and must not be edited by hand.
 4. Working approach: source, structure and review workflow without the old
    oversized abstract visual.
 5. Selected projects and challenges: touch-friendly horizontal cards with partial
-   next-card visibility, keyboard navigation and same-page “Learn more” details.
+   next-card visibility, keyboard navigation and same-page “Learn more” details,
+   followed by the AI × Accounting interaction study.
 6. Credentials and contact: verified education/credentials followed by a
    LinkedIn-only close.
 
@@ -101,7 +102,40 @@ Generated production output belongs in `dist/` and must not be edited by hand.
   progressive enhancement and ordinary `border-radius` as the complete fallback.
 - Motion uses nonlinear easing, transform and opacity, and always honours
   `prefers-reduced-motion`.
+- The AI × Accounting study is manually played, remains static by default and
+  uses a decoded first-frame hand-off instead of replacing visible assets during
+  playback.
 - Layouts reflow from 320-pixel mobile widths through large desktop screens.
+
+### AI × Accounting interaction study
+
+Release `1.14.0` embeds the prototype as a supporting module below Selected
+highlights; it is not a second Hero, separate application or evidence of
+professional proficiency. Its copy describes an interaction study and keeps the
+factual boundary clear.
+
+The deployable module consists only of the same-origin assets under
+`public/media/ai-accounting/`, semantic HTML in `public/index.html`, namespaced
+styles and a small native JavaScript playback state machine. Do not reintroduce
+the prototype's former React runtime, duplicate navigation, standalone font
+bundle, source portraits or research recordings.
+
+Playback and delivery contract:
+
+- Show the complete static WebP before interaction.
+- Attach the MP4 source only after the visitor chooses Play; keep
+  `preload="none"` and never autoplay.
+- Keep the start frame visible until the browser presents the first decoded video
+  frame, preventing a blank or mismatched asset transition.
+- Stop and reset playback when the module leaves the viewport or the document is
+  hidden.
+- Use the static preview without requesting motion media for reduced-motion and
+  constrained-connection users, and fall back to it after any media error.
+- Keep playback labels and live status messages complete in all 14 locales.
+- Preserve the centred crop on narrow screens without creating horizontal
+  document overflow.
+- Keep motion assets same-origin, metadata-reviewed, revisioned and within the
+  documented media budget.
 
 ### Brand symbol
 
@@ -153,6 +187,9 @@ Spanish, Brazilian Portuguese and Arabic.
 - The identity symbol is not requested by page-layout markup. Browser and install
   surfaces load their dedicated icon resources independently.
 - Below-fold images lazy-load at low priority.
+- The below-fold AI × Accounting static preview lazy-loads at low priority; its
+  motion source remains detached until explicit playback and is never requested
+  for reduced-motion or constrained-connection visitors.
 - AVIF is preferred for photographs, with WebP and JPEG fallbacks.
 - Hidden language options, carousel measurements and offscreen sections are
   deferred.
@@ -339,7 +376,7 @@ After Cloudflare reports success:
 1. Open <https://jmying.com> with a cache-busting query.
 2. Confirm the expected versioned CSS, JavaScript, locale and identity assets.
 3. Inspect desktop and mobile layout, the brand symbol, Hero, portrait, carousel,
-   language selector and LinkedIn action.
+   AI × Accounting static/playback states, language selector and LinkedIn action.
 4. Confirm no console errors or failed requests.
 5. Confirm security and cache headers.
 6. Test at least English, one CJK locale and Arabic.
@@ -404,6 +441,8 @@ system looks and behaves as it does:
 - `1.13.3`: deterministic self-hosted Latin/Vietnamese font fallbacks.
 - `1.13.4`: original pure graphic symbol, complete identity asset set and expanded
   operating documentation.
+- `1.14.0`: embedded AI × Accounting interaction study, manually loaded media,
+  multilingual playback states and static accessibility fallbacks.
 
 ## Definition of done
 

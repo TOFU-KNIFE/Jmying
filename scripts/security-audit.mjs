@@ -16,6 +16,22 @@ const textExtensions = new Set([
 ]);
 const allowedExternalOrigins = new Set(["https://www.linkedin.com"]);
 const findings = [];
+const stickerMediaDir = join(publicDir, "media", "ai-accounting");
+const expectedStickerMedia = new Set([
+  "sticker-motion-v1.mp4",
+  "sticker-start-v1.webp",
+  "sticker-static-v1.webp",
+]);
+const localPathMarkers = [
+  "/Users/",
+  "/home/",
+  "/var/folders/",
+  "C:\\Users\\",
+  "file://",
+  "Documents/Codex",
+  "referenced-chatgpt-conversation",
+  ".codex/",
+];
 
 async function walk(dir) {
   const output = [];
@@ -104,6 +120,43 @@ for (const file of files) {
   }
 }
 
+let stickerMediaEntries = [];
+try {
+  stickerMediaEntries = await readdir(stickerMediaDir, {
+    withFileTypes: true,
+  });
+} catch {
+  fail(stickerMediaDir, "AI accounting media directory is missing");
+}
+for (const entry of stickerMediaEntries) {
+  const file = join(stickerMediaDir, entry.name);
+  if (!expectedStickerMedia.has(entry.name)) {
+    fail(
+      file,
+      "unexpected file in the deployable AI accounting media directory",
+    );
+    continue;
+  }
+  if (!entry.isFile()) {
+    fail(file, "AI accounting media entry is not a regular file");
+    continue;
+  }
+  const buffer = await readFile(file);
+  for (const marker of localPathMarkers) {
+    if (buffer.includes(Buffer.from(marker))) {
+      fail(file, `contains sensitive local path marker ${marker}`);
+    }
+  }
+}
+for (const filename of expectedStickerMedia) {
+  if (!stickerMediaEntries.some((entry) => entry.name === filename)) {
+    fail(
+      join(stickerMediaDir, filename),
+      "expected AI accounting media file is missing",
+    );
+  }
+}
+
 const html = await readFile(join(publicDir, "index.html"), "utf8");
 if (/<form\b|<input\b|<textarea\b/i.test(html))
   fail(
@@ -141,6 +194,7 @@ const headers = await readFile(join(publicDir, "_headers"), "utf8");
 for (const required of [
   "default-src 'none'",
   "connect-src 'self'",
+  "media-src 'self'",
   "frame-ancestors 'none'",
   "require-trusted-types-for 'script'",
   "Strict-Transport-Security",
@@ -150,6 +204,14 @@ for (const required of [
 ]) {
   if (!headers.includes(required))
     fail(join(publicDir, "_headers"), `missing security control: ${required}`);
+}
+const stickerCacheRule =
+  "/media/ai-accounting/*\n  Cache-Control: public, max-age=31536000, immutable";
+if (!headers.includes(stickerCacheRule)) {
+  fail(
+    join(publicDir, "_headers"),
+    "AI accounting media is missing its immutable cache rule",
+  );
 }
 
 if (findings.length) {

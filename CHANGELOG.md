@@ -4,6 +4,30 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.14.0] - 2026-07-30
+
+### Added
+
+- Embedded an AI × Accounting interaction study beneath Selected highlights,
+  presenting an original accounting-tools collage as a short, manually controlled
+  motion sequence.
+- Added natural, purpose-aware copy and complete playback states across all 14
+  supported languages.
+- Added an accessible replay control, polite status announcements and static
+  alternatives for reduced motion, constrained connections, media errors and
+  print.
+
+### Changed
+
+- Kept the animation source detached until the visitor requests playback, with
+  `preload="none"`, a decoded-frame hand-off and offscreen or hidden-page pause
+  behaviour.
+- Delivered metadata-reviewed, same-origin MP4 and WebP assets through a versioned
+  media directory with immutable caching, while retaining the default-deny
+  security policy.
+- Adapted the wide composition for desktop and centred mobile crops without
+  introducing a framework, third-party runtime or horizontal document overflow.
+
 ## [1.13.4] - 2026-07-30
 
 ### Added
@@ -286,7 +310,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...HEAD
+[1.14.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...v1.14.0
 [1.13.4]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.3...v1.13.4
 [1.13.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.2...v1.13.3
 [1.13.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.1...v1.13.2
