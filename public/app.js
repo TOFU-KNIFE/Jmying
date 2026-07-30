@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.13.1";
+  const localeVersion = "1.13.2";
   const localeManifest = [
     {
       id: "en",

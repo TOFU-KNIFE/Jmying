@@ -4,6 +4,15 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.13.2] - 2026-07-30
+
+### Fixed
+
+- Aligned the default LinkedIn accessible names with their visible labels so
+  voice-control and screen-reader users receive the same wording.
+- Increased the dark institutional-blue contrast margin for small labels and
+  revisioned all immutable asset URLs for the corrected stylesheet.
+
 ## [1.13.1] - 2026-07-30
 
 ### Added

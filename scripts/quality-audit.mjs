@@ -145,6 +145,17 @@ if (html.includes('class="approach-visual"')) {
 if (!styles.includes("scroll-snap-type: inline mandatory")) {
   findings.push("project carousel is missing inline scroll snapping");
 }
+if (
+  (html.match(/aria-label="Contact on LinkedIn: Jeremy Ying"/g) || [])
+    .length !== 2
+) {
+  findings.push(
+    "default LinkedIn accessible names do not contain their visible labels",
+  );
+}
+if (!styles.includes("--institutional-blue-dark: #3062a7;")) {
+  findings.push("small institutional-blue labels can regress below 4.5:1");
+}
 
 for (const [locale, requiredFamily] of [
   ["Japanese", '"Yu Gothic UI"'],
