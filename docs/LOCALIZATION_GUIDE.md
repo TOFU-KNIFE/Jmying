@@ -46,6 +46,16 @@ These references guide clarity and native written usage; they are not sources of
 
 English is the source locale and resilient HTML fallback. It uses plain international professional English and avoids culture-specific idioms.
 
+## AI × Accounting terminology
+
+The interaction-study description deliberately pairs `AI-assisted analysis` with
+`human judgement`. Translate AI as a supporting analytical role, never as an
+autonomous decision-maker or substitute for professional review. `Accounting
+evidence` refers broadly to records and source material considered in a structured
+review; do not narrow it to audit evidence unless the target sentence explicitly
+does so. Preserve the three governing qualities—clarity, control and human
+judgement—even when the target language needs a different sentence structure.
+
 ## Chinese locale identifiers
 
 The bundle IDs remain `zh-CN` and `zh-TW` for backward-compatible URLs and saved preferences. Runtime document language metadata uses the script tags `zh-Hans` and `zh-Hant`, so `Intl.DisplayNames` presents script-based names such as “Chinese (Simplified)” instead of region-based labels. Browser values such as `zh-CN`, `zh-SG`, `zh-TW`, `zh-HK`, `zh-Hans` and `zh-Hant` are still normalised to the appropriate bundle.

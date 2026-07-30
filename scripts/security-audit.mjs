@@ -200,6 +200,7 @@ for (const required of [
   "Strict-Transport-Security",
   "Referrer-Policy: no-referrer",
   "Permissions-Policy:",
+  "autoplay=(self)",
   "unload=()",
 ]) {
   if (!headers.includes(required))

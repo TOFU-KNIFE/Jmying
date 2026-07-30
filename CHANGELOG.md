@@ -4,6 +4,24 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-07-30
+
+### Added
+
+- Added a visible Stop action while the AI × Accounting sequence is preparing or
+  playing, with a localised stopped-state announcement across all 14 languages.
+
+### Changed
+
+- Starts the muted motion sequence once when the module approaches the viewport,
+  while retaining `preload="none"` and avoiding any motion request for reduced
+  motion, Save-Data or constrained-network visitors.
+- Replaced the prototype-style description with restrained institutional copy
+  focused on accounting evidence, structured review, AI-assisted analysis,
+  control and human judgement.
+- Allows same-origin autoplay through the restrictive Permissions Policy while
+  keeping all other media and third-party controls unchanged.
+
 ## [1.14.0] - 2026-07-30
 
 ### Added
@@ -310,7 +328,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...HEAD
+[1.15.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...v1.14.0
 [1.13.4]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.3...v1.13.4
 [1.13.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.2...v1.13.3

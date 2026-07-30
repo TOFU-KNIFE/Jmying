@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.14.0";
+  const localeVersion = "1.15.0";
   const localeManifest = [
     {
       id: "en",
@@ -197,6 +197,7 @@
   let stickerSourceAttached = false;
   let stickerPlayPending = false;
   let stickerPlayRequest = 0;
+  let stickerAutoplayAttempted = false;
   let activeEvidenceItem =
     evidenceItems.find(
       (item) => item.getAttribute("aria-pressed") === "true",
@@ -224,12 +225,14 @@
         highlightTrack?.getAttribute("aria-label") ||
         "Selected projects carousel",
       stickerPlay: "Play motion",
+      stickerStop: "Stop motion",
       stickerReplay: "Replay",
       stickerPlaying: "Playing",
       stickerLoading: "Preparing motion",
       stickerStatusReady: "Motion ready",
       stickerStatusPlaying: "Motion playing",
       stickerStatusComplete: "Motion complete",
+      stickerStatusStopped: "Motion stopped",
       stickerStatusStatic: "Static preview shown",
     };
   }
@@ -508,9 +511,10 @@
     const copy = getStickerMessages(messages);
     const stateCopy = {
       ready: [copy.stickerPlay, copy.stickerStatusReady, false],
-      loading: [copy.stickerLoading, copy.stickerLoading, true],
-      playing: [copy.stickerPlaying, copy.stickerStatusPlaying, true],
+      loading: [copy.stickerStop, copy.stickerLoading, false],
+      playing: [copy.stickerStop, copy.stickerStatusPlaying, false],
       complete: [copy.stickerReplay, copy.stickerStatusComplete, false],
+      stopped: [copy.stickerPlay, copy.stickerStatusStopped, false],
       static: [copy.stickerStatusStatic, copy.stickerStatusStatic, true],
     };
     const [label, status, disabled] =
@@ -547,7 +551,7 @@
     window.requestAnimationFrame(() => window.requestAnimationFrame(reveal));
   }
 
-  async function startStickerPlayback() {
+  async function startStickerPlayback({ automatic = false } = {}) {
     if (
       !stickerVideo ||
       !stickerSourceAttached ||
@@ -559,6 +563,8 @@
 
     const requestId = ++stickerPlayRequest;
     stickerPlayPending = true;
+    stickerVideo.muted = true;
+    stickerVideo.defaultMuted = true;
     stickerVideo.pause();
     if (stickerVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
       stickerVideo.currentTime = 0;
@@ -572,24 +578,41 @@
       stickerPlayPending = false;
       setStickerState("playing");
       revealStickerVideo(requestId);
-    } catch {
+    } catch (error) {
       if (requestId !== stickerPlayRequest) return;
       stickerPlayPending = false;
-      setStickerState("static");
+      if (
+        automatic &&
+        (error?.name === "NotAllowedError" || error?.name === "AbortError")
+      ) {
+        resetStickerPlayback();
+      } else {
+        setStickerState("static");
+      }
     }
   }
 
-  function requestStickerPlayback() {
+  function requestStickerPlayback({ automatic = false } = {}) {
     if (!stickerVideo || reducedMotionQuery.matches) return;
+    if (automatic) {
+      if (
+        stickerAutoplayAttempted ||
+        stickerState !== "ready" ||
+        document.hidden
+      ) {
+        return;
+      }
+      stickerAutoplayAttempted = true;
+    }
     if (!stickerSourceAttached) {
       stickerVideo.src = stickerVideo.dataset.src;
       stickerSourceAttached = true;
       stickerVideo.load();
     }
-    void startStickerPlayback();
+    void startStickerPlayback({ automatic });
   }
 
-  function resetStickerPlayback() {
+  function resetStickerPlayback({ state = "ready" } = {}) {
     if (!stickerVideo) return;
     stickerPlayRequest += 1;
     stickerPlayPending = false;
@@ -598,7 +621,21 @@
     if (stickerVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
       stickerVideo.currentTime = 0;
     }
-    setStickerState("ready");
+    setStickerState(state);
+  }
+
+  function stopStickerPlayback() {
+    stickerAutoplayAttempted = true;
+    resetStickerPlayback({ state: "stopped" });
+  }
+
+  function handleStickerControl() {
+    if (stickerState === "loading" || stickerState === "playing") {
+      stopStickerPlayback();
+      return;
+    }
+    stickerAutoplayAttempted = true;
+    requestStickerPlayback();
   }
 
   function useStaticStickerPreview() {
@@ -625,7 +662,7 @@
       renderStickerState();
     }
 
-    stickerPlayButton.addEventListener("click", requestStickerPlayback);
+    stickerPlayButton.addEventListener("click", handleStickerControl);
     stickerVideo.addEventListener("ended", () => {
       if (stickerState !== "playing") return;
       stickerModule.classList.remove("show-start-frame");
@@ -652,7 +689,10 @@
       }
     });
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden && stickerState === "playing") {
+      if (
+        document.hidden &&
+        (stickerState === "loading" || stickerState === "playing")
+      ) {
         resetStickerPlayback();
       }
     });
@@ -660,11 +700,14 @@
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (!entry?.isIntersecting && stickerState === "playing") {
+          if (!entry) return;
+          if (entry.isIntersecting) {
+            requestStickerPlayback({ automatic: true });
+          } else if (stickerState === "loading" || stickerState === "playing") {
             resetStickerPlayback();
           }
         },
-        { threshold: 0.05 },
+        { rootMargin: "0px 0px 15% 0px", threshold: 0.01 },
       );
       observer.observe(stickerModule);
     }

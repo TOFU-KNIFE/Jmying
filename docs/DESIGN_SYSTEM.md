@@ -90,17 +90,22 @@ own content constraints take precedence.
 - Use `cubic-bezier(0.16, 1, 0.3, 1)` for entrances and direct feedback.
 - Animate only `transform` and `opacity` on large elements.
 - Typical duration is 180–360 milliseconds for controls and 500–880 milliseconds for editorial reveals.
-- Honour `prefers-reduced-motion` and never autoplay media.
-- Motion studies require an explicit, keyboard-accessible Play/Replay control and
-  a polite status announcement. Keep the complete static composition visible
-  before playback rather than presenting an empty media frame.
-- Detach optional motion sources until the visitor requests playback. Keep
-  `preload="none"`, reveal video only after its first decoded frame and reset it
-  when the module leaves the viewport or the page becomes hidden.
+- Honour `prefers-reduced-motion`. Do not auto-start decorative media unless a
+  documented interaction explicitly permits it.
+- The AI × Accounting study may start once, muted, when it reaches the
+  near-viewport observer margin. It must retain a keyboard-accessible Stop,
+  Play/Replay control and a polite status announcement.
+- Keep the complete static composition visible before playback rather than
+  presenting an empty media frame. Detach the optional motion source until the
+  near-viewport trigger or a manual Play request, keep `preload="none"`, reveal
+  video only after its first decoded frame and reset it when the module leaves the
+  near-viewport activation region or the page becomes hidden.
+- Do not auto-restart after a visitor stops the sequence. Auto-start must remain
+  disabled for reduced-motion, constrained-connection and media-error states.
 - Reduced-motion, constrained-connection, print and media-error states show the
   complete static preview and do not make animation the only route to meaning.
-- A playing label may temporarily disable repeated activation, but the control
-  must return as Replay after completion. Do not bind essential playback to hover.
+- The control must expose Stop while loading or playing and return as Replay after
+  completion. Do not bind essential playback to hover.
 
 ### Imagery
 

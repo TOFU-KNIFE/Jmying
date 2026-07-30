@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.14.0`
+- Version: `1.15.0`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -102,17 +102,19 @@ Generated production output belongs in `dist/` and must not be edited by hand.
   progressive enhancement and ordinary `border-radius` as the complete fallback.
 - Motion uses nonlinear easing, transform and opacity, and always honours
   `prefers-reduced-motion`.
-- The AI × Accounting study is manually played, remains static by default and
-  uses a decoded first-frame hand-off instead of replacing visible assets during
-  playback.
+- The AI × Accounting study plays once when it approaches the viewport, remains
+  user-stoppable and uses a decoded first-frame hand-off instead of replacing
+  visible assets during playback.
 - Layouts reflow from 320-pixel mobile widths through large desktop screens.
 
 ### AI × Accounting interaction study
 
 Release `1.14.0` embeds the prototype as a supporting module below Selected
-highlights; it is not a second Hero, separate application or evidence of
-professional proficiency. Its copy describes an interaction study and keeps the
-factual boundary clear.
+highlights. Release `1.15.0` starts the muted sequence once when the module
+approaches the viewport and gives the visitor a visible Stop/Play/Replay control.
+The module is not a second Hero, separate application or evidence of professional
+proficiency. Its copy describes an interaction study and keeps the factual
+boundary clear.
 
 The deployable module consists only of the same-origin assets under
 `public/media/ai-accounting/`, semantic HTML in `public/index.html`, namespaced
@@ -123,12 +125,15 @@ bundle, source portraits or research recordings.
 Playback and delivery contract:
 
 - Show the complete static WebP before interaction.
-- Attach the MP4 source only after the visitor chooses Play; keep
-  `preload="none"` and never autoplay.
+- Keep `preload="none"` and attach the MP4 only when the module reaches the
+  near-viewport observer margin or the visitor chooses Play.
+- Auto-start the muted sequence at most once per page visit. Keep Stop available
+  while loading or playing, retain Play/Replay for manual control and never
+  restart automatically after the visitor stops it.
 - Keep the start frame visible until the browser presents the first decoded video
   frame, preventing a blank or mismatched asset transition.
-- Stop and reset playback when the module leaves the viewport or the document is
-  hidden.
+- Stop and reset playback when the module leaves its near-viewport activation
+  region or the document is hidden.
 - Use the static preview without requesting motion media for reduced-motion and
   constrained-connection users, and fall back to it after any media error.
 - Keep playback labels and live status messages complete in all 14 locales.
@@ -188,8 +193,9 @@ Spanish, Brazilian Portuguese and Arabic.
   surfaces load their dedicated icon resources independently.
 - Below-fold images lazy-load at low priority.
 - The below-fold AI × Accounting static preview lazy-loads at low priority; its
-  motion source remains detached until explicit playback and is never requested
-  for reduced-motion or constrained-connection visitors.
+  motion source remains detached until the module approaches the viewport or the
+  visitor chooses Play, and is never requested for reduced-motion or
+  constrained-connection visitors.
 - AVIF is preferred for photographs, with WebP and JPEG fallbacks.
 - Hidden language options, carousel measurements and offscreen sections are
   deferred.
@@ -443,6 +449,8 @@ system looks and behaves as it does:
   operating documentation.
 - `1.14.0`: embedded AI × Accounting interaction study, manually loaded media,
   multilingual playback states and static accessibility fallbacks.
+- `1.15.0`: near-viewport single-run playback, visible Stop control and more
+  institutional AI × Accounting copy.
 
 ## Definition of done
 

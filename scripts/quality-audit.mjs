@@ -196,6 +196,38 @@ for (const requiredStickerContract of [
     );
   }
 }
+for (const [contract, finding] of [
+  [
+    "stickerAutoplayAttempted",
+    "AI accounting motion is missing its single-attempt guard",
+  ],
+  [
+    "requestStickerPlayback({ automatic: true })",
+    "AI accounting motion is missing its near-viewport playback trigger",
+  ],
+  [
+    'rootMargin: "0px 0px 15% 0px"',
+    "AI accounting motion does not wait until the module is near the viewport",
+  ],
+  [
+    "reducedMotionQuery.matches",
+    "AI accounting motion is missing its reduced-motion runtime guard",
+  ],
+  [
+    "stopStickerPlayback",
+    "AI accounting motion is missing its user-controlled stop action",
+  ],
+  [
+    "stickerStatusStopped",
+    "AI accounting motion is missing its stopped status announcement",
+  ],
+  [
+    "playing: [copy.stickerStop, copy.stickerStatusPlaying, false]",
+    "AI accounting Stop control must remain enabled while motion is playing",
+  ],
+]) {
+  if (!app.includes(contract)) findings.push(finding);
+}
 for (const filename of stickerMediaFiles) {
   try {
     const info = await stat(

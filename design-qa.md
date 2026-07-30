@@ -1,5 +1,51 @@
 # Design QA
 
+## Near-viewport motion release 1.15.0
+
+- Review date: 2026-07-30
+- Scope: single near-viewport playback, user stop control, institutional
+  introductory copy, 14-locale parity and same-origin autoplay policy
+- Viewports: 1,280 × 720; 390 × 844; 320 × 720
+- Locales reviewed in browser: English, German, Japanese and Arabic
+  right-to-left
+- States: ready, loading, playing, stopped, complete, replay, reduced motion,
+  constrained connection and rejected automatic playback
+
+### Findings
+
+No actionable P0, P1 or P2 findings remain.
+
+- The initial document keeps the MP4 detached: its `src` is absent, its state is
+  Ready and the page has no initial motion-media transfer.
+- A 1% intersection threshold with a 15% lower root margin starts one muted,
+  inline playback attempt shortly before the module enters the viewport. The
+  attempt is consumed once and does not restart after the visitor stops the
+  motion or leaves and re-enters the activation region.
+- The 5.2-second sequence exposes an enabled Stop control while loading or
+  playing. Stop immediately restores the stable start frame, returns the video
+  to zero and changes the control back to Play; completion changes it to Replay.
+- Manual Play and Replay remain available after a stop, completion or rejected
+  browser autoplay attempt. A blocked automatic attempt resolves to Ready,
+  while an actual media error resolves to the static fallback.
+- Reduced-motion, Save-Data, 2G and slow-2G paths continue to use the complete
+  static preview without attaching the MP4. Hiding the page or leaving the
+  activation region during playback pauses and resets the sequence.
+- The Permissions Policy permits autoplay only for same-origin media. The
+  Content Security Policy continues to limit media to the same origin; the
+  video remains muted, inline, non-looping and `preload="none"`.
+- The previous descriptive sentence is replaced by institutional language that
+  connects accounting evidence, structured review, AI-assisted analysis,
+  control and human judgement without implying autonomous decision-making.
+- All 14 locale bundles contain the revised introduction plus Play, Stop,
+  Replay and every live status message. German, Japanese and Arabic were
+  inspected at 320 pixels with no horizontal overflow; Arabic retains correct
+  right-to-left document direction.
+- Browser testing found no console warnings or errors. Automated formatting,
+  syntax, localisation, quality, performance, security and Cloudflare dry-run
+  gates cover the remaining static, connection and policy states.
+
+final result: passed
+
 ## AI × Accounting interaction release 1.14.0
 
 - Review date: 2026-07-30
