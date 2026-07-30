@@ -25,6 +25,9 @@ No actionable P0, P1 or P2 findings remain.
   existing hierarchy. The Arabic document reports `dir="rtl"` and no overflow.
 - Browser inspection reports no console warnings or errors and resolves the
   expected favicon, Apple touch icon and manifest declarations.
+- Production header review removed an overlapping `/brand/*` rule after confirming
+  that the PNG wildcard already covers nested icon paths, preventing duplicate
+  cache directives while preserving one-year immutable delivery.
 - The transparent master and deterministic exports have explicit provenance and
   regeneration rules in `assets/brand/README.md`.
 - Syntax, 14-locale parity, identity, quality, performance, security and Cloudflare
