@@ -4,6 +4,26 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [1.13.3] - 2026-07-30
+
+### Added
+
+- Added self-hosted, Unicode-ranged Inter and Source Serif 4 variable-font
+  fallbacks for Latin and Vietnamese text, including their open-font licences.
+
+### Changed
+
+- Kept Helvetica Neue and Iowan Old Style as the preferred Apple typefaces while
+  making the fallback typography deterministic on Windows, Android and browsers
+  without those system fonts.
+- Added immutable font caching and release audits for font presence, size and
+  on-demand loading so the fallback does not penalise Apple devices.
+
+### Fixed
+
+- Prevented missing system fonts from silently changing the interface to
+  Arial/Times metrics, which could alter line breaks, hierarchy and page rhythm.
+
 ## [1.13.2] - 2026-07-30
 
 ### Fixed

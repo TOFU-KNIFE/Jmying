@@ -157,18 +157,34 @@ if (!styles.includes("--institutional-blue-dark: #3062a7;")) {
   findings.push("small institutional-blue labels can regress below 4.5:1");
 }
 
+for (const typographyContract of [
+  '"Helvetica Neue", Helvetica, "JMYing Sans", Arial, sans-serif',
+  '"Iowan Old Style", "JMYing Serif", Baskerville',
+  'font-family: "JMYing Sans"',
+  'font-family: "JMYing Serif"',
+  "font-display: swap",
+]) {
+  if (!styles.includes(typographyContract)) {
+    findings.push(`cross-platform typography is missing ${typographyContract}`);
+  }
+}
+
 for (const [locale, requiredFamily] of [
   ["Japanese", '"Yu Gothic UI"'],
   ["Traditional Chinese", '"Microsoft JhengHei UI"'],
   ["Simplified Chinese", '"Microsoft YaHei UI"'],
   ["Korean", '"Apple SD Gothic Neo"'],
   ["Thai", '"Leelawadee UI"'],
-  ["Vietnamese", '"Noto Serif"'],
+  ["Vietnamese", '"JMYing Serif"'],
   ["Arabic", '"SF Arabic"'],
 ]) {
   if (!styles.includes(requiredFamily)) {
     findings.push(`${locale} typography is missing ${requiredFamily}`);
   }
+}
+
+if (!headers.includes("/fonts/*.woff2")) {
+  findings.push("self-hosted fonts are missing their immutable cache rule");
 }
 
 for (const token of [
