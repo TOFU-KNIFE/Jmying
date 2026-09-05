@@ -96,5 +96,6 @@
   "connectTitle": "Ein einziger beruflicher Kontaktweg.",
   "connectText": "Bitte kontaktieren Sie mich ausschließlich über LinkedIn. Diese Website veröffentlicht oder erfasst keine privaten Kontaktdaten.",
   "viewLinkedin": "Über LinkedIn kontaktieren",
-  "footerPrivacy": "Datenschutz zuerst · keine Reichweitenmessung · keine Werbung"
+  "footerPrivacy": "Datenschutz zuerst · keine Reichweitenmessung · keine Werbung",
+  "languageLoadError": "Diese Sprache konnte nicht geladen werden. Bitte versuchen Sie es erneut."
 }

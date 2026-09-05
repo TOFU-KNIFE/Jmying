@@ -96,5 +96,6 @@
   "connectTitle": "仕事に関する連絡窓口はLinkedInのみです。",
   "connectText": "LinkedIn からのみご連絡ください。このサイトは個人の連絡先を掲載・収集しません。",
   "viewLinkedin": "LinkedInで連絡する",
-  "footerPrivacy": "プライバシー重視 · アクセス解析なし · 広告なし"
+  "footerPrivacy": "プライバシー重視 · アクセス解析なし · 広告なし",
+  "languageLoadError": "この言語を読み込めませんでした。もう一度お試しください。"
 }

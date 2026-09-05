@@ -96,5 +96,6 @@
   "connectTitle": "Một kênh liên hệ chuyên nghiệp.",
   "connectText": "Vui lòng liên hệ với tôi qua LinkedIn. Trang web này không công khai hoặc thu thập thông tin liên hệ cá nhân.",
   "viewLinkedin": "Liên hệ qua LinkedIn",
-  "footerPrivacy": "Ưu tiên quyền riêng tư · không phân tích · không quảng cáo"
+  "footerPrivacy": "Ưu tiên quyền riêng tư · không phân tích · không quảng cáo",
+  "languageLoadError": "Không thể tải ngôn ngữ này. Vui lòng thử lại."
 }

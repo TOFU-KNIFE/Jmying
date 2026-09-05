@@ -49,6 +49,22 @@ for (const [source, version] of releaseVersions) {
   }
 }
 
+const sitemap = await readFile(join(publicDir, "sitemap.xml"), "utf8");
+const robots = await readFile(join(publicDir, "robots.txt"), "utf8");
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  ([, url]) => url,
+);
+if (sitemapUrls.length !== 1 || sitemapUrls[0] !== "https://jmying.com/") {
+  findings.push("sitemap must contain only the canonical public homepage");
+}
+if (!robots.includes("Sitemap: https://jmying.com/sitemap.xml")) {
+  findings.push("robots.txt must declare the public sitemap");
+}
+const config = await readFile(join(root, "wrangler.jsonc"), "utf8");
+if (!config.includes('"not_found_handling": "none"')) {
+  findings.push("unknown URLs must return 404 instead of a duplicate homepage");
+}
+
 const imageTags = [...html.matchAll(/<img\b[\s\S]*?>/g)].map(([tag]) => tag);
 for (const tag of imageTags) {
   const src = tag.match(/\bsrc="([^"]+)"/)?.[1] || "unknown image";
