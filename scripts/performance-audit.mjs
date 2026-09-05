@@ -23,7 +23,7 @@ const stickerMediaBudgets = new Map([
 const sourceBudgets = new Map([
   ["index.html", 40 * 1024],
   ["styles.css", 64 * 1024],
-  ["app.js", 35 * 1024],
+  ["app.js", 36 * 1024],
 ]);
 
 for (const [filename, limit] of sourceBudgets) {
@@ -47,6 +47,41 @@ for (const [filename, limit] of productionBudgets) {
     findings.push(
       `production ${filename} is ${Math.ceil(info.size / 1024)} KiB; delivery budget is ${Math.ceil(limit / 1024)} KiB`,
     );
+  }
+}
+
+const localeNames = [
+  "en",
+  "zh-CN",
+  "zh-TW",
+  "ms",
+  "id",
+  "th",
+  "vi",
+  "ja",
+  "ko",
+  "fr",
+  "de",
+  "es",
+  "pt-BR",
+  "ar",
+];
+for (const locale of localeNames) {
+  const source = await readFile(
+    join(publicDir, "locales", `${locale}.json`),
+    "utf8",
+  );
+  const output = await readFile(
+    join(distDir, "locales", `${locale}.json`),
+    "utf8",
+  );
+  if (
+    JSON.stringify(JSON.parse(source)) !== JSON.stringify(JSON.parse(output))
+  ) {
+    findings.push(`${locale} production translation differs from source`);
+  }
+  if (Buffer.byteLength(output) > Buffer.byteLength(source)) {
+    findings.push(`${locale} production translation exceeds source size`);
   }
 }
 
@@ -212,7 +247,7 @@ for (const requirement of [
   ],
   [
     app.includes(
-      'if (currentLocale !== "en") void applyLocale(currentLocale);',
+      'if (preferredLocale !== "en") void applyLocale(preferredLocale);',
     ),
     "the default English document is still translated redundantly at startup",
   ],

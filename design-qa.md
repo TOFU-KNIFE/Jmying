@@ -209,3 +209,73 @@ The side-by-side profile comparison confirms that the new version removes the lo
 - [x] Internationalisation, quality, security and Cloudflare dry-run checks pass.
 
 final result: passed
+
+## Reliability and accessibility release 1.15.1
+
+- Review date: 2026-09-06
+- Scope: request recovery, system colors, reduced-motion resource release,
+  translation delivery, routing and repeatable browser quality gates.
+- Automated matrix: 1440/820/390/320 pixels × English, German, Simplified Chinese,
+  Japanese, Thai and Arabic; all 14 locales switch and persist in a separate test.
+- Evidence: `qa/v1.15.1/` contains section screenshots, original/repeated/baseline
+  Lighthouse JSON and browser logs. CI publishes its own screenshot/report artifact.
+
+### Findings and corrections
+
+- P1: Dark navigation and language codes fell to 3.43:1/3.01:1; use opaque navy.
+  Dark metadata fell to 4.29:1; the tertiary text token is now lighter.
+- P1: The portrait caption combined white background with dark-mode white text;
+  its background now uses the theme surface. Selected language secondary labels
+  inherit the selected foreground, and the dark primary-button hover has an
+  explicit light foreground.
+- P1: Forced colors inherited opt-outs on content sections, overriding system
+  readability. Remove those opt-outs and the profile's artificial inversion;
+  allow the browser to map content colors and give the hero name a system color.
+- P2: The mobile hero eyebrow used dark blue on navy. It now shares the inverse
+  label foreground used on dark photographic surfaces.
+- P2: Hanging locale requests could disable switching indefinitely, dismissed
+  requests could change the page later, and failed startup loads left the current
+  selection inconsistent with English HTML. Add abort/timeout recovery and commit
+  the applied locale only after loading; all error text is translated.
+- P2: Static media fallback paused video without releasing the attached source.
+  Detach it, cancel loading and guard playback against constrained connections.
+- P2: SPA fallback served nonexistent pages as successful duplicate homepages.
+  Return 404 and audit the single canonical sitemap URL.
+- P2: The preview watched the default `src` directory instead of `public`.
+  Configure explicit public/script watch paths.
+
+### Validation
+
+36 browser tests pass with no axe WCAG A/AA violations in tested states, no page
+exceptions in the responsive matrix, no horizontal document overflow and correct
+keyboard focus restoration, RTL carousel controls and evidence filtering. Checks
+cover startup failure, timeout, retry, dismiss cancellation, save-data and runtime
+reduced-motion source removal. Visual review confirms the retained photographic
+hero, portrait hierarchy, native scripts and static study preview.
+
+Lighthouse 13.4.0 cold-profile measurements on the local Cloudflare runtime:
+
+| Run                                              | Performance | Accessibility | Best practices | SEO | FCP   | LCP   | TBT    | CLS |
+| ------------------------------------------------ | ----------- | ------------- | -------------- | --- | ----- | ----- | ------ | --- |
+| Original 1.15.0 mobile, measured in this session | 100         | 100           | 100            | 100 | 0.8 s | 1.5 s | 0 ms   | 0   |
+| Candidate mobile, first run                      | 91          | 100           | 100            | 100 | 0.8 s | 1.5 s | 370 ms | 0   |
+| Candidate mobile, repeat                         | 100         | 100           | 100            | 100 | 0.8 s | 1.5 s | 0 ms   | 0   |
+| Candidate desktop                                | 100         | 100           | 100            | 100 | 0.2 s | 0.4 s | 0 ms   | 0   |
+
+The first mobile run included a 600 ms unattributed task. The repeat and original
+baseline agree; retain all results rather than claiming every run scored 100.
+These are laboratory measurements, not real-user Core Web Vitals.
+
+Production locale JSON totals 93,284 bytes versus 98,842 readable source bytes
+(5.62% smaller), with exact parsed content parity. The shipped JavaScript remains
+below its unchanged 20 KiB limit; its readable source ceiling increases by 1 KiB
+for cancellation and resource cleanup. HTML, CSS, image and media budgets remain
+unchanged. Static audits, formatting and deployment dry run pass. Production npm
+packages have zero reported vulnerabilities; outstanding development-toolchain
+advisories and unavailable upstream upgrades are recorded in `security-review.md`.
+
+Capture viewport/section screenshots after lazy images decode. Full-page captures
+of `content-visibility: auto` sections can contain skipped blank areas and are not
+valid evidence of the layout a visitor sees after scrolling.
+
+final result: passed

@@ -56,3 +56,16 @@ The effective protection is:
 Do not commit a Pass Type ID certificate, `.p12`, private key, certificate password, or signing intermediate to Git. Prefer offline pass signing for a static card, or use a server-side signing service with secrets stored outside the public asset bundle.
 
 **review result: passed**
+
+## Development dependency review — 2026-09-06
+
+`npm audit --omit=dev` reports zero production dependency vulnerabilities. The
+site still ships only static, same-origin files with no third-party scripts.
+The full audit reports four high-severity development-toolchain findings through
+Wrangler/Miniflare (`sharp` and `undici`). The registry available in this session
+returns Wrangler 4.111.0 as its latest installable release; the audit-proposed
+4.118.0 and CLI-advertised 4.129.0 return ETARGET/E404. No forced major transitive
+overrides were applied. Recheck and upgrade the supported Wrangler release when
+available; do not describe the full dependency audit as clean. The browser suite
+and deployment dry run must pass after that upgrade. Existing Dependabot checks
+remain enabled.

@@ -553,6 +553,7 @@ section[id] {
   text-transform: uppercase;
 }
 
+.hero .eyebrow,
 .section-kicker.inverse {
   color: rgba(255, 255, 255, 0.68);
 }
@@ -2124,6 +2125,10 @@ h1 span {
   line-height: 1.35;
 }
 
+.language-option[aria-current="true"] .localized-name {
+  color: inherit;
+}
+
 .toast {
   position: fixed;
   z-index: 90;
@@ -2274,7 +2279,7 @@ h1 span {
     --color-background-inverse: #faf9f5;
     --color-text-primary: #faf9f5;
     --color-text-secondary: #c2c0b6;
-    --color-text-tertiary: #9c9a92;
+    --color-text-tertiary: #aaa89f;
     --color-text-inverse: #141413;
     --color-border-primary: rgba(222, 220, 209, 0.4);
     --color-border-secondary: rgba(222, 220, 209, 0.3);
@@ -2293,7 +2298,17 @@ h1 span {
     background: #faf9f5;
   }
 
+  .portrait-caption {
+    background: var(--color-background-primary);
+  }
+
+  .primary-nav a,
+  .language-code {
+    color: var(--institutional-ink);
+  }
+
   .button.primary:hover {
+    color: #faf9f5;
     background: var(--institutional-blue-soft);
   }
 
@@ -3052,6 +3067,10 @@ h1 span {
 }
 
 @media (forced-colors: active) {
+  h1 span {
+    color: CanvasText;
+  }
+
   .hero-backdrop,
   .connect-backdrop {
     display: none;
@@ -3060,17 +3079,6 @@ h1 span {
   .hero::after,
   .connect-section::after {
     content: none;
-  }
-
-  .site-header,
-  .capability-band,
-  .connect-section,
-  .button.primary,
-  .button.light,
-  .highlight-card-primary,
-  .highlight-card-ink,
-  .toast {
-    forced-color-adjust: none;
   }
 
   .site-header {
@@ -3085,7 +3093,6 @@ h1 span {
     color: CanvasText;
   }
 
-  .capability-band,
   .connect-section,
   .button.primary,
   .highlight-card-primary,

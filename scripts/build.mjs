@@ -1,4 +1,12 @@
-import { cp, mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
+import {
+  cp,
+  mkdir,
+  readFile,
+  readdir,
+  rm,
+  stat,
+  writeFile,
+} from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import CleanCSS from "clean-css";
@@ -55,6 +63,18 @@ await rm(distDir, { force: true, recursive: true });
 await mkdir(distDir, { recursive: true });
 await cp(publicDir, distDir, { recursive: true });
 await mkdir(fontDir, { recursive: true });
+
+// Keep translator-friendly sources while shipping compact same-origin bundles.
+const localeDir = join(distDir, "locales");
+await Promise.all(
+  (await readdir(localeDir))
+    .filter((name) => name.endsWith(".json"))
+    .map(async (name) => {
+      const path = join(localeDir, name);
+      const messages = JSON.parse(await readFile(path, "utf8"));
+      await writeFile(path, `${JSON.stringify(messages)}\n`, "utf8");
+    }),
+);
 await Promise.all(
   fontAssets.map(([packageName, sourceName, outputName]) =>
     cp(

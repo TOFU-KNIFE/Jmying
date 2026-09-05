@@ -90,6 +90,7 @@ const runtimeMessageKeys = [
 const requiredKeys = new Set([
   ...htmlKeys,
   "copied",
+  "languageLoadError",
   "present",
   ...runtimeMessageKeys,
 ]);

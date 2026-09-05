@@ -69,3 +69,11 @@ The bundle IDs remain `zh-CN` and `zh-TW` for backward-compatible URLs and saved
 5. Run `npm run format` and `npm test`; the internationalisation audit checks keys, BCP 47 tags and manifest metadata.
 6. Inspect a long-text Latin locale, a complex-script locale and Arabic at desktop and mobile widths before release.
 7. When a phrase has more than one equally accurate local style, record the chosen wording here so later updates remain consistent.
+
+## Language request recovery (1.15.1)
+
+`languageLoadError` is a concise retry instruction translated into all 14 locales.
+Display it in the currently applied language; keep the English HTML as the applied
+locale until another bundle loads successfully. Abort replaced or dismissed
+requests and limit each attempt to eight seconds. A canceled request must not
+change language, steal focus or announce a stale error.

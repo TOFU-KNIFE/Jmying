@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.15.0";
+  const localeVersion = "1.15.1";
   const localeManifest = [
     {
       id: "en",
@@ -187,7 +187,8 @@
   let lastFocusedElement = null;
   let toastTimer = 0;
   let localeRequestId = 0;
-  let currentLocale = resolvePreferredLocale();
+  let localeController = null;
+  let currentLocale = "en";
   let carouselIndex = 0;
   let carouselFrame = 0;
   let carouselReady = false;
@@ -220,6 +221,7 @@
       english: "English",
       meta: descriptionMeta.content,
       copied: "Link copied",
+      languageLoadError: "Could not load this language. Please try again.",
       present: "Present",
       highlightsCarouselLabel:
         highlightTrack?.getAttribute("aria-label") ||
@@ -293,12 +295,12 @@
     return "en";
   }
 
-  async function loadLocale(locale) {
+  async function loadLocale(locale, signal) {
     if (localeCache.has(locale)) return localeCache.get(locale);
 
     const response = await fetch(
       `/locales/${encodeURIComponent(locale)}.json?v=${localeVersion}`,
-      { credentials: "same-origin" },
+      { credentials: "same-origin", signal },
     );
     if (!response.ok)
       throw new Error(`Locale request failed: ${response.status}`);
@@ -306,20 +308,6 @@
     const messages = await response.json();
     localeCache.set(locale, messages);
     return messages;
-  }
-
-  function localizedLanguageName(locale) {
-    try {
-      const displayNames = new Intl.DisplayNames(
-        [localeById.get(currentLocale).htmlLang],
-        {
-          type: "language",
-        },
-      );
-      return displayNames.of(locale.htmlLang);
-    } catch {
-      return locale.english;
-    }
   }
 
   function renderLanguageOptions() {
@@ -345,10 +333,17 @@
       languageList.append(fragment);
     }
 
+    let displayNames;
+    try {
+      displayNames = new Intl.DisplayNames(
+        [localeById.get(currentLocale).htmlLang],
+        { type: "language" },
+      );
+    } catch {}
     languageList.querySelectorAll("[data-language]").forEach((option) => {
       const locale = localeById.get(option.dataset.language);
       const secondaryLabel = option.querySelector(".localized-name");
-      const localizedName = localizedLanguageName(locale);
+      const localizedName = displayNames?.of(locale.htmlLang) || locale.english;
       option.setAttribute("aria-current", String(locale.id === currentLocale));
       option.setAttribute("aria-label", `${locale.native} — ${localizedName}`);
       secondaryLabel.textContent = localizedName;
@@ -392,11 +387,15 @@
   async function applyLocale(locale, { persist = false } = {}) {
     const normalizedLocale = normalizeLocale(locale) || "en";
     const requestId = ++localeRequestId;
+    localeController?.abort();
+    const controller = new AbortController();
+    localeController = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
     document.documentElement.setAttribute("aria-busy", "true");
     languageTrigger.disabled = true;
 
     try {
-      const messages = await loadLocale(normalizedLocale);
+      const messages = await loadLocale(normalizedLocale, controller.signal);
       if (requestId !== localeRequestId) return false;
 
       currentLocale = normalizedLocale;
@@ -435,10 +434,16 @@
       if (persist) storeLocale(currentLocale);
       return true;
     } catch {
-      showToast("Could not load this language.");
+      if (requestId === localeRequestId) {
+        showToast(
+          (localeCache.get(currentLocale) || englishFallback).languageLoadError,
+        );
+      }
       return false;
     } finally {
+      window.clearTimeout(timeout);
       if (requestId === localeRequestId) {
+        localeController = null;
         document.documentElement.removeAttribute("aria-busy");
         languageTrigger.disabled = false;
       }
@@ -488,6 +493,11 @@
   }
 
   function closeLanguageDialog() {
+    localeRequestId += 1;
+    localeController?.abort();
+    localeController = null;
+    document.documentElement.removeAttribute("aria-busy");
+    languageTrigger.disabled = false;
     languageDialog.hidden = true;
     languageTrigger.setAttribute("aria-expanded", "false");
     document.body.classList.remove("dialog-open");
@@ -592,8 +602,22 @@
     }
   }
 
+  function connectionIsConstrained() {
+    const connection = navigator.connection;
+    return Boolean(
+      connection?.saveData ||
+        ["slow-2g", "2g"].includes(connection?.effectiveType),
+    );
+  }
+
   function requestStickerPlayback({ automatic = false } = {}) {
-    if (!stickerVideo || reducedMotionQuery.matches) return;
+    if (
+      !stickerVideo ||
+      reducedMotionQuery.matches ||
+      connectionIsConstrained() ||
+      stickerState === "static"
+    )
+      return;
     if (automatic) {
       if (
         stickerAutoplayAttempted ||
@@ -642,18 +666,17 @@
     stickerPlayRequest += 1;
     stickerPlayPending = false;
     stickerVideo?.pause();
+    if (stickerVideo && stickerSourceAttached) {
+      stickerVideo.removeAttribute("src");
+      stickerSourceAttached = false;
+      stickerVideo.load();
+    }
     setStickerState("static");
   }
 
   function setupStickerModule() {
     if (!stickerModule || !stickerVideo || !stickerPlayButton) return;
     const connection = navigator.connection;
-    const connectionIsConstrained = () =>
-      Boolean(
-        connection?.saveData ||
-          connection?.effectiveType === "slow-2g" ||
-          connection?.effectiveType === "2g",
-      );
     let mediaFailed = false;
 
     if (reducedMotionQuery.matches || connectionIsConstrained()) {
@@ -1102,7 +1125,8 @@
 
   document.getElementById("year").textContent = new Date().getFullYear();
   setupEvidenceExplorer();
-  if (currentLocale !== "en") void applyLocale(currentLocale);
+  const preferredLocale = resolvePreferredLocale();
+  if (preferredLocale !== "en") void applyLocale(preferredLocale);
   setupNavigationTracking();
   setupHighlightCarousel();
   setupStickerModule();

@@ -96,5 +96,6 @@
   "connectTitle": "Un único canal de contacto profesional.",
   "connectText": "Contacta conmigo únicamente por LinkedIn. Este sitio no publica ni recopila datos de contacto privados.",
   "viewLinkedin": "Contactar por LinkedIn",
-  "footerPrivacy": "Privacidad primero · sin analítica · sin publicidad"
+  "footerPrivacy": "Privacidad primero · sin analítica · sin publicidad",
+  "languageLoadError": "No se pudo cargar este idioma. Inténtalo de nuevo."
 }

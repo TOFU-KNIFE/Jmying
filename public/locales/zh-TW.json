@@ -96,5 +96,6 @@
   "connectTitle": "職業聯絡，僅限一個管道。",
   "connectText": "請僅透過 LinkedIn 與我聯絡。本站不公開或收集私人聯絡資料。",
   "viewLinkedin": "透過 LinkedIn 聯絡",
-  "footerPrivacy": "隱私優先 · 無分析追蹤 · 無廣告"
+  "footerPrivacy": "隱私優先 · 無分析追蹤 · 無廣告",
+  "languageLoadError": "無法載入此語言，請重試。"
 }

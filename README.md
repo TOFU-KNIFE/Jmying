@@ -85,7 +85,7 @@ For stronger source-code privacy, make the GitHub repository private. Cloudflare
 ## Local preview
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -93,9 +93,22 @@ npm run dev
 
 ```bash
 npm test
+npx playwright install chromium
+npm run test:browser
 ```
 
 This runs JavaScript syntax validation, translation consistency checks, a privacy/security scan, image-metadata checks, external-link validation, header validation, and a Wrangler deployment dry run.
+
+Browser tests run against the built site in the local Cloudflare runtime, covering
+320/390/820/1440-pixel layouts, representative scripts, all 14 language switches,
+request failures/cancellation/timeouts, keyboard dialogs, RTL carousel controls,
+system color preferences and motion-resource restrictions. Run build/audit and
+browser commands sequentially because each builds `dist/`.
+
+`npm run dev` watches `public/` and `scripts/` so source edits rebuild the preview.
+Unknown URLs return HTTP 404; this static profile has no client-side routes.
+Only `public/robots.txt` and `public/sitemap.xml` are deployable SEO sources.
+Translation JSON is compacted during the build and checked against the source.
 
 ## Collaboration and releases
 
@@ -104,7 +117,7 @@ complete project state and end-to-end Codex operating workflow live in `CODEX.md
 Claude-specific orientation lives in `CLAUDE.md`. Branching, commits, Semantic
 Versioning and the release checklist are documented in `docs/VERSIONING.md`.
 
-Pull requests run the same formatting and test checks in GitHub Actions. Dependabot groups routine development-dependency updates.
+Pull requests run formatting, static audits and Chromium interaction/accessibility tests in GitHub Actions. Browser reports, screenshots and failure traces are retained for 14 days. Dependabot groups routine development-dependency updates.
 
 ## Deploy
 

@@ -96,5 +96,6 @@
   "connectTitle": "업무 관련 연락은 LinkedIn으로만 받습니다.",
   "connectText": "LinkedIn으로만 연락해 주세요. 이 사이트는 개인 연락처를 공개하거나 수집하지 않습니다.",
   "viewLinkedin": "LinkedIn으로 연락",
-  "footerPrivacy": "개인정보 우선 · 분석 없음 · 광고 없음"
+  "footerPrivacy": "개인정보 우선 · 분석 없음 · 광고 없음",
+  "languageLoadError": "이 언어를 불러오지 못했습니다. 다시 시도해 주세요."
 }

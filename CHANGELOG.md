@@ -2,6 +2,30 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
+## [1.15.1] - 2026-09-06
+
+### Fixed
+
+- Cancel pending language requests when the dialog closes or a newer choice wins;
+  recover stalled requests after eight seconds and keep the visible English
+  fallback consistent when startup translation fails.
+- Localise language-load errors in all 14 supported languages.
+- Restore readable dark-mode navigation, metadata, portrait captions, selected
+  language labels and primary-button hover text; respect forced system colors.
+- Release video resources when reduced motion, data saving or a media error
+  selects the static preview, and guard every playback request.
+- Return real 404 responses for unknown paths instead of duplicate homepages.
+- Watch the actual public source and build scripts during local development.
+
+### Improved
+
+- Compact all translation bundles during production builds, validate semantic
+  parity, and reuse one language-name formatter per dialog render.
+- Add Chromium regression tests and axe accessibility checks to pull-request CI,
+  retaining screenshots and failure traces as downloadable artifacts.
+- Add sitemap and routing audit guards; preserve the existing contact, content,
+  runtime security and production asset budgets.
+
 ## [Unreleased]
 
 ## [1.15.0] - 2026-07-30
@@ -328,7 +352,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...HEAD
+[1.15.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...v1.14.0
 [1.13.4]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.3...v1.13.4

@@ -96,5 +96,6 @@
   "connectTitle": "One professional contact channel.",
   "connectText": "Please contact me through LinkedIn. This website does not publish or collect private contact information.",
   "viewLinkedin": "Contact on LinkedIn",
-  "footerPrivacy": "Privacy-first · no analytics · no advertising"
+  "footerPrivacy": "Privacy-first · no analytics · no advertising",
+  "languageLoadError": "Could not load this language. Please try again."
 }

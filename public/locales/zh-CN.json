@@ -96,5 +96,6 @@
   "connectTitle": "职业联系，仅限一个渠道。",
   "connectText": "请仅通过领英与我联系。本站不公开或收集私人联系方式。",
   "viewLinkedin": "通过领英联系",
-  "footerPrivacy": "隐私优先 · 无分析追踪 · 无广告"
+  "footerPrivacy": "隐私优先 · 无分析追踪 · 无广告",
+  "languageLoadError": "无法加载此语言，请重试。"
 }

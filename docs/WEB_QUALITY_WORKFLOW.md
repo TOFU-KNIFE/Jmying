@@ -148,3 +148,17 @@ build toolchain.
 Performance changes must preserve the accessibility score, factual content, CSP,
 image quality and 14-locale behaviour. A lower byte count is not accepted when it
 causes visible banding, soft facial detail, layout instability or broken navigation.
+
+## Browser regression gate (1.15.1)
+
+Run `npm test` and `npm run test:browser` sequentially; both use the generated
+`dist/` tree. The Chromium suite starts the local Cloudflare runtime and adds
+real request failure/cancellation, 404, language, keyboard, RTL, accessibility and
+media-preference coverage to the source audits. `contextOptions.reducedMotion`
+sets the browser default; individual emulation changes must set their desired
+motion preference explicitly. Do not disable CSP for interaction testing.
+
+Reviewed 2026-09-06: [Playwright web-server configuration](https://playwright.dev/docs/test-webserver)
+and [Cloudflare SPA routing](https://developers.cloudflare.com/workers/static-assets/routing/single-page-application/).
+The static profile has no client-side routes, so unknown paths use `none` handling
+and return 404 rather than a successful homepage fallback.
