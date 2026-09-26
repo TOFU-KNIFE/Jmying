@@ -520,7 +520,7 @@ section[id] {
   object-fit: cover;
   object-position: 50% 50%;
   filter: saturate(0.9) contrast(1.03) brightness(0.94);
-  animation: hero-backdrop-in 1100ms var(--ease-emphasized) both;
+  animation: hero-backdrop-in 900ms var(--ease-emphasized) both;
 }
 
 .hero-shell {
@@ -1182,7 +1182,7 @@ h1 span {
   box-shadow: 0 4px 12px rgba(7, 26, 51, 0.12);
   transition:
     background 180ms var(--ease-standard),
-    transform 300ms var(--ease-emphasized),
+    transform 240ms var(--ease-emphasized),
     box-shadow 180ms var(--ease-standard);
 }
 
@@ -1502,6 +1502,7 @@ h1 span {
   box-shadow:
     0 18px 42px rgba(7, 26, 51, 0.1),
     0 2px 8px rgba(7, 26, 51, 0.06);
+  transition: transform 420ms var(--ease-emphasized);
   scroll-snap-align: start;
   scroll-snap-stop: normal;
 }
@@ -1669,7 +1670,7 @@ h1 span {
 }
 
 .highlight-dialog[open] {
-  animation: dialog-fade-in 200ms var(--ease-standard) both;
+  animation: dialog-fade-in 240ms var(--ease-standard) both;
 }
 
 .highlight-dialog-panel {
@@ -1681,7 +1682,7 @@ h1 span {
   color: var(--color-text-primary);
   background: var(--color-background-tertiary);
   box-shadow: var(--shadow-panel);
-  animation: panel-in 420ms var(--ease-emphasized) both;
+  animation: panel-in 360ms var(--ease-emphasized) both;
 }
 
 .highlight-dialog-header {
@@ -2013,7 +2014,7 @@ h1 span {
     max(20px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom))
     max(20px, env(safe-area-inset-left));
   background: rgba(20, 20, 19, 0.72);
-  animation: dialog-fade-in 220ms var(--ease-standard) both;
+  animation: dialog-fade-in 240ms var(--ease-standard) both;
 }
 
 .language-panel {
@@ -2188,8 +2189,8 @@ h1 span {
   opacity: 0;
   transform: translateY(20px);
   transition:
-    opacity 500ms var(--ease-standard),
-    transform 720ms var(--ease-emphasized);
+    opacity 680ms var(--ease-standard),
+    transform 760ms var(--ease-emphasized);
 }
 
 .motion-ready [data-reveal].is-visible {
@@ -2216,6 +2217,10 @@ h1 span {
 .motion-ready .highlight-card:nth-child(4),
 .motion-ready .credential-list li:nth-child(4) {
   transition-delay: 210ms;
+}
+
+.highlight-card:hover {
+  transform: translateY(-4px);
 }
 
 @keyframes hero-copy-in {
@@ -2997,8 +3002,10 @@ h1 span {
   *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 
   .motion-ready [data-reveal] {
@@ -3013,6 +3020,14 @@ h1 span {
 
   .sticker-static {
     opacity: 1;
+  }
+
+  *:is(:hover, :active, :focus-within) {
+    transform: none !important;
+  }
+
+  :where(.highlight-card-backdrop img, .evidence-range) {
+    transform: none !important;
   }
 }
 
@@ -3081,6 +3096,11 @@ h1 span {
     content: none;
   }
 
+  .highlight-card-image::before,
+  .highlight-card-backdrop {
+    display: none;
+  }
+
   .site-header {
     color: CanvasText;
     background: Canvas;
@@ -3137,6 +3157,12 @@ h1 span {
 
   .sticker-static {
     opacity: 1 !important;
+  }
+
+  .motion-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 
   body,

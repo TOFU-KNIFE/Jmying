@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.15.1";
+  const localeVersion = "1.15.2";
   const localeManifest = [
     {
       id: "en",
@@ -765,20 +765,8 @@
 
   function scrollByHighlight(direction) {
     activateHighlightCarousel();
-    const cards = highlightCards();
-    if (!cards.length) return;
-    const trackStyles = window.getComputedStyle(highlightTrack);
-    const gap = Number.parseFloat(trackStyles.columnGap) || 0;
-    const distance = cards[0].getBoundingClientRect().width + gap;
-    const rtlMultiplier = document.documentElement.dir === "rtl" ? -1 : 1;
-    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
-      .matches
-      ? "auto"
-      : "smooth";
-    highlightTrack.scrollBy({
-      left: direction * distance * rtlMultiplier,
-      behavior,
-    });
+    updateHighlightIndexFromScroll();
+    scrollToHighlight(carouselIndex + direction);
   }
 
   function scrollToHighlight(index, requestedBehavior) {
@@ -787,10 +775,7 @@
     if (!cards.length) return;
     carouselIndex = Math.max(0, Math.min(index, cards.length - 1));
     const behavior =
-      requestedBehavior ||
-      (window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth");
+      requestedBehavior || (reducedMotionQuery.matches ? "auto" : "smooth");
     const direction = document.documentElement.dir;
     const trackRect = highlightTrack.getBoundingClientRect();
     const cardRect = cards[carouselIndex].getBoundingClientRect();
@@ -986,23 +971,28 @@
       .filter(Boolean);
     if (!("IntersectionObserver" in window) || !sections.length) return;
 
+    const visibleSections = new Map();
+    let activeSection = null;
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const activeEntry = entries
+        entries.forEach((entry) => {
+          visibleSections.set(entry.target, entry);
+        });
+        const nextSection = [...visibleSections.values()]
           .filter((entry) => entry.isIntersecting)
           .sort(
             (firstEntry, secondEntry) =>
               secondEntry.intersectionRatio - firstEntry.intersectionRatio,
-          )[0];
-        if (!activeEntry) return;
-
-        navigationLinks.forEach((link) => {
-          if (link.getAttribute("href") === `#${activeEntry.target.id}`) {
-            link.setAttribute("aria-current", "location");
-          } else {
-            link.removeAttribute("aria-current");
-          }
-        });
+          )[0]?.target;
+        if (!nextSection || nextSection === activeSection) return;
+        activeSection = nextSection;
+        navigationLinks.forEach((link) =>
+          link.toggleAttribute(
+            "aria-current",
+            link.getAttribute("href") === `#${activeSection.id}`,
+          ),
+        );
       },
       { rootMargin: "-30% 0px -55% 0px", threshold: [0.01, 0.25, 0.5] },
     );
@@ -1010,35 +1000,43 @@
   }
 
   function setupPurposefulMotion() {
-    if (
-      !("IntersectionObserver" in window) ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
-    }
+    if (!("IntersectionObserver" in window)) return;
 
-    const revealTargets = [
+    const targets = [
       ...document.querySelectorAll(
         ".section-intro, .focus-item, .timeline-item, .evidence-explorer, .approach-visual, .approach-list li, .toolkit-strip, .highlight-card, .credential-list li, .connect-layout",
       ),
     ];
-    document.documentElement.classList.add("motion-ready");
+    targets.forEach((target) => (target.dataset.reveal = ""));
+    let observer = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        });
-      },
-      { rootMargin: "0px 0px -8%", threshold: 0.12 },
-    );
+    function refreshMotion() {
+      observer?.disconnect();
+      observer = null;
+      const motionEnabled = !reducedMotionQuery.matches;
+      document.documentElement.classList.toggle("motion-ready", motionEnabled);
+      if (!motionEnabled) return;
 
-    revealTargets.forEach((target) => {
-      target.dataset.reveal = "";
-      observer.observe(target);
-    });
+      const nextObserver = new IntersectionObserver(
+        (entries) => {
+          if (observer !== nextObserver) return;
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            nextObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "0px 0px -8%", threshold: 0.12 },
+      );
+      observer = nextObserver;
+      targets.forEach((target) => {
+        if (!target.classList.contains("is-visible"))
+          nextObserver.observe(target);
+      });
+    }
+
+    refreshMotion();
+    reducedMotionQuery.addEventListener("change", refreshMotion);
   }
 
   menuTrigger?.addEventListener("click", toggleMobileMenu);
@@ -1067,29 +1065,33 @@
     if (applied) closeLanguageDialog();
   });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && highlightDialog?.open) {
-      closeHighlightDialog();
-      return;
-    }
-    if (!languageDialog.hidden) {
+    const activeDialog = highlightDialog?.open
+      ? highlightDialog
+      : languageDialog.hidden
+        ? null
+        : languageDialog;
+    if (activeDialog) {
       if (event.key === "Escape") {
-        closeLanguageDialog();
+        activeDialog === highlightDialog
+          ? closeHighlightDialog()
+          : closeLanguageDialog();
         return;
       }
       if (event.key !== "Tab") return;
 
       const focusableButtons = [
-        ...languageDialog.querySelectorAll("button:not([disabled])"),
+        ...activeDialog.querySelectorAll("button:not([disabled])"),
       ];
       if (!focusableButtons.length) return;
       const firstButton = focusableButtons[0];
       const lastButton = focusableButtons[focusableButtons.length - 1];
-      if (event.shiftKey && document.activeElement === firstButton) {
+      if (
+        !activeDialog.contains(document.activeElement) ||
+        (event.shiftKey && document.activeElement === firstButton) ||
+        (!event.shiftKey && document.activeElement === lastButton)
+      ) {
         event.preventDefault();
-        lastButton.focus();
-      } else if (!event.shiftKey && document.activeElement === lastButton) {
-        event.preventDefault();
-        firstButton.focus();
+        (event.shiftKey ? lastButton : firstButton).focus();
       }
       return;
     }
@@ -1126,6 +1128,7 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   setupEvidenceExplorer();
   const preferredLocale = resolvePreferredLocale();
+  document.documentElement.dir = localeById.get(preferredLocale).dir;
   if (preferredLocale !== "en") void applyLocale(preferredLocale);
   setupNavigationTracking();
   setupHighlightCarousel();
