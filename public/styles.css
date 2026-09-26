@@ -1071,13 +1071,7 @@ h1 span {
   max-width: 100%;
   margin-top: 24px;
   overflow-x: auto;
-  overscroll-behavior-inline: contain;
   scrollbar-width: thin;
-}
-
-.evidence-chart {
-  min-width: 680px;
-  padding-bottom: 2px;
 }
 
 .evidence-year-scale,
@@ -1474,8 +1468,7 @@ h1 span {
   margin: 0;
   padding: 8px var(--track-inset) 48px;
   overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-padding-inline: var(--track-inset);
+  scroll-padding: 0 var(--track-inset);
   scroll-snap-type: inline mandatory;
   scrollbar-width: none;
   touch-action: pan-x;
@@ -1504,7 +1497,6 @@ h1 span {
     0 2px 8px rgba(7, 26, 51, 0.06);
   transition: transform 420ms var(--ease-emphasized);
   scroll-snap-align: start;
-  scroll-snap-stop: normal;
 }
 
 .highlight-card-image {
@@ -2399,6 +2391,10 @@ h1 span {
     scroll-margin-top: 72px;
   }
 
+  .section {
+    content-visibility: visible;
+  }
+
   .header-shell {
     width: min(calc(100% - 32px), var(--shell));
     min-height: calc(56px + env(safe-area-inset-top));
@@ -2775,6 +2771,16 @@ h1 span {
     padding: 20px;
   }
 
+  .evidence-year-scale {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .evidence-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .hero-actions {
     align-items: stretch;
     flex-direction: column;
@@ -2923,7 +2929,13 @@ h1 span {
   }
 
   .highlight-dialog-header {
+    grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .highlight-dialog-header .close-button {
+    order: -1;
+    justify-self: start;
   }
 
   .highlight-dialog-header h2 {

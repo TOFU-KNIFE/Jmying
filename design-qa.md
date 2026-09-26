@@ -5,7 +5,7 @@
 - Review date: 2026-09-26
 - Scope: Hero and editorial reveals, mobile navigation, control feedback,
   evidence timeline, project carousel, dialogs, AI × Accounting playback states
-  and system-preference fallbacks.
+  mobile section geometry and system-preference fallbacks.
 - Motion contract: brief nonlinear transform-and-opacity transitions for larger
   surfaces, stable layout geometry, no decorative infinite loops and existing
   JavaScript state hooks only.
@@ -14,28 +14,37 @@
   forced colors remove photographic backdrops and use system Canvas/Highlight
   colors; print output resets animated content to its final readable state.
 
+### Mobile refinement evidence
+
+- At 320 pixels, the `#experience` placeholder previously moved later sections
+  by 1,441 pixels as its content entered view; the mobile layout now holds a
+  stable 0-pixel shift at both 320 and 390 pixels.
+- The compact evidence timeline fits a 246-pixel chart at 320 pixels and a
+  316-pixel chart at 390 pixels, with visible 2024, 2025 and 2026 markers and
+  date ranges.
+- The narrow highlight dialog stacks its close control above the title. At 320
+  pixels the LTR and Arabic title receive the full 232-pixel content width and
+  no longer split the final word across lines.
+
 ### Validation status
 
-- `npm test` passed its complete release gate: JavaScript syntax, internationalisation,
-  quality, performance, security, production build and Wrangler deployment dry run.
-- The browser suite passed 48/48 tests. Manual desktop and mobile screenshots were
-  reviewed for entrance motion, carousel cards, the highlight dialog, reduced motion
-  and forced colors.
-- Source budgets remain within limits: JavaScript 36,638/36,864 bytes and CSS
-  65,245/65,536 bytes after formatter cleanup. Built CSS is 53,129/53,248 bytes.
-- Lighthouse 13.4.0 cold-profile runs against the built site scored 100/100/100/100
-  for Performance, Accessibility, Best Practices and SEO on both 390 × 844 mobile
-  and 1,440 × 1,000 desktop profiles. Mobile FCP/LCP were 1.5 s, Speed Index was
-  1.6 s, TBT was 0 ms, CLS was 0 and transfer was 95 KiB; desktop FCP/LCP were
-  0.1 s, Speed Index was 0.5 s, TBT was 0 ms, CLS was 0 and transfer was 131 KiB.
-- Lighthouse found no console errors or failed requests, and image delivery,
-  responsive sizing, explicit dimensions, aspect ratio and unused CSS/JavaScript
-  checks passed. It flagged the existing stylesheet as render-blocking (estimated
-  150 ms on mobile) and the document-to-stylesheet/manifest dependency chain; no
-  production regression was established from these local measurements.
-- One earlier performance-only mobile run scored 91 with 2.8 s FCP/LCP, while the
-  full-category rerun scored 100 with 1.5 s FCP/LCP. These cold local runs vary and
-  are not production CDN or cache measurements.
+- `npm test` passed the complete release gate: JavaScript syntax,
+  internationalisation, quality, performance, security, production build and
+  Wrangler deployment dry run.
+- The browser suite passed 54/54 tests, including six mobile regression checks.
+  No console errors or failed requests were reported.
+- Lighthouse 13.4.0 cold local mobile at 390 × 844 scored 100/100/100/100 for
+  Performance, Accessibility, Best Practices and SEO. FCP was 0.8 s, LCP was
+  1.4 s, Speed Index was 1.2 s, TBT and CLS were 0, and transfer was about
+  95 KiB across 8 requests.
+- Current CSS source is 65,394/65,536 bytes. A targeted CleanCSS estimate is
+  53,219/53,248 bytes including the built newline; JavaScript remains
+  36,638/36,864 bytes.
+- The prior desktop Lighthouse baseline remains historical: 100/100/100/100 at
+  1,440 × 1,000. No new desktop Lighthouse run is claimed in this update.
+- Cold local Lighthouse runs vary; an earlier performance-only mobile sample
+  scored 91 with 2.8 s FCP/LCP. These figures are local diagnostics, not
+  production CDN or cache measurements.
 
 final result: passed
 

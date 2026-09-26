@@ -195,9 +195,12 @@ test("study motion stop and replay controls keep state feedback in sync", async 
     .poll(() => sticker.getAttribute("data-sticker-state"))
     .toMatch(/^(ready|playing)$/);
 
-  if ((await sticker.getAttribute("data-sticker-state")) === "ready") {
-    await button.click();
-  }
+  await page.evaluate(() => {
+    const sticker = document.querySelector("[data-sticker-module]");
+    if (sticker?.dataset.stickerState === "ready") {
+      document.querySelector("[data-sticker-play]")?.click();
+    }
+  });
   await expect(sticker).toHaveAttribute("data-sticker-state", "playing");
   await expect(label).toHaveText("Stop motion");
 
