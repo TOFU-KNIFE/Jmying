@@ -2,6 +2,13 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
+## [1.15.3] - 2026-09-29
+
+### Changed
+
+- Revised the user-provided copy across all 14 supported locales for clearer and
+  more consistent multilingual profile messaging.
+
 ## [1.15.2] - 2026-09-26
 
 ### Changed
@@ -372,7 +379,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.2...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.3...HEAD
+[1.15.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...v1.15.0
