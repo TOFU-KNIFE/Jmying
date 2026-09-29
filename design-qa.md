@@ -1,5 +1,53 @@
 # Design QA
 
+## Motion polish release 1.15.2
+
+- Review date: 2026-09-26
+- Scope: Hero and editorial reveals, mobile navigation, control feedback,
+  evidence timeline, project carousel, dialogs, AI × Accounting playback states
+  mobile section geometry and system-preference fallbacks.
+- Motion contract: brief nonlinear transform-and-opacity transitions for larger
+  surfaces, stable layout geometry, no decorative infinite loops and existing
+  JavaScript state hooks only.
+- Preference coverage: reduced motion restores static content and removes
+  playback motion; increased contrast strengthens image overlays and rules;
+  forced colors remove photographic backdrops and use system Canvas/Highlight
+  colors; print output resets animated content to its final readable state.
+
+### Mobile refinement evidence
+
+- At 320 pixels, the `#experience` placeholder previously moved later sections
+  by 1,441 pixels as its content entered view; the mobile layout now holds a
+  stable 0-pixel shift at both 320 and 390 pixels.
+- The compact evidence timeline fits a 246-pixel chart at 320 pixels and a
+  316-pixel chart at 390 pixels, with visible 2024, 2025 and 2026 markers and
+  date ranges.
+- The narrow highlight dialog stacks its close control above the title. At 320
+  pixels the LTR and Arabic title receive the full 232-pixel content width and
+  no longer split the final word across lines.
+
+### Validation status
+
+- `npm test` passed the complete release gate: JavaScript syntax,
+  internationalisation, quality, performance, security, production build and
+  Wrangler deployment dry run.
+- The browser suite passed 54/54 tests, including six mobile regression checks.
+  No console errors or failed requests were reported.
+- Lighthouse 13.4.0 cold local mobile at 390 × 844 scored 100/100/100/100 for
+  Performance, Accessibility, Best Practices and SEO. FCP was 0.8 s, LCP was
+  1.4 s, Speed Index was 1.2 s, TBT and CLS were 0, and transfer was about
+  95 KiB across 8 requests.
+- Current CSS source is 65,394/65,536 bytes. A targeted CleanCSS estimate is
+  53,219/53,248 bytes including the built newline; JavaScript remains
+  36,638/36,864 bytes.
+- The prior desktop Lighthouse baseline remains historical: 100/100/100/100 at
+  1,440 × 1,000. No new desktop Lighthouse run is claimed in this update.
+- Cold local Lighthouse runs vary; an earlier performance-only mobile sample
+  scored 91 with 2.8 s FCP/LCP. These figures are local diagnostics, not
+  production CDN or cache measurements.
+
+final result: passed
+
 ## Near-viewport motion release 1.15.0
 
 - Review date: 2026-07-30

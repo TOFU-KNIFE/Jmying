@@ -2,6 +2,33 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
+## [1.15.3] - 2026-09-29
+
+### Changed
+
+- Revised the user-provided copy across all 14 supported locales for clearer and
+  more consistent multilingual profile messaging.
+
+## [1.15.2] - 2026-09-26
+
+### Changed
+
+- Refined purposeful motion across the Hero, section reveals, navigation,
+  controls, evidence timeline, project carousel, dialogs and the AI × Accounting
+  study using brief nonlinear transform-and-opacity transitions.
+- Added clearer hover, focus, selected and playback state feedback while keeping
+  layout geometry stable and avoiding decorative continuous animation.
+- Strengthened reduced-motion, print, increased-contrast and forced-colors
+  fallbacks so the complete profile and static study preview remain available.
+- Stabilised mobile section geometry below 820 pixels so reading positions do not
+  move as below-fold sections enter the viewport.
+- Reworked the evidence timeline into a compact mobile scale with visible 2024,
+  2025 and 2026 markers while retaining the desktop chart treatment.
+- Stacked the narrow highlight-dialog close control above its title so English
+  and right-to-left titles keep their full mobile reading width.
+- Revisioned the stylesheet, script, image, media and install-asset URLs for the
+  release.
+
 ## [1.15.1] - 2026-09-06
 
 ### Fixed
@@ -352,7 +379,9 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.3...HEAD
+[1.15.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.2...v1.15.3
+[1.15.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.13.4...v1.14.0
