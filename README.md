@@ -78,7 +78,18 @@ Security controls include a default-deny Content Security Policy, Trusted Types 
 
 Browser-delivered files cannot be genuinely hidden or encrypted from visitors. The security model is therefore to keep every secret out of `public/`. Source remains readable for maintainers, while Cloudflare can apply transport compression. For future server-side credentials, use Cloudflare Secrets.
 
-Versioned CSS, JavaScript and locale URLs use long-lived immutable caching. Update the `?v=` revision in `public/index.html` and `public/app.js` with every release that changes those assets.
+Production builds inline the minified stylesheet into `dist/index.html` and add
+the exact style-body SHA-256 to the generated CSP. The source HTML keeps its
+external `/styles.css` link so local development and source audits remain
+readable. Builds emit a content-hashed `app.<sha256>.js` path, while mutable
+`app.js` and `styles.css` compatibility paths are revalidated.
+
+Production image, icon, media, manifest and font URLs receive deterministic
+content-hash queries, and locale requests use a hash of the compact locale set.
+Those URLs move when bytes change, so a visitor cannot retain an old immutable
+object under the previous release query. Fonts remain eligible for one-year
+immutable caching; mutable HTML, image, media and locale paths use
+`max-age=0, must-revalidate`.
 
 For stronger source-code privacy, make the GitHub repository private. Cloudflare’s GitHub integration can deploy from a private repository after authorization.
 
@@ -98,6 +109,9 @@ npm run test:browser
 ```
 
 This runs JavaScript syntax validation, translation consistency checks, a privacy/security scan, image-metadata checks, external-link validation, header validation, and a Wrangler deployment dry run.
+The build also verifies the generated inline-CSS CSP hash, content-hashed script
+and locale token, and every local HTML/CSS/font/image reference before `dist/` is
+eligible for deployment.
 
 Browser tests run against the built site in the local Cloudflare runtime, covering
 320/390/820/1440-pixel layouts, representative scripts, all 14 language switches,
@@ -129,4 +143,10 @@ For an authorised manual recovery deployment:
 npm run deploy
 ```
 
-Cloudflare serves the contents of `public/` according to `wrangler.jsonc`. Keep the Cloudflare build command empty and use `npx wrangler deploy` as the deploy command.
+Cloudflare deploys the generated `dist/` directory configured in
+`wrangler.jsonc`. Its `build.command` runs `npm run build` before the deploy, so
+do not deploy `public/` directly or edit generated `dist/` files by hand.
+The production `main` environment is the only environment that uses
+`wrangler deploy`. Non-production and preview environments must upload a
+version with `npx wrangler versions upload` and must not use the production
+deploy command.

@@ -2,6 +2,20 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
+## [1.15.4] - 2026-10-28
+
+### Fixed
+
+- Deliver production CSS with HTML under an exact CSP hash so a failed external
+  stylesheet request cannot leave the first visit unstyled.
+- Derive asset and locale cache revisions from content, and revalidate mutable
+  paths instead of caching them as immutable for a year.
+- Retry failed picture formats through WebP and JPEG, preserve image slots,
+  and keep mobile anchor navigation available when JavaScript cannot load.
+- Add mobile WebKit and Chromium cold-visit, resource-failure and CSP regression
+  coverage. Correct non-production Cloudflare builds to upload preview versions.
+- Enable edge HTTPS redirects and restore the canonical www entry point.
+
 ## [1.15.3] - 2026-09-29
 
 ### Changed

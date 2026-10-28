@@ -510,6 +510,7 @@ section[id] {
   inset: 0;
   display: block;
   overflow: hidden;
+  background: var(--institutional-ink);
   pointer-events: none;
 }
 
@@ -737,6 +738,7 @@ h1 span {
 .yearbook-portrait picture {
   aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: var(--color-background-secondary);
 }
 
 .yearbook-portrait img {
@@ -1527,6 +1529,7 @@ h1 span {
   z-index: 0;
   inset: 0;
   display: block;
+  background: var(--institutional-ink);
 }
 
 .highlight-card-backdrop img {
@@ -1925,6 +1928,7 @@ h1 span {
   position: absolute;
   z-index: -2;
   inset: 0;
+  background: var(--institutional-ink);
 }
 
 .connect-backdrop img {
@@ -2412,19 +2416,27 @@ h1 span {
     gap: 0 16px;
     padding: 12px max(16px, calc((100vw - var(--shell)) / 2)) 18px;
     border-bottom: var(--border-width) solid rgba(7, 26, 51, 0.24);
-    visibility: hidden;
-    opacity: 0;
+    visibility: visible;
+    opacity: 1;
     background: var(--institutional-blue);
     box-shadow: 0 18px 32px rgba(7, 26, 51, 0.16);
-    pointer-events: none;
-    transform: translateY(-8px);
+    pointer-events: auto;
+    transform: none;
     transition:
       opacity 220ms var(--ease-standard),
       transform 320ms var(--ease-emphasized),
       visibility 0s linear 320ms;
   }
 
-  .site-header[data-menu-open="true"] .primary-nav {
+  .js-enabled .primary-nav {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition-delay: 0s, 0s, 320ms;
+  }
+
+  .js-enabled .site-header[data-menu-open="true"] .primary-nav {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;

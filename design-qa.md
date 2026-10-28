@@ -327,3 +327,17 @@ of `content-visibility: auto` sections can contain skipped blank areas and are n
 valid evidence of the layout a visitor sees after scrolling.
 
 final result: passed
+
+## First-visit reliability — 1.15.4 (2026-10-28)
+
+- P1: external CSS failure removes all layout; production now embeds the complete compressed stylesheet with an exact CSP hash.
+- P1: failed picture requests do not automatically select the next format; explicit WebP/JPEG retries now pass in Chromium and mobile WebKit.
+- P2: mobile navigation hidden if the app script fails; progressive enhancement leaves anchors usable.
+- P1: non-production Cloudflare builds deployed production traffic; Version command corrected to versions upload. HTTP and www redirects now configured at the edge.
+- Browser verification: 68 tests passed, covering 320/390/820/1440px, English/German/CJK/Thai/Arabic, all 14 locale switches, reduced motion, dark/high-contrast/forced-colors, keyboard focus, image failures and CSP.
+- Historical request failure remains unproven; controlled blocking reproduces the screenshot symptoms.
+- Visual review passed for desktop English, 390px mobile English/Chinese/Arabic and 320px German, preserving image crops, readable text and RTL alignment.
+- Lighthouse 13.4.0 cold local-runtime checks: mobile performance 99, FCP 1.1s, LCP 1.8s, TBT 0ms, CLS 0, transfer 97 KiB; desktop performance 100, FCP 0.3s, LCP 0.5s, TBT 0ms, CLS 0, transfer 124 KiB. Accessibility, best practices and SEO scored 100 in both. These are lab measurements, not field Core Web Vitals; the older recorded mobile baseline was 99 with LCP 1.6s.
+- Static audits and Cloudflare deployment dry run passed. Screenshot and Lighthouse artifacts are retained in `/tmp/jmying-first-visit-proof/` for this session.
+
+final result: passed

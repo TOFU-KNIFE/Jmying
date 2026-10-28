@@ -133,9 +133,11 @@ for (const filename of publicImages) {
 }
 
 for (const extension of ["avif", "webp", "jpg"]) {
-  const cacheRule = `/*.${extension}\n  Cache-Control: public, max-age=31536000, immutable`;
+  const cacheRule = `/*.${extension}\n  Cache-Control: public, max-age=0, must-revalidate`;
   if (!headers.includes(cacheRule)) {
-    findings.push(`${extension} images are missing their immutable cache rule`);
+    findings.push(
+      `${extension} images are missing their revalidation cache rule`,
+    );
   }
 }
 
@@ -168,7 +170,14 @@ for (const size of ["192x192", "512x512"]) {
 }
 
 if (!headers.includes("/*.png")) {
-  findings.push("brand PNGs are missing their immutable cache rules");
+  findings.push("brand PNGs are missing their revalidation cache rules");
+}
+if (
+  !headers.includes(
+    "/brand/*.png\n  Cache-Control: public, max-age=0, must-revalidate",
+  )
+) {
+  findings.push("nested brand PNGs are missing their revalidation cache rule");
 }
 
 const navTargets = [...html.matchAll(/data-nav-link="" href="#([^"]+)"/g)].map(
@@ -328,6 +337,24 @@ for (const [locale, requiredFamily] of [
 
 if (!headers.includes("/fonts/*.woff2")) {
   findings.push("self-hosted fonts are missing their immutable cache rule");
+}
+if (
+  !headers.includes(
+    "/app.*.js\n  Cache-Control: public, max-age=31536000, immutable",
+  )
+) {
+  findings.push(
+    "content-hashed application scripts are missing immutable caching",
+  );
+}
+for (const mutableAsset of ["/app.js", "/styles.css"]) {
+  if (
+    !headers.includes(
+      mutableAsset + "\n  Cache-Control: public, max-age=0, must-revalidate",
+    )
+  ) {
+    findings.push(mutableAsset + " must use revalidation caching");
+  }
 }
 
 for (const token of [
