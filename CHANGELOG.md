@@ -2,6 +2,12 @@
 
 All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and Semantic Versioning.
 
+## [Unreleased]
+
+### Security
+
+- Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
+
 ## [1.15.4] - 2026-10-28
 
 ### Fixed

@@ -37,7 +37,7 @@ Reviewed the deployable `public/` directory, Cloudflare headers, package configu
 - No runtime npm dependencies.
 - `npm audit` reports zero vulnerabilities.
 - Wrangler static-assets deployment dry run passed.
-- Release-versioned JavaScript, CSS and locale URLs use year-long immutable caching; the release checklist requires a revision bump whenever one changes.
+- Content-hashed JavaScript and versioned fonts use immutable caching; mutable asset paths revalidate.
 
 ## Encryption and reverse engineering
 
@@ -69,3 +69,7 @@ overrides were applied. Recheck and upgrade the supported Wrangler release when
 available; do not describe the full dependency audit as clean. The browser suite
 and deployment dry run must pass after that upgrade. Existing Dependabot checks
 remain enabled.
+
+## Development dependency review — 2026-10-29
+
+Wrangler was updated to 4.154.0 using fresh npm registry metadata. The full `npm audit` and production-only audit both report zero vulnerabilities after the update. The former four development-only findings were fixed without forced transitive overrides. Static audits and the deployment dry run pass; Chromium and WebKit regression checks are required for this change.
