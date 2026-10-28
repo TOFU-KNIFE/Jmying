@@ -207,11 +207,11 @@ for (const required of [
     fail(join(publicDir, "_headers"), `missing security control: ${required}`);
 }
 const stickerCacheRule =
-  "/media/ai-accounting/*\n  Cache-Control: public, max-age=31536000, immutable";
+  "/media/ai-accounting/*\n  Cache-Control: public, max-age=0, must-revalidate";
 if (!headers.includes(stickerCacheRule)) {
   fail(
     join(publicDir, "_headers"),
-    "AI accounting media is missing its immutable cache rule",
+    "AI accounting media is missing its revalidation cache rule",
   );
 }
 

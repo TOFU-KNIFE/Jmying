@@ -1,6 +1,8 @@
+import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gzipSync } from "node:zlib";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const publicDir = join(root, "public");
@@ -22,8 +24,8 @@ const stickerMediaBudgets = new Map([
 
 const sourceBudgets = new Map([
   ["index.html", 40 * 1024],
-  ["styles.css", 64 * 1024],
-  ["app.js", 36 * 1024],
+  ["styles.css", 68 * 1024],
+  ["app.js", 42 * 1024],
 ]);
 
 for (const [filename, limit] of sourceBudgets) {
@@ -36,8 +38,8 @@ for (const [filename, limit] of sourceBudgets) {
 }
 
 const productionBudgets = new Map([
-  ["index.html", 30 * 1024],
-  ["styles.css", 52 * 1024],
+  ["index.html", 96 * 1024],
+  ["styles.css", 56 * 1024],
   ["app.js", 20 * 1024],
 ]);
 
@@ -84,10 +86,99 @@ for (const locale of localeNames) {
     findings.push(`${locale} production translation exceeds source size`);
   }
 }
+const localeContentHash = createHash("sha256")
+  .update(
+    Buffer.concat(
+      await Promise.all(
+        localeNames.map((locale) =>
+          readFile(join(distDir, "locales", locale + ".json")),
+        ),
+      ),
+    ),
+  )
+  .digest("hex");
 
 const productionHtml = await readFile(join(distDir, "index.html"), "utf8");
-if (!productionHtml.includes(`src="/app.js?v=${packageJson.version}"`)) {
-  findings.push("production HTML is missing its versioned application script");
+if (!/src="\/app\.[0-9a-f]{64}\.js"/.test(productionHtml)) {
+  findings.push(
+    "production HTML is missing its content-hashed application script",
+  );
+}
+if (/\brel="stylesheet"\b/i.test(productionHtml)) {
+  findings.push("production HTML still depends on an external stylesheet");
+}
+if (/<style\b/i.test(productionHtml) === false) {
+  findings.push("production HTML is missing its inline stylesheet");
+}
+if (/\sstyle\s*=/i.test(productionHtml)) {
+  findings.push("production HTML contains a style attribute");
+}
+
+const productionStyles = await readFile(join(distDir, "styles.css"), "utf8");
+const productionHeaders = await readFile(join(distDir, "_headers"), "utf8");
+const inlineStyleMatch = productionHtml.match(/<style>([\s\S]*?)<\/style>/i);
+if (!inlineStyleMatch) {
+  findings.push("production HTML is missing its exact inline style body");
+} else {
+  const styleHash = createHash("sha256")
+    .update(inlineStyleMatch[1])
+    .digest("base64");
+  if (!productionHeaders.includes("'sha256-" + styleHash + "'")) {
+    findings.push("production CSP does not match the inline style body");
+  }
+  if (productionStyles.trimEnd() !== inlineStyleMatch[1]) {
+    findings.push("production styles.css diverges from inline style bytes");
+  }
+}
+
+const scriptReference = productionHtml.match(
+  /src="(\/app\.([0-9a-f]{64})\.js)"/,
+);
+if (!scriptReference) {
+  findings.push("production HTML is missing its content-hashed script path");
+} else {
+  const hashedScriptPath = join(distDir, scriptReference[1].slice(1));
+  try {
+    const hashedScript = await readFile(hashedScriptPath);
+    const expectedHash = scriptReference[2];
+    const actualHash = createHash("sha256").update(hashedScript).digest("hex");
+    if (actualHash !== expectedHash) {
+      findings.push("content-hashed script filename does not match its bytes");
+    }
+    const compatibilityScript = await readFile(join(distDir, "app.js"), "utf8");
+    if (compatibilityScript !== hashedScript.toString("utf8")) {
+      findings.push(
+        "mutable app.js compatibility copy differs from hashed script",
+      );
+    }
+    if (!hashedScript.toString("utf8").includes(localeContentHash)) {
+      findings.push(
+        "hashed application script is missing the locale content hash",
+      );
+    }
+  } catch {
+    findings.push("content-hashed application script file is missing");
+  }
+}
+
+for (const [filename, limit] of [
+  ["index.html", 24 * 1024],
+  ["styles.css", 14 * 1024],
+  ["app.js", 8 * 1024],
+]) {
+  const payload = await readFile(join(distDir, filename));
+  const compressed = gzipSync(payload).byteLength;
+  if (compressed > limit) {
+    findings.push(
+      "production " +
+        filename +
+        " gzip is " +
+        Math.ceil(compressed / 1024) +
+        " KiB; gzip budget is " +
+        Math.ceil(limit / 1024) +
+        " KiB",
+    );
+  }
 }
 
 const fontBudgets = new Map([
@@ -158,7 +249,7 @@ const imageUrls = [
 ].map(([url]) => url);
 for (const url of imageUrls) {
   if (!url.includes(`?v=${packageJson.version}`)) {
-    findings.push(`${url} is not revisioned for immutable caching`);
+    findings.push(`${url} is not revisioned for deterministic rollout`);
   }
 }
 

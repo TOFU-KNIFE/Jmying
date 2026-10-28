@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.15.3`
+- Version: `1.15.4`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -69,7 +69,8 @@ Generated production output belongs in `dist/` and must not be edited by hand.
 7. Keep the current independent identity. References are quality benchmarks, not
    templates or evidence of affiliation.
 8. Use responsive assets, explicit dimensions and correct loading priority.
-9. Revision every immutable asset URL when its contents change.
+9. Let the production build derive content-hashed asset URLs from bytes; never
+   keep an old immutable URL after its contents change.
 10. Never merge a visual change without desktop, mobile and representative-locale
     review.
 
@@ -199,8 +200,13 @@ Spanish, Brazilian Portuguese and Arabic.
 - AVIF is preferred for photographs, with WebP and JPEG fallbacks.
 - Hidden language options, carousel measurements and offscreen sections are
   deferred.
-- HTML is revalidated and marked `no-transform`; immutable versioned assets use a
-  one-year cache.
+- HTML is revalidated and marked `no-transform`; mutable compatibility, image,
+  media and locale paths are revalidated, while content-hashed scripts and
+  versioned font URLs use a one-year cache.
+- Production HTML carries the complete minified stylesheet in one CSP-hashed
+  style block. The source stylesheet link remains external for development.
+- The build derives content-hash queries for image, icon, media, manifest and
+  font references, and a combined locale-content hash for runtime locale fetches.
 - Fonts are same-origin, Unicode-ranged and loaded only when a device needs the
   fallback.
 - The site has no analytics, advertising, form collection or third-party runtime
@@ -322,8 +328,10 @@ Keep these values aligned:
 
 - `package.json`
 - `package-lock.json`
-- CSS, JavaScript, image and icon `?v=` revisions
-- `public/app.js` locale version
+- source CSS/JavaScript/image/icon `?v=` revisions where the readable source
+  contract requires them, plus generated content-hash URLs in `dist/`
+- `public/app.js` source locale version, plus the generated locale-content hash
+  embedded in the production script
 - `CHANGELOG.md`
 - the current-release line in this file
 
@@ -365,6 +373,10 @@ Wait for the required `quality` check. Do not merge a red or pending release.
 Merge the approved pull request into `main`. Cloudflare Workers Builds listens only
 to `main` and deploys automatically. Pull-request branches are validated by GitHub
 Actions without production deployment.
+The production `main` environment is the only environment that may use
+`wrangler deploy`. Non-production and preview environments must use
+`npx wrangler versions upload`; never point a non-production branch at the
+production deploy command.
 
 Manual deployment is recovery-only and requires explicit authorisation:
 
@@ -380,7 +392,9 @@ dashboard.
 After Cloudflare reports success:
 
 1. Open <https://jmying.com> with a cache-busting query.
-2. Confirm the expected versioned CSS, JavaScript, locale and identity assets.
+2. Confirm the generated inline-CSS CSP hash, content-hashed JavaScript path,
+   content-hash asset queries, locale token and identity assets.
+   Confirm the deployment serves generated `dist/` output, not raw `public/`.
 3. Inspect desktop and mobile layout, the brand symbol, Hero, portrait, carousel,
    AI × Accounting static/playback states, language selector and LinkedIn action.
 4. Confirm no console errors or failed requests.

@@ -49,4 +49,4 @@ JavaScript, locale, image and icon revisions in `public/index.html`,
 7. Verify `https://jmying.com`, security headers and the LinkedIn link.
 8. Tag the verified merge commit as `vX.Y.Z` and create a GitHub release from the changelog.
 
-Cloudflare must build only the production branch (`main`), with non-production branch builds disabled. The project has no framework build step, so the Cloudflare build command stays empty and the deploy command is `npx wrangler deploy`. Use `npm run deploy` only for an authorised recovery deployment.
+Cloudflare deploys production only from `main` with `npx wrangler deploy`. Non-production branches use `npx wrangler versions upload` to create preview versions without changing production traffic. Wrangler runs `npm run build` and serves the generated `dist/` directory. Production asset URLs use content hashes; readable source revisions remain aligned with the release. Use `npm run deploy` only for an authorised recovery deployment.

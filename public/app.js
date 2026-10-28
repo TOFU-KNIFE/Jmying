@@ -1,7 +1,12 @@
 (() => {
   "use strict";
 
-  const localeVersion = "1.15.3";
+  // Keep the mobile navigation and other document content usable when this
+  // optional enhancement cannot be fetched or parsed. CSS hides the compact
+  // menu only after this marker is present.
+  document.documentElement.classList.add("js-enabled");
+
+  const localeVersion = "1.15.4";
   const localeManifest = [
     {
       id: "en",
@@ -205,6 +210,89 @@
     ) ||
     evidenceItems[0] ||
     null;
+
+  function onMediaQueryChange(query, callback) {
+    if (typeof query?.addEventListener === "function") {
+      query.addEventListener("change", callback);
+    } else {
+      query?.addListener?.(callback);
+    }
+  }
+
+  function imageCandidateUrls(value) {
+    return String(value || "")
+      .split(",")
+      .map((candidate) => candidate.trim().split(/\s+/)[0])
+      .filter(Boolean);
+  }
+
+  function absoluteImageUrl(value) {
+    try {
+      return new URL(value, document.baseURI).href;
+    } catch {
+      return value;
+    }
+  }
+
+  function setupImageFallbacks() {
+    document.querySelectorAll("picture > img").forEach((image) => {
+      const picture = image.closest("picture");
+      if (!picture) return;
+
+      const candidates = [
+        ...picture.querySelectorAll(":scope > source"),
+        image,
+      ].map((node) => ({
+        node,
+        src: node.getAttribute("src") || "",
+        srcset: node.getAttribute("srcset") || "",
+        sizes: node.getAttribute("sizes") || "",
+        urls: imageCandidateUrls(
+          node.getAttribute("srcset") || node.getAttribute("src"),
+        ).map(absoluteImageUrl),
+      }));
+      const failed = new Set();
+
+      const handleImageError = () => {
+        if (image.dataset.fallbackExhausted === "true") return;
+        const current = absoluteImageUrl(image.currentSrc || image.src);
+        const currentIndex = candidates.findIndex(({ urls }) =>
+          urls.includes(current),
+        );
+        const nextIndex = candidates.findIndex(
+          (_, index) => index > currentIndex && !failed.has(index),
+        );
+        if (currentIndex >= 0) failed.add(currentIndex);
+        if (nextIndex < 0) {
+          image.dataset.fallbackExhausted = "true";
+          picture.classList.add("image-failed");
+          return;
+        }
+
+        const nextCandidate = candidates[nextIndex];
+        failed.add(nextIndex);
+        // Mutating a source's media is the reliable way to make a picture
+        // reconsider another format after a network error. Picture format
+        // negotiation alone does not retry another source on failure. Disable
+        // all sources and copy the selected fallback to the img element so
+        // browsers cannot reselect the failed source during the retry.
+        candidates
+          .filter(({ node }) => node !== image)
+          .forEach(({ node }) => node.setAttribute("media", "not all"));
+        image.setAttribute("srcset", nextCandidate.srcset);
+        if (nextCandidate.sizes)
+          image.setAttribute("sizes", nextCandidate.sizes);
+        image.src = nextCandidate.urls[0] || nextCandidate.src || image.src;
+      };
+
+      image.addEventListener("error", handleImageError);
+      // A high-priority preload can fail before deferred app.js attaches its
+      // listener. Revisit already-complete broken images on the next microtask.
+      if (image.complete && image.naturalWidth === 0) {
+        window.queueMicrotask(handleImageError);
+      }
+    });
+  }
 
   function captureEnglishFallback() {
     const messages = Object.create(null);
@@ -695,7 +783,7 @@
       mediaFailed = true;
       useStaticStickerPreview();
     });
-    reducedMotionQuery.addEventListener("change", (event) => {
+    onMediaQueryChange(reducedMotionQuery, (event) => {
       if (event.matches) {
         useStaticStickerPreview();
       } else if (!mediaFailed && !connectionIsConstrained()) {
@@ -1036,14 +1124,14 @@
     }
 
     refreshMotion();
-    reducedMotionQuery.addEventListener("change", refreshMotion);
+    onMediaQueryChange(reducedMotionQuery, refreshMotion);
   }
 
   menuTrigger?.addEventListener("click", toggleMobileMenu);
   primaryNav?.addEventListener("click", (event) => {
     if (event.target.closest("[data-nav-link]")) closeMobileMenu();
   });
-  mobileMenuQuery.addEventListener("change", (event) => {
+  onMediaQueryChange(mobileMenuQuery, (event) => {
     if (!event.matches) closeMobileMenu();
   });
   document.addEventListener("pointerdown", (event) => {
@@ -1126,6 +1214,7 @@
   });
 
   document.getElementById("year").textContent = new Date().getFullYear();
+  setupImageFallbacks();
   setupEvidenceExplorer();
   const preferredLocale = resolvePreferredLocale();
   document.documentElement.dir = localeById.get(preferredLocale).dir;
