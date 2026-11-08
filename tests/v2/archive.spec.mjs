@@ -25,9 +25,11 @@ test("3D archive loads personal data and searchable records", async ({
   page.on("pageerror", (e) => errors.push(e.message));
   await enter(page);
   await expect(page.locator(".brand h1")).toHaveText("JMYING");
-  await page.screenshot({
-    path: `qa/rhine/v2-${page.viewportSize().width}.png`,
-  });
+  if (!process.env.CI) {
+    await page.screenshot({
+      path: `qa/rhine/v2-${page.viewportSize().width}.png`,
+    });
+  }
   await page.locator('[data-action="search"]').click();
   await expect(page.locator("#archive-search")).toBeVisible();
   await page.locator("#archive-search").fill("JEREMY");
