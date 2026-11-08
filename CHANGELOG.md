@@ -414,7 +414,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.3...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/TOFU-KNIFE/Jmying/compare/af5a120...v2.0.0
 [1.15.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...v1.15.1
