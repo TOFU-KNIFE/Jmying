@@ -15,7 +15,14 @@ export default defineConfig({
     launchOptions:
       process.platform === "darwin"
         ? { channel: "chromium", args: ["--use-angle=metal"] }
-        : { args: ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"] },
+        : {
+            channel: "chromium",
+            args: [
+              "--use-gl=angle",
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader",
+            ],
+          },
   },
   projects: [
     { name: "chromium", use: { browserName: "chromium" } },

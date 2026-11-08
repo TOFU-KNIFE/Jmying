@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 async function enter(page) {
+  console.info("Archive boot: opening document");
   await page.addInitScript(() =>
     localStorage.setItem(
       "rhine-settings",
@@ -12,8 +13,10 @@ async function enter(page) {
     ),
   );
   await page.goto("/?scene=archive");
+  console.info("Archive boot: waiting for model readiness");
   await expect(page.locator("#loading")).toHaveCount(0);
   await expect(page.locator("canvas").first()).toBeVisible();
+  console.info("Archive boot: model and canvas ready");
 }
 test("3D archive loads personal data and searchable records", async ({
   page,
