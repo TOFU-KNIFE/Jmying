@@ -1,31 +1,36 @@
 {
   "name": "jmying",
-  "version": "1.15.4",
+  "version": "2.0.0",
+  "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
-    "dev": "wrangler dev",
+    "postinstall": "node scripts/patch-rolling-number.mjs",
+    "predev": "node scripts/patch-rolling-number.mjs && node scripts/export-records.mjs",
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "prebuild": "node scripts/patch-rolling-number.mjs && node scripts/export-records.mjs && node scripts/prepare-webfonts.mjs",
+    "check:content": "node --experimental-strip-types --test scripts/check-content.mjs",
+    "check:viewport": "node --experimental-strip-types scripts/check-viewport.mjs",
+    "export:archives": "node scripts/export-records.mjs",
+    "build": "tsc && vite build && node scripts/build-pwa.mjs",
+    "format": "prettier --write src scripts index.html package.json tsconfig.json",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
     "deploy": "wrangler deploy",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "format:check": "prettier --check . --ignore-path .gitignore",
-    "audit:i18n": "node scripts/i18n-audit.mjs",
-    "audit:performance": "npm run build --silent && node scripts/performance-audit.mjs",
-    "audit:quality": "node scripts/quality-audit.mjs",
-    "audit:security": "node scripts/security-audit.mjs",
-    "check": "node --check public/app.js && node --check scripts/build.mjs && node --check scripts/i18n-audit.mjs && node --check scripts/quality-audit.mjs && node --check scripts/performance-audit.mjs && node --check scripts/security-audit.mjs",
-    "test": "npm run check && npm run audit:i18n && npm run audit:quality && npm run audit:performance && npm run audit:security && wrangler deploy --dry-run",
+    "test": "npm run build && tsc --noEmit && npm run check:content && node --experimental-strip-types scripts/check-motion.mjs && node --experimental-strip-types scripts/check-loop.mjs && node scripts/check-v2-release.mjs",
     "test:browser": "playwright test",
-    "test:browser:webkit": "playwright test --project=webkit-resilience"
+    "format:check": "prettier --check src/jmying.css tests/v2 scripts/check-v2-release.mjs index.html package.json playwright.config.mjs README.md CHANGELOG.md"
+  },
+  "dependencies": {
+    "@kitlangton/rolling-number": "0.4.1",
+    "three": "^0.183.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.11.1",
-    "@fontsource-variable/inter": "5.3.0",
-    "@fontsource-variable/source-serif-4": "5.3.0",
     "@playwright/test": "1.58.2",
-    "clean-css": "5.3.3",
-    "html-minifier-terser": "7.2.0",
+    "@types/three": "^0.183.0",
     "prettier": "3.6.2",
-    "terser": "5.48.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
     "wrangler": "4.154.0"
   }
 }

@@ -1,3 +1,5 @@
+> V2 architecture notice: the homepage now uses the complete RhineLabUI/Vite/Three.js application. Read README.md and docs/RHINELAB_MIGRATION.md first. Earlier static-page layout and delivery rules below describe the frozen `/classic.html` compatibility view; they are not requirements for the new root DOM or Vite bundle.
+
 # JMYING Codex operating guide
 
 This is the complete working guide for Codex and other coding assistants that
@@ -7,7 +9,7 @@ quality.
 
 ## Current release
 
-- Version: `1.15.4`
+- Version: `2.0.0`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
