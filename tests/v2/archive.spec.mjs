@@ -18,7 +18,7 @@ async function enter(page) {
   await expect(page.locator("canvas").first()).toBeVisible();
   console.info("Archive boot: model and canvas ready");
 }
-test("3D archive loads personal data and searchable records", async ({
+test("complete 3D archive journey: search, read, model, save, export, preferences and classic", async ({
   page,
 }) => {
   const errors = [];
@@ -35,11 +35,8 @@ test("3D archive loads personal data and searchable records", async ({
   await page.locator("#archive-search").fill("JEREMY");
   await expect(page.locator("#search-results")).toContainText("Jeremy");
   expect(errors).toEqual([]);
-});
-test("archive reading, notes, save, export and return work", async ({
-  page,
-}) => {
-  await enter(page);
+  await page.locator('[data-action="close-modal"]').click();
+  console.info("Archive flow: reading and model viewer");
   await page.locator(".read-file").click();
   await expect(page.locator("#detail-content h2")).toContainText("JEREMY");
   await page.locator('[data-tab="notes"]').click();
@@ -66,11 +63,7 @@ test("archive reading, notes, save, export and return work", async ({
   await page.locator('[data-viewer="close"]').click();
   await page.locator('[data-action="back"]').click();
   await expect(page.locator(".archive-ui")).toBeVisible();
-});
-test("preferences and contact/fallback links remain available", async ({
-  page,
-}) => {
-  await enter(page);
+  console.info("Archive flow: preferences and classic profile");
   await page.locator('[data-action="settings"]').click();
   await expect(page.locator(".settings-modal")).toBeVisible();
   await page.locator('[data-action="close-modal"]').click();
