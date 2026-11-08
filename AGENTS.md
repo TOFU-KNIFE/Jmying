@@ -1,30 +1,7 @@
-# JMYING project guidance
+# JMYING Archive 2.0 guidance
 
-## Project nature
+The user requested a complete RhineLabUI-based major migration. The root app uses TypeScript, Three.js and Vite. Read README.md and docs/RHINELAB_MIGRATION.md. Keep source/asset license notices and attribution.
 
-JMYING is a lightweight, multilingual professional profile. It is a static site deployed with Cloudflare Workers Static Assets, not a web application. Its primary job is to help a recruiter or professional contact quickly understand Jeremy Ying's background, experience and selected achievements.
+Preserve factual public-profile content, LinkedIn-only professional contact, the classic fourteen-locale fallback, keyboard navigation and motion/quality preferences. Never add private contact data, analytics or remote executable scripts. Keep main releasable; build/test before PR, wait for green quality, merge normally and verify Cloudflare production. Do not bypass repository protections.
 
-## Non-negotiable constraints
-
-- Keep LinkedIn as the only public contact route.
-- Never add private email addresses, phone numbers, home addresses, résumé source files, credentials, analytics, advertising or third-party runtime scripts to `public/`.
-- Keep claims factual and restrained. Prefer direct descriptions of work performed over promotional language or unsupported proficiency claims.
-- Preserve every supported locale file. Update every translation when adding a `data-i18n` key.
-- Preserve keyboard access, visible focus, semantic headings and system preferences for reduced motion, reduced transparency, increased contrast and forced colors.
-- Use motion to explain hierarchy or provide feedback. Animate only `transform` and `opacity` for larger elements, with brief nonlinear easing and a reduced-motion fallback.
-- Keep the existing content-first visual system: dark photographic hero, opaque content surfaces, restrained translucent controls, bold left-aligned type and concentric radii. Do not copy Apple branding or proprietary assets.
-
-## Working agreement
-
-1. Run `npm ci` after pulling dependency changes.
-2. Use `npm run dev` for local preview.
-3. Run `npm run format` before committing.
-4. Run `npm test` before opening or updating a pull request.
-5. For user-visible changes, follow the evaluation loop and evidence gates in `docs/WEB_QUALITY_WORKFLOW.md`.
-6. Use Conventional Commit messages and the workflow in `docs/VERSIONING.md`.
-
-All deployable files live in `public/`. Security and language checks live in `scripts/`.
-
-Read `CODEX.md` for the complete project state, assistant handoff rules, visual
-review matrix, commit and pull-request procedure, Cloudflare deployment flow,
-production verification and rollback process.
+Use npm ci, npm test, npm run test:browser. New active browser tests are in tests/v2. Root content is content/archives.json. Public build output is dist, not public. Nonproduction Cloudflare builds must use wrangler versions upload.

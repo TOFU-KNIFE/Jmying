@@ -4,6 +4,21 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-11-09
+
+### Changed
+
+- Migrate the homepage to the complete TypeScript, Three.js and Vite runtime from LBEILC/RhineLabUI, including the opening, looping 3D array, extraction/decryption, reading, search, saved files, export, model viewer, theme, sound and rendering preferences, and offline installation.
+- Reorganize existing public profile text into five categories with forty topic records; these are editorial topics, not forty separate qualifications. Replace demo identity with Jeremy Ying.
+- Keep the frozen, fourteen-locale profile at `/classic.html`, with a no-JavaScript and WebGL-failure route to it. Keep LinkedIn as the professional contact.
+- Start audio muted and use the upstream super-performance preset on narrow mobile viewports; all quality and sound controls remain available.
+- Retain MIT copyright, font and asset notices, and provide a public credits page. Replace obsolete homepage tests with archive-flow and classic-fallback regression coverage.
+
+### Migration
+
+- This is a new application and root DOM/content model. Existing `#profile` links should use `/classic.html#profile`. Roll back the release merge to restore the 1.15.4 homepage.
+- Build with Vite; Cloudflare still deploys `dist/` on the existing domain. Inline style attributes are required by the upstream animation engine; scripts stay same-origin under CSP.
+
 ### Security
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
@@ -399,7 +414,8 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Initial secure, responsive and multilingual static profile.
 
-[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.3...HEAD
+[Unreleased]: https://github.com/TOFU-KNIFE/Jmying/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/TOFU-KNIFE/Jmying/compare/af5a120...v2.0.0
 [1.15.3]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.2...v1.15.3
 [1.15.2]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.1...v1.15.2
 [1.15.1]: https://github.com/TOFU-KNIFE/Jmying/compare/v1.15.0...v1.15.1

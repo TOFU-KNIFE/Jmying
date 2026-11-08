@@ -4,7 +4,7 @@
   "compatibility_date": "2026-07-16",
   "build": {
     "command": "npm run build",
-    "watch_dir": ["public", "scripts"],
+    "watch_dir": ["src", "public", "content"],
   },
   "assets": {
     "directory": "./dist",

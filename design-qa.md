@@ -1,3 +1,15 @@
+# V2 major migration — 2026-11-09
+
+The user explicitly selected the complete RhineLabUI application, superseding the 1.x styling direction. Original runtime and models are reused with license/asset notices, public JMYING topics and identity, sound initially muted, mobile super-performance defaults, and classic/no-WebGL reading routes.
+
+Desktop and 390px phone captures show the live Three.js array (qa/rhine/v2-1280.png and v2-390.png, ignored QA artifacts). Manual review caught an added-link overlap with mobile navigation; links were moved below the brand and a geometry regression assertion was added. Local hardware-rendered Chromium is used for visual acceptance; Linux CI uses software WebGL.
+
+Validation: production build and TypeScript, 40-record/export consistency and invalid-data tests, baseline motion comparisons, 20,000 directional loop checks, asset-size/license/classic-language release checks, Cloudflare dry run. Ten new browser scenarios cover desktop/mobile search, reading, notes, saving/export, model explosion/reassembly, settings, classic languages, no JS and no WebGL. Final local run: build and release checks passed; 6/6 browser cases passed: two continuous desktop/mobile journeys preserve all search/read/model/save/export/settings assertions, with four independent fallback cases. Cloudflare dry run packaged 919 files successfully.
+
+The old sub-100KB static profile budget and old Lighthouse score are not claimed for the 3D homepage. The app offline package is approximately 34MiB including original fonts/models, with all individual files below Cloudflare’s 25MiB limit. See docs/RHINELAB_MIGRATION.md for the known development-only registry/advisory limitation.
+
+---
+
 # Design QA
 
 ## Motion polish release 1.15.2
