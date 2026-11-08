@@ -81,7 +81,7 @@ test("complete 3D archive journey: search, read, model, save, export, preference
     const callout = await page.locator(".archive-callout").boundingBox();
     expect(links.y + links.height).toBeLessThan(callout.y);
   }
-  await page.goto("/classic.html");
+  await page.goto("/classic.html", { waitUntil: "domcontentloaded" });
   await expect(page.locator("#heroTitle")).toContainText("Jeremy");
   await page.locator("#languageTrigger").click();
   await expect(page.locator("[data-language]")).toHaveCount(14);
