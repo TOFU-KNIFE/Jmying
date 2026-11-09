@@ -16,7 +16,7 @@
     "format": "prettier --write src scripts index.html package.json tsconfig.json",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
     "deploy": "wrangler deploy",
-    "test": "npm run build && tsc --noEmit && npm run check:content && node --experimental-strip-types scripts/check-motion.mjs && node --experimental-strip-types scripts/check-loop.mjs && node scripts/check-v2-release.mjs",
+    "test": "npm run build && tsc --noEmit && npm run check:content && node --experimental-strip-types scripts/check-motion.mjs && node --experimental-strip-types scripts/check-loop.mjs && node --experimental-strip-types --test scripts/check-startup-assets.mjs && node scripts/check-v2-release.mjs",
     "test:browser": "playwright test",
     "format:check": "prettier --check src/jmying.css tests/v2 scripts/check-v2-release.mjs index.html package.json playwright.config.mjs README.md CHANGELOG.md"
   },

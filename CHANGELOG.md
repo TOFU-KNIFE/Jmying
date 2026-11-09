@@ -6,6 +6,10 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [2.0.0] - 2026-11-09
 
+### Fixed
+
+- Bound optional font preparation so a pending or failed FontFaceSet request in WebKit cannot leave the loaded 3D archive behind the startup screen. Model loading remains required.
+
 ### Changed
 
 - Migrate the homepage to the complete TypeScript, Three.js and Vite runtime from LBEILC/RhineLabUI, including the opening, looping 3D array, extraction/decryption, reading, search, saved files, export, model viewer, theme, sound and rendering preferences, and offline installation.

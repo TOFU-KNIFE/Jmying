@@ -1,3 +1,4 @@
+import { waitForOptionalAssets } from "./startup-assets";
 import { createRollingClock } from "./rolling-clock";
 import { InspectionOverlay } from "./inspection-overlay";
 import { DocumentDecryption } from "./document-decryption";
@@ -1494,25 +1495,27 @@ async function start() {
     }
     await Promise.all([
       scene?.load(),
-      loadBootWebfonts(),
-      // With unicode-range faces, preload the opening's actual characters,
-      // not every font shard. Other archive text loads on demand.
-      document.fonts.load(
-        "300 20px MiSans",
-        "ACCESS WELCOME TO INTERNAL DATABASE",
-      ),
-      document.fonts.load(
-        "400 20px MiSans",
-        "身份信息确认请求已接收开始处理权限验证通过欢迎访问JMYING内部资料档案编号保密级别商业区选择档案：0123456789 JEREMY YING",
-      ),
-      document.fonts.load(
-        "600 20px MiSans",
-        "SYNTHESIZE INFORMATION ANALYSIS OS",
-      ),
-      document.fonts.load(
-        "700 20px MiSans",
-        "JMYING WELCOME TO INTERNAL DATABASE",
-      ),
+      waitForOptionalAssets([
+        loadBootWebfonts(),
+        // With unicode-range faces, preload the opening's actual characters,
+        // not every font shard. Other archive text loads on demand.
+        document.fonts.load(
+          "300 20px MiSans",
+          "ACCESS WELCOME TO INTERNAL DATABASE",
+        ),
+        document.fonts.load(
+          "400 20px MiSans",
+          "身份信息确认请求已接收开始处理权限验证通过欢迎访问JMYING内部资料档案编号保密级别商业区选择档案：0123456789 JEREMY YING",
+        ),
+        document.fonts.load(
+          "600 20px MiSans",
+          "SYNTHESIZE INFORMATION ANALYSIS OS",
+        ),
+        document.fonts.load(
+          "700 20px MiSans",
+          "JMYING WELCOME TO INTERNAL DATABASE",
+        ),
+      ]),
     ]);
     if (scene) bindScene(scene);
     savePrefs();

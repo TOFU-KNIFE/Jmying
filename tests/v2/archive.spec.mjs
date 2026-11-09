@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 async function enter(page) {
   console.info("Archive boot: opening document");
-  await page.addInitScript(() =>
+  await page.addInitScript(() => {
     localStorage.setItem(
       "rhine-settings",
       JSON.stringify({
@@ -10,8 +10,12 @@ async function enter(page) {
         music: false,
         reduced: true,
       }),
-    ),
-  );
+    );
+    // Cover the WebKit startup failure without adding another heavy 3D boot.
+    if (innerWidth < 700) {
+      document.fonts.load = () => new Promise(() => {});
+    }
+  });
   await page.goto("/?scene=archive");
   console.info("Archive boot: waiting for model readiness");
   await expect(page.locator("#loading")).toHaveCount(0);

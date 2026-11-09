@@ -1,3 +1,7 @@
+## Optional-font startup correction — 2026-11-09
+
+Production WebKit recheck found an intermittent font-preparation hang: the model was loaded, but `document.fonts.load` kept startup pending. Optional fonts now have a 2.5-second warm-up budget with settled rejection handling; the mandatory model load is still awaited. Two startup helper regression tests cover rejected and permanently pending fonts. Manual WebKit fault injection blocked every WOFF2 request and confirmed real 3D startup and archive reading using fallback fonts.
+
 # V2 major migration — 2026-11-09
 
 The user explicitly selected the complete RhineLabUI application, superseding the 1.x styling direction. Original runtime and models are reused with license/asset notices, public JMYING topics and identity, sound initially muted, mobile super-performance defaults, and classic/no-WebGL reading routes.
