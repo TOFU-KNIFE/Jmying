@@ -39,6 +39,7 @@ export function resizeQuality(
   host: HTMLElement,
   quality: RenderQuality,
   superPerformance = false,
+  postprocessing = !superPerformance,
 ) {
   const width = Math.max(1, host.clientWidth),
     height = Math.max(1, host.clientHeight);
@@ -53,8 +54,11 @@ export function resizeQuality(
   );
   renderer.setPixelRatio(dimensions.ratio);
   renderer.setSize(width, height);
-  composer.setPixelRatio(dimensions.ratio);
-  composer.setSize(width, height);
+  // A bypassed pipeline must not retain full-screen color/depth/AA targets.
+  // Restoring quality resizes every pass before the next composed frame.
+  composer.setPixelRatio(postprocessing ? dimensions.ratio : 1);
+  composer.setSize(postprocessing ? width : 1, postprocessing ? height : 1);
+  for (const pass of composer.passes) if (!pass.enabled) pass.setSize(1, 1);
   renderer.transmissionResolutionScale = quality.transmission;
   host.dataset.renderQuality = JSON.stringify({
     ...dimensions,

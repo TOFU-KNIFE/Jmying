@@ -54,11 +54,27 @@ test("complete 3D archive journey: search, read, model, save, export, preference
   expect((await page.request.get(href)).status()).toBe(200);
   await page.locator('[data-action="model-viewer"]').click();
   await expect(page.locator('[data-viewer="explode"]')).toBeVisible();
+  const viewerStats = () =>
+    page
+      .locator(".model-viewer")
+      .evaluate((node) => JSON.parse(node.dataset.stats ?? "{}"));
+  await expect.poll(async () => (await viewerStats()).ready).toBe(true);
+  await expect
+    .poll(async () => (await viewerStats()).reusedFrames ?? 0)
+    .toBeGreaterThan(3);
+  const idle = await viewerStats();
+  await expect
+    .poll(async () => (await viewerStats()).reusedFrames)
+    .toBeGreaterThan(idle.reusedFrames + 2);
+  expect((await viewerStats()).renderedFrames).toBe(idle.renderedFrames);
   await page.locator('[data-viewer="explode"]').click();
   await expect(page.locator('[data-viewer="explode"]')).toHaveAttribute(
     "aria-pressed",
     "true",
   );
+  await expect
+    .poll(async () => (await viewerStats()).renderedFrames)
+    .toBeGreaterThan(idle.renderedFrames);
   await page.locator('[data-viewer="assemble"]').click();
   await expect(page.locator('[data-viewer="assemble"]')).toHaveAttribute(
     "aria-pressed",

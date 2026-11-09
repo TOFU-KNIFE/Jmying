@@ -21,6 +21,10 @@ The original 3D array, opening, extraction and decryption, archive reading tabs,
 
 Five columns contain forty editorial topics taken from the former public profile. They do not represent additional qualifications. Chinese/English record text is included. The former fourteen-language profile remains at `/classic.html`; use it when WebGL is unavailable or when a simple reading view is preferable. LinkedIn remains the sole professional contact route. No analytics, advertising, form or backend authentication is added.
 
+## Performance
+
+Version 2.0.1 adds lossless model compression, authored-text font coverage, a smaller atomic offline cache and retained static viewer frames. See [measurements and validation](docs/PERFORMANCE.md). Geometry, materials and animation timelines remain intact.
+
 ## Attribution
 
 RhineLabUI source and author-created models are MIT licensed, copyright 2026 LBEILC. See `LICENSES/RhineLabUI-MIT.txt`, `/credits.html`, and `docs/RHINELAB_UPSTREAM.md`. Upstream Arknights/Rhine Lab references, sampled audio, marks, and third-party fonts retain their respective notices and rights; this project is unaffiliated. The licensed Novecento webfont is not downloaded or supplied; upstream’s artwork fallback remains in use.
