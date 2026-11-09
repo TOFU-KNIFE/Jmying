@@ -14,6 +14,7 @@ export function inspectionSegments(frame: DecryptionFrame) {
 }
 
 export class InspectionOverlay {
+  private host = document.querySelector<HTMLElement>("#three-scene")!;
   private root = document.querySelector<SVGSVGElement>("#inspection-marks")!;
   private line = this.root.querySelector<SVGPathElement>("#inspection-lines")!;
   private corners = this.root.querySelector<SVGGElement>(
@@ -22,6 +23,7 @@ export class InspectionOverlay {
   private point =
     this.root.querySelector<SVGCircleElement>("#inspection-point")!;
   private label = document.querySelector<HTMLElement>("#inspection-text")!;
+  private inactive = false;
 
   render(
     frame: DecryptionFrame,
@@ -29,10 +31,30 @@ export class InspectionOverlay {
     showLabel: boolean,
     enabled = true,
   ) {
-    const host = document.querySelector<HTMLElement>("#three-scene")!;
-    this.root.setAttribute("viewBox", `0 0 ${host.clientWidth} ${host.clientHeight}`);
+    // Most archive/reading frames have no scan graphics. Avoid layout reads,
+    // world-matrix projection and SVG/DOM mutations while this layer is hidden.
+    if (
+      !enabled ||
+      (!frame.intervals.length &&
+        frame.markers <= 0 &&
+        frame.point <= 0 &&
+        !(showLabel && frame.label > 0))
+    ) {
+      if (!this.inactive) {
+        this.root.style.opacity = "0";
+        this.label.style.opacity = "0";
+        this.inactive = true;
+      }
+      return;
+    }
+    this.inactive = false;
+    this.root.setAttribute(
+      "viewBox",
+      `0 0 ${this.host.clientWidth} ${this.host.clientHeight}`,
+    );
     this.root.style.opacity =
-      enabled && (frame.intervals.length || frame.markers > 0 || frame.point > 0)
+      enabled &&
+      (frame.intervals.length || frame.markers > 0 || frame.point > 0)
         ? "1"
         : "0";
     this.root.dataset.phase = frame.phase;

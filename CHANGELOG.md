@@ -4,6 +4,16 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## [Unreleased]
 
+## [2.0.1] - 2026-11-09
+
+### Performance
+
+- Reduce the main stylesheet gzip estimate from 204 KB to 20 KB by deriving MiSans coverage from authored app/content text; retain original font binaries and automatically cover later text changes.
+- Losslessly compress both GLBs from a combined 6.9 MB to 4.0 MB, with byte-exact decoder regression checks and unchanged geometry/material data.
+- Reduce the complete offline download from 33.8 MiB to about 9.2 MiB; cache only referenced fonts and include public credits/notices.
+- Reuse static model-viewer frames, skip invisible scan-layer work and shrink disabled postprocessing targets. In controlled local reduced-motion/performance samples, idle viewer main-thread work falls about 75%; see docs/PERFORMANCE.md for conditions and limits.
+- Allow the bundled model decoder's WebAssembly compilation in CSP while keeping JavaScript eval and external script origins blocked.
+
 ## [2.0.0] - 2026-11-09
 
 ### Fixed

@@ -9,9 +9,9 @@ quality.
 
 ## Current release
 
-- Version: `2.0.0`
+- Version: `2.0.1`
 - Product: privacy-first multilingual professional profile
-- Runtime: static HTML, CSS, JavaScript and locale JSON
+- Runtime: TypeScript, Three.js and Vite; frozen classic HTML/CSS/JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
 - Production: <https://jmying.com>
 - Repository: <https://github.com/TOFU-KNIFE/Jmying>

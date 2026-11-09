@@ -1,6 +1,6 @@
 {
   "name": "jmying",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "private": true,
   "type": "module",
@@ -16,7 +16,7 @@
     "format": "prettier --write src scripts index.html package.json tsconfig.json",
     "preview": "vite preview --host 127.0.0.1 --port 4173",
     "deploy": "wrangler deploy",
-    "test": "npm run build && tsc --noEmit && npm run check:content && node --experimental-strip-types scripts/check-motion.mjs && node --experimental-strip-types scripts/check-loop.mjs && node --experimental-strip-types --test scripts/check-startup-assets.mjs && node scripts/check-v2-release.mjs",
+    "test": "npm run build && tsc --noEmit && npm run check:content && node --experimental-strip-types scripts/check-motion.mjs && node --experimental-strip-types scripts/check-loop.mjs && node --experimental-strip-types --test scripts/check-startup-assets.mjs && node scripts/check-v2-release.mjs && node --test scripts/check-font-subset.mjs && node --test scripts/check-model-compression.mjs",
     "test:browser": "playwright test",
     "format:check": "prettier --check src/jmying.css tests/v2 scripts/check-v2-release.mjs index.html package.json playwright.config.mjs README.md CHANGELOG.md"
   },
@@ -28,6 +28,7 @@
     "@axe-core/playwright": "4.11.1",
     "@playwright/test": "1.58.2",
     "@types/three": "^0.183.0",
+    "meshoptimizer": "1.0.1",
     "prettier": "3.6.2",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",

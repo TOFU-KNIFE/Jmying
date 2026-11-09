@@ -5,6 +5,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { createArchiveLighting } from "./archive-lighting";
 import { damp } from "./motion";
 import { ViewerCameraMotion } from "./viewer-camera";
+import { RenderState } from "./render-state";
 import { normalizeQuality, type RenderQuality } from "./render-quality";
 import {
   applyTextureQuality,
@@ -34,6 +35,10 @@ type ModelSource = {
   setClarity?: (value: number) => void;
 };
 export class ModelViewer {
+  private renderState = new RenderState();
+  private renderedFrames = 0;
+  private reusedFrames = 0;
+  private nextStats = 0;
   private themeAmount = 0;
   setTheme(value: number) {
     this.themeAmount = value;
@@ -137,6 +142,9 @@ export class ModelViewer {
       "档案三维模型：拖动旋转，方向键平移，滚轮或加减键缩放，Home 复位",
     );
     this.canvasHost.appendChild(this.renderer.domElement);
+    this.renderer.domElement.addEventListener("webglcontextrestored", () =>
+      this.renderState.invalidate(),
+    );
     this.scene.background = new THREE.Color("#eae5e1");
     this.scene.fog = new THREE.Fog("#eae5e1", 13.5, 26.5);
     // Render-target textures belong to their WebGL context. Recreate the main
@@ -579,6 +587,7 @@ export class ModelViewer {
 
   resize() {
     if (!this.isOpen) return;
+    this.renderState.invalidate();
     const width = this.canvasHost.clientWidth,
       height = this.canvasHost.clientHeight;
     resizeQuality(
@@ -587,6 +596,7 @@ export class ModelViewer {
       this.canvasHost,
       this.quality,
       this.superPerformance,
+      this.quality.antialias === "smaa",
     );
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
@@ -663,9 +673,54 @@ export class ModelViewer {
     const objectDistance = this.camera.position.length();
     fog.near = Math.max(0, objectDistance - 1);
     fog.far = objectDistance + 12;
-    if (this.quality.antialias === "smaa") this.pipeline.composer.render();
-    else this.renderer.render(this.scene, this.camera);
+    // Keep camera interpolation and all controls live, but reuse the canvas
+    // once its actual GPU inputs settle. Resize and context restore invalidate.
+    this.scene.updateMatrixWorld();
+    this.camera.updateMatrixWorld();
+    const state = this.renderState;
+    state.begin();
+    state.add(this.source?.model.id, this.appliedQuality);
+    state.floats(
+      ...this.camera.projectionMatrix.elements,
+      ...this.camera.matrixWorldInverse.elements,
+      this.themeAmount,
+      this.clarity.value,
+      this.spread.value,
+      fog.near,
+      fog.far,
+    );
+    this.scene.traverseVisible((object) => {
+      if (!(object instanceof THREE.Mesh)) return;
+      state.add(object.id, object.geometry.id);
+      state.floats(...object.matrixWorld.elements);
+      for (const material of Array.isArray(object.material)
+        ? object.material
+        : [object.material]) {
+        const mat = material as THREE.MeshPhysicalMaterial;
+        state.add(mat.uuid, mat.map?.uuid, mat.map?.version);
+        state.floats(
+          mat.opacity,
+          mat.roughness,
+          mat.metalness,
+          mat.transmission,
+          mat.color?.r,
+          mat.color?.g,
+          mat.color?.b,
+        );
+      }
+    });
+    if (state.end()) {
+      if (this.quality.antialias === "smaa") this.pipeline.composer.render();
+      else this.renderer.render(this.scene, this.camera);
+      this.renderedFrames++;
+    } else {
+      this.reusedFrames++;
+      if (time < this.nextStats) return;
+    }
+    this.nextStats = time + 0.25;
     this.root.dataset.stats = JSON.stringify({
+      renderedFrames: this.renderedFrames,
+      reusedFrames: this.reusedFrames,
       ready: Boolean(this.source),
       clarity: this.clarity.value,
       targetClarity: this.targetClarity,

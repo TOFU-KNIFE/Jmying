@@ -9,6 +9,7 @@ import { ThemeWave } from "./theme-motion";
 import { themeMaterial, themeEnvironment } from "./theme-material";
 import { RhythmMotion, rhythmDisplacement, quietBands, type MusicBands, type RhythmStyle } from "./archive-play-motion";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { createArchiveLighting, type LightingLook } from "./archive-lighting";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
@@ -341,7 +342,7 @@ export class ArchiveScene {
   async load(assetUrl = publicAsset("assets/archive-cassette.glb")) {
     this.labelMark.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(labelMarkSvg)}`;
     await this.labelMark.decode();
-    const gltf = await new GLTFLoader().loadAsync(
+    const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(
       assetUrl,
     );
     gltf.scene.updateMatrixWorld(true);
@@ -507,6 +508,7 @@ export class ArchiveScene {
   private assemblyTemplate?: Promise<THREE.Group>;
   async createAssemblyModel() {
     this.assemblyTemplate ??= new GLTFLoader()
+      .setMeshoptDecoder(MeshoptDecoder)
       .loadAsync(publicAsset("assets/archive-assembly.glb"))
       .then((gltf) => {
         gltf.scene.updateMatrixWorld(true);
@@ -844,8 +846,8 @@ export class ArchiveScene {
       this.superPerformance,
     );
     this.ao.setSize(
-      Math.max(1, Math.floor(dimensions.width * this.quality.aoResolution)),
-      Math.max(1, Math.floor(dimensions.height * this.quality.aoResolution)),
+      this.ao.enabled && !this.superPerformance ? Math.max(1, Math.floor(dimensions.width * this.quality.aoResolution)) : 1,
+      this.ao.enabled && !this.superPerformance ? Math.max(1, Math.floor(dimensions.height * this.quality.aoResolution)) : 1,
     );
     this.ao.setSharing(this.ao.enabled && this.bokeh.enabled && this.quality.aoResolution === 1 && !this.superPerformance);
     this.container.dataset.renderQuality = JSON.stringify({

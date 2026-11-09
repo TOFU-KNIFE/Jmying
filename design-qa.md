@@ -1,3 +1,11 @@
+## 2.0.1 performance verification — 2026-11-09
+
+- Compare identical native Chromium/Metal reduced-motion, super-performance samples at 1440×900 and 390×900. Main-thread viewer idle medians fall from 402/420 ms per two seconds to 101/100 ms; full-motion FPS and all-device scores are not inferred from these samples.
+- Main CSS: 667,128 → 123,487 bytes; gzip estimate 203,934 → 20,111. GLBs: 6,908,860 → 3,979,636 combined bytes; every decoded geometry byte, accessor, mesh, node and material matches its original.
+- Full atomic offline release: 35,474,768 → 9,602,954 bytes, 819 → 194 requests. All referenced faces and license/credits files are present. New authored glyph coverage is regenerated rather than maintained by hand.
+- Desktop/mobile archive flows assert model readiness, settled-frame reuse and redraw on explosion, alongside existing search, reading, saving/export, preferences and classic fallback assertions.
+- Native Cloudflare-header Chromium/WebKit, offline reload/viewer/export, and quality restoration are verified before merging. Details and reproduction command: docs/PERFORMANCE.md.
+
 ## Optional-font startup correction — 2026-11-09
 
 Production WebKit recheck found an intermittent font-preparation hang: the model was loaded, but `document.fonts.load` kept startup pending. Optional fonts now have a 2.5-second warm-up budget with settled rejection handling; the mandatory model load is still awaited. Two startup helper regression tests cover rejected and permanently pending fonts. Manual WebKit fault injection blocked every WOFF2 request and confirmed real 3D startup and archive reading using fallback fonts.

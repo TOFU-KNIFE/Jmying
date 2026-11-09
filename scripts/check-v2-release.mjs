@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
 const pkg = JSON.parse(await readFile("package.json", "utf8"));
-assert.equal(pkg.version, "2.0.0");
+assert.equal(pkg.version, "2.0.1");
 const html = await readFile("dist/index.html", "utf8");
 assert.match(html, /JMYING Archive 2.0/);
 assert.match(html, /assets\/index-.*\.js/);

@@ -8,7 +8,7 @@
 - Preserved functionality: 3D array, opening, reading/decryption, search, bookmarks, export, model viewer/disassembly, settings and PWA. The original sample dataset is replaced by forty public-profile topics.
 - New branding and contact links; sound muted initially; mobile uses upstream super-performance defaults. No extra WebGL framework or remote runtime is introduced.
 - Rollback: revert this release merge; never rewrite main. Legacy HTML/assets and all fourteen locale files remain at `/classic.html`.
-- Security: CSP permits same-origin scripts and workers, same-origin/data/blob images, fonts and media, and inline styles for Three.js DOM transforms. No unsafe-eval or external executable origin.
+- Security: CSP permits same-origin scripts and workers, same-origin/data/blob images, fonts and media, and inline styles for Three.js DOM transforms. The bundled lossless-model decoder may compile WebAssembly (`wasm-unsafe-eval`); JavaScript eval and external executable origins remain blocked.
 - Validation: build, content tests, baseline-motion tests, 20,000 loop navigation checks, Cloudflare asset-size and license checks; browser flow results are recorded in design-qa.md.
 
 ## Toolchain advisory limitation
