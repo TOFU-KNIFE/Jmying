@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.15.5`
+- Version: `1.16.0`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -83,12 +83,13 @@ Generated production output belongs in `dist/` and must not be edited by hand.
 2. Professional profile: restrained yearbook portrait on the left, start-aligned
    copy on the right and evidence rows below.
 3. Experience: factual editorial rows and an accessible evidence timeline.
-4. Working approach: source, structure and review workflow without the old
+4. Independent research and leadership: Bloomberg/IBKR research and factual club/sports responsibilities.
+5. Working approach: source, structure and review workflow without the old
    oversized abstract visual.
-5. Selected projects and challenges: touch-friendly horizontal cards with partial
+6. Selected projects and challenges: touch-friendly horizontal cards with partial
    next-card visibility, keyboard navigation and same-page “Learn more” details,
    followed by the AI × Accounting interaction study.
-6. Credentials and contact: verified education/credentials followed by a
+7. Credentials and contact: verified education/credentials followed by a
    LinkedIn-only close.
 
 ### Visual language

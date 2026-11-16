@@ -4,7 +4,7 @@
 
 Professional enquiries and responsible security reports are accepted through LinkedIn only:
 
-- https://www.linkedin.com/in/jeremy-ying-a8520b350/
+- https://www.linkedin.com/in/jmying/
 
 The public site does not publish or collect a phone number, private email address, home address, reference details, credential IDs, or the source résumé.
 

@@ -2,13 +2,13 @@
 
 ## Purpose before wording
 
-This website is a professional profile for Jeremy (Lei) Ying, an Accounting (FinTech) student in Malaysia seeking an Audit & Assurance internship for February–April 2027. Its primary readers are recruiters, hiring teams and professional contacts.
+This website is a professional profile for Jeremy (Lei) Ying, a final-year Accounting (FinTech) student in Malaysia seeking a compulsory 10-week accounting internship from 25 January to 2 April 2027. Its primary readers are recruiters, hiring teams and professional contacts.
 
 Every translation should therefore help a native-language reader understand the same professional evidence quickly. It should sound calm, precise and modest rather than promotional, literary or machine-translated. Translate the intended function of a sentence, not its English word order.
 
 ## Facts and names that must remain stable
 
-- Keep the name `Jeremy (Lei) Ying`, the February–April 2027 availability window and all verified education and experience facts unchanged.
+- Keep the name `Jeremy (Lei) Ying`, the 25 January–2 April 2027 availability window and all verified education and experience facts unchanged.
 - Keep official product, organisation and programme names such as LinkedIn, Excel, Oracle, ERP, American Heart Association and competition titles unless the organisation publishes an established local form.
 - Keep `Bachelor of Accounting (FinTech) (Honours)` recognisable as the official degree. A natural local explanation may accompany it, but must not imply a different qualification.
 - Keep outcome levels accurate: Top 10, semi-final, quarter-final and `Excellent Case Group` are not to be promoted to winners or awards.
@@ -77,3 +77,7 @@ Display it in the currently applied language; keep the English HTML as the appli
 locale until another bundle loads successfully. Abort replaced or dismissed
 requests and limit each attempt to eight seconds. A canceled request must not
 change language, steal focus or announce a stale error.
+
+## Latest résumé alignment (2026-11-17)
+
+The user's latest résumé is the source for the 10-week compulsory accounting internship window, final-year status, WCGPA 3.5 / 4.00, September 2024 education start, added 2026 competition entries, independent research, leadership and named learning programmes. Preserve `Individual Semi-finalist` for Deloitte Tax Challenge 2026 and `Team Quarter-finalist` for 2025. Bloomberg Challenge 2026 uses a virtual portfolio; it and Global Sustainability Challenge 2026–27 are ongoing activities, not completed awards. Mandarin is native and English proficient; the 14 website locales are interface translations, not a claim of fluency in 14 languages. Official organisation, tool and programme titles remain recognisable. Private contact details, reference contacts and the résumé file are not published.

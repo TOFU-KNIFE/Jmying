@@ -6,7 +6,7 @@
   // menu only after this marker is present.
   document.documentElement.classList.add("js-enabled");
 
-  const localeVersion = "1.15.5";
+  const localeVersion = "1.16.0";
   const localeManifest = [
     {
       id: "en",
@@ -455,7 +455,15 @@
       const endValue = time.dataset.dateEnd;
       const startDate = parseDate(startValue);
       if (endValue === "present") {
-        time.textContent = `${yearFormatter.format(startDate)} – ${messages.present}`;
+        const formatter = startValue.includes("-")
+          ? monthFormatter
+          : yearFormatter;
+        time.textContent = `${formatter.format(startDate)} – ${messages.present}`;
+        return;
+      }
+
+      if (startValue === endValue) {
+        time.textContent = monthFormatter.format(startDate);
         return;
       }
 

@@ -35,7 +35,7 @@ for (const width of [1440, 820, 390, 320]) {
       await expect(page.locator("h1")).toBeVisible();
       await expect(page.locator(".linkedin-cta").first()).toHaveAttribute(
         "href",
-        "https://www.linkedin.com/in/jeremy-ying-a8520b350/",
+        "https://www.linkedin.com/in/jmying/",
       );
       await page.locator("#languageTrigger").click();
       await expect(page.locator("[data-language]")).toHaveCount(14);
@@ -250,6 +250,53 @@ test("saving data never requests motion media", async ({ page }) => {
   await page.locator("[data-sticker-module]").scrollIntoViewIfNeeded();
   await expect(page.locator("[data-sticker-play]")).toBeDisabled();
   expect(media).toEqual([]);
+});
+
+test("latest resume facts, dates and ongoing activities remain accurate", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator('[data-i18n="availability"]')).toHaveText(
+    "Compulsory 10-week internship · 25 Jan–2 Apr 2027",
+  );
+  await expect(
+    page.locator('#experience [data-i18n="educationDesc"]'),
+  ).toContainText("3.5 / 4.00");
+  await expect(
+    page.locator('[data-description-key="educationDesc"] time'),
+  ).toHaveAttribute("data-date-start", "2024-09");
+  await expect(
+    page.locator('[data-description-key="educationDesc"] time'),
+  ).toContainText("Sep");
+  await expect(page.locator("#research")).toContainText("YTL and IJM");
+  await expect(page.locator(".resume-leadership .timeline-item")).toHaveCount(
+    3,
+  );
+  await expect(page.locator(".resume-leadership time").first()).toContainText(
+    "Sep",
+  );
+  await expect(page.locator(".credential-list li")).toHaveCount(10);
+  await expect(page.locator(".credential-list")).toContainText(
+    "Bloomberg Spreadsheet Analysis",
+  );
+  await expect(page.locator(".credential-list")).toContainText(
+    "Gemini Certified University Student",
+  );
+  await expect(page.locator(".highlight-card")).toHaveCount(7);
+  await expect(page.locator('[data-i18n="highlight6Label"]')).toHaveText(
+    "Ongoing · Virtual portfolio",
+  );
+  await expect(page.locator('[data-i18n="highlight7Label"]')).toHaveText(
+    "Ongoing · Student team",
+  );
+  await page.locator("[data-highlight-learn]").first().click();
+  await expect(page.locator("#highlightDialogTitle")).toHaveText(
+    "Deloitte Tax Challenge",
+  );
+  await expect(page.locator("#highlightDialogMeta")).toContainText("2026");
+  await expect(page.locator("#highlightDialogLabel")).toHaveText(
+    "Individual semi-finalist",
+  );
 });
 
 test("evidence filters update the selected detail and carousel works in RTL", async ({

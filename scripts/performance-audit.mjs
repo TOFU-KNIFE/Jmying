@@ -23,7 +23,9 @@ const stickerMediaBudgets = new Map([
 ]);
 
 const sourceBudgets = new Map([
-  ["index.html", 40 * 1024],
+  // The résumé update adds research, leadership and three competition entries.
+  // This is the formatted source budget; shipped HTML remains capped below.
+  ["index.html", 52 * 1024],
   ["styles.css", 68 * 1024],
   ["app.js", 42 * 1024],
 ]);

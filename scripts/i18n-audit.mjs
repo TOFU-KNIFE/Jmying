@@ -123,6 +123,17 @@ for (const locale of expectedLocales) {
     if (typeof translations[key] !== "string" || !translations[key].trim())
       findings.push(`${locale}.json has no usable translation for ${key}`);
   }
+
+  for (const fact of ["10", "25", "2", "2027"]) {
+    if (!translations.availability?.includes(fact))
+      findings.push(
+        `${locale}.json loses the latest internship window: ${fact}`,
+      );
+  }
+  for (const fact of ["3.5", "4.00"]) {
+    if (!translations.educationDesc?.includes(fact))
+      findings.push(`${locale}.json loses the résumé WCGPA: ${fact}`);
+  }
 }
 
 const simplifiedChinese = manifestById.get("zh-CN");

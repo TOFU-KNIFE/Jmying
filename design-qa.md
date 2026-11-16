@@ -1,3 +1,11 @@
+## 1.16.0 résumé content — 2026-11-17
+
+The latest user-provided résumé replaces the previous application window and broadens the target to accounting. Update all fourteen locales, grade, tools and current LinkedIn; add research, leadership, ongoing 2026 competitions and ten learning programmes. Preserve restrained 1.x presentation, photos and motion preferences. Source facts and publication boundaries are recorded in docs/RESUME_ALIGNMENT.md.
+
+Validation: all 71 browser cases pass, including the new résumé facts/date/status regression, existing 14-locale switching, narrow-screen/accessibility checks, and Chromium/WebKit cache retirement. Source audits cover locale completeness and protected availability/WCGPA values. Production budgets remain unchanged; formatted source HTML budget reflects added content. Native desktop/mobile checks passed for EN, ZH, DE, TH and 320px Arabic, covering the hero, research, leadership, ten programmes and updated competition dialog. No console errors or horizontal overflow.
+
+final result: passed
+
 ## 1.15.5 rollback — 2026-11-17
 
 Result: source/locale/privacy/performance audits and Cloudflare dry run pass. All 70 browser cases pass, including Chromium and WebKit retirement of a cached 2.x installation. Tracked-file formatting passes; the pre-existing untracked copy-review document is left untouched. Desktop/mobile/minimum-width English, Chinese, Arabic, German and Thai checks preserve layout and load no GLBs. The WebKit retirement regression retains anchors while forcing a full document navigation with a release query.
