@@ -13,7 +13,8 @@ concurrency:
 
 jobs:
   quality:
-    runs-on: ubuntu-latest
+    # Match the supported Linux environment for the pinned Playwright release.
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4

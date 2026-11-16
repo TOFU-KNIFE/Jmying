@@ -19,6 +19,7 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Retire the archive service worker, remove only its offline caches, and reload controlled tabs into the restored profile. Preserve unrelated caches, local preferences and archive bookmarks.
 - Keep `/classic.html` and the former manifest URL as redirects to the restored profile and manifest.
+- Pin the browser-check environment to supported Ubuntu 24.04 after `ubuntu-latest` moved to an unsupported release for the current Playwright version.
 
 ## [1.15.4] - 2026-10-28
 
