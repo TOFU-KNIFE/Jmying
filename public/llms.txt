@@ -1,7 +1,7 @@
 # JMYING
 
-> Jeremy (Lei) Ying's multilingual profile: Accounting (FinTech) student
-> seeking an Audit & Assurance internship for Feb–Apr 2027, focused on
+> Jeremy (Lei) Ying's multilingual profile: final-year Accounting (FinTech) student
+> seeking a compulsory 10-week accounting internship, 25 Jan–2 Apr 2027, focused on
 > accounting, audit, data and careful evidence-based work.
 
 ## Primary sections
@@ -10,6 +10,8 @@
   and internship availability.
 - [Experience](https://jmying.com/#experience): Practical finance, accounting and
   reporting experience.
+- [Research and leadership](https://jmying.com/#research): Independent Bloomberg
+  and IBKR research, club event leadership and earlier sports activities.
 - [Selected projects](https://jmying.com/#highlights): Evidence-led project and
   challenge summaries.
 - [Education and credentials](https://jmying.com/#credentials): Current degree,
@@ -17,7 +19,7 @@
 
 ## Contact
 
-- [LinkedIn](https://www.linkedin.com/in/jeremy-ying-a8520b350/): The only public
+- [LinkedIn](https://www.linkedin.com/in/jmying/): The only public
   contact channel published by this site.
 
 ## Notes

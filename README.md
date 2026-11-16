@@ -8,7 +8,7 @@ Version 1.15.5 restores the accepted 1.15.4 design after the 2.x archive experim
 
 LinkedIn is the **only** public contact channel:
 
-- https://www.linkedin.com/in/jeremy-ying-a8520b350/
+- https://www.linkedin.com/in/jmying/
 
 The site has no phone link, email link, contact form, public vCard, GitHub-profile contact button, analytics identifier, or advertising script.
 

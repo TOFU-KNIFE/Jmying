@@ -190,9 +190,9 @@ for (const target of navTargets) {
 }
 
 const highlightCards = html.match(/class="highlight-card(?:\s|")/g) || [];
-if (highlightCards.length !== 4) {
+if (highlightCards.length !== 7) {
   findings.push(
-    `expected 4 selected-project cards; found ${highlightCards.length}`,
+    `expected 7 selected-project cards; found ${highlightCards.length}`,
   );
 }
 for (const requiredCarouselContract of [

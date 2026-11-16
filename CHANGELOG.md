@@ -8,6 +8,15 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.16.0] - 2026-11-17
+
+### Changed
+
+- Align the profile and all fourteen locales with the latest user-provided résumé: final-year status, compulsory 10-week internship from 25 January to 2 April 2027, WCGPA 3.5 / 4.00, current tools and updated finance internship description.
+- Add independent Bloomberg/IBKR research, three leadership/activity entries, Deloitte Tax Challenge 2026 individual semi-final status, and explicitly ongoing Bloomberg and sustainability competitions.
+- Expand the learning list to ten named programmes and update the LinkedIn contact destination. Keep private résumé contact and reference information off the public site.
+- Preserve precise months for ongoing dates and align the education timeline with its September 2024 start. Keep the restrained 1.x interface and existing motion controls.
+
 ## [1.15.5] - 2026-11-17
 
 ### Changed

@@ -999,6 +999,27 @@ h1 span {
   line-height: 1.65;
 }
 
+.resume-research-copy {
+  min-width: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--type-body-large);
+  line-height: 1.65;
+}
+
+.resume-research-copy > p:first-child {
+  margin-top: 0;
+}
+
+.resume-leadership {
+  margin-top: 64px;
+}
+
+.resume-leadership > h3 {
+  margin: 0 0 26px;
+  font-size: 24px;
+  line-height: 1.35;
+}
+
 .evidence-explorer {
   min-width: 0;
   margin-top: 58px;
@@ -1183,7 +1204,7 @@ h1 span {
 }
 
 .evidence-row-education .evidence-range {
-  grid-column: 1 / 32;
+  grid-column: 9 / 36;
   color: var(--institutional-ink);
   background: var(--institutional-blue);
 }
@@ -1905,6 +1926,14 @@ h1 span {
   font-size: 13px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+}
+
+.credential-list small {
+  display: block;
+  margin-top: 5px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .connect-section {

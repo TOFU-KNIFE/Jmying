@@ -99,7 +99,10 @@ for (const file of files) {
       /(?:api[_-]?key|client[_-]?secret|access[_-]?token|password)\s*[:=]\s*['\"][^'\"]{8,}/i,
       "embedded secret-like value",
     ],
-    [/linkedin\.com\/in\/ying-lei-a8520b350/i, "obsolete LinkedIn profile URL"],
+    [
+      /linkedin\.com\/in\/(?:ying-lei|jeremy-ying)-a8520b350/i,
+      "obsolete LinkedIn profile URL",
+    ],
     [/github\.com\/TOFU-KNIFE/i, "GitHub profile exposed as a contact path"],
     [/contact\.vcf/i, "public vCard reference"],
   ];
@@ -182,7 +185,7 @@ for (const [pattern, label] of [
     fail(join(publicDir, "app.js"), `contains ${label}`);
 }
 const linkedinCount = (
-  html.match(/https:\/\/www\.linkedin\.com\/in\/jeremy-ying-a8520b350\//g) || []
+  html.match(/https:\/\/www\.linkedin\.com\/in\/jmying\//g) || []
 ).length;
 if (linkedinCount < 2)
   fail(
