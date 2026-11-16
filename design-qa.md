@@ -1,26 +1,10 @@
-## 2.0.1 performance verification — 2026-11-09
+## 1.15.5 rollback — 2026-11-17
 
-- Compare identical native Chromium/Metal reduced-motion, super-performance samples at 1440×900 and 390×900. Main-thread viewer idle medians fall from 402/420 ms per two seconds to 101/100 ms; full-motion FPS and all-device scores are not inferred from these samples.
-- Main CSS: 667,128 → 123,487 bytes; gzip estimate 203,934 → 20,111. GLBs: 6,908,860 → 3,979,636 combined bytes; every decoded geometry byte, accessor, mesh, node and material matches its original.
-- Full atomic offline release: 35,474,768 → 9,602,954 bytes, 819 → 194 requests. All referenced faces and license/credits files are present. New authored glyph coverage is regenerated rather than maintained by hand.
-- Desktop/mobile archive flows assert model readiness, settled-frame reuse and redraw on explosion, alongside existing search, reading, saving/export, preferences and classic fallback assertions.
-- Native Cloudflare-header Chromium/WebKit, offline reload/viewer/export, and quality restoration are verified before merging. Details and reproduction command: docs/PERFORMANCE.md.
+Result: source/locale/privacy/performance audits and Cloudflare dry run pass. All 70 browser cases pass, including Chromium and WebKit retirement of a cached 2.x installation. Tracked-file formatting passes; the pre-existing untracked copy-review document is left untouched. Desktop/mobile/minimum-width English, Chinese, Arabic, German and Thai checks preserve layout and load no GLBs. The WebKit retirement regression retains anchors while forcing a full document navigation with a release query.
 
-## Optional-font startup correction — 2026-11-09
+Restore the accepted 1.15.4 interface and static architecture, retaining the subsequent development-toolchain security fixes. Profile copy, locale content, images and visual styles are restored from the pre-2.0 main branch. Remove the 3D startup, array and model viewer from production.
 
-Production WebKit recheck found an intermittent font-preparation hang: the model was loaded, but `document.fonts.load` kept startup pending. Optional fonts now have a 2.5-second warm-up budget with settled rejection handling; the mandatory model load is still awaited. Two startup helper regression tests cover rejected and permanently pending fonts. Manual WebKit fault injection blocked every WOFF2 request and confirmed real 3D startup and archive reading using fallback fonts.
-
-# V2 major migration — 2026-11-09
-
-The user explicitly selected the complete RhineLabUI application, superseding the 1.x styling direction. Original runtime and models are reused with license/asset notices, public JMYING topics and identity, sound initially muted, mobile super-performance defaults, and classic/no-WebGL reading routes.
-
-Desktop and 390px phone captures show the live Three.js array (qa/rhine/v2-1280.png and v2-390.png, ignored QA artifacts). Manual review caught an added-link overlap with mobile navigation; links were moved below the brand and a geometry regression assertion was added. Local hardware-rendered Chromium is used for visual acceptance; Linux CI uses software WebGL.
-
-Validation: production build and TypeScript, 40-record/export consistency and invalid-data tests, baseline motion comparisons, 20,000 directional loop checks, asset-size/license/classic-language release checks, Cloudflare dry run. Ten new browser scenarios cover desktop/mobile search, reading, notes, saving/export, model explosion/reassembly, settings, classic languages, no JS and no WebGL. Final local run: build and release checks passed; 6/6 browser cases passed: two continuous desktop/mobile journeys preserve all search/read/model/save/export/settings assertions, with four independent fallback cases. Cloudflare dry run packaged 919 files successfully.
-
-The old sub-100KB static profile budget and old Lighthouse score are not claimed for the 3D homepage. The app offline package is approximately 34MiB including original fonts/models, with all individual files below Cloudflare’s 25MiB limit. See docs/RHINELAB_MIGRATION.md for the known development-only registry/advisory limitation.
-
----
+Validate source/locale/privacy/performance audits, desktop/mobile and representative-language flows, existing request-failure/keyboard/motion tests, and a new Chromium/WebKit service-worker retirement regression. Verify a real production 2.0.1 offline installation returns to the restored homepage, clears only owned archive caches and retains local data. Keep history intact through a normal revert PR and verify the automatic production build before tagging.
 
 # Design QA
 

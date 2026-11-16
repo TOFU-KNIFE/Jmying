@@ -1,5 +1,3 @@
-> V2 architecture notice: the homepage now uses the complete RhineLabUI/Vite/Three.js application. Read README.md and docs/RHINELAB_MIGRATION.md first. Earlier static-page layout and delivery rules below describe the frozen `/classic.html` compatibility view; they are not requirements for the new root DOM or Vite bundle.
-
 # JMYING Codex operating guide
 
 This is the complete working guide for Codex and other coding assistants that
@@ -9,9 +7,9 @@ quality.
 
 ## Current release
 
-- Version: `2.0.1`
+- Version: `1.15.5`
 - Product: privacy-first multilingual professional profile
-- Runtime: TypeScript, Three.js and Vite; frozen classic HTML/CSS/JavaScript and locale JSON
+- Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
 - Production: <https://jmying.com>
 - Repository: <https://github.com/TOFU-KNIFE/Jmying>
