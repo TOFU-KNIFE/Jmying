@@ -16,6 +16,8 @@ Every translation should therefore help a native-language reader understand the 
 
 ## Shared editorial rules
 
+The research process uses six separate labels instead of an arrow-separated sentence. Preserve their order and meaning: company overview, earnings history, analyst views, price trend, macro conditions and the author's own bull/bear case. These are research activities, not investment recommendations or measured results. Keep Bloomberg/IBKR and the original function references unchanged. Use concise native labels; allow wrapping rather than truncation. The Chinese conclusion “独立的多空论据” / “獨立的多空論據” retains both directions and independent authorship.
+
 1. Start from the verified English meaning and the section's purpose in the reader journey.
 2. Use the standard professional term in the target language for accounting, audit, assurance, taxation and financial reporting. Retain an English term only when it is the locally recognised industry form.
 3. Prefer short main clauses, active constructions and familiar vocabulary. Avoid slogans that become vague when translated.

@@ -1015,15 +1015,161 @@ h1 span {
   line-height: 1.65;
 }
 
-.resume-research-copy {
-  min-width: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--type-body-large);
-  line-height: 1.65;
+.research-sheet {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  column-gap: clamp(40px, 7vw, 104px);
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border-secondary);
 }
 
-.resume-research-copy > p:first-child {
-  margin-top: 0;
+.research-heading h2 > span {
+  display: block;
+}
+
+.research-amp {
+  color: var(--institutional-blue-dark);
+  font-style: italic;
+}
+
+.research-period {
+  margin: 28px 0 0;
+  padding-inline-start: 12px;
+  border-inline-start: 2px solid var(--institutional-blue-dark);
+  color: var(--color-text-secondary);
+}
+
+.research-context {
+  color: var(--color-text-secondary);
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.6;
+}
+
+.research-context > p:first-child {
+  margin: 0;
+}
+
+.research-functions {
+  margin: 28px 0 0;
+  color: var(--institutional-blue-dark);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+
+.research-method {
+  grid-column: 1 / -1;
+  margin-top: 48px;
+}
+
+.research-steps {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: var(--border-width) solid var(--color-border-secondary);
+  list-style: none;
+}
+
+.research-steps li {
+  padding: 22px clamp(14px, 1.7vw, 24px) 24px;
+  border-inline-start: var(--border-width) solid var(--color-border-tertiary);
+}
+
+.research-steps li:first-child {
+  padding-inline-start: 0;
+  border-inline-start: 0;
+}
+
+.research-step-index {
+  display: block;
+  font-variant-numeric: tabular-nums;
+}
+
+.research-steps p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 500;
+  hyphens: auto;
+}
+
+.research-steps .research-conclusion {
+  border: 0;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  color: #ffffff;
+  background: var(--institutional-ink);
+}
+
+.research-conclusion .research-step-index {
+  color: #afc7e5;
+}
+
+.research-conclusion p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: var(--leading-role);
+  letter-spacing: var(--tracking-title);
+}
+
+@media (max-width: 1100px) {
+  .research-steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 0;
+  }
+
+  .research-steps li {
+    border-top: var(--border-width) solid var(--color-border-secondary);
+  }
+
+  .research-steps li:nth-child(3n + 1) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .research-sheet {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 28px;
+    padding-top: 24px;
+  }
+
+  .research-context {
+    font-size: var(--type-body-large);
+  }
+
+  .research-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .research-steps li:nth-child(n) {
+    padding: 18px 16px 22px;
+    border-inline-start: var(--border-width) solid var(--color-border-tertiary);
+  }
+
+  .research-steps li:nth-child(2n + 1) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .research-step-index {
+    margin-bottom: 14px;
+  }
+}
+
+@media (forced-colors: active) {
+  .research-steps .research-conclusion {
+    border: 1px solid CanvasText;
+    color: CanvasText;
+    background: Canvas;
+  }
+
+  .research-conclusion .research-step-index {
+    color: CanvasText;
+  }
 }
 
 .resume-leadership {

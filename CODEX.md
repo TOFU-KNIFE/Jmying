@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.16.1`
+- Version: `1.16.2`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -83,7 +83,7 @@ Generated production output belongs in `dist/` and must not be edited by hand.
 2. Professional profile: restrained yearbook portrait on the left, start-aligned
    copy on the right and evidence rows below.
 3. Experience: factual editorial rows and an accessible evidence timeline.
-4. Independent research and leadership: Bloomberg/IBKR research and factual club/sports responsibilities.
+4. Independent research and leadership: an editorial Bloomberg/IBKR research sheet, a six-step numbered process and factual club/sports responsibilities.
 5. Working approach: source, structure and review workflow without the old
    oversized abstract visual.
 6. Selected projects and challenges: touch-friendly horizontal cards with partial
