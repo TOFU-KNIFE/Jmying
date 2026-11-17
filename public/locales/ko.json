@@ -120,5 +120,15 @@
   "highlight6Label": "참여 중 · 가상 포트폴리오",
   "highlight6Desc": "2026년 10월부터 Bloomberg Terminal에서 가상 포트폴리오를 관리하며 기업 기초 정보, 애널리스트 의견, 거시 데이터와 위험 한도를 바탕으로 매수·매도 결정을 검토합니다.",
   "highlight7Label": "참여 중 · 학생 팀",
-  "highlight7Desc": "2026년 11월부터 Stanford 주도의 지속가능성 대회에 학생 팀으로 참여해 지역사회를 위한 해결책의 조사, 데이터·비용 분석 및 제출 문서 작성을 지원합니다."
+  "highlight7Desc": "2026년 11월부터 Stanford 주도의 지속가능성 대회에 학생 팀으로 참여해 지역사회를 위한 해결책의 조사, 데이터·비용 분석 및 제출 문서 작성을 지원합니다.",
+  "researchCommand": "연구 단계로 이동",
+  "researchOpen": "열기",
+  "researchHint": "기능 코드 또는 단계 번호(1–6)를 입력하세요.",
+  "researchInvalid": "표시된 기능 코드 또는 1부터 6까지의 숫자를 입력하세요.",
+  "researchQuestion1": "회사는 어떤 사업을 하며, 이익은 어디에서 발생하는가?",
+  "researchQuestion2": "이익은 시간에 따라 어떻게 변해 왔는가?",
+  "researchQuestion3": "애널리스트의 의견은 어디에서 일치하고 엇갈리는가?",
+  "researchQuestion4": "주가 흐름은 회사의 재무 실적과 어떤 관계가 있는가?",
+  "researchQuestion5": "어떤 거시경제 요인이 회사의 전망에 영향을 줄 수 있는가?",
+  "researchQuestion6": "긍정·부정 시나리오를 뒷받침하는 근거는 무엇이며, 어떤 변화가 내 관점을 바꿀 수 있는가?"
 }

@@ -63,13 +63,9 @@ own content constraints take precedence.
 
 ### Identity
 
-- The primary symbol is a pure graphic device: three connected planes around one clear aperture. It represents evidence, structured review and clarity without using initials, letters or an accounting cliché.
-- Keep the symbol in institutional navy, warm white and pale blue. The compact palette ensures recognition without competing with content.
-- Preserve its rounded-square silhouette, internal negative space and square safe area. Never stretch, rotate, add a word inside it or introduce effects.
-- Reserve the symbol for browser chrome, Apple touch and install surfaces. It does
-  not participate in the webpage layout.
-- Keep the navigation identity as accessible live `JMYING` text. Do not place,
-  overlay or rasterise the graphic inside the page.
+- The primary symbol is the user-supplied interlaced SVG. Preserve its original navy paths and transparent master; sources and exports are documented in `assets/brand/README.md`.
+- The navigation combines that vector with a decorative divider and live `JMYING` text, in physical left-to-right order within the group in every locale.
+- Browser tabs use a separate white rounded-rectangle backing with transparent outer corners. Supply both SVG and 32-pixel PNG versions. Keep the navigation mark transparent and keep device/install exports independent of the tab treatment.
 - Broad professional-brand references inform clarity and consistency only. Do not reproduce Deloitte's green dot, EY's yellow beam, PwC's stacked warm-colour blocks or KPMG's boxed wordmark.
 
 ### Shape and spacing
@@ -124,7 +120,9 @@ own content constraints take precedence.
 
 Research-sheet review, 2026-11-17: the existing 1.16.1 page is the primary visual reference. [Apple's layout guidance](https://developer.apple.com/design/human-interface-guidelines/layout) supports aligned reading order, grouping with whitespace/rules and adaptation to text length and direction. The resulting editorial composition is this project's interpretation, using its own typography and colour tokens.
 
-- Independent research uses a ruled editorial sheet: a two-line serif platform title, blue ampersand, compact date and a start-aligned research description. Its existing six-step process is a semantic ordered list with quiet rules, blue indices and one navy conclusion. Reflow from six to three to two columns; keep full labels, natural script typography, RTL reading order and system-colour fallbacks. This is a factual process, so do not add simulated market charts, results, terminal controls or decorative motion.
+- Independent research keeps its ruled editorial heading and offers a local interactive navigator. Choose one of six labelled steps or type an existing function code / step number. Use roving keyboard tabs, visible selection and a navy detail area. Questions illustrate the already-published workflow; never invent company results or market data. All six articles remain available through native anchors without JavaScript. User input only selects local articles, is never stored or transmitted, and cannot submit because CSP retains `form-action 'none'`.
+- Research navigator review, 2026-11-17: [Bloomberg's student getting-started guide](https://data.bloomberglp.com/professional/sites/10/Getting-Started-Guide-for-Students-English.pdf), pages 5–6, supports separating command entry from function content. Adopt this interaction principle within JMYING's typography and palette; keep the original five codes and use `06` for the author's concluding step. This is an independent interpretation of the user's request, not a reproduction of the Bloomberg interface.
+
 - Lead with identity, professional direction and internship availability.
 - Keep Professional profile explicitly asymmetrical: yearbook portrait on the left, start-aligned summary on the right and evidence rows beneath. On narrow screens retain the left-image/right-copy relationship, then let the evidence rows span the full width.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.

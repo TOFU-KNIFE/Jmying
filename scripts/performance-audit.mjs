@@ -23,11 +23,11 @@ const stickerMediaBudgets = new Map([
 ]);
 
 const sourceBudgets = new Map([
-  // The résumé update adds research, leadership and three competition entries.
-  // This is the formatted source budget; shipped HTML remains capped below.
-  ["index.html", 52 * 1024],
-  ["styles.css", 68 * 1024],
-  ["app.js", 42 * 1024],
+  // The research navigator keeps all six articles in HTML for no-script access.
+  // Bound the added native UI; delivered HTML and compressed budgets stay capped.
+  ["index.html", 58 * 1024],
+  ["styles.css", 72 * 1024],
+  ["app.js", 44 * 1024],
 ]);
 
 for (const [filename, limit] of sourceBudgets) {
@@ -41,8 +41,8 @@ for (const [filename, limit] of sourceBudgets) {
 
 const productionBudgets = new Map([
   ["index.html", 96 * 1024],
-  ["styles.css", 56 * 1024],
-  ["app.js", 20 * 1024],
+  ["styles.css", 60 * 1024],
+  ["app.js", 21 * 1024],
 ]);
 
 for (const [filename, limit] of productionBudgets) {

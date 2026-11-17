@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.16.2`
+- Version: `1.17.0`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -83,7 +83,7 @@ Generated production output belongs in `dist/` and must not be edited by hand.
 2. Professional profile: restrained yearbook portrait on the left, start-aligned
    copy on the right and evidence rows below.
 3. Experience: factual editorial rows and an accessible evidence timeline.
-4. Independent research and leadership: an editorial Bloomberg/IBKR research sheet, a six-step numbered process and factual club/sports responsibilities.
+4. Independent research and leadership: an editorial Bloomberg/IBKR research sheet, a six-step command-and-tab navigator and factual club/sports responsibilities.
 5. Working approach: source, structure and review workflow without the old
    oversized abstract visual.
 6. Selected projects and challenges: touch-friendly horizontal cards with partial
@@ -172,8 +172,7 @@ Spanish, Brazilian Portuguese and Arabic.
 ## Performance, privacy and security baseline
 
 - The Hero is the only high-priority photograph.
-- The identity symbol is not requested by page-layout markup. Browser and install
-  surfaces load their dedicated icon resources independently.
+- The navigation requests the small supplied SVG eagerly at normal priority. Browser and install surfaces use their dedicated exports; tabs use a white rounded backing.
 - Below-fold images lazy-load at low priority.
 - The below-fold AI × Accounting static preview lazy-loads at low priority; its
   motion source remains detached until the module approaches the viewport or the

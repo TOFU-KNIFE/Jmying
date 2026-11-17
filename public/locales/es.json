@@ -120,5 +120,15 @@
   "highlight6Label": "En curso · Cartera virtual",
   "highlight6Desc": "Desde octubre de 2026, gestiono una cartera virtual en Bloomberg Terminal, estudiando fundamentos empresariales, opiniones de analistas, datos macroeconómicos y límites de riesgo para orientar las decisiones de compra y venta.",
   "highlight7Label": "En curso · Equipo estudiantil",
-  "highlight7Desc": "Desde noviembre de 2026, participo en un equipo estudiantil de una competición de sostenibilidad liderada por Stanford, apoyando la investigación, el análisis de datos y costes y la propuesta escrita de una solución para la comunidad."
+  "highlight7Desc": "Desde noviembre de 2026, participo en un equipo estudiantil de una competición de sostenibilidad liderada por Stanford, apoyando la investigación, el análisis de datos y costes y la propuesta escrita de una solución para la comunidad.",
+  "researchCommand": "Ir a un paso",
+  "researchOpen": "Abrir",
+  "researchHint": "Introduce un código de función o un número de paso (1–6).",
+  "researchInvalid": "Utiliza un código mostrado o un número del 1 al 6.",
+  "researchQuestion1": "¿A qué se dedica la empresa y de dónde proceden sus beneficios?",
+  "researchQuestion2": "¿Cómo han evolucionado los resultados a lo largo del tiempo?",
+  "researchQuestion3": "¿En qué coinciden y discrepan las opiniones de los analistas?",
+  "researchQuestion4": "¿Qué relación tiene la tendencia del precio con el desempeño financiero de la empresa?",
+  "researchQuestion5": "¿Qué condiciones macroeconómicas podrían influir en las perspectivas de la empresa?",
+  "researchQuestion6": "¿Qué respalda los argumentos alcistas y bajistas, y qué podría cambiar mi opinión?"
 }

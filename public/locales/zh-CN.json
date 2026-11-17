@@ -120,5 +120,15 @@
   "highlight6Label": "进行中 · 模拟投资组合",
   "highlight6Desc": "自 2026 年 10 月起，在 Bloomberg Terminal 管理模拟投资组合，结合公司基本面、分析师观点、宏观数据及风险限额研究买卖决策。",
   "highlight7Label": "进行中 · 学生团队项目",
-  "highlight7Desc": "自 2026 年 11 月起，参与斯坦福牵头的可持续发展竞赛学生团队，为面向社区的方案提供研究、数据与成本分析，并协助撰写提交材料。"
+  "highlight7Desc": "自 2026 年 11 月起，参与斯坦福牵头的可持续发展竞赛学生团队，为面向社区的方案提供研究、数据与成本分析，并协助撰写提交材料。",
+  "researchCommand": "跳转到研究步骤",
+  "researchOpen": "打开",
+  "researchHint": "输入功能代码或步骤编号（1–6）。",
+  "researchInvalid": "请输入面板中显示的功能代码，或 1 至 6 的数字。",
+  "researchQuestion1": "公司从事什么业务，盈利来自哪里？",
+  "researchQuestion2": "公司的盈利如何随时间变化？",
+  "researchQuestion3": "分析师的观点有哪些共识与分歧？",
+  "researchQuestion4": "股价趋势与公司的财务表现有何联系？",
+  "researchQuestion5": "哪些宏观因素可能影响公司的前景？",
+  "researchQuestion6": "看多和看空的论据分别是什么？哪些变化会使我重新审视观点？"
 }

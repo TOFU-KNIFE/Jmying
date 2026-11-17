@@ -101,6 +101,7 @@ for (const [family, largestWidth] of responsiveImageFamilies) {
 }
 
 const publicImages = [
+  "favicon.svg",
   "favicon-32.png",
   "apple-touch-icon.png",
   "brand/jmying-symbol-192.png",
@@ -144,6 +145,7 @@ for (const extension of ["avif", "webp", "jpg"]) {
 }
 
 if (
+  !html.includes(`/favicon.svg?v=${packageJson.version}`) ||
   !html.includes(`/favicon-32.png?v=${packageJson.version}`) ||
   !html.includes(`/apple-touch-icon.png?v=${packageJson.version}`)
 ) {

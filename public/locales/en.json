@@ -120,5 +120,15 @@
   "highlight6Label": "Ongoing · Virtual portfolio",
   "highlight6Desc": "Since October 2026, managing a virtual portfolio on the Bloomberg Terminal using company fundamentals, analyst views, macro data and risk limits to inform buy and sell decisions.",
   "highlight7Label": "Ongoing · Student team",
-  "highlight7Desc": "Since November 2026, working in a student team on a Stanford-led sustainability competition. Supporting research, data and cost analysis, and the written submission for a community-focused solution."
+  "highlight7Desc": "Since November 2026, working in a student team on a Stanford-led sustainability competition. Supporting research, data and cost analysis, and the written submission for a community-focused solution.",
+  "researchCommand": "Jump to a step",
+  "researchOpen": "Open",
+  "researchHint": "Enter a function code or a step number (1–6).",
+  "researchInvalid": "Use a displayed function code or a number from 1 to 6.",
+  "researchQuestion1": "What does the company do, and where do its earnings come from?",
+  "researchQuestion2": "How have earnings changed over time?",
+  "researchQuestion3": "Where do analyst views agree or diverge?",
+  "researchQuestion4": "How does the price trend compare with the company’s financial performance?",
+  "researchQuestion5": "Which macro conditions could influence the company’s outlook?",
+  "researchQuestion6": "What supports the bull case, what supports the bear case, and what could change my view?"
 }

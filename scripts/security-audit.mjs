@@ -161,7 +161,33 @@ for (const filename of expectedStickerMedia) {
 }
 
 const html = await readFile(join(publicDir, "index.html"), "utf8");
-if (/<form\b|<input\b|<textarea\b/i.test(html))
+// A single nameless, local-only command field navigates research articles.
+// All other collection controls remain forbidden; CSP blocks form submission.
+const commandForms = [
+  ...html.matchAll(
+    /<form\b[^>]*class="research-command"[^>]*>[\s\S]*?<\/form>/g,
+  ),
+];
+for (const [form] of commandForms) {
+  const fields = [...form.matchAll(/<input\b[\s\S]*?>/g)];
+  if (
+    commandForms.length !== 1 ||
+    fields.length !== 1 ||
+    !fields[0][0].includes('id="researchCommand"') ||
+    !fields[0][0].includes('type="text"') ||
+    /\b(?:action|formaction|name|method|onsubmit)\s*=/i.test(form) ||
+    /<textarea\b|<select\b/i.test(form)
+  )
+    fail(
+      join(publicDir, "index.html"),
+      "research command must remain local and nameless",
+    );
+}
+const collectionMarkup = html.replace(
+  /<form\b[^>]*class="research-command"[^>]*>[\s\S]*?<\/form>/g,
+  "",
+);
+if (/<form\b|<input\b|<textarea\b|<select\b/i.test(collectionMarkup))
   fail(
     join(publicDir, "index.html"),
     "contains a data-collection form or input",
@@ -200,6 +226,7 @@ for (const required of [
   "media-src 'self'",
   "frame-ancestors 'none'",
   "require-trusted-types-for 'script'",
+  "form-action 'none'",
   "Strict-Transport-Security",
   "Referrer-Policy: no-referrer",
   "Permissions-Policy:",

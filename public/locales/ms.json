@@ -120,5 +120,15 @@
   "highlight6Label": "Sedang berlangsung · Portfolio maya",
   "highlight6Desc": "Sejak Oktober 2026, mengurus portfolio maya di Bloomberg Terminal dengan meneliti asas syarikat, pandangan penganalisis, data makro dan had risiko untuk membuat keputusan beli dan jual.",
   "highlight7Label": "Sedang berlangsung · Pasukan pelajar",
-  "highlight7Desc": "Sejak November 2026, menyertai pasukan pelajar dalam pertandingan kelestarian yang diterajui Stanford, membantu penyelidikan, analisis data dan kos serta penulisan cadangan berfokuskan komuniti."
+  "highlight7Desc": "Sejak November 2026, menyertai pasukan pelajar dalam pertandingan kelestarian yang diterajui Stanford, membantu penyelidikan, analisis data dan kos serta penulisan cadangan berfokuskan komuniti.",
+  "researchCommand": "Lompat ke langkah",
+  "researchOpen": "Buka",
+  "researchHint": "Masukkan kod fungsi atau nombor langkah (1–6).",
+  "researchInvalid": "Gunakan kod fungsi yang dipaparkan atau nombor 1 hingga 6.",
+  "researchQuestion1": "Apakah perniagaan syarikat dan dari manakah pendapatannya diperoleh?",
+  "researchQuestion2": "Bagaimanakah pendapatan berubah dari semasa ke semasa?",
+  "researchQuestion3": "Di manakah pandangan penganalisis sependapat atau berbeza?",
+  "researchQuestion4": "Bagaimanakah trend harga dibandingkan dengan prestasi kewangan syarikat?",
+  "researchQuestion5": "Keadaan makro manakah yang boleh mempengaruhi prospek syarikat?",
+  "researchQuestion6": "Apakah yang menyokong hujah kenaikan dan penurunan, dan apakah yang boleh mengubah pandangan saya?"
 }

@@ -120,5 +120,15 @@
   "highlight6Label": "進行中 · 模擬投資組合",
   "highlight6Desc": "自 2026 年 10 月起，在 Bloomberg Terminal 管理模擬投資組合，結合公司基本面、分析師觀點、總體資料與風險限額研究買賣決策。",
   "highlight7Label": "進行中 · 學生團隊專案",
-  "highlight7Desc": "自 2026 年 11 月起，參與史丹佛牽頭的永續發展競賽學生團隊，為面向社區的方案提供研究、資料與成本分析，並協助撰寫提交資料。"
+  "highlight7Desc": "自 2026 年 11 月起，參與史丹佛牽頭的永續發展競賽學生團隊，為面向社區的方案提供研究、資料與成本分析，並協助撰寫提交資料。",
+  "researchCommand": "跳至研究步驟",
+  "researchOpen": "開啟",
+  "researchHint": "輸入功能代碼或步驟編號（1–6）。",
+  "researchInvalid": "請輸入面板中顯示的功能代碼，或 1 至 6 的數字。",
+  "researchQuestion1": "公司從事什麼業務，獲利來自哪裡？",
+  "researchQuestion2": "公司的獲利如何隨時間變化？",
+  "researchQuestion3": "分析師的觀點有哪些共識與分歧？",
+  "researchQuestion4": "股價趨勢與公司的財務表現有何關聯？",
+  "researchQuestion5": "哪些總體因素可能影響公司的前景？",
+  "researchQuestion6": "看多和看空的論據分別是什麼？哪些變化會使我重新檢視觀點？"
 }

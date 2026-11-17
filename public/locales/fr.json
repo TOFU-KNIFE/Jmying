@@ -120,5 +120,15 @@
   "highlight6Label": "En cours · Portefeuille virtuel",
   "highlight6Desc": "Depuis octobre 2026, gestion d’un portefeuille virtuel sur Bloomberg Terminal : fondamentaux des entreprises, avis d’analystes, données macroéconomiques et limites de risque pour étayer les décisions d’achat et de vente.",
   "highlight7Label": "En cours · Équipe étudiante",
-  "highlight7Desc": "Depuis novembre 2026, participation à une équipe étudiante dans une compétition de développement durable pilotée par Stanford. Appui à la recherche, à l’analyse des données et des coûts, ainsi qu’au dossier écrit d’une solution destinée à la communauté."
+  "highlight7Desc": "Depuis novembre 2026, participation à une équipe étudiante dans une compétition de développement durable pilotée par Stanford. Appui à la recherche, à l’analyse des données et des coûts, ainsi qu’au dossier écrit d’une solution destinée à la communauté.",
+  "researchCommand": "Accéder à une étape",
+  "researchOpen": "Ouvrir",
+  "researchHint": "Saisissez un code de fonction ou un numéro d’étape (1–6).",
+  "researchInvalid": "Utilisez un code affiché ou un chiffre de 1 à 6.",
+  "researchQuestion1": "Quelle est l’activité de l’entreprise et d’où proviennent ses bénéfices ?",
+  "researchQuestion2": "Comment les résultats ont-ils évolué au fil du temps ?",
+  "researchQuestion3": "Sur quels points les avis des analystes convergent-ils ou divergent-ils ?",
+  "researchQuestion4": "Quel est le lien entre l’évolution des cours et les résultats financiers de l’entreprise ?",
+  "researchQuestion5": "Quelles conditions macroéconomiques pourraient influencer les perspectives de l’entreprise ?",
+  "researchQuestion6": "Quels éléments soutiennent les scénarios haussier et baissier, et qu’est-ce qui pourrait modifier mon point de vue ?"
 }

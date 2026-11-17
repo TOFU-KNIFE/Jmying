@@ -12,7 +12,7 @@ Previous generated artwork is retained in Git history; it is superseded by this 
 
 ## Exports
 
-Render with `rsvg-convert`, retaining the complete source viewBox and aspect ratio. Transparent normal icons are exported at 192 and 512 pixels. The 32-pixel favicon has a pale-blue (`#AFC7E5`) backing for legibility. The 180-pixel Apple icon renders the source at 164 pixels on the same backing. The separate 512-pixel maskable icon renders the source at 360 pixels, centred with 76-pixel insets on an opaque backing to protect the diagonal tips from launcher masks.
+Render with `rsvg-convert`, retaining the complete source viewBox and aspect ratio. Transparent normal icons are exported at 192 and 512 pixels. Browser tabs use `../../public/favicon.svg`: the original symbol scaled uniformly within a white rounded rectangle, with transparent outer corners. Render its 32-pixel PNG fallback directly from that vector. The 180-pixel Apple icon renders the source at 164 pixels on the same backing. The separate 512-pixel maskable icon renders the source at 360 pixels, centred with 76-pixel insets on an opaque backing to protect the diagonal tips from launcher masks.
 
 ## Navigation
 

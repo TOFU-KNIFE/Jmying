@@ -8,6 +8,18 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.17.0] - 2026-11-17
+
+### Added
+
+- Turn Research process into a local function-code and tab navigator with six research questions, keyboard/RTL navigation, deep links and complete no-script articles. Keep the site's restrained blue/neutral identity and honour reduced motion.
+- Translate command labels, feedback and questions across all fourteen languages. Navigation commands remain in the browser and are never collected or persisted.
+
+### Changed
+
+- Give browser-tab icons a white rounded-rectangle backing, with SVG and PNG exports derived from the unchanged supplied logo. Preserve transparent navigation and existing install/device icons.
+- Budget the bounded native research UI while keeping compressed transfer limits, the default-deny CSP and the ban on contact collection.
+
 ## [1.16.2] - 2026-11-17
 
 ### Changed

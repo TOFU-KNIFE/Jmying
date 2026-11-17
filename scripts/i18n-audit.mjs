@@ -76,6 +76,7 @@ for (const { id, htmlLang } of manifestLocales) {
 
 const fallback = JSON.parse(await readFile(join(localeDir, "en.json"), "utf8"));
 const runtimeMessageKeys = [
+  "researchInvalid",
   "stickerPlay",
   "stickerStop",
   "stickerReplay",
