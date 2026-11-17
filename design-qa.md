@@ -1,3 +1,13 @@
+## 1.16.1 user-supplied identity — 2026-11-17
+
+Use the provided interlaced SVG unchanged in the navigation, followed by a decorative vertical divider and live JMYING text. Keep the internal group left-to-right in every locale. Navigation links move from weight 400 to 500. Compact header spacing at 821–1100 pixels prevents the new mark from crowding longer translated labels; the existing mobile menu breakpoint stays unchanged.
+
+Regenerate normal, browser, Apple and separate maskable PNGs from the source vector. Transparency remains in the vector and normal exports; pale backing and safe padding are used for platform icons. The current source and public SVG match the supplied bytes. Correct the install-manifest description left behind from the previous résumé update.
+
+All source/i18n/quality/performance/privacy checks and Cloudflare dry run pass. All 71 browser cases pass. A separate 56-case scan covers all fourteen locales at 320, 821, 900 and 1440 pixels: the SVG loads, remains left of the text, links use medium weight, and controls do not overlap or overflow. Review captures include narrow Chinese/Arabic and tablet French. No animations or dependencies are added.
+
+final result: passed
+
 ## 1.16.0 résumé content — 2026-11-17
 
 The latest user-provided résumé replaces the previous application window and broadens the target to accounting. Update all fourteen locales, grade, tools and current LinkedIn; add research, leadership, ongoing 2026 competitions and ten learning programmes. Preserve restrained 1.x presentation, photos and motion preferences. Source facts and publication boundaries are recorded in docs/RESUME_ALIGNMENT.md.

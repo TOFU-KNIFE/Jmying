@@ -264,6 +264,14 @@ for (const tag of imageTags) {
     }
     continue;
   }
+  if (/^\/brand\/jmying-symbol\.svg\?/.test(src)) {
+    if (!/\bloading="eager"/.test(tag) || /\bfetchpriority="high"/.test(tag)) {
+      findings.push(
+        "the navigation mark must load eagerly without competing with the hero's high priority",
+      );
+    }
+    continue;
+  }
   if (!/\bloading="lazy"/.test(tag) || !/\bfetchpriority="low"/.test(tag)) {
     findings.push(`${src} must lazy-load at low priority`);
   }

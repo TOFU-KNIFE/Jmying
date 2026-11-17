@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.16.0`
+- Version: `1.16.1`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -146,28 +146,9 @@ Playback and delivery contract:
 
 ### Brand symbol
 
-Release `1.13.4` introduces an original pure graphic symbol. It contains no
-letters, monogram or typographic glyph. Three connected geometric planes surround
-one clear aperture, representing evidence moving through structured review into
-clarity. The symbol uses the existing navy, warm-white and pale-blue palette.
+Release `1.16.1` uses the user-supplied interlaced vector mark. Preserve its original paths, navy colour and transparent background. The navigation shows the mark on the left of live `JMYING` text with a vertical divider; keep that internal order in RTL languages. This explicit user request supersedes the former restriction against showing a graphic in the navigation.
 
-The design draws only on broad professional-identity principles: one recognisable
-anchor, restrained geometry, forward movement and consistent cross-device use. It
-must not be altered to resemble Deloitte's green dot, EY's yellow beam, PwC's
-stacked warm-colour blocks or KPMG's boxed wordmark.
-
-Asset inventory:
-
-- `assets/brand/jmying-symbol-master.png`: transparent high-resolution source
-- `assets/brand/README.md`: provenance, regeneration prompt and export rules
-- `public/brand/jmying-symbol-192.png`: manifest icon
-- `public/brand/jmying-symbol-512.png`: high-resolution and maskable manifest icon
-- `public/favicon-32.png`: browser favicon
-- `public/apple-touch-icon.png`: Apple touch icon
-
-The graphic symbol is reserved for browser chrome, saved-site and install contexts.
-It does not appear inside the page layout. The navigation keeps the accessible
-`JMYING` name as live HTML text; do not rasterise it.
+The source vector, web copy, transparent master and browser/device exports are documented in `assets/brand/README.md`. Use the current source for all exports. Keep navigation links moderately weighted and verify compact widths so the mark and controls do not collide. Earlier artwork remains in Git history.
 
 ## Localisation contract
 
