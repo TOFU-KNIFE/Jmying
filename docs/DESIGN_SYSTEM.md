@@ -122,6 +122,9 @@ own content constraints take precedence.
 
 ## Content and interaction rules
 
+Research-sheet review, 2026-11-17: the existing 1.16.1 page is the primary visual reference. [Apple's layout guidance](https://developer.apple.com/design/human-interface-guidelines/layout) supports aligned reading order, grouping with whitespace/rules and adaptation to text length and direction. The resulting editorial composition is this project's interpretation, using its own typography and colour tokens.
+
+- Independent research uses a ruled editorial sheet: a two-line serif platform title, blue ampersand, compact date and a start-aligned research description. Its existing six-step process is a semantic ordered list with quiet rules, blue indices and one navy conclusion. Reflow from six to three to two columns; keep full labels, natural script typography, RTL reading order and system-colour fallbacks. This is a factual process, so do not add simulated market charts, results, terminal controls or decorative motion.
 - Lead with identity, professional direction and internship availability.
 - Keep Professional profile explicitly asymmetrical: yearbook portrait on the left, start-aligned summary on the right and evidence rows beneath. On narrow screens retain the left-image/right-copy relationship, then let the evidence rows span the full width.
 - Present experience and evidence as horizontal editorial rows separated by simple rules.

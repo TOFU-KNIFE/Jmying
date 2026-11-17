@@ -8,6 +8,14 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.16.2] - 2026-11-17
+
+### Changed
+
+- Refine Independent research into an editorial research sheet with a two-line serif title, blue ampersand, date rule and clearer reading measure.
+- Present the existing six-step research workflow as a semantic numbered sequence, ending in a navy emphasis for the independent bull and bear case. Reflow six columns to three and then two without hiding information.
+- Localise every process label across all fourteen languages. Preserve the research scope, dates, company examples and original tool references, with no new images, scripts or animation.
+
 ## [1.16.1] - 2026-11-17
 
 ### Changed

@@ -1,3 +1,15 @@
+## 1.16.2 Independent research editorial refinement — 2026-11-17
+
+Outcome: make the existing Bloomberg/IBKR research easier to scan within the restrained 1.x visual language. Keep factual scope, company examples, September 2024 start, original tool references and neighbouring leadership content. Use a ruled sheet, two-line serif title, blue ampersand/date rule, six semantic process steps and one navy conclusion. No new images, runtime logic, dependencies or motion.
+
+Visual matrix: 62 checks cover all fourteen locales at 320, 390, 820 and 1440 pixels; dark mode, increased contrast and forced colours; and mobile WebKit in English, Simplified Chinese and Arabic. The sequence reflows to six/three/two columns with correct RTL order, complete labels, no overlapping cells, no clipped content and no horizontal page overflow. Screenshots in `qa/research/` compare the accepted production section with the implementation; final desktop/mobile evidence is also tracked under `docs/reviews/1.16.2-research-*.png`. P2 findings closed: enable native hyphenation for long compound words and use concise Chinese conclusion labels that preserve independent bull/bear authorship. No open P0–P2 findings.
+
+Validation: `npm test`, all 71 browser cases, tracked-file formatting and diff checks pass. Fourteen locale files contain all 115 keys. Existing source and production payload budgets are unchanged. Final gzip payloads: HTML 21,301 B, CSS 11,569 B, JavaScript 6,420 B; the script differs only in its locale revision.
+
+Cold-profile Lighthouse 13.4: desktop performance/accessibility 100/100, FCP 0.3 s, LCP 0.5 s, TBT 0 ms, CLS 0. The initial mobile run scored 74 due to one unattributable long task. A follow-up comparison scored 100/100 on both the accepted production version and the new local build; the new mobile run recorded FCP 1.1 s, LCP 1.7 s, TBT 0 ms and CLS 0. The initial outlier did not reproduce. Production and loopback network conditions differ, so these scores do not establish a network-speed improvement. All reports, including the outlier, remain in `qa/research/`.
+
+final result: passed
+
 ## 1.16.1 user-supplied identity — 2026-11-17
 
 Use the provided interlaced SVG unchanged in the navigation, followed by a decorative vertical divider and live JMYING text. Keep the internal group left-to-right in every locale. Navigation links move from weight 400 to 500. Compact header spacing at 821–1100 pixels prevents the new mark from crowding longer translated labels; the existing mobile menu breakpoint stays unchanged.
