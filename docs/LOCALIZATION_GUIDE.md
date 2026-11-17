@@ -83,3 +83,7 @@ change language, steal focus or announce a stale error.
 ## Latest résumé alignment (2026-11-17)
 
 The user's latest résumé is the source for the 10-week compulsory accounting internship window, final-year status, WCGPA 3.5 / 4.00, September 2024 education start, added 2026 competition entries, independent research, leadership and named learning programmes. Preserve `Individual Semi-finalist` for Deloitte Tax Challenge 2026 and `Team Quarter-finalist` for 2025. Bloomberg Challenge 2026 uses a virtual portfolio; it and Global Sustainability Challenge 2026–27 are ongoing activities, not completed awards. Mandarin is native and English proficient; the 14 website locales are interface translations, not a claim of fluency in 14 languages. Official organisation, tool and programme titles remain recognisable. Private contact details, reference contacts and the résumé file are not published.
+
+## Compact profile wrapping
+
+The German profile uses one discretionary U+00AD break in `Projektfinanz\u00adbuchhaltung`. It is visible only when the line needs to wrap and keeps the two meaningful parts together. Do not enable paragraph-wide automatic hyphenation for this fix: WebKit would also split English words and organisation/place names unnecessarily.
