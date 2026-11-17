@@ -8,6 +8,14 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.17.1] - 2026-11-17
+
+### Fixed
+
+- Return both the navigation logo and footer home link to the actual document start, including without JavaScript. Move the destination off the sticky header.
+- Keep language skills across the complete profile row on phone and portrait-tablet layouts, removing fragmented text beneath the photograph and excess paragraph spacing.
+- Give the long German profile compound a discretionary word break, preserving natural English word wrapping across browser engines.
+
 ## [1.17.0] - 2026-11-17
 
 ### Added
