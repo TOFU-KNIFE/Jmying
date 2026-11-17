@@ -1,3 +1,17 @@
+## 1.17.0 Research navigator and white tab icon — 2026-11-17
+
+Outcome: extend the existing research sheet with function-code navigation requested by the user. Retain the editorial heading and palette; replace the static six-column process with labelled keyboard tabs, six research-question panels and an optional command field. Original function codes and step numbers select only local articles. There is no market feed, invented result, stored command or input transmission. Native anchors and all six articles remain available when JavaScript is unavailable. The user's explicit interaction request supersedes the previous static-only research presentation rule.
+
+Browser tabs now use a dedicated SVG with a white rounded rectangle and transparent outer corners, plus a directly rendered 32-pixel PNG fallback. Supplied paths remain unchanged in the navigation/master vector; Apple and install icons retain their existing separate treatment. Pixel checks verify a transparent outer corner and opaque white backing. New icon URLs use the build's content hash.
+
+All 81 browser cases pass, including ten new Chromium/WebKit cases for pointer/command selection, invalid-command recovery, keyboard/RTL behaviour, locale persistence of the active step, native no-script links, deep links/history and favicon exports. Source/i18n/quality/security audits, Cloudflare dry run, formatting and diff checks pass. The privacy audit permits only one nameless local research field and continues rejecting collection controls; CSP retains `form-action 'none'`.
+
+An additional 62 locale/viewport/preference cases exercise 372 selected-panel states: all fourteen locales at 320/390/820/1440px, dark mode, forced colours, increased contrast and mobile WebKit. All six labels/questions remain translated and readable; no panel/page overflow or console error. Commands make no POST request and leave storage unchanged. Final visual evidence in `docs/reviews/1.17.0-research-*.png`; expanded captures/reports are in `qa/navigator/`. P2 findings closed: preserve LTR counter order inside Arabic panels and inset the panel focus ring for contrast and unclipped visibility. No open P0–P2 findings.
+
+Lighthouse 13.4 cold profiles: mobile performance/accessibility 100/100, FCP 1.0s, LCP 1.7s, TBT 10ms, CLS 0; desktop 100/100, FCP 0.2s, LCP 0.5s, TBT 0ms, CLS 0. Initial module code has no media or framework dependency. The formatted source and uncompressed CSS/JS allowances account for six no-script articles and bounded native behaviour; delivered HTML remains below 96 KiB and existing compressed limits (24/14/8 KiB) remain unchanged. Final gzip HTML/CSS/JS: 22,553 / 12,042 / 7,100 bytes.
+
+final result: passed
+
 ## 1.16.2 Independent research editorial refinement — 2026-11-17
 
 Outcome: make the existing Bloomberg/IBKR research easier to scan within the restrained 1.x visual language. Keep factual scope, company examples, September 2024 start, original tool references and neighbouring leadership content. Use a ruled sheet, two-line serif title, blue ampersand/date rule, six semantic process steps and one navy conclusion. No new images, runtime logic, dependencies or motion.

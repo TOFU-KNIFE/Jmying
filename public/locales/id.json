@@ -120,5 +120,15 @@
   "highlight6Label": "Sedang berlangsung · Portofolio virtual",
   "highlight6Desc": "Sejak Oktober 2026, mengelola portofolio virtual di Bloomberg Terminal dengan meninjau fundamental perusahaan, pandangan analis, data makro dan batas risiko untuk keputusan beli dan jual.",
   "highlight7Label": "Sedang berlangsung · Tim mahasiswa",
-  "highlight7Desc": "Sejak November 2026, bergabung dalam tim mahasiswa pada kompetisi keberlanjutan yang dipimpin Stanford, mendukung riset, analisis data dan biaya serta penulisan proposal solusi bagi masyarakat."
+  "highlight7Desc": "Sejak November 2026, bergabung dalam tim mahasiswa pada kompetisi keberlanjutan yang dipimpin Stanford, mendukung riset, analisis data dan biaya serta penulisan proposal solusi bagi masyarakat.",
+  "researchCommand": "Lompat ke langkah",
+  "researchOpen": "Buka",
+  "researchHint": "Masukkan kode fungsi atau nomor langkah (1–6).",
+  "researchInvalid": "Gunakan kode fungsi yang ditampilkan atau angka 1 hingga 6.",
+  "researchQuestion1": "Apa bisnis perusahaan, dan dari mana labanya berasal?",
+  "researchQuestion2": "Bagaimana laba berubah dari waktu ke waktu?",
+  "researchQuestion3": "Di mana pandangan analis sejalan atau berbeda?",
+  "researchQuestion4": "Bagaimana tren harga dibandingkan dengan kinerja keuangan perusahaan?",
+  "researchQuestion5": "Kondisi makro apa yang dapat memengaruhi prospek perusahaan?",
+  "researchQuestion6": "Apa yang mendukung argumen optimistis dan pesimistis, dan apa yang dapat mengubah pandangan saya?"
 }

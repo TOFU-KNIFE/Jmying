@@ -120,5 +120,15 @@
   "highlight6Label": "Đang tham gia · Danh mục mô phỏng",
   "highlight6Desc": "Từ tháng 10/2026, quản lý danh mục đầu tư mô phỏng trên Bloomberg Terminal, nghiên cứu nền tảng doanh nghiệp, nhận định phân tích, dữ liệu vĩ mô và giới hạn rủi ro để đưa ra quyết định mua bán.",
   "highlight7Label": "Đang tham gia · Nhóm sinh viên",
-  "highlight7Desc": "Từ tháng 11/2026, tham gia nhóm sinh viên trong cuộc thi phát triển bền vững do Stanford dẫn dắt, hỗ trợ nghiên cứu, phân tích dữ liệu và chi phí, cùng chuẩn bị hồ sơ giải pháp hướng đến cộng đồng."
+  "highlight7Desc": "Từ tháng 11/2026, tham gia nhóm sinh viên trong cuộc thi phát triển bền vững do Stanford dẫn dắt, hỗ trợ nghiên cứu, phân tích dữ liệu và chi phí, cùng chuẩn bị hồ sơ giải pháp hướng đến cộng đồng.",
+  "researchCommand": "Chuyển đến bước",
+  "researchOpen": "Mở",
+  "researchHint": "Nhập mã chức năng hoặc số bước (1–6).",
+  "researchInvalid": "Dùng mã chức năng hiển thị hoặc số từ 1 đến 6.",
+  "researchQuestion1": "Công ty kinh doanh gì và lợi nhuận đến từ đâu?",
+  "researchQuestion2": "Lợi nhuận đã thay đổi như thế nào theo thời gian?",
+  "researchQuestion3": "Nhận định của các chuyên viên phân tích đồng thuận và khác biệt ở đâu?",
+  "researchQuestion4": "Xu hướng giá có quan hệ thế nào với kết quả tài chính của công ty?",
+  "researchQuestion5": "Những điều kiện vĩ mô nào có thể ảnh hưởng đến triển vọng của công ty?",
+  "researchQuestion6": "Điều gì hỗ trợ các luận điểm tích cực và tiêu cực, và điều gì có thể khiến tôi thay đổi nhận định?"
 }

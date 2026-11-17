@@ -6,7 +6,7 @@
   // menu only after this marker is present.
   document.documentElement.classList.add("js-enabled");
 
-  const localeVersion = "1.16.2";
+  const localeVersion = "1.17.0";
   const localeManifest = [
     {
       id: "en",
@@ -211,6 +211,112 @@
     evidenceItems[0] ||
     null;
 
+  function setupResearchNavigator() {
+    const terminal = document.querySelector(".research-terminal");
+    if (!terminal) return;
+    const list = terminal.querySelector(".research-tabs");
+    const tabs = [...list.querySelectorAll("[data-research-step]")];
+    const panels = [...terminal.querySelectorAll(".research-panel")];
+    const form = terminal.querySelector(".research-command");
+    const input = form.querySelector("input");
+    const feedback = terminal.querySelector("#researchFeedback");
+    let active = 0;
+
+    function select(index, focusTab = false) {
+      active = index;
+      tabs.forEach((tab, i) => {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        panels[i].hidden = i !== index;
+      });
+      terminal.querySelector(".research-position").textContent =
+        `${String(index + 1).padStart(2, "0")} / 06`;
+      input.value = tabs[index].dataset.researchCode;
+      input.removeAttribute("aria-invalid");
+      feedback.textContent = "";
+      if (focusTab) tabs[index].focus();
+    }
+
+    list.setAttribute("role", "tablist");
+    const compact = window.matchMedia("(max-width: 700px)");
+    function orient() {
+      list.setAttribute(
+        "aria-orientation",
+        compact.matches ? "horizontal" : "vertical",
+      );
+    }
+    orient();
+    onMediaQueryChange(compact, orient);
+    tabs.forEach((tab, index) => {
+      tab.parentElement.setAttribute("role", "presentation");
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", panels[index].id);
+      panels[index].setAttribute("role", "tabpanel");
+      panels[index].setAttribute("aria-labelledby", tab.id);
+      panels[index].tabIndex = 0;
+      tab.addEventListener("click", (event) => {
+        event.preventDefault();
+        select(index);
+      });
+      tab.addEventListener("keydown", (event) => {
+        const rtl = document.documentElement.dir === "rtl";
+        const delta = {
+          ArrowDown: 1,
+          ArrowUp: -1,
+          ArrowRight: rtl ? -1 : 1,
+          ArrowLeft: rtl ? 1 : -1,
+        }[event.key];
+        let next = active;
+        if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = tabs.length - 1;
+        else if (delta) next = (active + delta + tabs.length) % tabs.length;
+        else return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const command = input.value.trim().toUpperCase();
+      const index = tabs.findIndex(
+        (tab, i) =>
+          command === tab.dataset.researchCode ||
+          command === String(i + 1) ||
+          command === String(i + 1).padStart(2, "0"),
+      );
+      if (index < 0) {
+        input.setAttribute("aria-invalid", "true");
+        feedback.textContent = (
+          localeCache.get(currentLocale) || englishFallback
+        ).researchInvalid;
+        input.focus();
+        return;
+      }
+      select(index);
+      panels[index].focus();
+    });
+    input.addEventListener("input", () => {
+      input.removeAttribute("aria-invalid");
+      feedback.textContent = "";
+    });
+    // Respect direct article links as well as native navigation without JavaScript.
+    const linked = panels.findIndex(
+      (panel) => `#${panel.id}` === location.hash,
+    );
+    select(linked >= 0 ? linked : 0);
+    window.addEventListener("hashchange", () => {
+      const index = panels.findIndex(
+        (panel) => `#${panel.id}` === location.hash,
+      );
+      if (index >= 0) {
+        select(index);
+        panels[index].focus();
+      }
+    });
+    form.hidden = false;
+    terminal.classList.add("is-ready");
+  }
+
   function onMediaQueryChange(query, callback) {
     if (typeof query?.addEventListener === "function") {
       query.addEventListener("change", callback);
@@ -314,6 +420,7 @@
       highlightsCarouselLabel:
         highlightTrack?.getAttribute("aria-label") ||
         "Selected projects carousel",
+      researchInvalid: "Use a displayed function code or a number from 1 to 6.",
       stickerPlay: "Play motion",
       stickerStop: "Stop motion",
       stickerReplay: "Replay",
@@ -517,6 +624,9 @@
           `${messages.viewLinkedin}: Jeremy Ying`,
         );
       });
+      const researchFeedback = document.getElementById("researchFeedback");
+      if (researchFeedback?.textContent)
+        researchFeedback.textContent = messages.researchInvalid;
       formatDateRanges(messages);
       renderEvidenceDetail(activeEvidenceItem, messages);
       if (languageList.childElementCount) renderLanguageOptions();
@@ -1224,6 +1334,7 @@
   document.getElementById("year").textContent = new Date().getFullYear();
   setupImageFallbacks();
   setupEvidenceExplorer();
+  setupResearchNavigator();
   const preferredLocale = resolvePreferredLocale();
   document.documentElement.dir = localeById.get(preferredLocale).dir;
   if (preferredLocale !== "en") void applyLocale(preferredLocale);

@@ -120,5 +120,15 @@
   "highlight6Label": "Laufend · Virtuelles Portfolio",
   "highlight6Desc": "Seit Oktober 2026 Verwaltung eines virtuellen Portfolios am Bloomberg Terminal. Unternehmensdaten, Analystenmeinungen, Makrodaten und Risikolimits bilden die Grundlage für Kauf- und Verkaufsentscheidungen.",
   "highlight7Label": "Laufend · Studierendenteam",
-  "highlight7Desc": "Seit November 2026 Mitarbeit in einem Studierendenteam bei einem von Stanford geleiteten Nachhaltigkeitswettbewerb. Unterstützung bei Recherche, Daten- und Kostenanalyse sowie der schriftlichen Einreichung einer gemeinwesenorientierten Lösung."
+  "highlight7Desc": "Seit November 2026 Mitarbeit in einem Studierendenteam bei einem von Stanford geleiteten Nachhaltigkeitswettbewerb. Unterstützung bei Recherche, Daten- und Kostenanalyse sowie der schriftlichen Einreichung einer gemeinwesenorientierten Lösung.",
+  "researchCommand": "Zu einem Schritt wechseln",
+  "researchOpen": "Öffnen",
+  "researchHint": "Funktionscode oder Schrittnummer (1–6) eingeben.",
+  "researchInvalid": "Einen angezeigten Funktionscode oder eine Zahl von 1 bis 6 verwenden.",
+  "researchQuestion1": "Was macht das Unternehmen, und woher stammen seine Gewinne?",
+  "researchQuestion2": "Wie haben sich die Ergebnisse im Zeitverlauf entwickelt?",
+  "researchQuestion3": "Wo stimmen Analystenmeinungen überein, und wo unterscheiden sie sich?",
+  "researchQuestion4": "Wie verhält sich der Kursverlauf zur Finanzentwicklung des Unternehmens?",
+  "researchQuestion5": "Welche makroökonomischen Bedingungen könnten die Perspektiven des Unternehmens beeinflussen?",
+  "researchQuestion6": "Was spricht für das positive und das negative Szenario, und was könnte meine Einschätzung ändern?"
 }
