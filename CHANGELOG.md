@@ -8,6 +8,14 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.16.1] - 2026-11-17
+
+### Changed
+
+- Replace the site identity with the user-supplied transparent interlaced SVG; show it to the left of live JMYING text with a vertical divider in the navigation.
+- Increase navigation-link weight from regular to medium and keep the internal brand order consistent in RTL languages.
+- Regenerate browser and saved-site icons from the same vector, including a separate maskable export. Align the install-manifest description with the latest profile.
+
 ## [1.16.0] - 2026-11-17
 
 ### Changed

@@ -105,6 +105,8 @@ const publicImages = [
   "apple-touch-icon.png",
   "brand/jmying-symbol-192.png",
   "brand/jmying-symbol-512.png",
+  "brand/jmying-symbol-maskable-512.png",
+  "brand/jmying-symbol.svg",
   "portrait.jpg",
   "portrait.webp",
   "portrait.avif",
@@ -151,11 +153,13 @@ if (
 }
 
 if (
-  html.includes("jmying-symbol") ||
-  styles.includes(".brand-symbol") ||
-  styles.includes(".wordmark-name")
+  !html.includes(`/brand/jmying-symbol.svg?v=${packageJson.version}`) ||
+  !html.includes('class="wordmark-divider"') ||
+  !html.includes('class="wordmark-name">JMYING</span>')
 ) {
-  findings.push("the graphic identity must not participate in page layout");
+  findings.push(
+    "navigation must retain the supplied logo, divider and live JMYING text",
+  );
 }
 
 for (const size of ["192x192", "512x512"]) {
