@@ -1,3 +1,17 @@
+## 1.17.3 browser performance and interaction review — 2026-11-19
+
+Reviewed startup, image fallback, scroll handling, keyboard focus, locale loading, motion state, asset delivery and production checks. Fixed a mobile menu that skipped its links when opened via keyboard, research arrows that moved sideways in the compact grid, a missing active-section indicator, and an English fallback that retained Arabic direction after a failed request. The menu and research changes pass the Chromium and WebKit keyboard paths. The navigation indicator tracks a line based on viewport height and uses `aria-current="location"`.
+
+The portfolio carousel now accepts vertical page gestures over its cards. An emulated touch sequence verified both vertical page scrolling and horizontal card scrolling. The per-frame callback uses cached card spacing, so it no longer reads every card rectangle or queries computed padding while scrolling. Gallery controls, snapping, RTL movement and project dialogs remain covered.
+
+The opening photograph and copy render as soon as ready without an entrance fade. The static study preview is 79,214 bytes as AVIF, compared with 182,450 bytes as WebP, a 56.6% reduction. The WebP asset is still served if AVIF fails. Size and visible detail were checked on desktop Chromium and mobile WebKit. The 169,772-byte motion start frame now loads only with a playback request. The preview remains visible if the script is unavailable. Build budgets still pass with gzip HTML 22,788 B, CSS 12,019 B and JavaScript 7,218 B.
+
+Cold local Lighthouse 13.4 measurements before and after scored 100 for performance and 100 for accessibility on both profiles. Mobile LCP was 1.69 then 1.67 seconds. Desktop LCP was 0.47 seconds in both runs. TBT and CLS were 0. Those are individual lab runs, and the timings do not establish a repeatable LCP improvement. Reports and visual captures are in `qa/browser-perf/`.
+
+All 93 browser tests and formatting, build, localisation, performance, quality and security checks passed. The registry dependency audit reported zero matching vulnerability advisories. Reviewed the asset and locale loading paths, privacy rules and browser fallback coverage. No release blocker remains in the reviewed paths.
+
+final result: passed
+
 ## 1.17.2 résumé content refinement — 2026-11-19
 
 The updated résumé supplies the Dean’s List recognition, part-time designation, clearer evidence of accounting work and specific tools. The homepage now leads with payment checks, working papers and financial data. The education row and evidence timeline show the same WCGPA and Dean’s List information. Research and EY workshop text now reflect company selection and team recognition.

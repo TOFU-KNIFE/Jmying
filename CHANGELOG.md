@@ -8,6 +8,19 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.17.3] - 2026-11-19
+
+### Changed
+
+- Render the homepage hero without an entrance fade. Use a lighter AVIF for the AI × Accounting preview and request the motion start frame only when playback starts.
+- Let visitors scroll vertically from the mobile project cards while preserving horizontal swipe and snap. Measure carousel spacing when its layout changes instead of measuring every card during scrolling.
+
+### Fixed
+
+- Move keyboard focus into the opened mobile menu and to the selected section. Restore the visible and accessible current-section indicator.
+- Make research arrow keys follow the compact grid and preserve English reading direction if a right-to-left translation fails to load.
+- Show the static study preview when the site script is unavailable.
+
 ## [1.17.2] - 2026-11-19
 
 ### Changed

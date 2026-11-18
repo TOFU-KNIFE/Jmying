@@ -34,8 +34,15 @@ test("research keyboard order and active panel survive language changes", async 
   await page.goto("/#research");
   const first = page.locator("#research-tab-1");
   await first.focus();
+  const compact = await page.evaluate(
+    () => matchMedia("(max-width: 700px)").matches,
+  );
   await page.keyboard.press("ArrowDown");
-  await expect(page.locator("#research-tab-2")).toBeFocused();
+  await expect(
+    page.locator(compact ? "#research-tab-3" : "#research-tab-2"),
+  ).toBeFocused();
+  await page.keyboard.press("ArrowUp");
+  await expect(first).toBeFocused();
   await page.keyboard.press("End");
   await expect(page.locator("#research-tab-6")).toBeFocused();
   await page.keyboard.press("Home");

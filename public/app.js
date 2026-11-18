@@ -6,7 +6,7 @@
   // menu only after this marker is present.
   document.documentElement.classList.add("js-enabled");
 
-  const localeVersion = "1.17.2";
+  const localeVersion = "1.17.3";
   const localeManifest = [
     {
       id: "en",
@@ -159,6 +159,9 @@
   const highlightsSection = document.getElementById("highlights");
   const stickerModule = document.querySelector("[data-sticker-module]");
   const stickerVideo = stickerModule?.querySelector(".sticker-video");
+  const stickerStartFrame = stickerModule?.querySelector(
+    ".sticker-start-frame",
+  );
   const stickerPlayButton = stickerModule?.querySelector("[data-sticker-play]");
   const stickerPlayLabel = stickerModule?.querySelector("[data-sticker-label]");
   const stickerStatus = stickerModule?.querySelector("[data-sticker-status]");
@@ -195,6 +198,7 @@
   let localeController = null;
   let currentLocale = "en";
   let carouselIndex = 0;
+  let carouselStep = 0;
   let carouselFrame = 0;
   let carouselReady = false;
   let activeHighlightCard = null;
@@ -220,6 +224,7 @@
     const form = terminal.querySelector(".research-command");
     const input = form.querySelector("input");
     const feedback = terminal.querySelector("#researchFeedback");
+    const position = terminal.querySelector(".research-position");
     let active = 0;
 
     function select(index, focusTab = false) {
@@ -229,8 +234,7 @@
         tab.tabIndex = i === index ? 0 : -1;
         panels[i].hidden = i !== index;
       });
-      terminal.querySelector(".research-position").textContent =
-        `${String(index + 1).padStart(2, "0")} / 06`;
+      position.textContent = `${String(index + 1).padStart(2, "0")} / 06`;
       input.value = tabs[index].dataset.researchCode;
       input.removeAttribute("aria-invalid");
       feedback.textContent = "";
@@ -261,13 +265,14 @@
       tab.addEventListener("keydown", (event) => {
         const rtl = document.documentElement.dir === "rtl";
         const delta = {
-          ArrowDown: 1,
-          ArrowUp: -1,
+          ArrowDown: compact.matches ? 2 : 1,
+          ArrowUp: compact.matches ? -2 : -1,
           ArrowRight: rtl ? -1 : 1,
           ArrowLeft: rtl ? 1 : -1,
         }[event.key];
         let next = active;
-        if (event.key === "Home") next = 0;
+        if (event.key === " ") next = index;
+        else if (event.key === "Home") next = 0;
         else if (event.key === "End") next = tabs.length - 1;
         else if (delta) next = (active + delta + tabs.length) % tabs.length;
         else return;
@@ -633,9 +638,10 @@
       if (activeHighlightCard) renderHighlightDialog(activeHighlightCard);
       renderStickerState(messages);
       if (carouselReady) {
-        window.requestAnimationFrame(() =>
-          scrollToHighlight(carouselIndex, "auto"),
-        );
+        window.requestAnimationFrame(() => {
+          measureHighlightStep();
+          scrollToHighlight(carouselIndex, "instant");
+        });
       }
       if (persist) storeLocale(currentLocale);
       return true;
@@ -667,23 +673,27 @@
   }
 
   function closeMobileMenu({ restoreFocus = false } = {}) {
-    if (!siteHeader || !menuTrigger) return;
+    if (!siteHeader || !menuTrigger || !primaryNav) return;
     siteHeader.removeAttribute("data-menu-open");
+    primaryNav.inert = mobileMenuQuery.matches;
     menuTrigger.setAttribute("aria-expanded", "false");
     if (restoreFocus) menuTrigger.focus();
   }
 
-  function openMobileMenu() {
-    if (!siteHeader || !menuTrigger || !mobileMenuQuery.matches) return;
+  function openMobileMenu({ focusFirst = false } = {}) {
+    if (!siteHeader || !menuTrigger || !primaryNav || !mobileMenuQuery.matches)
+      return;
     siteHeader.dataset.menuOpen = "true";
+    primaryNav.inert = false;
     menuTrigger.setAttribute("aria-expanded", "true");
+    if (focusFirst) primaryNav.querySelector("[data-nav-link]")?.focus();
   }
 
-  function toggleMobileMenu() {
+  function toggleMobileMenu(event) {
     if (mobileMenuIsOpen()) {
       closeMobileMenu();
     } else {
-      openMobileMenu();
+      openMobileMenu({ focusFirst: event.detail === 0 });
     }
   }
 
@@ -838,6 +848,15 @@
       stickerVideo.src = stickerVideo.dataset.src;
       stickerSourceAttached = true;
       stickerVideo.load();
+      if (stickerStartFrame && !stickerStartFrame.hasAttribute("src")) {
+        stickerStartFrame.src = stickerStartFrame.dataset.src;
+        stickerStartFrame.decode().then(
+          () => {
+            stickerStartFrame.hidden = false;
+          },
+          () => {},
+        );
+      }
     }
     void startStickerPlayback({ automatic });
   }
@@ -883,6 +902,7 @@
   function setupStickerModule() {
     if (!stickerModule || !stickerVideo || !stickerPlayButton) return;
     const connection = navigator.connection;
+    stickerPlayButton.hidden = false;
     let mediaFailed = false;
 
     if (reducedMotionQuery.matches || connectionIsConstrained()) {
@@ -942,31 +962,17 @@
     }
   }
 
-  function highlightCards() {
-    return highlightTrack
-      ? [...highlightTrack.querySelectorAll(".highlight-card")]
-      : [];
-  }
-
-  function updateHighlightControls() {
-    const cards = highlightCards();
-    if (!cards.length) return;
-    const maxScroll = Math.max(
-      0,
-      highlightTrack.scrollWidth - highlightTrack.clientWidth,
-    );
-    const logicalScroll =
-      document.documentElement.dir === "rtl"
-        ? Math.abs(highlightTrack.scrollLeft)
-        : highlightTrack.scrollLeft;
-    previousHighlightButton.disabled = logicalScroll <= 1;
-    nextHighlightButton.disabled = logicalScroll >= maxScroll - 1;
+  function measureHighlightStep() {
+    const first = highlightTrack.firstElementChild;
+    const next = first?.nextElementSibling;
+    carouselStep = next ? Math.abs(next.offsetLeft - first.offsetLeft) : 0;
   }
 
   function activateHighlightCarousel() {
     if (carouselReady) return;
     carouselReady = true;
-    updateHighlightControls();
+    measureHighlightStep();
+    updateHighlightIndexFromScroll();
   }
 
   function scrollByHighlight(direction) {
@@ -976,61 +982,32 @@
   }
 
   function scrollToHighlight(index, requestedBehavior) {
-    if (!carouselReady) return;
-    const cards = highlightCards();
-    if (!cards.length) return;
-    carouselIndex = Math.max(0, Math.min(index, cards.length - 1));
-    const behavior =
-      requestedBehavior || (reducedMotionQuery.matches ? "auto" : "smooth");
-    const direction = document.documentElement.dir;
-    const trackRect = highlightTrack.getBoundingClientRect();
-    const cardRect = cards[carouselIndex].getBoundingClientRect();
-    const trackStyles = window.getComputedStyle(highlightTrack);
-    const startInset = Number.parseFloat(
-      direction === "rtl" ? trackStyles.paddingRight : trackStyles.paddingLeft,
+    if (!carouselReady || !carouselStep) return;
+    carouselIndex = Math.max(
+      0,
+      Math.min(index, highlightTrack.childElementCount - 1),
     );
-    const targetEdge =
-      direction === "rtl"
-        ? trackRect.right - startInset
-        : trackRect.left + startInset;
-    const cardEdge = direction === "rtl" ? cardRect.right : cardRect.left;
+    const sign = document.documentElement.dir === "rtl" ? -1 : 1;
     highlightTrack.scrollTo({
-      left: highlightTrack.scrollLeft + cardEdge - targetEdge,
-      behavior,
+      left: sign * carouselIndex * carouselStep,
+      behavior:
+        requestedBehavior || (reducedMotionQuery.matches ? "auto" : "smooth"),
     });
-    updateHighlightControls();
-    window.requestAnimationFrame(updateHighlightIndexFromScroll);
+    requestHighlightIndexUpdate();
   }
 
   function updateHighlightIndexFromScroll() {
     carouselFrame = 0;
-    const cards = highlightCards();
-    if (!cards.length) return;
-
-    const direction = document.documentElement.dir;
-    const trackRect = highlightTrack.getBoundingClientRect();
-    const trackStyles = window.getComputedStyle(highlightTrack);
-    const startInset = Number.parseFloat(
-      direction === "rtl" ? trackStyles.paddingRight : trackStyles.paddingLeft,
+    const maxScroll = highlightTrack.scrollWidth - highlightTrack.clientWidth;
+    const logicalScroll = Math.max(
+      0,
+      document.documentElement.dir === "rtl"
+        ? -highlightTrack.scrollLeft
+        : highlightTrack.scrollLeft,
     );
-    const targetEdge =
-      direction === "rtl"
-        ? trackRect.right - startInset
-        : trackRect.left + startInset;
-
-    let closestIndex = 0;
-    let closestDistance = Number.POSITIVE_INFINITY;
-    cards.forEach((card, index) => {
-      const cardRect = card.getBoundingClientRect();
-      const cardEdge = direction === "rtl" ? cardRect.right : cardRect.left;
-      const distance = Math.abs(cardEdge - targetEdge);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-    carouselIndex = closestIndex;
-    updateHighlightControls();
+    if (carouselStep) carouselIndex = Math.round(logicalScroll / carouselStep);
+    previousHighlightButton.disabled = logicalScroll <= 1;
+    nextHighlightButton.disabled = logicalScroll >= maxScroll - 1;
   }
 
   function requestHighlightIndexUpdate() {
@@ -1095,9 +1072,15 @@
       const forward = event.key === (rtl ? "ArrowLeft" : "ArrowRight");
       scrollByHighlight(forward ? 1 : -1);
     });
-    window.addEventListener("resize", requestHighlightIndexUpdate, {
-      passive: true,
-    });
+    window.addEventListener(
+      "resize",
+      () => {
+        if (!carouselReady) return;
+        measureHighlightStep();
+        requestHighlightIndexUpdate();
+      },
+      { passive: true },
+    );
 
     if (!("IntersectionObserver" in window) || !highlightsSection) {
       activateHighlightCarousel();
@@ -1177,32 +1160,33 @@
       .filter(Boolean);
     if (!("IntersectionObserver" in window) || !sections.length) return;
 
-    const visibleSections = new Map();
-    let activeSection = null;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          visibleSections.set(entry.target, entry);
-        });
-        const nextSection = [...visibleSections.values()]
-          .filter((entry) => entry.isIntersecting)
-          .sort(
-            (firstEntry, secondEntry) =>
-              secondEntry.intersectionRatio - firstEntry.intersectionRatio,
-          )[0]?.target;
-        if (!nextSection || nextSection === activeSection) return;
-        activeSection = nextSection;
-        navigationLinks.forEach((link) =>
-          link.toggleAttribute(
-            "aria-current",
-            link.getAttribute("href") === `#${activeSection.id}`,
-          ),
-        );
-      },
-      { rootMargin: "-30% 0px -55% 0px", threshold: [0.01, 0.25, 0.5] },
-    );
-    sections.forEach((section) => observer.observe(section));
+    let observer;
+    function observeNavigationLine() {
+      observer?.disconnect();
+      const visible = new Set();
+      const viewport = document.documentElement.clientHeight;
+      // Percentage root margins resolve against width, even on the vertical axis.
+      const line = Math.floor(viewport / 3);
+      observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          if (currentObserver !== observer) return;
+          for (const entry of entries) {
+            if (entry.isIntersecting) visible.add(entry.target);
+            else visible.delete(entry.target);
+          }
+          const activeId = sections.find((section) => visible.has(section))?.id;
+          for (const link of navigationLinks) {
+            if (link.hash === `#${activeId}`)
+              link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+          }
+        },
+        { rootMargin: `-${line}px 0px -${Math.max(0, viewport - line - 1)}px` },
+      );
+      sections.forEach((section) => observer.observe(section));
+    }
+    observeNavigationLine();
+    window.addEventListener("resize", observeNavigationLine, { passive: true });
   }
 
   function setupPurposefulMotion() {
@@ -1246,12 +1230,30 @@
   }
 
   menuTrigger?.addEventListener("click", toggleMobileMenu);
+  primaryNav?.addEventListener("keydown", (event) => {
+    if (!mobileMenuIsOpen() || !["ArrowDown", "ArrowUp"].includes(event.key))
+      return;
+    const links = [...primaryNav.querySelectorAll("[data-nav-link]")];
+    const index = links.indexOf(event.target);
+    if (index < 0) return;
+    event.preventDefault();
+    const step = event.key === "ArrowDown" ? 1 : -1;
+    links[(index + step + links.length) % links.length].focus();
+  });
   primaryNav?.addEventListener("click", (event) => {
-    if (event.target.closest("[data-nav-link]")) closeMobileMenu();
+    const link = event.target.closest("[data-nav-link]");
+    if (!link || !mobileMenuIsOpen()) return;
+    if (event.detail === 0) {
+      const section = document.getElementById(link.hash.slice(1));
+      if (section) {
+        section.tabIndex = -1;
+        section.focus({ preventScroll: true });
+      }
+    }
+    closeMobileMenu();
   });
-  onMediaQueryChange(mobileMenuQuery, (event) => {
-    if (!event.matches) closeMobileMenu();
-  });
+  onMediaQueryChange(mobileMenuQuery, () => closeMobileMenu());
+  closeMobileMenu();
   document.addEventListener("pointerdown", (event) => {
     if (mobileMenuIsOpen() && !siteHeader.contains(event.target)) {
       closeMobileMenu();
@@ -1336,7 +1338,7 @@
   setupEvidenceExplorer();
   setupResearchNavigator();
   const preferredLocale = resolvePreferredLocale();
-  document.documentElement.dir = localeById.get(preferredLocale).dir;
+  document.documentElement.dir = "ltr";
   if (preferredLocale !== "en") void applyLocale(preferredLocale);
   setupNavigationTracking();
   setupHighlightCarousel();

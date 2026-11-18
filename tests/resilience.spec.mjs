@@ -145,6 +145,50 @@ test.describe("mobile first-visit resilience", () => {
     ).toBe(true);
   });
 
+  test("keyboard reaches the expanded menu and follows a section link", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const menu = page.locator("#menuTrigger");
+    const profile = page.locator('#primaryNav a[href="#profile"]');
+    await menu.focus();
+    await page.keyboard.press("Enter");
+    await expect(profile).toBeFocused();
+    await page.keyboard.press("ArrowDown");
+    await expect(
+      page.locator('#primaryNav a[href="#experience"]'),
+    ).toBeFocused();
+    await page.keyboard.press("ArrowUp");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/#profile$/);
+    await expect(page.locator("#profile")).toBeFocused();
+    await expect(menu).toHaveAttribute("aria-expanded", "false");
+    await expect(profile).toHaveAttribute("aria-current", "location");
+  });
+
+  test("study renders its preview with the script blocked and skips motion assets", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    const requests = [];
+    page.on("request", (request) => {
+      if (/sticker-(?:start|motion)/.test(request.url()))
+        requests.push(request.url());
+    });
+    await page.route(/\/app(?:\.[a-f0-9]+)?\.js(?:\?|$)/, (route) =>
+      route.abort(),
+    );
+    await page.goto("/");
+    const preview = page.locator(".sticker-static");
+    await preview.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() => preview.evaluate((img) => img.naturalWidth))
+      .toBeGreaterThan(0);
+    await expect(preview).toHaveCSS("opacity", "1");
+    await expect(page.locator("[data-sticker-play]")).toBeHidden();
+    expect(requests).toEqual([]);
+  });
+
   test("CSP authorizes the exact inline stylesheet without unsafe inline code", async ({
     page,
   }) => {

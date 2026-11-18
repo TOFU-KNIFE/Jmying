@@ -20,6 +20,7 @@ const stickerMediaBudgets = new Map([
   ["sticker-motion-v1.mp4", 1800 * 1024],
   ["sticker-start-v1.webp", 200 * 1024],
   ["sticker-static-v1.webp", 200 * 1024],
+  ["sticker-static-v1.avif", 80 * 1024],
 ]);
 
 const sourceBudgets = new Map([
@@ -227,7 +228,7 @@ for (const [filename, limit] of stickerMediaBudgets) {
     const info = await stat(
       join(publicDir, "media", "ai-accounting", filename),
     );
-    stickerMediaTotal += info.size;
+    if (filename !== "sticker-static-v1.avif") stickerMediaTotal += info.size;
     if (info.size > limit) {
       findings.push(
         `${filename} is ${Math.ceil(info.size / 1024)} KiB; sticker media budget is ${Math.ceil(limit / 1024)} KiB`,
@@ -257,7 +258,7 @@ for (const url of imageUrls) {
 
 const imageTags = [...html.matchAll(/<img\b[\s\S]*?>/g)].map(([tag]) => tag);
 for (const tag of imageTags) {
-  const src = tag.match(/\bsrc="([^"]+)"/)?.[1] || "unknown image";
+  const src = tag.match(/\ssrc="([^"]+)"/)?.[1] || "unknown image";
   if (src.includes("hero-photo")) {
     if (!/\bloading="eager"/.test(tag) || !/\bfetchpriority="high"/.test(tag)) {
       findings.push("the hero image must load eagerly at high priority");
@@ -269,6 +270,17 @@ for (const tag of imageTags) {
       findings.push(
         "the navigation mark must load eagerly without competing with the hero's high priority",
       );
+    }
+    continue;
+  }
+  if (tag.includes("sticker-start-frame")) {
+    if (
+      src !== "unknown image" ||
+      !tag.includes(
+        `data-src="/media/ai-accounting/sticker-start-v1.webp?v=${packageJson.version}"`,
+      )
+    ) {
+      findings.push("the motion start frame must stay detached until playback");
     }
     continue;
   }
