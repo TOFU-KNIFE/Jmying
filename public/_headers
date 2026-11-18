@@ -10,7 +10,6 @@
   Origin-Agent-Cluster: ?1
   X-Permitted-Cross-Domain-Policies: none
   X-Download-Options: noopen
-  X-Robots-Tag: index, follow, noimageindex
 
 /
   Cache-Control: public, max-age=0, must-revalidate, no-transform
@@ -78,6 +77,16 @@
 /*.jpg
   Cache-Control: public, max-age=0, must-revalidate
   X-Robots-Tag: noindex, noimageindex
+
+# Keep the public search icon and the responsive profile portrait indexable.
+/favicon.png
+  ! X-Robots-Tag
+
+/portrait.*
+  ! X-Robots-Tag
+
+/portrait-*
+  ! X-Robots-Tag
 
 /.well-known/security.txt
   Cache-Control: public, max-age=3600, must-revalidate

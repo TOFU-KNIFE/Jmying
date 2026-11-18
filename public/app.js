@@ -6,7 +6,7 @@
   // menu only after this marker is present.
   document.documentElement.classList.add("js-enabled");
 
-  const localeVersion = "1.17.3";
+  const localeVersion = "1.17.4";
   const localeManifest = [
     {
       id: "en",

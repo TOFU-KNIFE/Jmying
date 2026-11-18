@@ -15,6 +15,7 @@ const textExtensions = new Set([
   ".webmanifest",
 ]);
 const allowedExternalOrigins = new Set(["https://www.linkedin.com"]);
+const jsonLdBlock = /<script type="application\/ld\+json">[^<]*<\/script>/g;
 const findings = [];
 const stickerMediaDir = join(publicDir, "media", "ai-accounting");
 const expectedStickerMedia = new Set([
@@ -111,7 +112,10 @@ for (const file of files) {
     if (pattern.test(text)) fail(file, `contains ${label}`);
   }
 
-  for (const match of text.matchAll(/https:\/\/[^\s"'<>)}]+/g)) {
+  const linkMarkup = text.replace(jsonLdBlock, (block) =>
+    block.replace(/"@context":\s*"https:\/\/schema\.org"/, ""),
+  );
+  for (const match of linkMarkup.matchAll(/https:\/\/[^\s"'<>)}]+/g)) {
     let url;
     try {
       url = new URL(match[0].replace(/[.,;:]$/, ""));
@@ -193,7 +197,8 @@ if (/<form\b|<input\b|<textarea\b|<select\b/i.test(collectionMarkup))
     join(publicDir, "index.html"),
     "contains a data-collection form or input",
   );
-if (/\son[a-z]+\s*=|<script(?![^>]+src=)|<style\b/i.test(html))
+const executableMarkup = html.replace(jsonLdBlock, "");
+if (/\son[a-z]+\s*=|<script(?![^>]+src=)|<style\b/i.test(executableMarkup))
   fail(
     join(publicDir, "index.html"),
     "contains inline executable code or event handlers",
@@ -212,7 +217,7 @@ for (const [pattern, label] of [
     fail(join(publicDir, "app.js"), `contains ${label}`);
 }
 const linkedinCount = (
-  html.match(/https:\/\/www\.linkedin\.com\/in\/jmying\//g) || []
+  html.match(/href="https:\/\/www\.linkedin\.com\/in\/jmying\/"/g) || []
 ).length;
 if (linkedinCount < 2)
   fail(

@@ -8,6 +8,13 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.17.4] - 2026-11-19
+
+### Fixed
+
+- Publish a stable, crawlable JMYING favicon for search results and browser tabs.
+- Identify the official portrait in profile structured data, link previews and the image sitemap, and make the portrait crawlable.
+
 ## [1.17.3] - 2026-11-19
 
 ### Changed
