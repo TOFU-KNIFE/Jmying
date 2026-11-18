@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.17.3`
+- Version: `1.17.4`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -187,6 +187,7 @@ Spanish, Brazilian Portuguese and Arabic.
   style block. The source stylesheet link remains external for development.
 - The build derives content-hash queries for image, icon, media, manifest and
   font references, and a combined locale-content hash for runtime locale fetches.
+  The public search favicon and canonical profile portrait use stable URLs.
 - Fonts are same-origin, Unicode-ranged and loaded only when a device needs the
   fallback.
 - The site has no analytics, advertising, form collection or third-party runtime

@@ -115,30 +115,83 @@ test("research article deep links and history reveal the matching panel", async 
   );
 });
 
-test("tab icon offers a vector and a white rounded PNG fallback", async ({
+test("search and browser tabs use a stable, crawlable brand icon", async ({
   page,
   request,
 }) => {
   await page.goto("/");
   await expect(
-    page.locator('link[rel="icon"][type="image/svg+xml"]'),
-  ).toHaveAttribute("href", /\/favicon\.svg\?h=[a-f0-9]{64}/);
-  const icon = await request.get("/favicon.svg");
-  expect(icon.status()).toBe(200);
-  expect(icon.headers()["content-type"]).toContain("image/svg+xml");
-  const pixels = await page.evaluate(async () => {
-    const blob = await (await fetch("/favicon-32.png")).blob();
-    const image = await createImageBitmap(blob);
-    const canvas = document.createElement("canvas");
-    canvas.width = 32;
-    canvas.height = 32;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0);
-    return {
-      corner: [...ctx.getImageData(0, 0, 1, 1).data],
-      backing: [...ctx.getImageData(16, 1, 1, 1).data],
-    };
-  });
+    page.locator('link[rel="icon"][type="image/png"]'),
+  ).toHaveAttribute("href", "/favicon.png");
+  const icon = await request.get("/favicon.png");
+  expect(icon.ok()).toBe(true);
+  expect(icon.headers()["content-type"]).toContain("image/png");
+  expect(icon.headers()["x-robots-tag"]).toBeUndefined();
+  const pixels = await page.evaluate(
+    async (bytes) => {
+      const blob = new Blob([new Uint8Array(bytes)], { type: "image/png" });
+      const image = await createImageBitmap(blob);
+      const canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+      return {
+        corner: [...ctx.getImageData(0, 0, 1, 1).data],
+        backing: [...ctx.getImageData(48, 2, 1, 1).data],
+        dimensions: [image.width, image.height],
+      };
+    },
+    [...(await icon.body())],
+  );
   expect(pixels.corner[3]).toBe(0);
   expect(pixels.backing).toEqual([255, 255, 255, 255]);
+  expect(pixels.dimensions).toEqual([96, 96]);
+});
+
+test("the indexable profile portrait matches the homepage and sitemap", async ({
+  page,
+  request,
+}) => {
+  const home = await page.goto("/");
+  expect(home.headers()["x-robots-tag"]).toBeUndefined();
+  const robots = await page
+    .locator('meta[name="robots"]')
+    .getAttribute("content");
+  expect(robots).not.toMatch(/noindex|noimageindex/);
+
+  const profile = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').textContent(),
+  );
+  const portrait = "https://jmying.com/portrait.jpg";
+  expect(profile).toMatchObject({
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Jeremy (Lei) Ying",
+      image: portrait,
+    },
+  });
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    "content",
+    portrait,
+  );
+  await expect(page.locator(".yearbook-portrait img")).toHaveAttribute(
+    "src",
+    "/portrait.jpg",
+  );
+  const responses = await Promise.all([
+    request.get("/sitemap.xml"),
+    request.get("/portrait.jpg"),
+    request.get("/portrait-480.avif"),
+    request.get("/hero-photo-1600.jpg"),
+  ]);
+  const [sitemap, jpeg, responsivePortrait, hero] = responses;
+  expect(await sitemap.text()).toContain(`<image:loc>${portrait}</image:loc>`);
+  expect(jpeg.ok()).toBe(true);
+  expect(jpeg.headers()["content-type"]).toContain("image/jpeg");
+  expect(jpeg.headers()["x-robots-tag"]).toBeUndefined();
+  expect(responsivePortrait.ok()).toBe(true);
+  expect(responsivePortrait.headers()["x-robots-tag"]).toBeUndefined();
+  expect(hero.headers()["x-robots-tag"]).toContain("noindex");
 });

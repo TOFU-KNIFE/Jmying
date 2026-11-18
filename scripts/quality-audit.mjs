@@ -102,6 +102,7 @@ for (const [family, largestWidth] of responsiveImageFamilies) {
 }
 
 const publicImages = [
+  "favicon.png",
   "favicon.svg",
   "favicon-32.png",
   "apple-touch-icon.png",
@@ -146,12 +147,11 @@ for (const extension of ["avif", "webp", "jpg"]) {
 }
 
 if (
-  !html.includes(`/favicon.svg?v=${packageJson.version}`) ||
-  !html.includes(`/favicon-32.png?v=${packageJson.version}`) ||
+  !html.includes('href="/favicon.png" rel="icon" sizes="96x96"') ||
   !html.includes(`/apple-touch-icon.png?v=${packageJson.version}`)
 ) {
   findings.push(
-    "browser and device identity assets are missing or unrevisioned",
+    "the stable search favicon or revisioned device icon is missing",
   );
 }
 

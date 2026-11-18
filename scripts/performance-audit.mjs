@@ -249,7 +249,9 @@ const imageUrls = [
   ...html.matchAll(
     /(?:https:\/\/jmying\.com)?\/[^"'\s,]+\.(?:avif|webp|jpe?g)(?:\?v=[^"'\s,]+)?/g,
   ),
-].map(([url]) => url);
+]
+  .map(([url]) => url)
+  .filter((url) => !/^(?:https:\/\/jmying\.com)?\/portrait\.jpg$/.test(url));
 for (const url of imageUrls) {
   if (!url.includes(`?v=${packageJson.version}`)) {
     findings.push(`${url} is not revisioned for deterministic rollout`);

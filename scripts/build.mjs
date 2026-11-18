@@ -127,6 +127,8 @@ async function hashedAssetUrl(reference) {
   const parsed = new URL(reference, "https://jmying.com/");
   if (
     parsed.pathname === "/" ||
+    reference === "/favicon.png" ||
+    reference === "/portrait.jpg" ||
     /^\/(?:app\.js|styles\.css)$/.test(parsed.pathname)
   ) {
     return reference;
