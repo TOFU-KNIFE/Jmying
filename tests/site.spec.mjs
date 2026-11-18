@@ -263,12 +263,25 @@ test("latest resume facts, dates and ongoing activities remain accurate", async 
     page.locator('#experience [data-i18n="educationDesc"]'),
   ).toContainText("3.5 / 4.00");
   await expect(
+    page.locator('#experience [data-i18n="educationDesc"]'),
+  ).toContainText("Dean’s List Award in multiple semesters.");
+  await expect(page.locator('#experience h3[data-i18n="exp2Role"]')).toHaveText(
+    "Account Assistant (Part-time)",
+  );
+  await expect(page.locator('[data-i18n="exp2Desc"]')).toContainText(
+    "tracked expenses against budgets",
+  );
+  await expect(
     page.locator('[data-description-key="educationDesc"] time'),
   ).toHaveAttribute("data-date-start", "2024-09");
   await expect(
     page.locator('[data-description-key="educationDesc"] time'),
   ).toContainText("Sep");
   await expect(page.locator("#research")).toContainText("YTL and IJM");
+  await expect(page.locator(".hero-statement")).toContainText(
+    "payment records",
+  );
+  await expect(page.locator(".toolkit-strip")).toContainText("Tableau");
   await expect(page.locator(".resume-leadership .timeline-item")).toHaveCount(
     3,
   );

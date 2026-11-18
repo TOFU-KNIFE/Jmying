@@ -1,3 +1,11 @@
+## 1.17.2 résumé content refinement — 2026-11-19
+
+The updated résumé supplies the Dean’s List recognition, part-time designation, clearer evidence of accounting work and specific tools. The homepage now leads with payment checks, working papers and financial data. The education row and evidence timeline show the same WCGPA and Dean’s List information. Research and EY workshop text now reflect company selection and team recognition.
+
+All 89 Chromium and WebKit browser tests passed, including the expanded résumé regression. Twenty additional viewport and language checks verified the updated copy, education detail and absence of horizontal page overflow from 320px through 1440px. Visual review covered Chinese mobile, English desktop, and narrow German and Arabic. Shortening the Chinese hero line fixed the one-character wrap identified during review. Local captures are in `qa/resume-1119/`. The localisation audit covers 14 locales and 126 keys. Quality, security, performance, build and formatting checks passed. Compressed HTML, CSS and JavaScript are 22,755, 12,056 and 7,100 bytes respectively, within the existing limits.
+
+final result: passed
+
 ## 1.17.1 screenshot-driven responsive audit — 2026-11-17
 
 Reviewed newly captured screenshots across 1440px desktop, 1024/768px tablet, 390/320px mobile and an 844×390 landscape dialog. Capture the actual page, reject incomplete/wrong-size frames, inspect them and compare the matched viewport/state before making corrections. The in-app browser supplied production evidence; local preview was unreachable there, so an independent Chrome tab supplied local evidence. Current-run Chromium and WebKit screenshots supplement that review. Scope, numbered flow steps, strengths, findings, comparison images and physical-device/accessibility limits are in `docs/reviews/1.17.1-visual-audit.md`; the complete local screenshot report is `qa/visual-audit/report.md`.

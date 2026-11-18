@@ -1,4 +1,12 @@
-# Latest résumé alignment — 2026-11-17
+# Résumé alignment
+
+## 2026-11-19 refinement
+
+The new résumé confirms Dean’s List recognition in multiple semesters, the part-time accounting assistant role, and more specific tasks at both placements. The public profile uses the current internship dates and WCGPA. It describes IPC payment and document checks, work prepared for a supervisor to review, expenses checked against budgets, and data reviewed for year-end reporting.
+
+The homepage leads with those skills. The workflow includes specific Excel functions, and the tools list includes Tableau, Cloudflare, Figma and Sketch. The independent research panel begins with choosing a listed company. The EY workshop text credits the group for the stated recognition. All fourteen locales carry the same factual claims. The internship window is still 25 January–2 April 2027.
+
+## 2026-11-17 alignment
 
 The user-provided current résumé is the factual source for this content release. The PDF and its extracted text stay outside the repository and deployment. Public copy is a concise account of the listed experience, not an expansion of qualifications.
 

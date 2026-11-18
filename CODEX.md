@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.17.1`
+- Version: `1.17.2`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
