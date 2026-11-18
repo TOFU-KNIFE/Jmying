@@ -7,7 +7,7 @@ quality.
 
 ## Current release
 
-- Version: `1.17.2`
+- Version: `1.17.3`
 - Product: privacy-first multilingual professional profile
 - Runtime: static HTML, CSS, JavaScript and locale JSON
 - Hosting: Cloudflare Workers Static Assets
@@ -126,14 +126,13 @@ bundle, source portraits or research recordings.
 
 Playback and delivery contract:
 
-- Show the complete static WebP before interaction.
+- Show the complete static preview before interaction, including with the site script unavailable. Serve AVIF with a WebP fallback.
 - Keep `preload="none"` and attach the MP4 only when the module reaches the
   near-viewport observer margin or the visitor chooses Play.
 - Auto-start the muted sequence at most once per page visit. Keep Stop available
   while loading or playing, retain Play/Replay for manual control and never
   restart automatically after the visitor stops it.
-- Keep the start frame visible until the browser presents the first decoded video
-  frame, preventing a blank or mismatched asset transition.
+- Load the start frame when playback is requested. Use the static preview until the start frame decodes, then show the first presented video frame.
 - Stop and reset playback when the module leaves its near-viewport activation
   region or the document is hidden.
 - Use the static preview without requesting motion media for reduced-motion and

@@ -223,10 +223,12 @@ test("all 14 languages switch, persist and recover the English fallback", async 
 test("failed startup locale keeps the English page and selector consistent", async ({
   page,
 }) => {
-  await page.addInitScript(() => localStorage.setItem("jmying-language", "de"));
-  await page.route("**/locales/de.json*", (route) => route.abort());
+  await page.addInitScript(() => localStorage.setItem("jmying-language", "ar"));
+  await page.route("**/locales/ar.json*", (route) => route.abort());
   await page.goto("/");
   await expect(page.locator("#toast")).toContainText("Could not load");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
   await page.locator("#languageTrigger").click();
   await expect(page.locator('[data-language="en"]')).toHaveAttribute(
     "aria-current",

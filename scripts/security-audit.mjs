@@ -21,6 +21,7 @@ const expectedStickerMedia = new Set([
   "sticker-motion-v1.mp4",
   "sticker-start-v1.webp",
   "sticker-static-v1.webp",
+  "sticker-static-v1.avif",
 ]);
 const localPathMarkers = [
   "/Users/",

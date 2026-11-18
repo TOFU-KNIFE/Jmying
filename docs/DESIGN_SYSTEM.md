@@ -131,5 +131,6 @@ Research-sheet review, 2026-11-17: the existing 1.16.1 page is the primary visua
 - Keep LinkedIn as the only public contact channel.
 - Keep primary mobile controls visible in a compact 56-pixel header. When the full five-item navigation no longer fits without clipping, expose it through a clearly labelled, keyboard-accessible Menu control and keep the language code visible beside it.
 - Keep section 04 as a native horizontal scroller with scroll snapping, a visible neighbouring card, previous/next controls, keyboard direction support and logical right-to-left order.
+- On touch screens, the carousel must allow a vertical page swipe to start on a card. Its horizontal snapping still applies to horizontal gestures. Measure the uniform card spacing only when the layout changes.
 - Preserve keyboard focus, semantic headings, same-origin localisation, right-to-left order and an unmirrored portrait.
 - Never add analytics, advertising, contact forms, private details or unsupported claims.
