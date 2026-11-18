@@ -251,7 +251,7 @@ const imageUrls = [
   ),
 ]
   .map(([url]) => url)
-  .filter((url) => !/^((https:\/\/jmying\.com)?\/portrait\.jpg)$/.test(url));
+  .filter((url) => !/^(?:https:\/\/jmying\.com)?\/portrait\.jpg$/.test(url));
 for (const url of imageUrls) {
   if (!url.includes(`?v=${packageJson.version}`)) {
     findings.push(`${url} is not revisioned for deterministic rollout`);

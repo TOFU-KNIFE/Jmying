@@ -127,20 +127,23 @@ test("search and browser tabs use a stable, crawlable brand icon", async ({
   expect(icon.ok()).toBe(true);
   expect(icon.headers()["content-type"]).toContain("image/png");
   expect(icon.headers()["x-robots-tag"]).toBeUndefined();
-  const pixels = await page.evaluate(async () => {
-    const blob = await (await fetch("/favicon.png")).blob();
-    const image = await createImageBitmap(blob);
-    const canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0);
-    return {
-      corner: [...ctx.getImageData(0, 0, 1, 1).data],
-      backing: [...ctx.getImageData(48, 2, 1, 1).data],
-      dimensions: [image.width, image.height],
-    };
-  });
+  const pixels = await page.evaluate(
+    async (bytes) => {
+      const blob = new Blob([new Uint8Array(bytes)], { type: "image/png" });
+      const image = await createImageBitmap(blob);
+      const canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+      return {
+        corner: [...ctx.getImageData(0, 0, 1, 1).data],
+        backing: [...ctx.getImageData(48, 2, 1, 1).data],
+        dimensions: [image.width, image.height],
+      };
+    },
+    [...(await icon.body())],
+  );
   expect(pixels.corner[3]).toBe(0);
   expect(pixels.backing).toEqual([255, 255, 255, 255]);
   expect(pixels.dimensions).toEqual([96, 96]);
