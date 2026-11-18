@@ -8,6 +8,14 @@ All notable changes follow [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 - Update Wrangler to 4.154.0 to resolve development-toolchain advisories.
 
+## [1.17.2] - 2026-11-19
+
+### Changed
+
+- Lead with concrete accounting work, then show supervisor review, expense tracking against budgets and support for year-end reporting.
+- Add the part-time designation for the accounting assistant role and Dean’s List recognition across multiple semesters. Keep the WCGPA and internship dates aligned with the résumé.
+- Add specific Excel functions and the data, web and design tools listed in the current résumé. Clarify the research starting point and the team recognition at the EY Business Case Workshop across the fourteen locales.
+
 ## [1.17.1] - 2026-11-17
 
 ### Fixed
